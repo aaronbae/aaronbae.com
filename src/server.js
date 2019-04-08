@@ -1,43 +1,25 @@
-var express = require('express');
-var path = require("path");
-var bodyParser = require("body-parser");
-var mongo = require("mongoose");
+const express = require('express'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    mongoose = require('mongoose'),
+    config = require('./DB');
 
-var db = mongo.connect("mongodb://localhost:27017/aaronbaeDB", function(err, response){
-    if(err){ console.log(err); }
-    else{ console.log('Connected to ' + db, ' + ', response); }
-});
+    const postRoute = require('./routes/post.route');
+    const userRoute = require('./routes/user.route');
+    mongoose.Promise = global.Promise;
+    mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+      () => {console.log('Database is connected') },
+      err => { console.log('Can not connect to the database'+ err)}
+    );
 
-var app = express()
-app.use(bodyParser());
-app.use(bodyParser.json({limit:'5mb'}));
-app.use(bodyParser.urlencoded({extended: true}));
+    const app = express();
+    app.use(bodyParser.json());
+    app.use(cors());
+    app.use('/post', postRoute);
+    app.use('/user', userRoute);
+    const port = process.env.PORT || 4000;
 
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELTEE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-});
-
-app.post("/api/SaveUser", function(req, res){
-    var mod = new module(req.body);
-    if(req.body.mode == "Save")
-    {
-        mod.save(function(err, data){
-            if(err){
-                res.send(err);
-            }
-            else{
-                res.send({data:"Record has been Inserted..!!"});
-            }
-        });
-    }
-    else
-    {
-        module.findByIdAndUpdate(req.body.id, { name: req.body.name, address: req.body.address},
-            function(err, data) {
-                
-            })
-    }
-})
+    const server = app.listen(port, function(){
+     console.log('Listening on port ' + port);
+    });
