@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { ViewerComponent } from './viewer/viewer.component';
 import { PostService } from './post.service';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,14 @@ import { PostService } from './post.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SlimLoadingBarModule
   ],
-  providers: [],
-  bootstrap: [
-    AppComponent,
+  providers: [
     PostService
+  ],
+  bootstrap: [
+    AppComponent
   ]
 })
 export class AppModule { }
