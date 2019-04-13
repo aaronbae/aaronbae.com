@@ -4,7 +4,7 @@ import { ViewerComponent } from './viewer/viewer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/viewer', pathMatch: 'full' },
-  { path: 'viewer', component: ViewerComponent }
+  { path: 'viewer', component: ViewerComponent },
 ];
 
 @NgModule({

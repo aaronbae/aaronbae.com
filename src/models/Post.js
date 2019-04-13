@@ -16,7 +16,7 @@ let Post = new Schema({
     type: String
   }
 },{
-    collection: 'post'
+    collection: 'posts'
 });
 
 module.exports = mongoose.model('Post', Post);

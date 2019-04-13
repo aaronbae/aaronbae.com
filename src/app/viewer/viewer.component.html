@@ -1,4 +1,19 @@
-<div *ngFor="let post of posts">
-  <span>{{post.title}}</span>
-  <span>{{post.content}}</span>
-</div>
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Post ID</td>
+      <td>Author ID</td>
+      <td>Title</td>
+      <td>Content</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let post of posts">
+          <td>{{ post.id }}</td>
+          <td>{{ post.author }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.content }}</td>
+      </tr>
+  </tbody>
+</table>

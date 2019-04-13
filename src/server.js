@@ -16,8 +16,8 @@ const express = require('express'),
     const app = express();
     app.use(bodyParser.json());
     app.use(cors());
-    app.use('/post', postRoute);
-    app.use('/user', userRoute);
+    app.use('/posts', postRoute);
+    app.use('/users', userRoute);
     const port = process.env.PORT || 4000;
 
     const server = app.listen(port, function(){
