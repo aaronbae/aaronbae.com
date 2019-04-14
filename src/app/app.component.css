@@ -1,0 +1,15 @@
+nav {
+    font-size: 1em;
+}
+.main-nav-tab {
+    font-size: 1.3em;
+}
+.nav-tab {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.nav-link {
+    color: rgb(50,50,50);
+}

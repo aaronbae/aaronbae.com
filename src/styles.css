@@ -2,5 +2,13 @@
 
 @import "../node_modules/ng2-slim-loading-bar/style.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue Arial", sans-serif; }
+html, body { 
+    height: 100%; 
+}
+body { 
+    font-family: Roboto, "Helvetica Neue Arial", sans-serif; 
+    color: rgb(50, 50, 50);
+    padding: 0px;
+    margin: 0px;
+    font-size: 1em;
+}

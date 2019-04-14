@@ -10,7 +10,7 @@ import { NavigationCancel,
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css', './common.css']
 })
 export class AppComponent {
   title = 'Aaron Bae';

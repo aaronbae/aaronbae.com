@@ -1,0 +1,26 @@
+.container, .container *{
+    padding: 0px;
+    margin: 0px;
+    width: 100vw;
+}
+.resume-container {
+    padding: 10px;
+}
+.title {
+    padding-left: 30px;
+}
+.pdf-thumbnail {
+    width: 340px;
+    height: 440px;
+}
+.download-icon {
+    width: 15px;
+    height: 15px;
+}
+.center {
+    text-align: center;
+}
+.center > * {
+    margin: auto;
+    color: rgb(50,50,50);
+}

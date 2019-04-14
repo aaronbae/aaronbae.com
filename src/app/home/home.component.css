@@ -1,0 +1,36 @@
+.home-container {
+    padding-top: 10px;
+    width: 100%;
+    margin: auto;
+}
+.home-container * {
+    margin: auto;
+    text-align: center;
+}
+.roundedCard {
+  border-radius: 40px;
+}
+.profile-img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;    
+}
+.bio-list {
+    padding-left: 0px;
+}
+.name-item {
+    padding: 10px 0px;
+    font-size: 2em;
+    font-weight: bold;
+}
+.bio-item {
+    list-style-type: none;
+}
+.external-link-container{
+    padding: 20px 60px;
+    width: 400px;
+}
+.external-link-icon {
+    width: 40px;
+    height: 40px;
+}

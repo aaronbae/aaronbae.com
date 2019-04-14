@@ -8,11 +8,19 @@ import { AppComponent } from './app.component';
 import { ViewerComponent } from './viewer/viewer.component';
 import { PostService } from './post.service';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ResumeComponent } from './resume/resume.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewerComponent
+    ViewerComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    ProjectsComponent,
+    ResumeComponent
   ],
   imports: [
     BrowserModule,
