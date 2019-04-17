@@ -1,13 +1,10 @@
-.container, .container *{
-    padding: 0px;
-    margin: 0px;
-    width: 100vw;
-}
 .resume-container {
     padding: 10px;
 }
 .title {
+    margin-bottom: 30px;
     padding-left: 30px;
+    border-bottom: solid 1px black;
 }
 .pdf-thumbnail {
     width: 340px;

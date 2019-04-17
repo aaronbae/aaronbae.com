@@ -4,7 +4,7 @@ import { HomeComponent } from '../home/home.component';
 @Component({
   selector: 'app-resume',
   templateUrl: './resume.component.html',
-  styleUrls: ['./resume.component.css', '../common.css']
+  styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent implements OnInit {
   date = "4.13.2019";

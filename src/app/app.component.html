@@ -1,37 +1,38 @@
 <ng2-slim-loading-bar color="black"></ng2-slim-loading-bar>
 
 <nav class="navbar-default navbar-expand-md bg-light">
-  <div class="navbar-collapse collapse wrapper">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item main-nav-tab">
+  <div class="navbar-collapse collapse col-lg-8 offset-lg-2 col-sm-12">
+    <ul class="navbar-nav d-flex">
+      <li class="nav-item main-nav-tab mr-auto p-2">
         <a routerLink="home" class="nav-link nav-tab" routerLinkActive="active">
           Aaron Bae
         </a>
       </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+      <li class="nav-item normal-tab p-2">
+        <a routerLink="home" class="nav-link nav-tab" routerLinkActive="active">
+          Home
+        </a>
+      </li>
+      <li class="nav-item normal-tab p-2">
         <a routerLink="projects" class="nav-link nav-tab" routerLinkActive="active">
           Projects
         </a>
       </li>
-      <li class="nav-item">
-        <a routerLink="home" class="nav-link nav-tab" routerLinkActive="active">
+      <li class="nav-item normal-tab p-2">
+        <a routerLink="blog" class="nav-link nav-tab" routerLinkActive="active">
           Blog
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item normal-tab p-2">
         <a routerLink="resume" class="nav-link nav-tab" routerLinkActive="active">
           Resume
-        </a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="home" class="nav-link nav-tab" routerLinkActive="active">
-          Admin
         </a>
       </li>
     </ul>
   </div>
 </nav>
+
+<div class="col-md-12 col-lg-10 offset-lg-1">
+  <router-outlet></router-outlet>
+</div>
   
-<router-outlet></router-outlet>

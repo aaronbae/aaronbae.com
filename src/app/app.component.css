@@ -10,6 +10,9 @@ nav {
     font-size: 1.1em;
     font-weight: bold;
 }
+.normal-tab {
+    padding-top: 4px;
+}
 .nav-link {
     color: rgb(50,50,50);
 }

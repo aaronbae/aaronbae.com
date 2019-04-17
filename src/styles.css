@@ -12,3 +12,18 @@ body {
     margin: 0px;
     font-size: 1em;
 }
+.bounded, .bounded * {
+    border: solid 1px black;
+}
+ul {
+    width: 100%;
+}
+li {
+    list-style-type: none;
+}
+h2 {
+    font-size: 32px;
+}
+h3 {
+    font-size: 20px;
+}
