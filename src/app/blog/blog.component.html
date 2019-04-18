@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-lg-3">
+    <app-home></app-home>
+  </div>
+  <div class="col-lg-9 col-md-12 blog-container">
+    <div class="row post-table-head">
+      <div class="col-md-6"><h3>Title</h3></div>
+      <div class="col-md-3"><h3>Tag</h3></div>
+      <div class="col-md-3"><h3>Date</h3></div> 
+    </div>
+    <div class="row post-table">
+      <div class="col-12">
+        <div *ngFor="let post of posts" class="row individual-post-container">
+            <div class="col-md-6 post-content">{{post.title}} </div>
+            <div class="col-md-3 post-content"><span class='tag daily'>Daily</span></div>
+            <div class="col-md-3 post-content">4.18.2019</div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,4 +12,7 @@ export class PostService {
   getPosts() {
     return this.http.get(`${this.uri}`);
   }
+  getPost(id: Number) {
+    return this.http.get(`${this.uri}`)
+  }
 }

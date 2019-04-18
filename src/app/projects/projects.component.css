@@ -1,9 +1,7 @@
-.individual-project {
-    height: 90vh;
-}
 .title {
+    margin-bottom: 30px;
+    padding-left: 30px;
     border-bottom: solid 1px black;
-    font-style: italic;
 }
 .list-title {
     margin-top: 30px;
@@ -12,9 +10,6 @@
     max-width: 800px;
     max-height: 300px;
     margin: 15px auto;
-}
-.center {
-    text-align: center;
 }
 .project-content {
     margin: 0px;
