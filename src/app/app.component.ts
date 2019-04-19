@@ -14,6 +14,8 @@ import { NavigationCancel,
 })
 export class AppComponent {
   title = 'Aaron Bae';
+  logged_in = false;
+
   constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);

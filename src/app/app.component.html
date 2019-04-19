@@ -34,6 +34,12 @@
           Resume
         </a>
       </li>
+      <li class="nav-item normal-tab p-2">
+        <a routerLink="login" class="nav-link nav-tab" routerLinkActive="active">
+          <span *ngIf="logged_in==true">New Post</span>
+          <span *ngIf="logged_in!=true">Admin</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
