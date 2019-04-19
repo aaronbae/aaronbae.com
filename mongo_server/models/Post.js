@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema for Business
 let Post = new Schema({
-  id: {
+  _id: {
     type: Number
   },
   author: {
@@ -14,7 +14,13 @@ let Post = new Schema({
   },
   content: {
     type: String
-  }
+  },
+  createtime: {
+    type: Date
+  },
+  tag: {
+    type: String
+  }    
 },{
     collection: 'posts'
 });

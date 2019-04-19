@@ -13,6 +13,6 @@ export class PostService {
     return this.http.get(`${this.uri}`);
   }
   getPost(id: Number) {
-    return this.http.get(`${this.uri}`)
+    return this.http.get(`${this.uri}/${id}`)
   }
 }

@@ -10,10 +10,10 @@
     </div>
     <div class="row post-table">
       <div class="col-12">
-        <div *ngFor="let post of posts" class="row individual-post-container">
+        <div *ngFor="let post of posts" routerLink="{{post?._id}}" class="row individual-post-container">
             <div class="col-md-6 post-content">{{post.title}} </div>
-            <div class="col-md-3 post-content"><span class='tag daily'>Daily</span></div>
-            <div class="col-md-3 post-content">4.18.2019</div> 
+            <div class="col-md-3 post-content"><span class='tag {{post.tag}}'>{{post.tag | titlecase}}</span></div>
+            <div class="col-md-3 post-content">{{post.createtime|date:'M.d.yyyy'}}</div> 
         </div>
       </div>
     </div>

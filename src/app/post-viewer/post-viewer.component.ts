@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-/*
-import Post from '../Post';
+import { ActivatedRoute } from '@angular/router';
+import Post  from '../Post';
 import { PostService } from  '../post.service';
-*/
+
 
 @Component({
   selector: 'app-post-viewer',
@@ -11,16 +11,18 @@ import { PostService } from  '../post.service';
 })
 export class PostViewerComponent implements OnInit {
 
-  //post: Post;
+  post: Post;
 
-  //constructor(private ps: PostService) { }
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private ps: PostService
+  ) { }
+  //constructor() { }
 
   ngOnInit() {
-    /*
-    this.ps.getPost().subscribe((data: Post[]) => {
+    let id = Number(this.route.snapshot.paramMap.get('id'));
+    this.ps.getPost(id).subscribe((data: Post) => {
       this.post = data;
     });
-    */
   }
 }

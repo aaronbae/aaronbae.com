@@ -10,13 +10,17 @@
     border-radius: 10px;
     height: 50px;
     margin: 5px 0px;
+    white-space: nowrap;
 }
 .individual-post-container:hover {
     font-weight: bold;
     font-size: 99%;
+    cursor: pointer;
+    border-width: 1.5px;
 }
 .post-content {
     padding-top: 13px;
+    overflow: hidden;
 } 
 .tag {
     padding: 10px;

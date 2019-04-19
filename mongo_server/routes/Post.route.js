@@ -31,6 +31,20 @@ postRoutes.route('/').get(function (req, res) {
   });
 });
 
+// Defined get data with specific id route
+postRoutes.route('/:id').get(function (req, res) {
+  Post.findById(req.params.id, function (err, post){
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log("HERE IT IS");
+      console.log(post);
+      res.json(post);
+    }
+  });
+});
+
 // Defined edit route
 postRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;

@@ -1,8 +1,10 @@
 // Post.ts
 
 export default class Post {
-    id: Number;
+    _id: Number;
     author: Number;
     title: String;
     content: String;
+    createtime: Date;
+    tag: String;
   }
