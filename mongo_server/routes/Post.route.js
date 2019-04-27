@@ -24,7 +24,6 @@ postRoutes.route('/').get(function (req, res) {
       console.log(err);
     }
     else {
-      console.log("HERE IT IS");
       console.log(posts);
       res.json(posts);
     }

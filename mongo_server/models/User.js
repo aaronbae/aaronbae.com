@@ -6,14 +6,20 @@ let User = new Schema({
   id: {
     type: Number
   },
-  login_id: {
+  login_email: {
     type: String
   },
-  login_pass: {
+  login_password: {
+    type: String
+  },
+  first_name: {
+    type: String
+  },
+  last_name: {
     type: String
   }
 },{
-    collection: 'user'
+    collection: 'users'
 });
 
 module.exports = mongoose.model('User', User);

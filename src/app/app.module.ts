@@ -14,7 +14,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ResumeComponent } from './resume/resume.component';
 import { BlogComponent } from './blog/blog.component';
 import { PostViewerComponent } from './post-viewer/post-viewer.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { AdminComponent } from './admin/admin.component';
     ResumeComponent,
     BlogComponent,
     PostViewerComponent,
-    AdminComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

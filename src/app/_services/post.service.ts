@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  uri = 'http://localhost:4000/posts';
 
   constructor(private http: HttpClient) { }
 
   getPosts() {
-    return this.http.get(`${this.uri}`);
+    console.log(`${environment.mongoUrl}/posts`);
+    return this.http.get(`${environment.mongoUrl}/posts`);
   }
   getPost(id: Number) {
-    return this.http.get(`${this.uri}/${id}`)
+    return this.http.get(`${environment.mongoUrl}/posts/${id}`)
   }
 }

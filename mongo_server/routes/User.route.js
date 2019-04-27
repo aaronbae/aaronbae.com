@@ -59,10 +59,21 @@ userRoutes.route('/update/:id').post(function (req, res) {
 
 // Defined delete | remove | destroy route
 userRoutes.route('/delete/:id').get(function (req, res) {
-  user.findByIdAndRemove({_id: req.params.id}, function(err, user){
+  User.findByIdAndRemove({_id: req.params.id}, function(err, user){
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
 });
+
+// Login
+userRoutes.route('/login').post(function (req, res) {
+  User.find({
+    login_email: req.params.login_email,
+    login_password: req.params.login_password
+  }, function(err, user) {
+    if(err) res.json(err);
+    else res.json(user);
+  });
+})
 
 module.exports = userRoutes;
