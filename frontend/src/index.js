@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Main from './Common/Main';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 ReactDOM.render(
-  <App />,
+  <Main />,
   document.getElementById('root')
 );
