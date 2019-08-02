@@ -7,15 +7,19 @@ class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
-      total_height: -100000,
-      top: 0,
-      blog_column: null
+      posts: [], // Need this to remember the query for the posts
+      total_height: -100000, // Need this attribute to set boundaries of the scrolling
+      top: 0, // Need this attribute to scroll
+      blog_column: null, // Need this DOM element to disable scrolling
+      dynamic_panel: -1
     }
     this.handleScroll = this.handleScroll.bind(this);
+    this.handlePostClick = this.handlePostClick.bind(this);
     this.mouseOver = this.mouseOver.bind(this);
     this.mouseOut = this.mouseOut.bind(this);
   }
+
+  // Standard React Component methods
 
   componentWillMount() {
     this.callAPI();
@@ -28,6 +32,8 @@ class Blog extends Component {
   componentDidMount() {
     this.setState({blog_column: document.getElementById("#blog-column")});
   }
+
+  // EVENT HANDLERS
 
   handleScroll(e) {
     e.stopPropagation();
@@ -46,23 +52,28 @@ class Blog extends Component {
   }
 
   handlePostClick(e) {
-    console.log("HELLO)");
+    e.stopPropagation();
+    const index = e.currentTarget.getAttribute("postindex");
+    this.setState({dynamic_panel: index});
   }
 
+  // API Request Functions
 
   callAPI() {
     fetch("http://localhost:4000/posts")
       .then(res => res.json())
       .then(res => this.setState({ 
         posts: res,
-        total_height: -180 * (res.length - 1)
+        total_height: -174 * (res.length - 1)
       }));
   }
+
+  // Render the component
 
   render() {    
     return (
       <div className='row all-blog-container'>
-        <div className="col-sm-12 col-md-6 col-xl-4 blog-column post-column">
+        <div id="blog-column" className="col-sm-12 col-md-6 col-xl-4 blog-column post-column">
           <div className="row center post-column-title"><p className="h4">Recent Posts</p></div>
           <div className="row posts-mask" 
             onWheel={this.handleScroll}
@@ -70,7 +81,7 @@ class Blog extends Component {
             onMouseOut={this.mouseOut}
           >
             <div className="total-blog-sleeve" style={{top: this.state.top + "px"}}>
-              {this.state.posts.map(item => 
+              {this.state.posts.map((item, index) => 
                 <Post key={item._id} 
                   post_id={item._id} 
                   date={item.createtime} 
@@ -78,15 +89,16 @@ class Blog extends Component {
                   content={item.content} 
                   tags={item.tags} 
                   public={item.public} 
-                  onCClick={this.handlePostClick}
+                  clickbehavior={this.handlePostClick}
+                  postindex={index}
                 />
               )}
             </div>
           </div>
         </div>
         
-        <div id="blog-column" className="col-sm-12 col-md-5 col-xl-7 dynamic-column blog-column">
-          This is where the word art goes 
+        <div className="col-sm-12 col-md-5 col-xl-7 dynamic-column blog-column">
+          THis is where the word art goes.
         </div>
       </div>
     );

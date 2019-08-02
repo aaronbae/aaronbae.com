@@ -1,6 +1,6 @@
 $separation-color: lightgray;
 
-// All Panels
+// General Container
 .all-blog-container {
   margin-top: 56px;
   padding-right: 10px;
@@ -28,6 +28,9 @@ $separation-color: lightgray;
 .total-blog-sleeve {
   position: relative;
   padding-bottom: 720px;
+  .hidden {
+    display: none;
+  }
 }
 
 .posts-mask {

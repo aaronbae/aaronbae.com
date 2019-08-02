@@ -21,13 +21,18 @@ class Post extends Component {
       title: props.title,
       content: props.content,
       tags: tags,
-      public: props.public
+      public: props.public,
+      clickbehavior: props.clickbehavior,
+      postindex: props.postindex
     };
   }
 
   render() {
     return (
-      <div className={this.state.public?"row":"row hidden"}>
+      <div className={this.state.public?"row individual-post-container":"row hidden individual-post-container"} 
+        onClick={this.state.clickbehavior}
+        postindex={this.state.postindex}
+      >
         <div className="individual-post">
           <div className="offset-1 col-10">
             <div className="row date">{this.state.date}</div>

@@ -6,14 +6,20 @@
   height: 170px;
   background-color: white;
 }
-.hidden {
-  display: none;
+.individual-post:hover {
+  .title, .date {
+    text-decoration: underline;
+  }
 }
-.date {
+.individual-post > * {
+  pointer-events: none;
+}
 
+.date {
+  // Nothing so far
 }
 .title {
-
+  // Nothing so far
 }
 .tag {
   color: white;
