@@ -27,7 +27,7 @@ class Post extends Component {
 
   render() {
     return (
-      <div className={this.state.public==="public"?"row":"row hidden"}>
+      <div className={this.state.public?"row":"row hidden"}>
         <div className="individual-post">
           <div className="offset-1 col-10">
             <div className="row date">{this.state.date}</div>

@@ -18,13 +18,11 @@ class Blog extends Component {
   }
 
   handleScroll(e) {
+    e.stopPropagation();
     var newTop = this.state.top + e.deltaY;
     newTop = newTop > 0 ? 0 : newTop;
     newTop = newTop < this.state.total_height ? this.state.total_height : newTop;
     this.setState({top: newTop});
-  }
-  doNothing(e) {
-    // Do Nothing
   }
 
   callAPI() {
@@ -40,7 +38,7 @@ class Blog extends Component {
     return (
       <div className='container-fluid all-panel-container'>
         <div className="row">
-          <div className="col-sm-12 col-md-6 col-xl-4 post-column blog-column" onWheel={this.handleScroll} onScroll={this.doNothing}>
+          <div className="col-sm-12 col-md-6 col-xl-4 post-column blog-column" onWheel={this.handleScroll}>
             <div className="total-blog-sleeve" style={{top: this.state.top + "px"}}>
               {this.state.posts.map(item => 
                 <Post key={item._id} post_id={item._id} date={item.createtime} title={item.title} content={item.content} tags={item.tags} public={item.public} />
