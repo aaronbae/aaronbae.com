@@ -18,9 +18,12 @@ let Post = new Schema({
   createtime: {
     type: Date
   },
-  tag: {
-    type: String
-  }    
+  tags: {
+    type: Array
+  },
+  public: {
+    type: Boolean
+  }
 },{
     collection: 'posts'
 });
