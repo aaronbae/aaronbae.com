@@ -1,0 +1,30 @@
+.individual-post {
+  margin: 5px auto; 
+  border: solid black 2px;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-width: 350px;
+  width: 95%;
+  height: 170px;
+  overflow: hidden;
+}
+.hidden {
+  display: none;
+}
+.date {
+
+}
+.title {
+
+}
+.tag {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+// Tag colors
+.daily {
+  background-color: rgb(0, 191, 255);
+}
