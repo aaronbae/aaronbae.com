@@ -25,7 +25,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className="row all-panel-container">
+      <div className="row all-home-container">
         <div className="side-panel center col-md-12 col-lg-3">
           <div className="row">
             <img className='round profile-img' src="assets/profile.jpg" alt="profile" />

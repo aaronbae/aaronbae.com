@@ -1,21 +1,39 @@
+$separation-color: lightgray;
+
+// All Panels
+.all-blog-container {
+  margin-top: 56px;
+  padding-right: 10px;
+}
+
+// Both Panels
 .blog-column {
   height: 80vh;
-  border: solid black 2px;
-  border-radius: 10px;
-  margin: 10px 10px;
+}
+
+// Left (Post Viewing) Panel
+.post-column-title {
+  border-bottom: solid $separation-color 1px;
+  padding: 10px 0px 3px 0px;
+  background-color: white;
+}
+
+.post-column {
+  background-color: $separation-color;
+  border-left: solid $separation-color 1px;
+  border-right: solid $separation-color 1px;
   overflow: hidden;
 }
+
 .total-blog-sleeve {
-  padding: 0px 14px;
   position: relative;
   padding-bottom: 720px;
 }
-.post-column {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
 
+.posts-mask {
+  overflow: hidden;
 }
 
+// Right (Dynamic) Panel
 .dynamic-column {
 }
