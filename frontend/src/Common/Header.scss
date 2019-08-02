@@ -1,0 +1,30 @@
+@import 'design.scss';
+
+nav {
+  background-color: white;
+  box-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+  transition: top 0.5s ease;
+}
+
+.navbar-brand {
+  margin-left: 25px;
+}
+
+.navtab {
+  float: left;
+  padding: 19px;
+  margin: 0px;
+  color: gray;
+}
+
+.navtab:hover {
+  cursor: pointer;
+}
+
+.navtab:hover, .active {
+  color: black;
+}
+
+nav.hidden {
+  top: -56px;
+}
