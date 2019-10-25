@@ -65,20 +65,38 @@ class Home extends Component {
               <div className="row title-section">
                 <p className="col h3">Education</p>
               </div>
-              <div className="row content-section">
-                <div className="col-md-12 col-lg-4">
-                  <img className="education-img" src="assets/uwcampus.jpg" alt="University of Washington" />
-                </div>
-                <div className="col-md-12 col-lg-8">
-                  <span><span  className="h6">Bachelor of Science in Mathematics</span>, <i>Seattle</i>, <i>University of Washington</i></span>
-                  <ul className="education-bullets">
-                    <li>Attended from September 2015 until June 2019</li>
-                    <li>Applicable Mathematics classes such as Matrix Algebra, Differential Equations, and Mathematical Reasoning </li>
-                    <li>Applicable Data Science classes such as Database Management, Data Structures and Algorithms, and Artificial Intelligence </li>
-                    <li>Efficient in Python, Java, JavaScript, MySQL, AWS, D3, NodeJS, React, AJAX, Ruby, Sparks</li>
-                    <li>Abundant research experience from Washington Experimental Mathematics Lab (WXML) and assistantship to graduate researcher at Foster School of Business.</li>
-                    <li>Member of the Sigma Nu Fraternity Gamma Chi Chapter.</li>
-                  </ul>
+              <div className="row">
+                <div className="col">
+                  <div className="row content-section">
+                    <div className="col-md-12 col-lg-4">
+                      <img className="education-img" src="assets/ucicampus.jpg" alt="University of California Irvine" />
+                    </div>
+                    <div className="col-md-12 col-lg-8">
+                      <span><span  className="h6">Masters in Computer Science</span>, <i>Irvine</i>, <i>University of California - Irvine</i></span>
+                      <ul className="education-bullets">
+                        <li>Attended from September 2019 until June 2021</li>
+                        <li>Focus in Markov Models applied to economic pricing</li>
+                        <li>Will be participating in Algorithms, Combinatorics, and Optimization Center (ACO) directed by Professor Vazirani</li>
+                        <li>Looking for summer 2020 internships</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="row content-section additional-padding">
+                    <div className="col-md-12 col-lg-4">
+                      <img className="education-img" src="assets/uwcampus.jpg" alt="University of Washington" />
+                    </div>
+                    <div className="col-md-12 col-lg-8">
+                      <span><span  className="h6">Bachelor of Science in Mathematics</span>, <i>Seattle</i>, <i>University of Washington</i></span>
+                      <ul className="education-bullets">
+                        <li>Attended from September 2015 until June 2019</li>
+                        <li>Applicable Mathematics classes such as Matrix Algebra, Differential Equations, and Mathematical Reasoning </li>
+                        <li>Applicable Data Science classes such as Database Management, Data Structures and Algorithms, and Artificial Intelligence </li>
+                        <li>Efficient in Python, Java, JavaScript, MySQL, AWS, D3, NodeJS, React, AJAX, Ruby, Sparks</li>
+                        <li>Abundant research experience from Washington Experimental Mathematics Lab (WXML) and assistantship to graduate researcher at Foster School of Business.</li>
+                        <li>Member of the Sigma Nu Fraternity Gamma Chi Chapter.</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -125,9 +143,15 @@ class Home extends Component {
                       <div className="logo-wrapper"><img src="assets/icons/uw.png" alt="university of washington logo" className="company-logo"/></div>
                     </div>
                     <div className="col-10">
-                      <div className="row experience-title"><p className="h5">Undergraduate Researcher</p></div>
-                      <div className="row organization-name">University of Washington</div>
-                      <div className="row timeline-info">Jun 2018 - Jun 2019</div>
+                      <div className="row experience-title">
+                        <div className="col-8 no-padding">
+                          <span className="h5 no-break">Undergraduate Researcher</span>
+                          <span className="organization-name no-break">- University of Washington</span>
+                        </div>
+                        <div className="col-4">
+                          <span className="float-right timeline-info no-break">Jun 2018 - Jun 2019</span>    
+                        </div>
+                      </div>
                       <div className="row">
                         <p className="h6">Washington Experimental Mathematics Lab</p>
                         <p>I was invited to work with Professor Christopher Hoffman to participate on his Mathematics 
@@ -154,9 +178,15 @@ class Home extends Component {
                       <div className="logo-wrapper"><img src="assets/icons/dapper.jpg" alt="dapper company logo" className="company-logo"/></div>
                     </div>
                     <div className="col-10">
-                      <div className="row experience-title"><p className="h5">Backend Software Engineer</p></div>
-                      <div className="row organization-name">Dapper Grooming</div>
-                      <div className="row timeline-info">Jun 2018 - August 2018</div>
+                      <div className="row experience-title">
+                        <div className="col-8 no-padding">
+                          <span className="h5 no-break">Backend Software Engineer</span>
+                          <span className="organization-name no-break">- Dapper Grooming</span>
+                        </div>
+                        <div className="col-4">
+                          <span className="float-right timeline-info no-break">Jun 2018 - August 2019</span>    
+                        </div>
+                      </div>
                       <div className="row">
                         <p className="h6">Dapper Grooming | Backend Server Development Team</p>
                         <p>I was invited to work with Professor Christopher Hoffman to participate on his Mathematics 
@@ -172,13 +202,19 @@ class Home extends Component {
 
 
                   <div className="row individual-experience">
-                    <div className="col-1 logo-col center">
+                    <div className="col-1 logo-col no-padding center">
                       <div className="logo-wrapper"><img src="assets/icons/crowdcow.jpg" alt="crowd cow company logo" className="company-logo"/></div>
                     </div>
                     <div className="col-10">
-                      <div className="row experience-title"><p className="h5">Software Engineering Intern</p></div>
-                      <div className="row organization-name">Crowd Cow</div>
-                      <div className="row timeline-info">Jun 2017 - August 2017</div>
+                      <div className="row experience-title">
+                        <div className="col-8 no-padding">
+                          <span className="h5 no-break">Software Engineering Intern</span>
+                          <span className="organization-name no-break">- Crowd Cow</span>
+                        </div>
+                        <div className="col-4">
+                          <span className="float-right timeline-info no-break">Jun 2017 - August 2017</span>    
+                        </div>
+                      </div>
                       <div className="row">
                         <p className="h6">Frontend Developer:</p>
                         <p>As a frontend developer, I worked on improving CrowdCow's private e-commerce platform by 

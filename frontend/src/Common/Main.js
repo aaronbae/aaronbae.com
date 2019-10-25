@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Home from '../Home/Home';
 import Blog from '../Blog/Blog';
+import NotReady from '../NotReady/NotReady';
 
 class Main extends Component {
   render() {
@@ -13,7 +14,7 @@ class Main extends Component {
           <Header />
           
           <Route exact path="/" component={Home} />
-          <Route path="/blog" component={Blog} />
+          <Route path="/blog" component={NotReady} />
 
           <Footer />
         </div>

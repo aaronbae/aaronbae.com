@@ -80,12 +80,17 @@ ul {
 }
 
 .content-section {
-  padding-top: 10px;
+  padding-top: 10px;   
+}
+.content-section.additional-padding {
+  padding-top: 60px;
 }
 
 // Education
 .education-img {
   width: 100%;
+  box-shadow: 1px 1px 6px grey;
+
 }
 .education-bullets {
   margin-left: 16px;
@@ -123,6 +128,8 @@ ul {
   margin-bottom: 5px;
   .logo-col {
     min-width: 50px;
+  }
+  .no-padding {
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -130,12 +137,14 @@ ul {
 .experience-title {
   margin-top: 10px;
   margin-bottom: 0px;
+  .no-break {   
+    white-space: nowrap;
+  }
 }
-
 .organization-name {
   color: black;
+  padding: 0px 10px;
 }
-
 .timeline-info {
   color: gray;
   padding-bottom: 20px;

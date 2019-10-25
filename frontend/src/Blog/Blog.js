@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Post from './Post';
+import WordArtViewer from './WordArtViewer';
+import PostViewer from './PostViewer';
 import './Blog.scss';
 
 class Blog extends Component {
@@ -70,7 +72,7 @@ class Blog extends Component {
 
   // Render the component
 
-  render() {    
+  render() { 
     return (
       <div className='row all-blog-container'>
         <div id="blog-column" className="col-sm-12 col-md-6 col-xl-4 blog-column post-column">
@@ -98,7 +100,8 @@ class Blog extends Component {
         </div>
         
         <div className="col-sm-12 col-md-5 col-xl-7 dynamic-column blog-column">
-          THis is where the word art goes.
+          <WordArtViewer className={this.state.dynamic_panel===-1?"":"hidden"} />
+          <PostViewer className={this.state.dynamic_panel>-1?"":"hidden"} />
         </div>
       </div>
     );
