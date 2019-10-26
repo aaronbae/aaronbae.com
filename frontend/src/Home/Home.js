@@ -75,8 +75,8 @@ class Home extends Component {
                       <span><span  className="h6">Masters in Computer Science</span>, <i>Irvine</i>, <i>University of California - Irvine</i></span>
                       <ul className="education-bullets">
                         <li>Attended from September 2019 until June 2021</li>
-                        <li>Focus in Markov Models applied to economic pricing</li>
-                        <li>Will be participating in Algorithms, Combinatorics, and Optimization Center (ACO) directed by Professor Vazirani</li>
+                        <li>Focus in augmenting Knowledge Base with NLP techniques.</li>
+                        <li>Participating in Center for Machine Learning and Intelligent Systems.</li>
                         <li>Looking for summer 2020 internships</li>
                       </ul>
                     </div>
