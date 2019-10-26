@@ -10,7 +10,6 @@ const defaultRoute = require('./routes/Default.route');
 const postRoute = require('./routes/Post.route');
 const userRoute = require('./routes/User.route');
 
-
 // Configuring Mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
