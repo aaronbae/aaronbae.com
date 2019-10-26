@@ -1,8 +1,0 @@
-#!/bin/sh
-GIT_WORK_TREE=/home/ubuntu/aaronbae.com/frontend git checkout -f
-sudo npm install
-GIT_WORK_TREE=/home/ubuntu/aaronbae.com/backend git checkout -f
-sudo npm install
-sudo pm2 restart frontend
-sudo pm2 restart backend
-sudo service apache2 restart
