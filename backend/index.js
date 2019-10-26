@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB');
 
+
 // Configuring different routes
 const defaultRoute = require('./routes/Default.route');
 const postRoute = require('./routes/Post.route');
