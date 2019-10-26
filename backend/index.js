@@ -6,9 +6,9 @@ const mongoose = require('mongoose');
 const config = require('./DB');
 
 // Configuring different routes
-const defaultRoute = require('./routes/default.route');
-const postRoute = require('./routes/post.route');
-const userRoute = require('./routes/user.route');
+const defaultRoute = require('./routes/Default.route');
+const postRoute = require('./routes/Post.route');
+const userRoute = require('./routes/User.route');
 
 // Configuring Mongoose
 mongoose.Promise = global.Promise;
