@@ -5,7 +5,7 @@ $padding-size: 30px;
   height: 100%;
   background-color: $separation-color;
   .post-editor-main-col {
-    margin: 3px 5px;
+    margin: 3px 3px;
   }
   .post-editor-main-col > div {
     background-color: white;
@@ -26,7 +26,12 @@ $padding-size: 30px;
     border-radius: 5px;
     background-color: white;
     border: solid 1px gray;
-    padding: 3px $padding-size;
+    padding: 3px 10px;
+  }
+  .edit-button:hover {
+    background-color: gray;
+    border: solid 1px black;
+    cursor: pointer;
   }
   .tag {
     padding: 0px 2px;
@@ -34,5 +39,5 @@ $padding-size: 30px;
 }
 .content-row {
   padding: 10px;
-  margin-top: 5px;
+  margin-top: 3px;
 }

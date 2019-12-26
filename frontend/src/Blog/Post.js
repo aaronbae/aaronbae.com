@@ -36,15 +36,6 @@ class Post extends Component {
           <div className="offset-1 col-10">
             <div className="row date">{this.state.date}</div>
             <div className="row title"><p className="h5">{this.state.title}</p></div>
-            {/** 
-            <div className="row">
-              {this.state.tags.map(item =>
-                <span key={item.id} className={"tag " + item.label}>
-                  {item.label}
-                </span>
-              )}
-            </div>
-            **/}
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 .individual-post {
   margin: 2px auto;
   padding: 20px 0px;
-  //min-width: 350px;
   width: 100%;
   background-color: white;
 }
@@ -9,7 +8,5 @@
   .title, .date {
     text-decoration: underline;
   }
-}
-.individual-post > * {
-  pointer-events: none;
+  cursor: pointer;
 }

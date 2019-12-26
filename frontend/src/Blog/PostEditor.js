@@ -6,6 +6,15 @@ import './PostEditor.scss';
 class PostEditor extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      edit_mode: false
+    }
+    this.handleEditButton = this.handleEditButton.bind(this);
+  }
+  
+  handleEditButton(e) {
+    e.stopPropagation();
+    this.state.edit_mode = !this.state.edit_mode
   }
 
   render() {
@@ -29,7 +38,7 @@ class PostEditor extends Component {
                       {item + ", "}                  
                     </span>
                   )}
-                  <span className="edit-button" >Edit Post</span>
+                  <span className="edit-button" onClick={this.handleEditButton} >Edit Post</span>
                 </div>
               </div>
             </div>
