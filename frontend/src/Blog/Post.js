@@ -5,7 +5,7 @@ class Post extends Component {
   constructor(props) {
     super(props);
     
-    // Formatting tags aray
+    // Formatting tags array
     const tags = []
     for(var i = 0; i < props.tags.length; i++){
       tags.push({
@@ -19,7 +19,6 @@ class Post extends Component {
       id: props.post_id,
       date: props.date,
       title: props.title,
-      content: props.content,
       tags: tags,
       public: props.public,
       clickbehavior: props.clickbehavior,

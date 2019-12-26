@@ -1,43 +1,21 @@
 import {
-  LOGIN,
-  LOGOUT,
   VIEWPOST,
-  EDITPOST,
-  DELETEPOST,
-  SAVEPOST,
-  NEWPOST,
-  VISIBILITY
+  RECEIVE_POSTS,
 } from './BlogActions'
 
 // The initial application state
 let initialState = {
-  loggedIn: false,
-  userinfo: {
-    username: '',
-    password: ''
-  },
-  visible: VISIBILITY.SHOWART,
-  posts: [],
-  error: ''
+  selected_post: -1,
+  posts: []
 }
 
 // Takes care of changing the application state
 function BlogReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
-      return { ...state, formState: action.newFormState }
-    case LOGOUT:
-      return { ...state, formState: action.newFormState }
     case VIEWPOST:
-      return { ...state, formState: action.newFormState }
-    case EDITPOST:
-      return { ...state, formState: action.newFormState }
-    case DELETEPOST:
-      return { ...state, formState: action.newFormState }
-    case SAVEPOST:
-      return { ...state, formState: action.newFormState }
-    case NEWPOST:
-      return { ...state, formState: action.newFormState }
+      return { ...state, selected_post: action.post_id }
+    case RECEIVE_POSTS:
+      return { ...state, posts: action.posts }
     default:
       return state
   }

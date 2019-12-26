@@ -1,0 +1,18 @@
+.post-editor-container {
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.title {
+  border-bottom: gray;
+}
+.content-container > div {
+  padding: 0px 50px;
+}
+.tag-label {
+  padding: 5px 10px 5px 0px;// must match the tag in 'blog.scss'
+}
+.tag-row {
+  padding-top: 20px;
+}
