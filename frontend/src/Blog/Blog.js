@@ -35,7 +35,7 @@ class Blog extends Component {
     const { posts } = this.props
     return (
       <div className='row all-blog-container'>
-        <div id="blog-column" className="col-sm-12 col-md-6 col-xl-4 post-column">
+        <div id="blog-column" className="col-sm-12 col-md-4 post-column">
           <div className="row center post-column-title"><p className="h4">Recent Posts</p></div>
           {posts.map((item, index) => 
             <Post key={item._id} 
@@ -49,7 +49,7 @@ class Blog extends Component {
             />
           )}
         </div>
-        <div className="col-sm-12 col-md-5 col-xl-7">
+        <div className="col-sm-12 col-md-8">
           <PostEditor />
         </div>
       </div>

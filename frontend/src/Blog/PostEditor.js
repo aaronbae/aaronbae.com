@@ -13,23 +13,28 @@ class PostEditor extends Component {
     return (
       <div className="row post-editor-container">
         {selected_post > -1 && 
-          <div className="offset-1 col-10">
-            <div className="row date">{posts[selected_post].createtime}</div>
-            <div className="row title"><p className="h5">{posts[selected_post].title}</p></div>
-            <div className="row content-container">
-              <div className="col">
-                <div className="row content">
-                {posts[selected_post].content}
-                </div>
-                <div className="row tag-row">
-                  <span className="tag-label">Tags:</span>
+          <div className="col post-editor-main-col"> 
+            <div className="row title-row">
+              <p className="h3">{posts[selected_post].title}</p>
+            </div>
+            <div className="row information-row">
+              <div className="col-5 no-padding">
+                {posts[selected_post].createtime}
+              </div>
+              <div className="col-7 no-padding">
+                <div className="float-right">
+                  <span className="tag">Tags : </span>
                   {posts[selected_post].tags.map((item, index) =>
                     <span key={index} className={"tag " + item}>
-                      {item}
+                      {item + ", "}                  
                     </span>
                   )}
+                  <span className="edit-button" >Edit Post</span>
                 </div>
               </div>
+            </div>
+            <div className="row content-row">
+              {posts[selected_post].content}
             </div>
           </div>
         }
