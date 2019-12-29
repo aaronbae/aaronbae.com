@@ -14,10 +14,11 @@ $padding-size: 30px;
   .post-editor-main-col > div {
     background-color: white;
   }
-  input {
-    //border: none transparent;
-    //outline: none;
+  .title-input, .content-input {
+    border: none transparent;
+    outline: none;
     width: 100%;
+    max-height: 100vh;
   }
 }
 
@@ -38,15 +39,39 @@ $padding-size: 30px;
     padding: 3px 10px;
   }
   .edit-button:hover {
-    background-color: gray;
     border: solid 1px black;
+    text-decoration: underline;
     cursor: pointer;
   }
-  .tag {
-    padding: 0px 2px;
+  .tags-label {
+    padding: 0px;
+  }
+  .tags-input {
+    border: none transparent;
+    border-bottom: solid 1px gray;
+    outline: none;
   }
 }
 .content-row {
-  padding: 10px;
+  padding: 15px 30px;
   margin-top: 3px;
+}
+.button-row {
+  margin-top: 3px;
+  padding: 10px;
+  div {
+    margin: 0px auto;
+    button {
+      padding: 3px 6px;
+      margin: 0px 5px;
+      width: 65px; 
+      border-radius: 5px;
+      border: solid 1px gray;
+      background-color: white;
+    }
+    button:hover {
+      text-decoration: underline;
+      border: solid 1px black;
+    }
+  }
 }

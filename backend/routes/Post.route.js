@@ -62,7 +62,7 @@ postRoutes.route('/update/:id').post(function (req, res, next) {
         console.log(req.body)
         post.title = req.body.title;
         post.content = req.body.content;
-        post.tags = req.body.tags;
+        post.tags = req.body.tags.map(Function.prototype.call, String.prototype.trim);
         post.updatetime = Date.now();
 
         post.save().then(post => {

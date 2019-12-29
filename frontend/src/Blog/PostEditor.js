@@ -27,18 +27,23 @@ class PostEditor extends Component {
     e.stopPropagation();
     const { dispatch, selected_post, posts  } = this.props
     const curr_post = posts[selected_post]
-
+    // initialize textarea values
     const titleinput = document.querySelector('.title-input')
     titleinput.value = curr_post.title
     const tagsinput = document.querySelector('.tags-input')
     tagsinput.value = curr_post.tags
     const contentinput = document.querySelector('.content-input')
     contentinput.value = curr_post.content
+    // dispatch edit_mode
     dispatch(change_edit_mode(true))
   }
 
   update_title(e) {
     e.stopPropagation();
+    // auto re-size
+    e.target.style.height = 'inherit'
+    e.target.style.height = e.target.scrollHeight.toString() + "px" 
+    
     const { dispatch, selected_post, posts  } = this.props
     var curr_post = posts[selected_post]
     dispatch(update_local_changes(e.target.value, curr_post.content, curr_post.tags))
@@ -46,6 +51,10 @@ class PostEditor extends Component {
 
   update_content(e) {
     e.stopPropagation();
+    // auto re-size
+    e.target.style.height = 'inherit'
+    e.target.style.height = e.target.scrollHeight.toString() + "px" 
+    
     const { dispatch, selected_post, posts  } = this.props
     var curr_post = posts[selected_post]
     dispatch(update_local_changes(curr_post.title, e.target.value, curr_post.tags))
@@ -87,7 +96,7 @@ class PostEditor extends Component {
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">
-                  <span className="tag">Tags : </span>
+                  <span className="tags-label">Tags : </span>
                   {posts[selected_post].tags.map((item, index) =>
                     <span key={index} className={"tag " + item}>
                       {item + ", "}                  
@@ -105,7 +114,7 @@ class PostEditor extends Component {
         {selected_post > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <input className="title-input" type="text" onChange={this.update_title}/>
+              <textarea className="title-input h3" onChange={this.update_title}/>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
@@ -113,17 +122,19 @@ class PostEditor extends Component {
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">
-                  <span className="tag">Tags : </span>
+                  <span className="tags-label">Tags : </span>
                   <input  className="tags-input" type="text" onChange={this.update_tags}/>
                 </div>
               </div>
             </div>
             <div className="row content-row">
-              <input  className="content-input" type="text" onChange={this.update_content}/>
+              <textarea  className="content-input" onChange={this.update_content}/>
             </div> 
             <div className="row button-row">
-              <button type="button" onClick={this.save_changes}>Save</button>
-              <button type="button" onClick={this.cancel_changes}>Cancel</button>
+              <div>
+                <button type="button" onClick={this.save_changes}>Save</button>
+                <button type="button" onClick={this.cancel_changes}>Cancel</button>
+              </div>
             </div>          
           </div>
         }
