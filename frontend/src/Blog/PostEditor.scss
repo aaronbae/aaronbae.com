@@ -1,5 +1,7 @@
 $separation-color: lightgray;
 $padding-size: 30px;
+$confirm-color: rgb(3, 186, 252);
+$confirm-color-hover: rgb(97, 213, 255);
 
 .hidden {
   display: none;
@@ -66,11 +68,21 @@ $padding-size: 30px;
       margin: 0px 5px;
       width: 65px; 
       border-radius: 5px;
+    }
+    .save-button {
+      color: white;
+      border: solid 1px $confirm-color;
+      background-color: $confirm-color;
+    }
+    .cancel-button {
       border: solid 1px gray;
       background-color: white;
     }
-    button:hover {
-      text-decoration: underline;
+    .save-button:hover {
+      border: solid 1px $confirm-color-hover;
+      background-color: $confirm-color-hover;
+    }
+    .cancel-button:hover {
       border: solid 1px black;
     }
   }

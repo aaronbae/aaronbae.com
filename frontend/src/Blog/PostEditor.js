@@ -54,7 +54,7 @@ class PostEditor extends Component {
     // auto re-size
     e.target.style.height = 'inherit'
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
-    
+
     const { dispatch, selected_post, posts  } = this.props
     var curr_post = posts[selected_post]
     dispatch(update_local_changes(curr_post.title, e.target.value, curr_post.tags))
@@ -132,8 +132,8 @@ class PostEditor extends Component {
             </div> 
             <div className="row button-row">
               <div>
-                <button type="button" onClick={this.save_changes}>Save</button>
-                <button type="button" onClick={this.cancel_changes}>Cancel</button>
+                <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
+                <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
               </div>
             </div>          
           </div>
