@@ -15,8 +15,13 @@ let Post = new Schema({
   content: {
     type: String
   },
+  updatetime: {
+    type: Date,
+    default: Date.now
+  },
   createtime: {
-    type: Date
+    type: Date,
+    default: Date.now
   },
   tags: {
     type: Array

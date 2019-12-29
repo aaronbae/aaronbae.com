@@ -53,18 +53,17 @@ postRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-postRoutes.route('/update/:id').post(function (req, res) {
-    Post.findById(req.params.id, function(err, next, post) {
+postRoutes.route('/update/:id').post(function (req, res, next) {
+    console.log("REQUEST RECEIVED FOR ID: "+req.params.id.toString())
+    Post.findById(req.params.id, function(err, post) {
     if (!post)
       return next(new Error('Could not load Document'));
     else {
-        post.id = 1;
-        post.author = req.body.author;
+        console.log(req.body)
         post.title = req.body.title;
         post.content = req.body.content;
         post.tags = req.body.tags;
-        post.public  = req.body.public;
-
+        post.updatetime = Date.now();
 
         post.save().then(post => {
           res.json('Update complete');

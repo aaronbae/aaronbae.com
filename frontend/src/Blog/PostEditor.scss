@@ -1,6 +1,10 @@
 $separation-color: lightgray;
 $padding-size: 30px;
 
+.hidden {
+  display: none;
+}
+
 .post-editor-container {
   height: 100%;
   background-color: $separation-color;
@@ -9,6 +13,11 @@ $padding-size: 30px;
   }
   .post-editor-main-col > div {
     background-color: white;
+  }
+  input {
+    //border: none transparent;
+    //outline: none;
+    width: 100%;
   }
 }
 
