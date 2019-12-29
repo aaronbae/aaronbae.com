@@ -25,7 +25,10 @@ class Blog extends Component {
     return (
       <div className='row all-blog-container'>
         <div id="blog-column" className="col-12 col-sm-4 post-column">
-          <div className="row center post-column-title"><p className="h4">Recent Posts</p></div>
+          <div className="row center post-column-title">
+            <p className="h4">Recent Posts</p>
+            <input className="new-post-button h3" type="button" value="+"/>
+          </div>
           {posts.map((item, index) => 
             <Post key={item._id} post_id={index} />
           )}
