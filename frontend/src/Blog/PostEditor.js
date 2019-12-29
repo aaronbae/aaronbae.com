@@ -15,6 +15,7 @@ import './PostEditor.scss';
 class PostEditor extends Component {
   constructor(props) {
     super(props);
+    this.enterEditMode = this.enterEditMode.bind(this);
     this.update_title = this.update_title.bind(this);
     this.update_content = this.update_content.bind(this);
     this.update_tags = this.update_tags.bind(this);
@@ -22,22 +23,37 @@ class PostEditor extends Component {
     this.cancel_changes = this.cancel_changes.bind(this);
   }
 
+  enterEditMode(e) {
+    e.stopPropagation();
+    const { dispatch, selected_post, posts  } = this.props
+    const curr_post = posts[selected_post]
+
+    const titleinput = document.querySelector('.title-input')
+    titleinput.value = curr_post.title
+    const contentinput = document.querySelector('.content-input')
+    contentinput.value = curr_post.content
+    dispatch(change_edit_mode(true))
+  }
+
   update_title(e) {
     e.stopPropagation();
-    const { dispatch, selected_tags, selected_content } = this.props
-    dispatch(update_local_changes(e.target.value, selected_content, selected_tags))
+    const { dispatch, selected_post, posts  } = this.props
+    var curr_post = posts[selected_post]
+    dispatch(update_local_changes(e.target.value, curr_post.content, curr_post.tags))
   }
 
   update_content(e) {
     e.stopPropagation();
-    const { dispatch, selected_title, selected_tags } = this.props
-    dispatch(update_local_changes(selected_title, e.target.value, selected_tags))
+    const { dispatch, selected_post, posts  } = this.props
+    var curr_post = posts[selected_post]
+    dispatch(update_local_changes(curr_post.title, e.target.value, curr_post.tags))
   }
 
   update_tags(e) {
     e.stopPropagation();
-    const { dispatch, selected_title, selected_content  } = this.props
-    dispatch(update_local_changes(selected_title, selected_content, e.target.value))
+    const { dispatch, selected_post, posts  } = this.props
+    var curr_post = posts[selected_post]
+    dispatch(update_local_changes(curr_post.title, curr_post.content, e.target.value))
   }
 
   save_changes(e) {
@@ -49,54 +65,54 @@ class PostEditor extends Component {
 
   cancel_changes(e) {
     e.stopPropagation();
-    const { dispatch } = this.props
+    const { dispatch, selected_post, posts  } = this.props
     dispatch(fetch_posts())
     dispatch(change_edit_mode(false))
   }
   
   render() {
-    const { enterEditMode, edit_mode, selected_post, selected_title, selected_date, selected_tags, selected_content } = this.props
+    const { edit_mode, selected_post, posts } = this.props
     return (
       <div className="row post-editor-container">
         {selected_post > -1 &&
           <div className={edit_mode ? "col post-editor-main-col hidden" : "col post-editor-main-col"}> 
             <div className="row title-row">
-              <p className="h3">{selected_title}</p>
+              <p className="h3">{posts[selected_post].title}</p>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
-                {selected_date}
+                {posts[selected_post].createtime}
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">
                   <span className="tag">Tags : </span>
-                  {selected_tags.map((item, index) =>
+                  {posts[selected_post].tags.map((item, index) =>
                     <span key={index} className={"tag " + item}>
                       {item + ", "}                  
                     </span>
                   )}
-                  <span className="edit-button" onClick={() => enterEditMode(true)} >Edit Post</span>
+                  <span className="edit-button" onClick={this.enterEditMode} >Edit Post</span>
                 </div>
               </div>
             </div>
             <div className="row content-row">
-              {selected_content}
+              {posts[selected_post].content}
             </div>
           </div>
         }
         {selected_post > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <input type="text"  defaultValue={selected_title} onChange={this.update_title}/>
+              <input className="title-input" type="text" onChange={this.update_title}/>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
-                {selected_date}
+                {posts[selected_post].createtime}
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">
                   <span className="tag">Tags : </span>
-                  {selected_tags.map((item, index) =>
+                  {posts[selected_post].tags.map((item, index) =>
                     <span key={index} className={"tag " + item}>
                       {item + ", "}                  
                     </span>
@@ -105,7 +121,7 @@ class PostEditor extends Component {
               </div>
             </div>
             <div className="row content-row">
-              <input type="text"  defaultValue={selected_content} onChange={this.update_content}/>
+              <input  className="content-input" type="text" onChange={this.update_content}/>
             </div> 
             <div className="row button-row">
               <button type="button" onClick={this.save_changes}>Save</button>
@@ -126,35 +142,11 @@ PostEditor.propTypes = {
 
 function mapStateToProps(state) {
   const { edit_mode, selected_post, posts } = state.BlogReducer
-  if(selected_post == -1){
-    return {
-      edit_mode: edit_mode,
-      posts: posts,
-      selected_post: -1,
-      selected_title: "",
-      selected_content: "",
-      selected_tags: "",
-      selected_date: ""
-    }
-  }
-  let this_post = posts[selected_post]
   return {
     edit_mode: edit_mode,
-    posts: posts,
     selected_post: selected_post,
-    selected_title: this_post.title,
-    selected_content: this_post.content,
-    selected_tags: this_post.tags,
-    selected_date: this_post.updatetime
+    posts: posts
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-    update_title: (e)=>update_title(e),
-    enterEditMode: (boolean_val)=>dispatch(change_edit_mode(boolean_val))
-  } 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);
+export default connect(mapStateToProps)(PostEditor);
