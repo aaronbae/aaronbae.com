@@ -30,6 +30,8 @@ class PostEditor extends Component {
 
     const titleinput = document.querySelector('.title-input')
     titleinput.value = curr_post.title
+    const tagsinput = document.querySelector('.tags-input')
+    tagsinput.value = curr_post.tags
     const contentinput = document.querySelector('.content-input')
     contentinput.value = curr_post.content
     dispatch(change_edit_mode(true))
@@ -53,7 +55,7 @@ class PostEditor extends Component {
     e.stopPropagation();
     const { dispatch, selected_post, posts  } = this.props
     var curr_post = posts[selected_post]
-    dispatch(update_local_changes(curr_post.title, curr_post.content, e.target.value))
+    dispatch(update_local_changes(curr_post.title, curr_post.content, e.target.value.split(',')))
   }
 
   save_changes(e) {
@@ -112,11 +114,7 @@ class PostEditor extends Component {
               <div className="col-7 no-padding">
                 <div className="float-right">
                   <span className="tag">Tags : </span>
-                  {posts[selected_post].tags.map((item, index) =>
-                    <span key={index} className={"tag " + item}>
-                      {item + ", "}                  
-                    </span>
-                  )}
+                  <input  className="tags-input" type="text" onChange={this.update_tags}/>
                 </div>
               </div>
             </div>
