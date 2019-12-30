@@ -24,7 +24,8 @@ class Blog extends Component {
 
   handleNewPostButton(e) {
     e.stopPropagation();
-    const { dispatch } = this.props
+    const { dispatch, posts } = this.props
+    console.log(posts)
     let new_edit_data = {
       title: "",
       content: "",

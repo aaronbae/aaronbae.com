@@ -20,7 +20,12 @@ postRoutes.route('/add/').post(function (req, res) {
 
 // Defined get data(index or listing) route
 postRoutes.route('/').get(function (req, res) {
-    Post.find(function (err, posts){
+  Post.find({}, null, 
+    {
+      sort: { createtime: 'desc' },
+      limit: 20
+    }, 
+    function(err, posts){
     if(err){
       console.log(err);
     }
