@@ -1,7 +1,8 @@
 export const VIEWPOST = "VIEW_POST";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
-export const UPDATE_LOCAL_CHANGES = "UPDATE_LOCAL_CHANGES";
+export const UPDATE_EDIT_CHANGES = "UPDATE_EDIT_CHANGES";
+export const CREATE_NEW_POST = "CREATE_NEW_POST";
 
 function receive_posts(res) {
   return {
@@ -33,17 +34,19 @@ export function change_edit_mode(boolean_value) {
   }
 }
 
-export function update_local_changes(title, content, tags) {
+export function update_edit_changes(edit_data) {
   return {
-    type: UPDATE_LOCAL_CHANGES, 
-    title: title, 
-    content: content, 
-    tags: tags,
+    type: UPDATE_EDIT_CHANGES, 
+    edit_data: edit_data
   }
 }
 
 export function save_local_changes(post) {
-  var url = "http://localhost:4000/posts/update/" + post._id.toString() 
+  var url = "http://localhost:4000/posts/update/" + post._id.toString()
+  if(post._id == -1){
+    url = "http://localhost:4000/posts/add/" 
+    delete post._id
+  } 
   return dispatch => {
     fetch(url, {
       method: 'POST',
@@ -52,5 +55,12 @@ export function save_local_changes(post) {
       },
       body: JSON.stringify(post)
     }).then(res => dispatch(change_edit_mode(false)))
+  }
+}
+
+export function create_new_post() {
+  return {
+    type: CREATE_NEW_POST,
+    date: new Date().toISOString()
   }
 }

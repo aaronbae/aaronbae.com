@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import {
   fetch_posts,
   change_edit_mode,
-  update_local_changes,
+  update_edit_changes,
   save_local_changes
 } from './BlogActions'
 
@@ -27,15 +27,13 @@ class PostEditor extends Component {
     e.stopPropagation();
     const { dispatch, selected_post, posts  } = this.props
     const curr_post = posts[selected_post]
-    // initialize textarea values
-    const titleinput = document.querySelector('.title-input')
-    titleinput.value = curr_post.title
-    const tagsinput = document.querySelector('.tags-input')
-    tagsinput.value = curr_post.tags
-    const contentinput = document.querySelector('.content-input')
-    contentinput.value = curr_post.content
-    // dispatch edit_mode
+    let new_edit_data = {
+      title: curr_post.title,
+      content: curr_post.content,
+      tags: curr_post.tags
+    }
     dispatch(change_edit_mode(true))
+    dispatch(update_edit_changes(new_edit_data))
   }
 
   update_title(e) {
@@ -44,9 +42,9 @@ class PostEditor extends Component {
     e.target.style.height = 'inherit'
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
     
-    const { dispatch, selected_post, posts  } = this.props
-    var curr_post = posts[selected_post]
-    dispatch(update_local_changes(e.target.value, curr_post.content, curr_post.tags))
+    const { dispatch, edit_data } = this.props
+    let new_edit_data = {...edit_data, title: e.target.value}
+    dispatch(update_edit_changes(new_edit_data))
   }
 
   update_content(e) {
@@ -55,16 +53,16 @@ class PostEditor extends Component {
     e.target.style.height = 'inherit'
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
 
-    const { dispatch, selected_post, posts  } = this.props
-    var curr_post = posts[selected_post]
-    dispatch(update_local_changes(curr_post.title, e.target.value, curr_post.tags))
+    const { dispatch, edit_data } = this.props
+    let new_edit_data = {...edit_data, content: e.target.value}
+    dispatch(update_edit_changes(new_edit_data))
   }
 
   update_tags(e) {
     e.stopPropagation();
-    const { dispatch, selected_post, posts  } = this.props
-    var curr_post = posts[selected_post]
-    dispatch(update_local_changes(curr_post.title, curr_post.content, e.target.value.split(',')))
+    const { dispatch, edit_data } = this.props
+    let new_edit_data = {...edit_data, tags: e.target.value.split(',')}
+    dispatch(update_edit_changes(new_edit_data))
   }
 
   save_changes(e) {
@@ -82,7 +80,7 @@ class PostEditor extends Component {
   }
   
   render() {
-    const { edit_mode, selected_post, posts } = this.props
+    const { edit_mode, selected_post, posts, edit_data } = this.props
     return (
       <div className="row post-editor-container">
         {selected_post > -1 &&
@@ -114,7 +112,7 @@ class PostEditor extends Component {
         {selected_post > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <textarea className="title-input h3" onChange={this.update_title}/>
+              <textarea className="title-input h3" value={edit_data.title} onChange={this.update_title} placeholder="Your Title..."/>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
@@ -123,12 +121,12 @@ class PostEditor extends Component {
               <div className="col-7 no-padding">
                 <div className="float-right">
                   <span className="tags-label">Tags : </span>
-                  <input  className="tags-input" type="text" onChange={this.update_tags}/>
+                  <input  className="tags-input" type="text" value={edit_data.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>
                 </div>
               </div>
             </div>
             <div className="row content-row">
-              <textarea  className="content-input" onChange={this.update_content}/>
+              <textarea  className="content-input" value={edit_data.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
             </div> 
             <div className="row button-row">
               <div>
@@ -145,14 +143,16 @@ class PostEditor extends Component {
 
 PostEditor.propTypes = {
   edit_mode: PropTypes.bool.isRequired,
+  edit_data: PropTypes.object.isRequired,
   selected_post: PropTypes.number.isRequired,
   posts: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
-  const { edit_mode, selected_post, posts } = state.BlogReducer
+  const { edit_mode, edit_data, selected_post, posts } = state.BlogReducer
   return {
     edit_mode: edit_mode,
+    edit_data: edit_data,
     selected_post: selected_post,
     posts: posts
   }

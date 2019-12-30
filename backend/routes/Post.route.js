@@ -6,13 +6,14 @@ const postRoutes = express.Router();
 let Post = require('../models/Post');
 
 // Defined store route
-postRoutes.route('/add').post(function (req, res) {
+postRoutes.route('/add/').post(function (req, res) {
   let post = new Post(req.body);
   post.save()
     .then(post => {
       res.status(200).json({'post': 'post in added successfully'});
     })
     .catch(err => {
+      console.log(err)
     res.status(400).send("unable to save to database");
     });
 });
@@ -32,7 +33,7 @@ postRoutes.route('/').get(function (req, res) {
 
 // Defined get data with specific id route
 postRoutes.route('/:id').get(function (req, res) {
-  Post.findById(req.params.id, function (err, post){
+  Post.findById(req.params.id.toString(), function (err, post){
     if(err){
       console.log(err);
     }
@@ -41,14 +42,6 @@ postRoutes.route('/:id').get(function (req, res) {
       console.log(post);
       res.json(post);
     }
-  });
-});
-
-// Defined edit route
-postRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  Post.findById(id, function (err, post){
-      res.json(post);
   });
 });
 
