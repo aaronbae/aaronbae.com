@@ -64,3 +64,16 @@ export function create_new_post() {
     date: new Date().toISOString()
   }
 }
+
+export function delete_post(post_id) {
+  var url = "http://localhost:4000/posts/delete/" +post_id.toString()
+  return dispatch => {
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(res => dispatch(fetch_posts()))
+  }
+}

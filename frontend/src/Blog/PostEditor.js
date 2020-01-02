@@ -7,7 +7,8 @@ import {
   fetch_posts,
   change_edit_mode,
   update_edit_changes,
-  save_local_changes
+  save_local_changes,
+  delete_post
 } from './BlogActions'
 
 import './PostEditor.scss';
@@ -21,6 +22,7 @@ class PostEditor extends Component {
     this.update_tags = this.update_tags.bind(this);
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
+    this.handle_delete_button = this.handle_delete_button.bind(this);
   }
 
   enterEditMode(e) {
@@ -39,9 +41,8 @@ class PostEditor extends Component {
   update_title(e) {
     e.stopPropagation();
     // auto re-size
-    e.target.style.height = 'inherit'
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
-    
+
     const { dispatch, edit_data } = this.props
     let new_edit_data = {...edit_data, title: e.target.value}
     dispatch(update_edit_changes(new_edit_data))
@@ -50,7 +51,6 @@ class PostEditor extends Component {
   update_content(e) {
     e.stopPropagation();
     // auto re-size
-    e.target.style.height = 'inherit'
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
 
     const { dispatch, edit_data } = this.props
@@ -76,6 +76,13 @@ class PostEditor extends Component {
     e.stopPropagation();
     const { dispatch, selected_post, posts  } = this.props
     dispatch(fetch_posts())
+    dispatch(change_edit_mode(false))
+  }
+
+  handle_delete_button(e) {
+    e.stopPropagation();
+    const { dispatch, selected_post, posts  } = this.props
+    dispatch(delete_post(posts[selected_post]['_id']))
     dispatch(change_edit_mode(false))
   }
   
@@ -105,7 +112,9 @@ class PostEditor extends Component {
               </div>
             </div>
             <div className="row content-row">
-              {posts[selected_post].content}
+              {posts[selected_post].content.split("\n").map((i, key) => {
+                return <div className="content-paragraph" key={key}>{i}</div>
+              })}
             </div>
           </div>
         }
@@ -131,6 +140,7 @@ class PostEditor extends Component {
             <div className="row button-row">
               <div>
                 <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
+                <button className={posts[selected_post]['_id']==-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
                 <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
               </div>
             </div>          

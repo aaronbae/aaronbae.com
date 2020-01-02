@@ -4,6 +4,12 @@
   width: 100%;
   background-color: white;
 }
+.selected-post {
+  box-shadow:
+    0 0 1px 1px #fff,  /* inner white */
+    0 0 2px 1px blue; /* outer cyan */
+  z-index: 100;
+}
 .individual-post:hover {
   .title, .date {
     text-decoration: underline;

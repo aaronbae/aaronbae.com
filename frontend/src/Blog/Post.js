@@ -27,10 +27,10 @@ class Post extends Component {
   }
 
   render() {
-    const { title, date } = this.props
+    const { title, date, selected_post } = this.props
     return (
       <div className="row individual-post-container" onClick={this.handlePostClick}>
-        <div className="individual-post">
+        <div className={selected_post==this.state.post_id? "individual-post selected-post" : "individual-post"}>
           <div className="offset-1 col-10">
             <div className="row date">{date}</div>
             <div className="row title"><p className="h5">{title}</p></div>
