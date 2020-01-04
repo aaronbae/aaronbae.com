@@ -43,7 +43,7 @@ userRoutes.route('/update/:id').post(function (req, res) {
     if (!user)
       return next(new Error('Could not load Document'));
     else {
-        user.id = 1;
+        user.id = req.params.id;
         user.login_id = req.body.login_id;
         user.login_password = req.body.login_password;
 
@@ -68,8 +68,8 @@ userRoutes.route('/delete/:id').get(function (req, res) {
 // Login
 userRoutes.route('/login').post(function (req, res) {
   User.find({
-    login_email: req.params.login_email,
-    login_password: req.params.login_password
+    login_id: req.body.login_id,
+    login_password: req.body.password_id
   }, function(err, user) {
     if(err) res.json(err);
     else res.json(user);

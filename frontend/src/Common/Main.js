@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Home from '../Home/Home';
 import Blog from '../Blog/Blog';
+import LogIn from '../Admin/LogIn';
 import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 
@@ -15,7 +16,8 @@ class Main extends Component {
           <Header />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/blog" component={Blog} />
+              <Route exact path="/blog" component={Blog} />
+              <Route exact path="/login" component={LogIn} />
               <Route component={NonExistentRoute} />
             </Switch>
           <Footer />

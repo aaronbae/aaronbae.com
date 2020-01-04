@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema for Business
 let User = new Schema({
-  id: {
-    type: Number
-  },
-  login_email: {
+  login_id: {
     type: String
   },
   login_password: {
