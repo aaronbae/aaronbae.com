@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -12,6 +13,13 @@ class LogIn extends Component {
   constructor(props) {
     super(props);
     this.handleSignInButton = this.handleSignInButton.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { logged_in } = this.props;
+    if( logged_in ) {
+      this.props.history.push("/blog")
+    }
   }
 
   handleSignInButton(e) {
@@ -46,13 +54,15 @@ class LogIn extends Component {
   }
 }
 LogIn.propTypes = {
+  logged_in: PropTypes.bool.isRequired,
   failed_attempt: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
   return { 
+    logged_in: state.AdminReducer.logged_in,
     failed_attempt: state.AdminReducer.failed_attempt
   }
 }
 
-export default connect(mapStateToProps)(LogIn);
+export default connect(mapStateToProps)(withRouter(LogIn));
