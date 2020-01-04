@@ -1,0 +1,15 @@
+.link-button {
+  background-color: white;
+  border: none;
+  color: gray;
+}
+
+.link-button:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-button:focus {
+  outline: none;
+}

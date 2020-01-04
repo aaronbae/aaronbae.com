@@ -42,13 +42,15 @@ class Blog extends Component {
   }
 
   render() { 
-    const { posts } = this.props
+    const { posts, logged_in } = this.props
     return (
       <div className='row all-blog-container'>
         <div id="blog-column" className="col-12 col-sm-4 post-column">
           <div className="row center post-column-title">
             <p className="h4">Recent Posts</p>
-            <button className="new-post-button h3" type="button" onClick={this.handleNewPostButton}>+</button>
+            {logged_in &&
+              <button className="new-post-button h3" type="button" onClick={this.handleNewPostButton}>+</button>
+            }
           </div>
           {posts.map((item, index) => 
             <Post key={index} post_id={index} />
@@ -62,12 +64,16 @@ class Blog extends Component {
   }
 }
 Blog.propTypes = {
+  logged_in: PropTypes.bool.isRequired,
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  return { posts: state.BlogReducer.posts }
+  return { 
+    logged_in: state.AdminReducer.logged_in,
+    posts: state.BlogReducer.posts 
+  }
 }
 
 export default connect(mapStateToProps)(Blog);

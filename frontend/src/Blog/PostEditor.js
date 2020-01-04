@@ -87,7 +87,7 @@ class PostEditor extends Component {
   }
   
   render() {
-    const { edit_mode, selected_post, posts, edit_data } = this.props
+    const { edit_mode, logged_in, selected_post, posts, edit_data } = this.props
     return (
       <div className="row post-editor-container">
         {selected_post > -1 &&
@@ -106,8 +106,10 @@ class PostEditor extends Component {
                     <span key={index} className={"tag " + item}>
                       {item + ", "}                  
                     </span>
-                  )}
-                  <span className="edit-button" onClick={this.enterEditMode} >Edit Post</span>
+                  )}           
+                  {logged_in &&
+                    <span className="edit-button" onClick={this.enterEditMode} >Edit Post</span>
+                  }
                 </div>
               </div>
             </div>
@@ -152,6 +154,7 @@ class PostEditor extends Component {
 }
 
 PostEditor.propTypes = {
+  logged_in: PropTypes.bool.isRequired,
   edit_mode: PropTypes.bool.isRequired,
   edit_data: PropTypes.object.isRequired,
   selected_post: PropTypes.number.isRequired,
@@ -161,6 +164,7 @@ PostEditor.propTypes = {
 function mapStateToProps(state) {
   const { edit_mode, edit_data, selected_post, posts } = state.BlogReducer
   return {
+    logged_in: state.AdminReducer.logged_in,
     edit_mode: edit_mode,
     edit_data: edit_data,
     selected_post: selected_post,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Link from './Link';
 import './Header.scss';
 
 class Header extends Component {
@@ -16,21 +18,21 @@ class Header extends Component {
 
   render() {
     const { logged_in } = this.props;
-    const path = window.location.pathname
+    const path = this.props.history.location.pathname;
     return (
       <div className="header-container row">
-        <div><a className="navbrand" href="/">Aaron Bae</a></div>
-        <div><a className={path==="/"?"navlink active":"navlink "} href="/">Home</a></div>
+        <div><Link addClasses="navbrand" message="Aaron Bae" route="/" /></div>
+        <div className={path=="/"?"active":""}><Link addClasses="navlink" message="Home" route="/" /></div>
         <div className="line"></div>
-        <div><a className={path==="/blog"?"navlink active":"navlink"} href="/blog">Blog</a></div>
+        <div className={path=="/blog"?"active":""}><Link addClasses="navlink" message="Blog" route="/blog" /></div>
         <div className="line"></div>
-        <div className="float-right">
-        {logged_in && 
-          <button className={path==="/login"?"navlink sign-out-button active":"navlink sign-out-button"} onClick={this.handleLogOut}>Sign Out</button>
-        }
-        {!logged_in &&
-          <a className={path==="/login"?"navlink active":"navlink"} href="/login">Admin</a>
-        }
+        <div className={path=="/login"?"float-right active":"float-right"}>
+          {logged_in && 
+            <button className="navlink sign-out-button" onClick={this.handleLogOut}>Sign Out</button>
+          }
+          {!logged_in &&
+            <Link addClasses="navlink" message="Admin" route="/login" />
+          }
         </div>
       </div>
     );
@@ -45,4 +47,4 @@ function mapStateToProps(state) {
   return { logged_in: state.AdminReducer.logged_in }
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));

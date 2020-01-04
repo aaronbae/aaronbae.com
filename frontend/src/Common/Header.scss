@@ -25,13 +25,12 @@ $brandcolor: rgb(25, 25, 25);
     padding: 9px 20px 8px 30px;
   }
   .navbrand:hover, .navlink:hover {
+    text-decoration: none;
+  }
+  .navlink:hover {
     background-color: rgb(250, 250, 250);
     color: $brandcolor;
-    text-decoration: none;
     cursor: pointer;
-  }
-  .active {
-    color: black;
   }
   .sign-out-button {
     border: solid 1px black;
@@ -41,5 +40,8 @@ $brandcolor: rgb(25, 25, 25);
   }
   button:focus {
     outline: none;
+  }
+  .active > .navlink{
+    color: black;
   }
 }
