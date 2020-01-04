@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
+// Redux
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { sign_out } from '../Admin/AdminActions'
+
 import Link from './Link';
 import './Header.scss';
 
@@ -13,7 +17,10 @@ class Header extends Component {
 
   handleLogOut(e) {
     e.stopPropagation();
-    console.log("Shit Out")
+    // TODO: give a warning
+    // TODO: clear cache
+    const { dispatch } = this.props;
+    dispatch(sign_out());
   }
 
   render() {

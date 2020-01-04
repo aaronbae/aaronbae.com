@@ -1,5 +1,13 @@
+export const SIGN_OUT = "SIGN_OUT";
 export const FAILED_ADMIN_PASSWORD = "FAILED_ADMIN_PASSWORD";
 export const SUCCEEDED_ADMIN_PASSWORD = "SUCCEEDED_ADMIN_PASSWORD";
+
+export function sign_out() {
+  return {
+    type: SIGN_OUT,
+    receivedAt: Date.now()
+  }
+}
 
 function receive_account_results(res) {
   if(res.status == 400){
