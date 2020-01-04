@@ -2,50 +2,54 @@ $separation-color: lightgray;
 
 // General Container
 .all-blog-container {
-  margin-top: 56px;
   min-height: 80vh;
-}
-.hidden {
-  display: none;
-}
-
-
-// Left (Post Viewing) Panel
-.post-column-title {
-  border-bottom: solid $separation-color 1px;
-  padding: 10px 0px 3px 0px;
-  background-color: white;
-}
-.post-column-title, .new-post-button {
-  height: 53px;
-}
-
-.post-column {
-  background-color: $separation-color;
-  border-left: solid $separation-color 1px;
-  border-right: solid $separation-color 1px;
-}
-.new-post-button {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  font-weight: bold;
-  background-color: white;
-  border: none transparent;
-  border-left: solid 3px $separation-color;
-  border-bottom: solid 1px $separation-color;
-  padding: 0px 10px;
-  margin: 0px;
-}
-.new-post-button:focus {
-  outline: 0px;
-}
-.new-post-button:hover {
-  animation: colorchange 0.5s;
-  @keyframes colorchange
-  {
-    0%   {background: white;}
-    100% {background: gray;}
+  .hidden {
+    display: none;
   }
-  background-color: gray;
+  .center {
+    text-align: center;
+    * {
+      margin: 0px auto;
+    }
+  }
+
+  // Left (Post Viewing) Panel
+  .post-column-title {
+    border-bottom: solid $separation-color 1px;
+    padding: 10px 0px 3px 0px;
+    background-color: white;
+  }
+  .post-column-title, .new-post-button {
+    height: 53px;
+  }
+
+  .post-column {
+    background-color: $separation-color;
+    border-left: solid $separation-color 1px;
+    border-right: solid $separation-color 1px;
+  }
+  .new-post-button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-weight: bold;
+    background-color: white;
+    border: none transparent;
+    border-left: solid 3px $separation-color;
+    border-bottom: solid 1px $separation-color;
+    padding: 0px 10px;
+    margin: 0px;
+  }
+  .new-post-button:focus {
+    outline: 0px;
+  }
+  .new-post-button:hover {
+    animation: colorchange 0.5s;
+    @keyframes colorchange
+    {
+      0%   {background: white;}
+      100% {background: gray;}
+    }
+    background-color: gray;
+  }
 }
