@@ -42,7 +42,7 @@ class LogIn extends Component {
               <input className={failed_attempt?"incorrect text-input":"text-input"} type="text" placeholder="Admin Id"/>
             </div>
             <div className="row form-item-row">
-              <input className={failed_attempt?"incorrect text-input":"text-input"} type="text" placeholder="Admin Password"/>
+              <input className={failed_attempt?"incorrect text-input":"text-input"} type="password" placeholder="Admin Password"/>
             </div>
             <div className="row buttons-row form-item-row">
               <button className="sign-in-button" onClick={this.handleSignInButton}>Sign In</button>

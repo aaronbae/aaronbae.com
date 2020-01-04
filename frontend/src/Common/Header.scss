@@ -1,6 +1,8 @@
 $brandcolor: rgb(25, 25, 25);
 
 .header-container  {
+  position: relative;
+  z-index: 1;
   background-color: white;
   box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
   .line {
@@ -28,20 +30,24 @@ $brandcolor: rgb(25, 25, 25);
     text-decoration: none;
   }
   .navlink:hover {
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(240, 240, 240);
     color: $brandcolor;
     cursor: pointer;
   }
   .sign-out-button {
     border: solid 1px black;
     border-radius: 8px;
-    padding: 1px 6px;
-    margin: 11px 9px;
+    padding: 5px 6px;
+    margin: 7px 9px;
+    color: black;
   }
   button:focus {
     outline: none;
   }
   .active > .navlink{
     color: black;
+  }
+  .admin-container {
+    margin-right: 20px;
   }
 }

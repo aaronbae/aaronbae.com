@@ -16,6 +16,7 @@ function receive_account_results(res) {
       receivedAt: Date.now()
     }
   }
+  
   return {
     type: SUCCEEDED_ADMIN_PASSWORD,
     receivedAt: Date.now()
