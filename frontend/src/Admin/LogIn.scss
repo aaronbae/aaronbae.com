@@ -32,6 +32,9 @@
         .text-input:focus {
           outline: none;
         }
+        .incorrect {
+          box-shadow: 0 0 5px red;
+        }
       }
       
       .buttons-row {

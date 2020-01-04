@@ -16,10 +16,13 @@ class LogIn extends Component {
 
   handleSignInButton(e) {
     e.stopPropagation();
-    console.log("SHIT")
+    var both_inputs = document.getElementsByClassName("text-input")
+    const { dispatch } = this.props;
+    dispatch(check_account(both_inputs[0].value, both_inputs[1].value))
   }
 
   render() { 
+    const { failed_attempt } = this.props;
     return (
       <div className='row all-signin-container'>
         <div className="main-column col-10 col-sm-5 col-md-4">
@@ -28,10 +31,10 @@ class LogIn extends Component {
               <h3>Admin Access</h3>
             </div>
             <div className="row form-item-row">
-              <input className="text-input" type="text" placeholder="Admin Id"/>
+              <input className={failed_attempt?"incorrect text-input":"text-input"} type="text" placeholder="Admin Id"/>
             </div>
             <div className="row form-item-row">
-              <input className="text-input" type="text" placeholder="Admin Password"/>
+              <input className={failed_attempt?"incorrect text-input":"text-input"} type="text" placeholder="Admin Password"/>
             </div>
             <div className="row buttons-row form-item-row">
               <button className="sign-in-button" onClick={this.handleSignInButton}>Sign In</button>
@@ -43,11 +46,13 @@ class LogIn extends Component {
   }
 }
 LogIn.propTypes = {
-
+  failed_attempt: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
-  return {  }
+  return { 
+    failed_attempt: state.AdminReducer.failed_attempt
+  }
 }
 
 export default connect(mapStateToProps)(LogIn);

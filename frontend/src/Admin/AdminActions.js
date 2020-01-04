@@ -2,7 +2,7 @@ export const FAILED_ADMIN_PASSWORD = "FAILED_ADMIN_PASSWORD";
 export const SUCCEEDED_ADMIN_PASSWORD = "SUCCEEDED_ADMIN_PASSWORD";
 
 function receive_account_results(res) {
-  if(!res.user){
+  if(res.status == 400){
     return {
       type: FAILED_ADMIN_PASSWORD,
       receivedAt: Date.now()
@@ -10,7 +10,6 @@ function receive_account_results(res) {
   }
   return {
     type: SUCCEEDED_ADMIN_PASSWORD,
-    user: res.user,
     receivedAt: Date.now()
   }
 }
@@ -21,6 +20,7 @@ export function check_account(id, password) {
     login_password: password
   }
   return dispatch => {
+    var url = "http://localhost:4000/users/login"
     fetch(url, {
       method: 'POST',
       headers: {

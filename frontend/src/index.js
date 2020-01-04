@@ -5,11 +5,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { Provider } from 'react-redux';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
 import BlogReducer from './Blog/BlogReducer';
+import AdminReducer from './Admin/AdminReducer';
 
 const rootReducer = combineReducers({
-  BlogReducer
+  BlogReducer,
+  AdminReducer
 });
 const rootStore = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
