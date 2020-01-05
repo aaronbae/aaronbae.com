@@ -1,9 +1,10 @@
+import { config } from '../Constants'
+
 export const VIEWPOST = "VIEW_POST";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
 export const UPDATE_EDIT_CHANGES = "UPDATE_EDIT_CHANGES";
 export const CREATE_NEW_POST = "CREATE_NEW_POST";
-const BASE_URL = "http://localhost:4000/posts/"
 
 function receive_posts(res) {
   return {
@@ -14,7 +15,7 @@ function receive_posts(res) {
 }
 export function fetch_public_posts() {
   return dispatch => {
-    fetch(BASE_URL+"public")
+    fetch(config.url.POST_URL+"public")
       .then(res => res.json())
       .then(res => dispatch(receive_posts(res)))
   }
@@ -22,7 +23,7 @@ export function fetch_public_posts() {
 
 export function fetch_posts() {
   return dispatch => {
-    fetch(BASE_URL)
+    fetch(config.url.POST_URL)
       .then(res => res.json())
       .then(res => dispatch(receive_posts(res)))
   }
@@ -50,9 +51,9 @@ export function update_edit_changes(edit_data) {
 }
 
 export function save_local_changes(post) {
-  var url = BASE_URL + "update/" + post._id.toString()
+  var url = config.url.POST_URL + "update/" + post._id.toString()
   if(post._id == -1){
-    url = BASE_URL + "add/" 
+    url = config.url.POST_URL + "add/" 
     delete post._id
   } 
   return dispatch => {
@@ -74,7 +75,7 @@ export function create_new_post() {
 }
 
 export function delete_post(post_id) {
-  var url = BASE_URL + "delete/" +post_id.toString()
+  var url = config.url.POST_URL + "delete/" +post_id.toString()
   return dispatch => {
     fetch(url, {
       method: 'GET',

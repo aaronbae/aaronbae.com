@@ -12,9 +12,9 @@ const userRoute = require('./routes/User.route');
 
 // Configuring Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+mongoose.connect(config.DB, config.options).then(
     () => {console.log('Database is connected') },
-    err => { console.log('Cannot connect to the database'+ err)}
+    err => { console.log('Cannot connect to the database\n'+ err)}
 );
 
 // Configuring the backend app
