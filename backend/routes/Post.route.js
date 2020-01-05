@@ -19,6 +19,27 @@ postRoutes.route('/add/').post(function (req, res) {
 });
 
 // Defined get data(index or listing) route
+postRoutes.route('/public').get(function (req, res) {
+  var query = Post.find({}, null, 
+    {
+      sort: { createtime: 'desc' },
+      limit: 20
+    }).where({ public: true });
+  query.exec( 
+    function(err, posts){
+      if(err){
+        console.log(err);
+        res.status(400).send("unable to find posts")
+      }
+      else {
+        console.log(posts);
+        res.json(posts);
+      }
+    }
+  );
+});
+
+// Defined get data(index or listing) route
 postRoutes.route('/').get(function (req, res) {
   Post.find({}, null, 
     {
@@ -61,6 +82,7 @@ postRoutes.route('/update/:id').post(function (req, res, next) {
         post.title = req.body.title;
         post.content = req.body.content;
         post.tags = req.body.tags.map(Function.prototype.call, String.prototype.trim);
+        post.public = req.body.public;
         post.updatetime = Date.now();
 
         post.save().then(post => {

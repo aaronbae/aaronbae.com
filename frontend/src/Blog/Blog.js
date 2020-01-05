@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { 
+  fetch_public_posts,
   fetch_posts, 
   create_new_post, 
   viewpost,
@@ -28,7 +29,8 @@ class Blog extends Component {
     let new_edit_data = {
       title: "",
       content: "",
-      tags: []
+      tags: [],
+      public: true
     }
     dispatch(create_new_post())
     dispatch(viewpost(0))  
@@ -37,8 +39,12 @@ class Blog extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetch_posts())
+    const { dispatch, logged_in } = this.props
+    if(logged_in){
+      dispatch(fetch_posts())
+    } else {
+      dispatch(fetch_public_posts())
+    }
   }
 
   render() { 

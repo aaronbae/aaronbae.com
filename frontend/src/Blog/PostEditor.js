@@ -11,6 +11,7 @@ import {
   delete_post
 } from './BlogActions'
 
+import PublicToggle from './PublicToggle';
 import './PostEditor.scss';
 
 class PostEditor extends Component {
@@ -32,7 +33,8 @@ class PostEditor extends Component {
     let new_edit_data = {
       title: curr_post.title,
       content: curr_post.content,
-      tags: curr_post.tags
+      tags: curr_post.tags,
+      public: curr_post.public
     }
     dispatch(change_edit_mode(true))
     dispatch(update_edit_changes(new_edit_data))
@@ -64,6 +66,7 @@ class PostEditor extends Component {
     let new_edit_data = {...edit_data, tags: e.target.value.split(',')}
     dispatch(update_edit_changes(new_edit_data))
   }
+
 
   save_changes(e) {
     e.stopPropagation();
@@ -113,6 +116,7 @@ class PostEditor extends Component {
                 </div>
               </div>
             </div>
+            <div className="padding-row row"></div>
             <div className="row content-row">
               {posts[selected_post].content.split("\n").map((i, key) => {
                 return <div className="content-paragraph" key={key}>{i}</div>
@@ -136,6 +140,17 @@ class PostEditor extends Component {
                 </div>
               </div>
             </div>
+            <div className="row toggle-row">
+              <div className="offset-5 col-7 no-padding">
+                <div className="float-right">
+                  <span>Public: </span> 
+                  <div className="toggle-wrapper">
+                    <PublicToggle />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <div className="row content-row">
               <textarea  className="content-input" value={edit_data.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
             </div> 

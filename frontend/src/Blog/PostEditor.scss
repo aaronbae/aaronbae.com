@@ -32,7 +32,7 @@ $confirm-color-hover: rgb(97, 213, 255);
   padding: $padding-size $padding-size 0px $padding-size;
 }
 .information-row {
-  padding: 0px $padding-size $padding-size $padding-size;
+  padding: 0px $padding-size;
   .no-padding
   {
     padding: 0px;
@@ -58,6 +58,21 @@ $confirm-color-hover: rgb(97, 213, 255);
     outline: none;
   }
 }
+.padding-row {
+  height: 30px;
+}
+.toggle-row {
+  .no-padding {
+    padding: 0px;
+  }
+  padding: ($padding-size / 4) $padding-size ($padding-size / 2) $padding-size;
+  .toggle-wrapper {
+    padding-left: 5px;
+    display: inline-block;
+    width: 174px;
+  }
+}
+
 .content-row {
   padding: 15px 30px;
   margin-top: 3px;

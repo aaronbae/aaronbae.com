@@ -12,7 +12,8 @@ let initialState = {
   edit_data: {
     title: "",
     tags: [],
-    content: ""
+    content: "",
+    public: true
   },
   selected_post: -1,
   posts: []
@@ -32,6 +33,7 @@ function BlogReducer(state = initialState, action) {
       new_posts[state.selected_post].title = action.edit_data.title
       new_posts[state.selected_post].content = action.edit_data.content
       new_posts[state.selected_post].tags = action.edit_data.tags
+      new_posts[state.selected_post].public = action.edit_data.public
       return { ...state, posts: new_posts, edit_data: action.edit_data }
     case CREATE_NEW_POST:
       let new_post = {
