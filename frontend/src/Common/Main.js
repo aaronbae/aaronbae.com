@@ -9,6 +9,7 @@ import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 
 class Main extends Component {
+  // NOTE THAT path="/api/" is already reserved for backend
   render() {
     return (
       <Router>
