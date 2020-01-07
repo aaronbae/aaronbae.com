@@ -1,3 +1,5 @@
+console.log(process.env.NODE_ENV)
+
 const prod = {
   url: {
     POST_URL: "http://ec2-54-188-201-9.us-west-2.compute.amazonaws.com/api/posts/",
