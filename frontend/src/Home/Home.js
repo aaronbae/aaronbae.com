@@ -35,7 +35,7 @@ class Home extends Component {
               <li className='name-item row'><span className="h2">Aaron Beomjun Bae</span></li>
               <li className="row"><span>Masters in Computer Science</span></li>
               <li className="row"><span>UC Irvine Class of 2021</span></li>
-              <li className="row"><span>Focus in Artificial Intelligence</span></li>
+              <li className="row"><span>Focus on Natural Language Processing</span></li>
               <li className="row"><span>Bachelor of Science in Mathematics</span></li>
               <li className="row"><span>University of Washington Class of 2019</span></li>
               <li className="row">
@@ -68,24 +68,24 @@ class Home extends Component {
               <div className="row">
                 <div className="col">
                   <div className="row content-section">
-                    <div className="col-md-12 col-lg-4">
-                      <img className="education-img" src="assets/ucicampus.jpg" alt="University of California Irvine" />
+                    <div className="col-md-12 col-lg-3">
+                      <img className="education-img" src="assets/uci_seal_500.png" alt="University of California Irvine" />
                     </div>
-                    <div className="col-md-12 col-lg-8">
+                    <div className="col-md-12 col-lg-9">
                       <span><span  className="h6">Masters in Computer Science</span>, <i>Irvine</i>, <i>University of California - Irvine</i></span>
                       <ul className="education-bullets">
                         <li>Attended from September 2019 until June 2021</li>
                         <li>Focus in augmenting Knowledge Base with NLP techniques.</li>
                         <li>Participating in Center for Machine Learning and Intelligent Systems.</li>
-                        <li>Looking for summer 2020 internships</li>
+                        <li>Looking for NLP research based summer 2020 internships</li>
                       </ul>
                     </div>
                   </div>
                   <div className="row content-section additional-padding">
-                    <div className="col-md-12 col-lg-4">
-                      <img className="education-img" src="assets/uwcampus.jpg" alt="University of Washington" />
+                    <div className="col-md-12 col-lg-3">
+                      <img className="education-img" src="assets/uw_seal_500.jpg" alt="University of Washington" />
                     </div>
-                    <div className="col-md-12 col-lg-8">
+                    <div className="col-md-12 col-lg-9">
                       <span><span  className="h6">Bachelor of Science in Mathematics</span>, <i>Seattle</i>, <i>University of Washington</i></span>
                       <ul className="education-bullets">
                         <li>Attended from September 2015 until June 2019</li>
@@ -98,32 +98,6 @@ class Home extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="row total-section">
-            <div className="col">
-              <div className="row title-section">
-                <p className="col h3">Projects</p>
-              </div>
-              <div className="row content-section">
-                {this.state.projects.map(item =>
-                  <div key={item.id} className="individual-project roundEasy col-2">
-                    <div className="row">
-                      <div className="col-10 offset-1">
-                        <div className="row title">
-                          <p className="col h4">{item.title}</p>
-                        </div>
-                        <div className="row">
-                          <img src={item.img_url} alt={item.alt} className="thumbnail picture-shadow bounded" />
-                        </div>
-                        <div className="row">{item.description}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -233,6 +207,35 @@ class Home extends Component {
               </div>
             </div>
           </div>
+
+
+          <div className="row total-section">
+            <div className="col">
+              <div className="row title-section">
+                <p className="col h3">Projects</p>
+              </div>
+              <div className="row content-section">
+                {this.state.projects.map(item =>
+                  <div key={item.id} className="individual-project roundEasy col-2">
+                    <div className="row">
+                      <div className="col-10 offset-1">
+                        <div className="row title">
+                          <p className="col h4">{item.title}</p>
+                        </div>
+                        <div className="row">
+                          <img src={item.img_url} alt={item.alt} className="thumbnail picture-shadow bounded" />
+                        </div>
+                        <div className="row">{item.description}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
     );
