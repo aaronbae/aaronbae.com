@@ -2,8 +2,8 @@ console.log(process.env.NODE_ENV)
 
 const prod = {
   url: {
-    POST_URL: "http://ec2-54-188-201-9.us-west-2.compute.amazonaws.com/api/posts/",
-    USER_URL: "http://ec2-54-188-201-9.us-west-2.compute.amazonaws.com/api/users/",
+    POST_URL: "https://aaronbae.com/api/posts/",
+    USER_URL: "https://aaronbae.com/api/users/",
   }
 }
 const dev = {
