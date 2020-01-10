@@ -1,5 +1,3 @@
-console.log(process.env.NODE_ENV)
-
 const prod = {
   url: {
     POST_URL: "https://aaronbae.com/api/posts/",
