@@ -117,44 +117,44 @@
     .education-bullets {
       margin-left: 16px;
     } 
-  }
-}
 
-// Technical Experiences
-.individual-experience {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
-  .no-padding {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .logo-col {
-    -ms-flex: 0 0 50px;
-    flex: 0 0 50px;
-    .logo-wrapper {
-      height: 50px;
-      justify-content: center;
-      display: flex;
-    }
-    .company-logo {
-      width: 50px;
-      margin: auto;
-      padding-right: 5px;
-    }
-  }
-  .experience-col {
-    padding-left: 30px;
-    .experience-title {
-      padding-top: 15px;
-      padding-bottom: 10px;
-      span {   
-        white-space: nowrap;
+    // Technical Experiences
+    .individual-experience {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      padding-left: 30px;
+      padding-right: 30px;
+      .no-padding {
+        padding-left: 0px;
+        padding-right: 0px;
       }
-      .support-info {
-        flex-grow: 1;
-        color: gray;
+      .logo-col {
+        -ms-flex: 0 0 50px;
+        flex: 0 0 50px;
+        .logo-wrapper {
+          height: 50px;
+          justify-content: center;
+          display: flex;
+        }
+        .company-logo {
+          width: 50px;
+          margin: auto;
+          padding-right: 5px;
+        }
+      }
+      .experience-col {
+        padding-left: 30px;
+        .experience-title {
+          padding-top: 15px;
+          padding-bottom: 10px;
+          span {   
+            white-space: nowrap;
+          }
+          .support-info {
+            flex-grow: 1;
+            color: gray;
+          }
+        }
       }
     }
   }
