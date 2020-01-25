@@ -2,48 +2,30 @@ import React, { Component } from 'react';
 import './Home.scss';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      projects: [
-        {
-          'id': 1,
-          'title': "aaronbae.com",
-          "img_url": "assets/projects/website-thumbnail.png",
-          "alt": "aaronbae.com",
-          'description': "This is the website that I use as a platform to showcase my work and experiences. Intended for professors or technical recruiters to evaluate my software engineering and research skills.",
-        },
-        {
-          'id': 2,
-          'title': "competitive",
-          "img_url": "assets/projects/codejam_thumbnail.png",
-          "alt": "codejam",
-          'description': "As an amateur programming competitor, Competitive is an ongoing compilation of all the products from past competitive programming contests. Many use Python and use complex algorithmic ideas along with strict efficiency requirements.",
-        }
-      ]
-    };
-  }
   render() {
     return (
       <div className="row all-home-container">
         <div className="side-panel center col-md-12 col-lg-3">
+          <div className='row row-spacer'></div>
           <div className="row">
             <img className='round profile-img' src="assets/profile.jpg" alt="profile" />
           </div>
+          <div className='row row-spacer'></div>
           <div className="row">
             <ul className="col">
-              <li className='name-item row'><span className="h2">Aaron Beomjun Bae</span></li>
-              <li className="row"><span>Masters in Computer Science</span></li>
-              <li className="row"><span>UC Irvine Class of 2021</span></li>
-              <li className="row"><span>Focus on Natural Language Processing</span></li>
-              <li className="row"><span>Bachelor of Science in Mathematics</span></li>
-              <li className="row"><span>University of Washington Class of 2019</span></li>
-              <li className="row">
+              <li className='row name-item'><span className="h2 my-name">Aaron Beomjun Bae</span></li>
+              <li className="row bio-one-liner"><span>Masters in Computer Science</span></li>
+              <li className="row bio-one-liner"><span>UC Irvine Class of 2021</span></li>
+              <li className="row bio-one-liner"><span>Focus on Natural Language Processing</span></li>
+              <li className="row bio-one-liner"><span>Bachelor of Science in Mathematics</span></li>
+              <li className="row bio-one-liner"><span>University of Washington Class of 2019</span></li>
+              <li className="row bio-one-liner">
                 <a href="assets/downloadables/resume.pdf" download>Download a copy of my resume</a>
               </li>
             </ul>
           </div>
-          <div className='row external-link-container'>
+          <div className='row row-spacer'></div>
+          <div className='row'>
             <div className="col-12">
               <a href="https://github.com/aaronbae" title="GitHub">
                 <img src="assets/icons/github.png" alt="GitHub" className='external-link-icon' />
@@ -56,10 +38,11 @@ class Home extends Component {
               </a>
             </div>
           </div>
+          <div className='row row-spacer'></div>
         </div>
 
 
-        <div className="main-panel col-md-12 col-lg-8">
+        <div className="main-panel col-md-12 col-lg-9">
           <div className="row total-section">
             <div className="col">
               <div className="row title-section">
@@ -68,11 +51,11 @@ class Home extends Component {
               <div className="row">
                 <div className="col">
                   <div className="row content-section">
-                    <div className="col-md-12 col-lg-3">
+                    <div className="col-md-12 col-lg-3 center">
                       <img className="education-img" src="assets/uci_seal_500.png" alt="University of California Irvine" />
                     </div>
                     <div className="col-md-12 col-lg-9">
-                      <span><span  className="h6">Masters in Computer Science</span>, <i>Irvine</i>, <i>University of California - Irvine</i></span>
+                      <span><span  className="h6">Masters in Computer Science</span>, <i>University of California - Irvine</i></span>
                       <ul className="education-bullets">
                         <li>Attended from September 2019 until June 2021</li>
                         <li>Focus in augmenting Knowledge Base with NLP techniques.</li>
@@ -81,12 +64,12 @@ class Home extends Component {
                       </ul>
                     </div>
                   </div>
-                  <div className="row content-section additional-padding">
-                    <div className="col-md-12 col-lg-3">
+                  <div className="row content-section">
+                    <div className="col-md-12 col-lg-3 center">
                       <img className="education-img" src="assets/uw_seal_500.jpg" alt="University of Washington" />
                     </div>
                     <div className="col-md-12 col-lg-9">
-                      <span><span  className="h6">Bachelor of Science in Mathematics</span>, <i>Seattle</i>, <i>University of Washington</i></span>
+                      <span><span  className="h6">Bachelor of Science in Mathematics</span>, <i>University of Washington</i></span>
                       <ul className="education-bullets">
                         <li>Attended from September 2015 until June 2019</li>
                         <li>Applicable Mathematics classes such as Matrix Algebra, Differential Equations, and Mathematical Reasoning </li>
@@ -113,17 +96,15 @@ class Home extends Component {
 
 
                   <div className="row individual-experience">
-                    <div className="col-1 logo-col center">
-                      <div className="logo-wrapper"><img src="assets/icons/uw.png" alt="university of washington logo" className="company-logo"/></div>
+                    <div className="col logo-col center no-padding">
+                      <div className="logo-wrapper"><img src="assets/icons/uw_logo.png" alt="university of washington logo" className="company-logo"/></div>
                     </div>
-                    <div className="col-10">
+                    <div className="col experience-col">
                       <div className="row experience-title">
-                        <div className="col-8 no-padding">
-                          <span className="h5 no-break">Undergraduate Researcher</span>
-                          <span className="organization-name no-break">- University of Washington</span>
-                        </div>
-                        <div className="col-4">
-                          <span className="float-right timeline-info no-break">Jun 2018 - Jun 2019</span>    
+                        <div><span className="h5">Undergraduate Researcher</span></div>
+                        <div className="support-info ml-auto">
+                          <span>- University of Washington</span>
+                          <span className="float-right">Jun 2018 - Jun 2019</span>    
                         </div>
                       </div>
                       <div className="row">
@@ -148,18 +129,16 @@ class Home extends Component {
 
 
                   <div className="row individual-experience">
-                    <div className="col-1 logo-col center">
+                    <div className="col logo-col center no-padding">
                       <div className="logo-wrapper"><img src="assets/icons/dapper.jpg" alt="dapper company logo" className="company-logo"/></div>
                     </div>
-                    <div className="col-10">
+                    <div className="col experience-col">
                       <div className="row experience-title">
-                        <div className="col-8 no-padding">
-                          <span className="h5 no-break">Backend Software Engineer</span>
-                          <span className="organization-name no-break">- Dapper Grooming</span>
-                        </div>
-                        <div className="col-4">
-                          <span className="float-right timeline-info no-break">Jun 2018 - August 2019</span>    
-                        </div>
+                        <div><span className="h5">Backend Software Engineer</span></div>
+                        <div className="support-info ml-auto">
+                          <span>- Dapper Grooming</span>
+                          <span className="float-right">Jun 2018 - August 2019</span> 
+                        </div>   
                       </div>
                       <div className="row">
                         <p className="h6">Dapper Grooming | Backend Server Development Team</p>
@@ -176,18 +155,16 @@ class Home extends Component {
 
 
                   <div className="row individual-experience">
-                    <div className="col-1 logo-col no-padding center">
+                    <div className="col logo-col no-padding center">
                       <div className="logo-wrapper"><img src="assets/icons/crowdcow.jpg" alt="crowd cow company logo" className="company-logo"/></div>
                     </div>
-                    <div className="col-10">
+                    <div className="col experience-col">
                       <div className="row experience-title">
-                        <div className="col-8 no-padding">
-                          <span className="h5 no-break">Software Engineering Intern</span>
-                          <span className="organization-name no-break">- Crowd Cow</span>
-                        </div>
-                        <div className="col-4">
-                          <span className="float-right timeline-info no-break">Jun 2017 - August 2017</span>    
-                        </div>
+                        <div><span className="h5">Software Engineering Intern</span></div>
+                        <div className="support-info ml-auto">
+                          <span>- Crowd Cow</span>
+                          <span className="float-right">Jun 2017 - August 2017</span>
+                        </div>  
                       </div>
                       <div className="row">
                         <p className="h6">Frontend Developer:</p>
@@ -207,34 +184,6 @@ class Home extends Component {
               </div>
             </div>
           </div>
-
-
-          <div className="row total-section">
-            <div className="col">
-              <div className="row title-section">
-                <p className="col h3">Projects</p>
-              </div>
-              <div className="row content-section">
-                {this.state.projects.map(item =>
-                  <div key={item.id} className="individual-project roundEasy col-2">
-                    <div className="row">
-                      <div className="col-10 offset-1">
-                        <div className="row title">
-                          <p className="col h4">{item.title}</p>
-                        </div>
-                        <div className="row">
-                          <img src={item.img_url} alt={item.alt} className="thumbnail picture-shadow bounded" />
-                        </div>
-                        <div className="row">{item.description}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-
 
         </div>
       </div>

@@ -1,4 +1,7 @@
 @import '../Common/design.scss';
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
 
 
 // All Panels
@@ -42,10 +45,15 @@
 }
 
 // Side Panel
+@include media-breakpoint-up(lg) {
+  .side-panel {
+    border-right: solid black 1px;
+  }
+}
 .side-panel {
-  border-right: solid black 1px;
-  margin-right: 15px;
-
+  .row-spacer {
+    height: 10px;
+  }
   .profile-img {
     max-width: 200px;
     max-height: 300px;
@@ -56,95 +64,98 @@
     padding-right: 10px;
   }
 
-  .name-item {
-    padding-top: 10px;
+  @include media-breakpoint-up(xs) {
+    .my-name {
+      font-size: 15pt;
+    }
   }
-
-  .external-link-container {
-    margin-top: 15px;
+  @include media-breakpoint-up(md) {
+    .my-name {
+      font-size: 25pt;
+    }
+    .bio-one-liner {
+      font-size: 12pt;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    .my-name {
+      font-size: 15pt;
+    }
+    .bio-one-liner {
+      font-size: 10pt;
+    }
+    a > .external-link-icon {
+      margin: 0px 10px 0px 10px;
+    }
+  }
+  .bio-one-liner {
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
 
   .external-link-icon {
     width: 40px;
     height: 40px;
-    margin: 0px 20px 20px 20px;
+    margin: 0px 20px 0px 20px;
   }
 
 }
 // Main Panel
-
-.title-section {
-  border-bottom: solid black 1px;
-}
-
-.content-section {
-  padding-top: 10px;   
-}
-.content-section.additional-padding {
-  padding-top: 20px;
-}
-
-// Education
-.education-img {
-  max-width: 150px; 
-  width: 100%;
-  //box-shadow: 1px 1px 6px grey;
-
-}
-.education-bullets {
-  margin-left: 16px;
-}
-
-
-// Projects
-
-.individual-project {
-  min-width: 300px;
-  border: solid black 1px;
-  padding: 10px;
-  margin: 10px;
-}
-
-.thumbnail {
-  width: 90%;
-  height: 140px;
-  margin: 15px auto;
+.total-section {
+  padding-left: 15px;
+  .title-section {
+    border-bottom: solid black 1px;
+  }
+  .content-section {
+    padding-top: 10px;   
+    padding-bottom: 10px;  
+    // Education
+    .education-img {
+      max-width: 150px; 
+      width: 100%;
+    }
+    .education-bullets {
+      margin-left: 16px;
+    } 
+  }
 }
 
 // Technical Experiences
-.logo-wrapper {
-  height: 50px;
-  justify-content: center;
-  display: flex;
-}
-.company-logo {
-  width: 50px;
-  margin: auto;
-  padding-right: 5px;
-}
 .individual-experience {
   margin-top: 10px;
   margin-bottom: 5px;
-  .logo-col {
-    min-width: 50px;
-  }
+  padding-left: 30px;
+  padding-right: 30px;
   .no-padding {
     padding-left: 0px;
     padding-right: 0px;
   }
-}
-.experience-title {
-  margin-top: 10px;
-  margin-bottom: 0px;
-  .no-break {   
-    white-space: nowrap;
+  .logo-col {
+    -ms-flex: 0 0 50px;
+    flex: 0 0 50px;
+    .logo-wrapper {
+      height: 50px;
+      justify-content: center;
+      display: flex;
+    }
+    .company-logo {
+      width: 50px;
+      margin: auto;
+      padding-right: 5px;
+    }
   }
-}
-.organization-name {
-  color: black;
-  padding: 0px 10px;
-}
-.timeline-info {
-  color: gray;
-  padding-bottom: 20px;
+  .experience-col {
+    padding-left: 30px;
+    .experience-title {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      span {   
+        white-space: nowrap;
+      }
+      .support-info {
+        flex-grow: 1;
+        color: gray;
+      }
+    }
+  }
 }
