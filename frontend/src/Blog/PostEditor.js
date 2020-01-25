@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { format_date } from '../Common/Utils';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -91,6 +92,8 @@ class PostEditor extends Component {
   
   render() {
     const { edit_mode, logged_in, selected_post, posts, edit_data } = this.props
+    let formatted_date = ""
+    if( selected_post != -1 ) formatted_date = format_date(posts[selected_post].createtime)
     return (
       <div className="row post-editor-container">
         {selected_post > -1 &&
@@ -100,7 +103,7 @@ class PostEditor extends Component {
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
-                {posts[selected_post].createtime}
+                {formatted_date}
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">

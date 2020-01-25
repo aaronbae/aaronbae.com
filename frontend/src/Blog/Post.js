@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { format_date } from '../Common/Utils';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -28,11 +29,12 @@ class Post extends Component {
 
   render() {
     const { title, date, selected_post } = this.props
+    const formatted_date = format_date(date)
     return (
       <div className="row individual-post-container" onClick={this.handlePostClick}>
         <div className={selected_post==this.state.post_id? "individual-post selected-post" : "individual-post"}>
           <div className="offset-1 col-10">
-            <div className="row date">{date}</div>
+            <div className="row date">{formatted_date}</div>
             <div className="row title"><p className="h5">{title}</p></div>
           </div>
         </div>
