@@ -1,18 +1,18 @@
-.individual-post {
-  margin: 2px auto;
-  padding: 20px 0px;
-  width: 100%;
-  background-color: white;
-}
-.selected-post {
-  box-shadow:
-    0 0 1px 1px #fff,  /* inner white */
-    0 0 2px 1px blue; /* outer cyan */
-  z-index: 100;
-}
-.individual-post:hover {
-  .title, .date {
-    text-decoration: underline;
+.individual-post-container {
+    margin: 5px auto;
+
+  .individual-post {
+    border-radius: inherit;
+    padding: 20px 0px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 3px solid lightgray;
   }
-  cursor: pointer;
+  .individual-post:hover {
+    .title, .date {
+      text-decoration: underline;
+    }
+    cursor: pointer;
+    
+  }
 }

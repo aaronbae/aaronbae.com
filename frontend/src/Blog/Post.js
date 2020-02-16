@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { format_date } from '../Common/Utils';
+import { withRouter } from 'react-router-dom';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -24,18 +25,20 @@ class Post extends Component {
       // TODO: send a warning
     } else {
       dispatch(viewpost(this.state.post_id))  
+      this.props.history.push("/blog/"+this.state.post_id)
     }
   }
 
   render() {
-    const { title, date, selected_post } = this.props
+    const { title, date, summarized_content, selected_post } = this.props
     const formatted_date = format_date(date)
     return (
       <div className="row individual-post-container" onClick={this.handlePostClick}>
-        <div className={selected_post==this.state.post_id? "individual-post selected-post" : "individual-post"}>
+        <div className="individual-post">
           <div className="offset-1 col-10">
             <div className="row date">{formatted_date}</div>
             <div className="row title"><p className="h5">{title}</p></div>
+            <div className="row">{summarized_content}</div>
           </div>
         </div>
       </div>
@@ -47,7 +50,8 @@ Post.propTypes = {
   edit_mode: PropTypes.bool.isRequired,
   selected_post: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired
+  date: PropTypes.string.isRequired,
+  summarized_content: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
@@ -56,9 +60,10 @@ function mapStateToProps(state, ownProps) {
   return {
     edit_mode: edit_mode,
     selected_post: selected_post,
-    title: this_post.title,
-    date: this_post.createtime
+    title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
+    date: this_post.createtime,
+    summarized_content: this_post.content.substring(0, 100) + "..."
   }
 }
 
-export default connect(mapStateToProps)(Post);
+export default  withRouter(connect(mapStateToProps)(Post));

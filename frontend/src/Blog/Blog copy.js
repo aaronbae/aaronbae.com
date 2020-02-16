@@ -51,16 +51,19 @@ class Blog extends Component {
     const { posts, logged_in } = this.props
     return (
       <div className='row all-blog-container'>
-        <div className="offset-sm-0 col-sm-12 offset-md-2 col-md-9">
-          <div className="row new-post-container">
-            <div className="offset-1 col-9 col-md-10">
-              Create New Post
-            </div>
-            <div className="col-1 new-post-button center"><span>+</span></div>
+        <div id="blog-column" className="col-12 col-sm-4 post-column">
+          <div className="row center post-column-title">
+            <p className="h4">Recent Posts</p>
+            {logged_in &&
+              <button className="new-post-button h3" type="button" onClick={this.handleNewPostButton}>+</button>
+            }
           </div>
           {posts.map((item, index) => 
             <Post key={index} post_id={index} />
           )}
+        </div>
+        <div className="col-12 col-sm-8">
+          <PostEditor />
         </div>
       </div>
     );

@@ -13,9 +13,9 @@ import {
 } from './BlogActions'
 
 import PublicToggle from './PublicToggle';
-import './PostViewer.scss';
+import './PostEditor.scss';
 
-class PostViewer extends Component {
+class PostEditor extends Component {
   constructor(props) {
     super(props);
     this.enterEditMode = this.enterEditMode.bind(this);
@@ -171,7 +171,7 @@ class PostViewer extends Component {
   }
 }
 
-PostViewer.propTypes = {
+PostEditor.propTypes = {
   logged_in: PropTypes.bool.isRequired,
   edit_mode: PropTypes.bool.isRequired,
   edit_data: PropTypes.object.isRequired,
@@ -190,4 +190,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(PostViewer);
+export default connect(mapStateToProps)(PostEditor);

@@ -3,6 +3,7 @@ $separation-color: lightgray;
 // General Container
 .all-blog-container {
   min-height: 80vh;
+
   .hidden {
     display: none;
   }
@@ -14,42 +15,23 @@ $separation-color: lightgray;
   }
 
   // Left (Post Viewing) Panel
-  .post-column-title {
-    border-bottom: solid $separation-color 1px;
-    padding: 10px 0px 3px 0px;
-    background-color: white;
-  }
-  .post-column-title, .new-post-button {
-    height: 53px;
-  }
-
-  .post-column {
-    background-color: $separation-color;
-    border-left: solid $separation-color 1px;
-    border-right: solid $separation-color 1px;
-  }
-  .new-post-button {
-    position: absolute;
-    right: 0px;
-    top: 0px;
+  .new-post-container{
+    border-bottom: 3px solid lightgray;
+    margin-top: 15px;
+    padding-bottom: 5px;
     font-weight: bold;
-    background-color: white;
-    border: none transparent;
-    border-left: solid 3px $separation-color;
-    border-bottom: solid 1px $separation-color;
-    padding: 0px 10px;
-    margin: 0px;
-  }
-  .new-post-button:focus {
-    outline: 0px;
-  }
-  .new-post-button:hover {
-    animation: colorchange 0.5s;
-    @keyframes colorchange
-    {
-      0%   {background: white;}
-      100% {background: gray;}
+    line-height: 30px;
+      
+    .new-post-button {
+      border: 3px solid lightgray;
+      border-radius: 10px;
     }
-    background-color: gray;
+    .new-post-button:focus {
+      outline: 0px;
+    }
+    .new-post-button:hover {
+      border-color: gray;
+      cursor: pointer;
+    }
   }
 }
