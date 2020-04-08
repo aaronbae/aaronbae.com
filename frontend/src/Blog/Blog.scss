@@ -21,8 +21,13 @@ $separation-color: lightgray;
     padding-bottom: 5px;
     font-weight: bold;
     line-height: 30px;
-      
+    .new-post-label {
+      float: left;
+    }
     .new-post-button {
+      float: right;
+      text-align: center;
+      width: 45px;
       border: 3px solid lightgray;
       border-radius: 10px;
     }
