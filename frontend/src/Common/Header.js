@@ -31,23 +31,38 @@ class Header extends Component {
       <div className="header-container d-flex row">
         <div><Link addClasses="navbrand" message="Aaron Bae" route="/" /></div>
 
-        <div className={path=="/"?"active":""}>
-          <Link addClasses="navlink" message="Home" route="/" />
-        </div>
+        <div className="d-none d-sm-block collapsable">
+          <div className={path=="/"?"tab active":"tab"}>
+            <Link addClasses="navlink" message="Home" route="/" />
+          </div>
 
-        <div className="line"></div>
-        <div className={path=="/blog"?"active":""}>
-          <Link addClasses="navlink" message="Blog" route="/blog" />
-        </div>
+          <div className="tab line"></div>
+          <div className={path=="/blog"?"tab active":"tab"}>
+            <Link addClasses="navlink" message="Blog" route="/blog" />
+          </div>
 
-        <div className={path=="/login"?"admin-container ml-auto active":"admin-container ml-auto"}>
-          {logged_in && 
-            <button className="navlink sign-out-button" onClick={this.handleLogOut}>Sign Out</button>
-          }
-          {!logged_in &&
-            <Link addClasses="navlink sign-out-button" message="Admin" route="/login" />
-          }
+          <div className={path=="/login"?"tab admin-container active":"admin-container"}>
+            {logged_in && 
+              <button className="navlink sign-out-button" onClick={this.handleLogOut}>Sign Out</button>
+            }
+            {!logged_in &&
+              <Link addClasses="navlink sign-out-button" message="Admin" route="/login" />
+            }
+          </div>
         </div>
+        <div className="d-block d-sm-none dropdown-container">
+          <div className="dropdown">
+            <button className="btn" type="button" data-toggle="dropdown">
+              <img className='menu-icon' src="assets/icons/hamburger_icon.png" alt="menu" />
+            </button>
+            <div className="dropdown-menu dropdown-menu-right" >
+              <Link addClasses="dropdown-item" message="Home" route="/" />
+              <Link addClasses="dropdown-item" message="Blog" route="/blog" />
+              <div class="dropdown-divider"></div>
+              <Link addClasses="dropdown-item" message="Admin" route="/login" />
+            </div>
+          </div>
+        </div>  
       </div>
     );
   }

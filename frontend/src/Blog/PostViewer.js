@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   fetch_posts,
+  fetch_public_posts,
   change_edit_mode,
   update_edit_changes,
   save_local_changes,
@@ -25,6 +26,15 @@ class PostEditor extends Component {
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
+  }
+  
+  componentDidMount() {
+    const { dispatch, logged_in } = this.props
+    if(logged_in){
+      dispatch(fetch_posts())
+    } else {
+      dispatch(fetch_public_posts())
+    }
   }
 
   enterEditMode(e) {
@@ -95,77 +105,81 @@ class PostEditor extends Component {
     let formatted_date = ""
     if( selected_post != -1 ) formatted_date = format_date(posts[selected_post].createtime)
     return (
-      <div className="row post-editor-container">
-        {selected_post > -1 &&
-          <div className={edit_mode ? "col post-editor-main-col hidden" : "col post-editor-main-col"}> 
-            <div className="row title-row">
-              <p className="h3">{posts[selected_post].title}</p>
-            </div>
-            <div className="row information-row">
-              <div className="col-5 no-padding">
-                {formatted_date}
-              </div>
-              <div className="col-7 no-padding">
-                <div className="float-right">
-                  <span className="tags-label">Tags : </span>
-                  {posts[selected_post].tags.map((item, index) =>
-                    <span key={index} className={"tag " + item}>
-                      {item + ", "}                  
-                    </span>
-                  )}           
-                  {logged_in &&
-                    <span className="edit-button" onClick={this.enterEditMode} >Edit Post</span>
-                  }
+      <div className="row">
+        <div className="offset-1 col-10">
+          <div className="row post-editor-container">
+            {selected_post > -1 &&
+              <div className={edit_mode ? "col post-editor-main-col hidden" : "col post-editor-main-col"}> 
+                <div className="row title-row">
+                  <p className="h3">{posts[selected_post].title}</p>
                 </div>
-              </div>
-            </div>
-            <div className="padding-row row"></div>
-            <div className="row content-row">
-              {posts[selected_post].content.split("\n").map((i, key) => {
-                return <div className="content-paragraph" key={key}>{i}</div>
-              })}
-            </div>
-          </div>
-        }
-        {selected_post > -1 && 
-          <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
-            <div className="row title-row">
-              <textarea className="title-input h3" value={edit_data.title} onChange={this.update_title} placeholder="Your Title..."/>
-            </div>
-            <div className="row information-row">
-              <div className="col-5 no-padding">
-                {posts[selected_post].createtime}
-              </div>
-              <div className="col-7 no-padding">
-                <div className="float-right">
-                  <span className="tags-label">Tags : </span>
-                  <input  className="tags-input" type="text" value={edit_data.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>
-                </div>
-              </div>
-            </div>
-            <div className="row toggle-row">
-              <div className="offset-5 col-7 no-padding">
-                <div className="float-right">
-                  <span>Public: </span> 
-                  <div className="toggle-wrapper">
-                    <PublicToggle />
+                <div className="row information-row">
+                  <div className="col-5 no-padding">
+                    {formatted_date}
+                  </div>
+                  <div className="col-7 no-padding">
+                    <div className="float-right">
+                      <span className="tags-label">Tags : </span>
+                      {posts[selected_post].tags.map((item, index) =>
+                        <span key={index} className={"tag " + item}>
+                          {item + ", "}                  
+                        </span>
+                      )}           
+                      {logged_in &&
+                        <span className="edit-button" onClick={this.enterEditMode} >Edit Post</span>
+                      }
+                    </div>
                   </div>
                 </div>
+                <div className="padding-row row"></div>
+                <div className="row content-row">
+                  {posts[selected_post].content.split("\n").map((i, key) => {
+                    return <div className="content-paragraph" key={key}>{i}</div>
+                  })}
+                </div>
               </div>
-            </div>
-            
-            <div className="row content-row">
-              <textarea  className="content-input" value={edit_data.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
-            </div> 
-            <div className="row button-row">
-              <div>
-                <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
-                <button className={posts[selected_post]['_id']==-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
-                <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
+            }
+            {selected_post > -1 && 
+              <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
+                <div className="row title-row">
+                  <textarea className="title-input h3" value={edit_data.title} onChange={this.update_title} placeholder="Your Title..."/>
+                </div>
+                <div className="row information-row">
+                  <div className="col-5 no-padding">
+                    {posts[selected_post].createtime}
+                  </div>
+                  <div className="col-7 no-padding">
+                    <div className="float-right">
+                      <span className="tags-label">Tags : </span>
+                      <input  className="tags-input" type="text" value={edit_data.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>
+                    </div>
+                  </div>
+                </div>
+                <div className="row toggle-row">
+                  <div className="offset-5 col-7 no-padding">
+                    <div className="float-right">
+                      <span>Public: </span> 
+                      <div className="toggle-wrapper">
+                        <PublicToggle />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="row content-row">
+                  <textarea  className="content-input" value={edit_data.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
+                </div> 
+                <div className="row button-row">
+                  <div>
+                    <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
+                    <button className={posts[selected_post]['_id']==-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
+                    <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
+                  </div>
+                </div>          
               </div>
-            </div>          
+            }
           </div>
-        }
+        </div>
       </div>
     );
   }
@@ -176,7 +190,8 @@ PostEditor.propTypes = {
   edit_mode: PropTypes.bool.isRequired,
   edit_data: PropTypes.object.isRequired,
   selected_post: PropTypes.number.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
