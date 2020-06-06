@@ -1,4 +1,6 @@
 # aaronbae.com
+![Screen shot of the website](https://github.com/aaronbae/aaronbae.com/blob/master/aaronbae.com.screencapture.PNG)
+
 This is the source code to my personal website. Here are some basic features that I have implemented:
 1. Static Front page
 2. Ability to create and edit posts in the Blog
