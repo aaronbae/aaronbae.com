@@ -13,7 +13,7 @@ Here are the services that are being used to host this website:
 5. Google Domains
 6. NameCheap for the SSL Certificate
 
-Here are the Tech Stack:
+Here is the Tech Stack specifics:
 1. NodeJS
 2. React and Redux
 3. HTML, JavaScript, and SCSS
