@@ -3,13 +3,9 @@ $padding-size: 30px;
 $confirm-color: rgb(3, 186, 252);
 $confirm-color-hover: rgb(97, 213, 255);
 
-.hidden {
-  display: none;
-}
 
 .post-editor-container {
-  height: 100%;
-  background-color: $separation-color;
+  background-color: white !important;
   .post-editor-main-col {
     margin: 3px 3px;
   }
@@ -29,7 +25,7 @@ $confirm-color-hover: rgb(97, 213, 255);
 }
 
 .title-row {
-  padding: $padding-size $padding-size 0px $padding-size;
+  padding: 60px $padding-size 0px $padding-size !important;
 }
 .information-row {
   padding: 0px $padding-size;
@@ -59,7 +55,7 @@ $confirm-color-hover: rgb(97, 213, 255);
   }
 }
 .padding-row {
-  height: 30px;
+  height: 30px !important;
 }
 .toggle-row {
   .no-padding {
@@ -76,10 +72,14 @@ $confirm-color-hover: rgb(97, 213, 255);
 .content-row {
   padding: 15px 30px;
   margin-top: 3px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
   .content-paragraph {
     min-height: 1.5em;
     line-height: 1.5em;
     width: 100%;
+    display: table;
   }
 }
 .button-row {

@@ -1,57 +1,41 @@
 import { config } from '../Constants'
-import { fetch_posts } from '../Blog/BlogActions'
 
-// Original Admin Actions
-export const SIGN_OUT = "SIGN_OUT";
-export const FAILED_ADMIN_PASSWORD = "FAILED_ADMIN_PASSWORD";
-export const SUCCEEDED_ADMIN_PASSWORD = "SUCCEEDED_ADMIN_PASSWORD";
-
-// Original Blog Actions
+export const VIEWPOST = "VIEW_POST";
+export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
 export const UPDATE_EDIT_CHANGES = "UPDATE_EDIT_CHANGES";
 export const CREATE_NEW_POST = "CREATE_NEW_POST";
 
-// Original Admin Actions
-export function sign_out() {
+function receive_posts(res) {
   return {
-    type: SIGN_OUT,
+    type: RECEIVE_POSTS,
+    posts: res,
     receivedAt: Date.now()
   }
 }
-
-function receive_account_results(res) {
-  if(res.status == 400){
-    return {
-      type: FAILED_ADMIN_PASSWORD,
-      receivedAt: Date.now()
-    }
-  }
-  
-  return {
-    type: SUCCEEDED_ADMIN_PASSWORD,
-    receivedAt: Date.now()
-  }
-}
-
-export function check_account(id, password) {
-  let data = {
-    login_id: id,
-    login_password: password
-  }
+export function fetch_public_posts() {
   return dispatch => {
-    var url = config.url.USER_URL + "login"
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(res => dispatch(receive_account_results(res)))
+    fetch(config.url.POST_URL+"public")
+      .then(res => res.json())
+      .then(res => dispatch(receive_posts(res)))
   }
 }
 
+export function fetch_posts() {
+  return dispatch => {
+    fetch(config.url.POST_URL)
+      .then(res => res.json())
+      .then(res => dispatch(receive_posts(res)))
+  }
+}
 
-// Original Blog Actions
+export function viewpost(post_id) {
+  return {
+    type: VIEWPOST, 
+    post_id: post_id
+  }
+}
+
 export function change_edit_mode(boolean_value) {
   return {
     type: CHANGE_EDIT_MODE, 

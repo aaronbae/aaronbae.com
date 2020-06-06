@@ -4,16 +4,17 @@ import { format_date } from '../Common/Utils';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { fetch_posts} from '../Blog/BlogActions'
 import {
-  fetch_posts,
   change_edit_mode,
   update_edit_changes,
   save_local_changes,
   delete_post
-} from './BlogActions'
+} from './AdminActions'
 
-import PublicToggle from './PublicToggle';
-import './PostViewer.scss';
+
+import PublicToggle from '../Blog/PublicToggle';
+import './PostEditor.scss';
 
 class PostViewer extends Component {
   constructor(props) {
@@ -180,7 +181,7 @@ PostViewer.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { edit_mode, edit_data, selected_post, posts } = state.BlogReducer
+  const { edit_mode, edit_data, selected_post, posts } = state.AdminReducer
   return {
     logged_in: state.AdminReducer.logged_in,
     edit_mode: edit_mode,

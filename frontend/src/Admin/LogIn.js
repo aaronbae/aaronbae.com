@@ -18,7 +18,7 @@ class LogIn extends Component {
   componentDidUpdate() {
     const { logged_in } = this.props;
     if( logged_in ) {
-      this.props.history.push("/blog")
+      this.props.history.push("/admin")
     }
   }
 

@@ -6,18 +6,21 @@ import { connect } from 'react-redux'
 import { 
   fetch_public_posts,
   fetch_posts, 
-  create_new_post, 
   viewpost,
+} from '../Blog/BlogActions'
+
+import { 
+  create_new_post, 
   change_edit_mode,
   update_edit_changes
-} from './BlogActions'
+} from './AdminActions'
 
 // components 
-import Post from './Post';
+import Post from './AdminPost';
 import PostEditor from './PostEditor';
-import './Blog.scss';
+import './AdminBlog.scss';
 
-class Blog extends Component {
+class AdminBlog extends Component {
   constructor(props) {
     super(props);
     this.handleNewPostButton = this.handleNewPostButton.bind(this);
@@ -69,7 +72,7 @@ class Blog extends Component {
     );
   }
 }
-Blog.propTypes = {
+AdminBlog.propTypes = {
   logged_in: PropTypes.bool.isRequired,
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
@@ -82,4 +85,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Blog);
+export default connect(mapStateToProps)(AdminBlog);

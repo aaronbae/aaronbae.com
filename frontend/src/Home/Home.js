@@ -94,6 +94,30 @@ class Home extends Component {
                 <div className="col">
 
 
+                <div className="row individual-experience">
+                    <div className="col logo-col center no-padding">
+                      <div className="logo-wrapper"><img src="assets/icons/uci.png" alt="university of california, irvine logo" className="company-logo"/></div>
+                    </div>
+                    <div className="col experience-col">
+                      <div className="row experience-title">
+                        <div><span className="h5">Graduate Student Researcher</span></div>
+                        <div className="support-info ml-auto">
+                          <span>- University of California, Irvine</span>
+                          <span className="float-right">March 2020 - Present</span>    
+                        </div>
+                      </div>
+                      <div className="row">
+                        <p className="h6">Professor Padhraic Smyth Research Team</p>
+                        <p>As a graduate researcher for Professor Padhraic Smyth, I am working on ways to analyze dialogue 
+                          dataset. Datasets like Switchboard Corpus and ICSI Meeting Recording Corpus contains a 
+                          turn-by-turn grouped utterances along with semantic annotations. The goal of the project is to 
+                          analyze this conversational dataset to identify questions in any group conversations and possibly
+                          classify person-to-person dynamics like leadership qualities.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
 
                   <div className="row individual-experience">
                     <div className="col logo-col center no-padding">
@@ -142,10 +166,10 @@ class Home extends Component {
                       </div>
                       <div className="row">
                         <p className="h6">Dapper Grooming | Backend Server Development Team</p>
-                        <p>I was invited to work with Professor Christopher Hoffman to participate on his Mathematics 
-                          in Gerrymandering Project. He works to analyze search the state space for the ways to draw 
-                          out the districts. We used C++ and Python as the engine of the project, and built NodeJS 
-                          servers to distribute, visualize, and explain the political data we mined.
+                        <p>Continuing my intersets in backend web development, I worked with a University 
+                          of Washington alumn who was starting a company called Dapper. The company
+                          needed a basic web based platform to launch their project, and I helped them 
+                          by creating an AWS server to handle their client traffic.
                         </p>
                       </div>
                     </div>

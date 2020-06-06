@@ -1,16 +1,13 @@
 import {
-  SIGN_OUT,
-  FAILED_ADMIN_PASSWORD,
-  SUCCEEDED_ADMIN_PASSWORD,
+  VIEWPOST,
+  RECEIVE_POSTS,
   CHANGE_EDIT_MODE,
   UPDATE_EDIT_CHANGES,
   CREATE_NEW_POST
-} from './AdminActions'
+} from './COPIED_BlogActions'
 
 // The initial application state
 let initialState = {
-  failed_attempt: false,
-  logged_in: false,
   edit_mode: false,
   edit_data: {
     title: "",
@@ -23,15 +20,13 @@ let initialState = {
 }
 
 // Takes care of changing the application state
-function AdminReducer(state = initialState, action) {
+function BlogReducer(state = initialState, action) {
   let new_posts = [...state.posts]
   switch (action.type) {
-    case SIGN_OUT:
-      return { ...state, logged_in: false }
-    case FAILED_ADMIN_PASSWORD:
-      return { ...state, failed_attempt: true }
-    case SUCCEEDED_ADMIN_PASSWORD:
-      return { ...state, failed_attempt: false, logged_in: true }
+    case VIEWPOST:
+      return { ...state, selected_post: action.post_id }
+    case RECEIVE_POSTS:
+      return { ...state, posts: action.posts }
     case CHANGE_EDIT_MODE:
       return { ...state, edit_mode: action.edit_mode }
     case UPDATE_EDIT_CHANGES:
@@ -58,4 +53,4 @@ function AdminReducer(state = initialState, action) {
   }
 }
 
-export default AdminReducer
+export default BlogReducer

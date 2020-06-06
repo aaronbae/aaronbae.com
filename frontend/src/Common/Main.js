@@ -6,6 +6,7 @@ import Home from '../Home/Home';
 import Blog from '../Blog/Blog';
 import PostViewer from '../Blog/PostViewer';
 import LogIn from '../Admin/LogIn';
+import AdminBlog from '../Admin/AdminBlog';
 import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 
@@ -20,6 +21,8 @@ class Main extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/blog" component={Blog} />
               <Route exact path="/blog/:id" component={PostViewer} />
+              <Route exact path="/admin" component={AdminBlog} />
+              <Route exact path="/admin" component={AdminBlog} />
               <Route exact path="/login" component={LogIn} />
               <Route component={NonExistentRoute} />
             </Switch>

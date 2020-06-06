@@ -5,11 +5,11 @@ import { withRouter } from 'react-router-dom';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { viewpost } from './BlogActions'
+import { viewpost } from '../Blog/BlogActions'
 
-import './Post.scss';
+import './AdminPost.scss';
 
-class Post extends Component {
+class AdminPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,6 @@ class Post extends Component {
     if(edit_mode){
       // TODO: send a warning
     } else {
-      console.log(selected_post)
       dispatch(viewpost(this.state.post_id))  
       this.props.history.push("/blog/"+this.state.post_id)
     }
@@ -47,20 +46,24 @@ class Post extends Component {
   }
 }
 
-Post.propTypes = {
+AdminPost.propTypes = {
+  edit_mode: PropTypes.bool.isRequired,
+  selected_post: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   summarized_content: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
-  const { posts } = state.BlogReducer
+  const { edit_mode, selected_post, posts } = state.AdminReducer
   let this_post = posts[ownProps.post_id]
   return {
+    edit_mode: edit_mode,
+    selected_post: selected_post,
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,
     summarized_content: this_post.content.substring(0, 100) + "..."
   }
 }
 
-export default  withRouter(connect(mapStateToProps)(Post));
+export default  withRouter(connect(mapStateToProps)(AdminPost));

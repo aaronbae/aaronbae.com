@@ -2,6 +2,7 @@
     margin: 0px auto;
 
   .individual-post {
+    margin: 0px;
     border-radius: inherit;
     padding: 20px 0px;
     width: 100%;
@@ -12,7 +13,7 @@
   }
   .individual-post:hover {
     .title, .date {
-      //text-decoration: underline;
+      text-decoration: none;
     }
     cursor: pointer;
     border-top: 1.5px solid darkgray;

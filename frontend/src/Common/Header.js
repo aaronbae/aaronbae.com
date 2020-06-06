@@ -58,7 +58,7 @@ class Header extends Component {
             <div className="dropdown-menu dropdown-menu-right" >
               <Link addClasses="dropdown-item" message="Home" route="/" />
               <Link addClasses="dropdown-item" message="Blog" route="/blog" />
-              <div class="dropdown-divider"></div>
+              <div className="dropdown-divider"></div>
               <Link addClasses="dropdown-item" message="Admin" route="/login" />
             </div>
           </div>

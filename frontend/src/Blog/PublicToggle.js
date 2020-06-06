@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { update_edit_changes } from './BlogActions'
+import { update_edit_changes } from '../Admin/AdminActions'
 import Toggle from '../Common/Toggle';
 
 
