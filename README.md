@@ -23,4 +23,4 @@ Here is the Tech Stack specifics:
 7. Git Deployment
 
 # Citation
-This is an originl work that I take full credit for from scratch. I hope to release more features that can showcase my engineering skills on this website.
+This is an original work that I take full credit for, from scratch. I hope to release more features that can showcase my engineering skills on this website.
