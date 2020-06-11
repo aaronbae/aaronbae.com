@@ -4,12 +4,12 @@ import { withRouter } from 'react-router-dom';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { check_account } from './AdminActions'
+import { check_account } from '../Redux/AdminActions'
 
 // components 
 import './LogIn.scss';
 
-class LogIn extends Component {
+class LogInPage extends Component {
   constructor(props) {
     super(props);
     this.handleSignInButton = this.handleSignInButton.bind(this);
@@ -53,7 +53,7 @@ class LogIn extends Component {
     );
   }
 }
-LogIn.propTypes = {
+LogInPage.propTypes = {
   logged_in: PropTypes.bool.isRequired,
   failed_attempt: PropTypes.bool.isRequired
 }
@@ -65,4 +65,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(LogIn));
+export default connect(mapStateToProps)(withRouter(LogInPage));

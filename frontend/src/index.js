@@ -11,8 +11,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import BlogReducer from './Blog/BlogReducer';
-import AdminReducer from './Admin/AdminReducer';
+import BlogReducer from './Redux/BlogReducer';
+import AdminReducer from './Redux/AdminReducer';
 
 const rootReducer = combineReducers({
   BlogReducer,

@@ -6,14 +6,14 @@ import { connect } from 'react-redux'
 import { 
   fetch_public_posts,
   fetch_posts, 
-  viewpost,
-} from '../Blog/BlogActions'
+} from '../Redux/BlogActions'
 
 import { 
+  viewpost,
   create_new_post, 
   change_edit_mode,
   update_edit_changes
-} from './AdminActions'
+} from '../Redux/AdminActions'
 
 // components 
 import Post from './AdminPost';

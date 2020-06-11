@@ -8,7 +8,7 @@ class Home extends Component {
         <div className="side-panel center col-md-12 col-lg-3">
           <div className='row row-spacer'></div>
           <div className="row">
-            <img className='round profile-img' src="assets/profile.jpg" alt="profile" />
+            <img className='round profile-img' src="assets/profile2.jpg" alt="profile" />
           </div>
           <div className='row row-spacer'></div>
           <div className="row">
@@ -57,10 +57,10 @@ class Home extends Component {
                     <div className="col-md-12 col-lg-9">
                       <span><span  className="h6">Masters in Computer Science</span>, <i>University of California - Irvine</i></span>
                       <ul className="education-bullets">
-                        <li>Attended from September 2019 until June 2021</li>
-                        <li>Focus in augmenting Knowledge Base with NLP techniques.</li>
+                        <li>Started attending since September 2019.</li>
+                        <li>Focus in natural language processing using transformer based models.</li>
                         <li>Participating in Center for Machine Learning and Intelligent Systems.</li>
-                        <li>Looking for NLP research based summer 2020 internships</li>
+                        <li>Looking for full time software engineering or data scientist role after graduation</li>
                       </ul>
                     </div>
                   </div>

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { viewpost } from '../Blog/BlogActions'
+import { viewpost } from '../Redux/AdminActions'
 
 import './AdminPost.scss';
 
@@ -56,7 +56,9 @@ AdminPost.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   const { edit_mode, selected_post, posts } = state.AdminReducer
-  let this_post = posts[ownProps.post_id]
+  let this_post = posts[ownProps.match.post_id]
+  console.log("============")
+  console.log(selected_post)
   return {
     edit_mode: edit_mode,
     selected_post: selected_post,

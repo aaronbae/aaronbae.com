@@ -5,9 +5,8 @@ import { withRouter } from 'react-router-dom';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { viewpost } from './BlogActions'
 
-import './Post.scss';
+import './PostCard.scss';
 
 class Post extends Component {
   constructor(props) {
@@ -20,18 +19,11 @@ class Post extends Component {
 
   handlePostClick(e) {
     e.stopPropagation();
-    const { dispatch, edit_mode, posts, selected_post } = this.props
-    if(edit_mode){
-      // TODO: send a warning
-    } else {
-      console.log(selected_post)
-      dispatch(viewpost(this.state.post_id))  
-      this.props.history.push("/blog/"+this.state.post_id)
-    }
+    this.props.history.push("/blog/"+this.state.post_id)
   }
 
   render() {
-    const { title, date, summarized_content, selected_post } = this.props
+    const { title, date, summarized_content } = this.props
     const formatted_date = format_date(date)
     return (
       <div className="row individual-post-container" onClick={this.handlePostClick}>
@@ -54,8 +46,8 @@ Post.propTypes = {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { posts } = state.BlogReducer
-  let this_post = posts[ownProps.post_id]
+  const { posts, id2index } = state.BlogReducer
+  let this_post = posts[id2index[ownProps.post_id]]
   return {
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,

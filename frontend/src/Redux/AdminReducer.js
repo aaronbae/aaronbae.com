@@ -1,4 +1,5 @@
 import {
+  VIEWPOST,
   SIGN_OUT,
   FAILED_ADMIN_PASSWORD,
   SUCCEEDED_ADMIN_PASSWORD,
@@ -26,6 +27,8 @@ let initialState = {
 function AdminReducer(state = initialState, action) {
   let new_posts = [...state.posts]
   switch (action.type) {
+    case VIEWPOST:
+      return { ...state, selected_post: action.post_id }
     case SIGN_OUT:
       return { ...state, logged_in: false }
     case FAILED_ADMIN_PASSWORD:

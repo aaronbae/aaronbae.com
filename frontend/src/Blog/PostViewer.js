@@ -4,58 +4,61 @@ import { format_date } from '../Common/Utils';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  fetch_public_posts,
-} from './BlogActions'
+import { fetch_post_by_id } from '../Redux/BlogActions'
 
 import './PostViewer.scss';
 
 class PostEditor extends Component {  
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetch_public_posts())
+    let post_id = this.props.match.params["id"]
+    dispatch(fetch_post_by_id(post_id))
+    window.scrollTo(0, 0) // Need to scroll to top if coming from /blog
   }
 
   render() {
-    const { logged_in, selected_post, posts } = this.props
-    let formatted_date = ""
-    if( selected_post !== -1 ) formatted_date = format_date(posts[selected_post].createtime)
+    const { posts } = this.props
+    let post_id = this.props.match.params["id"]
+    let isPostFetched = posts.length > 0
+    // TOOD: Remember that we don't have spinner div developed yet
+    if( isPostFetched ) {
+      var id2index = this.props.id2index
+      var thisPost = posts[id2index[post_id]]
+    }
     return (
       <div className="row">
         <div className="col-2 previous-button-area">
         </div>
         <div className="col-8">
           <div className="row post-editor-container">
+            {isPostFetched && 
               <div className="col post-editor-main-col"> 
                 <div className="row title-row">
-                  <p className="h3">{posts[selected_post].title}</p>
+                  <p className="h3">{thisPost.title}</p>
                 </div>
                 <div className="row information-row">
                   <div className="col-5 no-padding">
-                    {formatted_date}
+                    {format_date(thisPost.createtime)}
                   </div>
                   <div className="col-7 no-padding">
                     <div className="float-right">
                       <span className="tags-label">Tags : </span>
-                      {posts[selected_post].tags.map((item, index) =>
+                      {thisPost.tags.map((item, index) =>
                         <span key={index} className={"tag " + item}>
-                          {item + ", "}                  
+                          {item + ", "}
                         </span>
-                      )}           
-                      {logged_in &&
-                        <span className="edit-button" onClick={this.enterEditMode} >Edit Post</span>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="padding-row row"></div>
                 <div className="row content-row">
-                  {posts[selected_post].content.split("\n").map((i, key) => {
+                  {thisPost.content.split("\n").map((i, key) => {
                     return <div className="content-paragraph" key={key}>{i}</div>
                   })}
                 </div>
               </div>
-            
+            }
           </div>
         </div>
       </div>
@@ -64,17 +67,15 @@ class PostEditor extends Component {
 }
 
 PostEditor.propTypes = {
-  logged_in: PropTypes.bool.isRequired,
-  selected_post: PropTypes.number.isRequired,
+  id2index: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  const { selected_post, posts } = state.BlogReducer
+  const { posts, id2index } = state.BlogReducer
   return {
-    logged_in: state.AdminReducer.logged_in,
-    selected_post: selected_post,
+    id2index: id2index,
     posts: posts
   }
 }

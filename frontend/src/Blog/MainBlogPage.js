@@ -4,24 +4,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { 
-  fetch_public_posts,
-  fetch_posts, 
-  viewpost
-} from './BlogActions'
+  fetch_public_posts
+} from '../Redux/BlogActions'
 
 // components 
-import Post from './Post';
-import './Blog.scss';
+import Post from './PostCard';
+import './MainBlogPage.scss';
 
 class Blog extends Component {
 
   componentDidMount() {
-    const { dispatch, logged_in } = this.props
-    if(logged_in){
-      dispatch(fetch_posts())
-    } else {
-      dispatch(fetch_public_posts())
-    }
+    const { dispatch } = this.props
+    dispatch(fetch_public_posts())
   }
 
   render() { 
@@ -35,7 +29,7 @@ class Blog extends Component {
             </div>
           </div>
           {posts.map((item, index) => 
-            <Post key={index} post_id={index} />
+            <Post key={index} post_id={item._id} />
           )}
         </div>
       </div>
@@ -43,14 +37,12 @@ class Blog extends Component {
   }
 }
 Blog.propTypes = {
-  logged_in: PropTypes.bool.isRequired,
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
   return { 
-    logged_in: state.AdminReducer.logged_in,
     posts: state.BlogReducer.posts 
   }
 }

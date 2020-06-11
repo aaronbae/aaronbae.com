@@ -4,13 +4,13 @@ import { format_date } from '../Common/Utils';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetch_posts} from '../Blog/BlogActions'
+import { fetch_posts} from '../Redux/BlogActions'
 import {
   change_edit_mode,
   update_edit_changes,
   save_local_changes,
   delete_post
-} from './AdminActions'
+} from '../Redux/AdminActions'
 
 
 import PublicToggle from '../Blog/PublicToggle';

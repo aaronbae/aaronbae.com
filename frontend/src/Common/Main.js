@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../Home/Home';
-import Blog from '../Blog/Blog';
+import Blog from '../Blog/MainBlogPage';
 import PostViewer from '../Blog/PostViewer';
-import LogIn from '../Admin/LogIn';
+import LogInPage from '../Admin/LogInPage';
 import AdminBlog from '../Admin/AdminBlog';
 import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
@@ -23,7 +23,7 @@ class Main extends Component {
               <Route exact path="/blog/:id" component={PostViewer} />
               <Route exact path="/admin" component={AdminBlog} />
               <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/login" component={LogIn} />
+              <Route exact path="/login" component={LogInPage} />
               <Route component={NonExistentRoute} />
             </Switch>
           <Footer />

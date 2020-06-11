@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 // Redux
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { sign_out } from '../Admin/AdminActions'
+import { sign_out } from '../Redux/AdminActions'
 
 import Link from './Link';
 import './Header.scss';

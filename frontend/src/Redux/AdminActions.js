@@ -1,5 +1,5 @@
 import { config } from '../Constants'
-import { fetch_posts } from '../Blog/BlogActions'
+import { fetch_posts } from './BlogActions'
 
 // Original Admin Actions
 export const SIGN_OUT = "SIGN_OUT";
@@ -10,6 +10,7 @@ export const SUCCEEDED_ADMIN_PASSWORD = "SUCCEEDED_ADMIN_PASSWORD";
 export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
 export const UPDATE_EDIT_CHANGES = "UPDATE_EDIT_CHANGES";
 export const CREATE_NEW_POST = "CREATE_NEW_POST";
+export const VIEWPOST = "VIEW_POST";
 
 // Original Admin Actions
 export function sign_out() {
@@ -100,5 +101,12 @@ export function delete_post(post_id) {
       }
     }).then(res => res.json())
     .then(res => dispatch(fetch_posts()))
+  }
+}
+
+export function viewpost(post_id) {
+  return {
+    type: VIEWPOST, 
+    post_id: post_id
   }
 }
