@@ -181,7 +181,8 @@ PostEditor.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { edit_mode, edit_data, selected_post, posts } = state.AdminReducer
+  const { edit_mode, edit_data, selected_post } = state.AdminReducer
+  const { posts } = state.BlogReducer
   return {
     logged_in: state.AdminReducer.logged_in,
     edit_mode: edit_mode,

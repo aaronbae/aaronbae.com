@@ -16,7 +16,7 @@ import {
 } from '../Redux/AdminActions'
 
 // components 
-import Post from './AdminPost';
+import AdminPost from './AdminPost';
 import PostEditor from './PostEditor';
 import './AdminBlog.scss';
 
@@ -62,7 +62,7 @@ class AdminBlog extends Component {
             }
           </div>
           {posts.map((item, index) => 
-            <Post key={index} post_id={index} />
+            <AdminPost key={index} post_id={index} />
           )}
         </div>
         <div className="col-12 col-sm-8">

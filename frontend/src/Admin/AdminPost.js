@@ -25,7 +25,6 @@ class AdminPost extends Component {
       // TODO: send a warning
     } else {
       dispatch(viewpost(this.state.post_id))  
-      this.props.history.push("/blog/"+this.state.post_id)
     }
   }
 
@@ -55,10 +54,9 @@ AdminPost.propTypes = {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { edit_mode, selected_post, posts } = state.AdminReducer
-  let this_post = posts[ownProps.match.post_id]
-  console.log("============")
-  console.log(selected_post)
+  const { edit_mode, selected_post } = state.AdminReducer
+  const { posts } = state.BlogReducer
+  let this_post = posts[ownProps.post_id]
   return {
     edit_mode: edit_mode,
     selected_post: selected_post,

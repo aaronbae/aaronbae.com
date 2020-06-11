@@ -32,7 +32,7 @@ PublicToggle.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { edit_data } = state.BlogReducer
+  const { edit_data } = state.AdminReducer
   return { edit_data: edit_data }
 }
 
