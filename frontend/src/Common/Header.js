@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { sign_out } from '../Redux/AdminActions'
 
-import Link from './Link';
+import RedirectButton from '../Utils/RedirectButton';
 import './Header.scss';
 
 class Header extends Component {
@@ -29,24 +29,24 @@ class Header extends Component {
     const path = this.props.history.location.pathname;
     return (
       <div className="header-container d-flex row">
-        <div><Link addClasses="navbrand" message="Aaron Bae" route="/" /></div>
+        <div><RedirectButton addClasses="navbrand" message="Aaron Bae" route="/" /></div>
 
         <div className="d-none d-sm-block collapsable">
           <div className={path=="/"?"tab active":"tab"}>
-            <Link addClasses="navlink" message="Home" route="/" />
+            <RedirectButton addClasses="navlink" message="Home" route="/" />
           </div>
 
           <div className="tab line"></div>
           <div className={path=="/blog"?"tab active":"tab"}>
-            <Link addClasses="navlink" message="Blog" route="/blog" />
+            <RedirectButton addClasses="navlink" message="Blog" route="/blog" />
           </div>
 
           <div className={path=="/login"?"tab admin-container active":"admin-container"}>
             {logged_in && 
-              <button className="navlink sign-out-button" onClick={this.handleLogOut}>Sign Out</button>
+              <button className="navlink adminButton" onClick={this.handleLogOut}>Sign Out</button>
             }
             {!logged_in &&
-              <Link addClasses="navlink sign-out-button" message="Admin" route="/login" />
+              <RedirectButton addClasses="navlink adminButton" message="Admin" route="/login" />
             }
           </div>
         </div>
@@ -56,10 +56,10 @@ class Header extends Component {
               <img className='menu-icon' src="assets/icons/hamburger_icon.png" alt="menu" />
             </button>
             <div className="dropdown-menu dropdown-menu-right" >
-              <Link addClasses="dropdown-item" message="Home" route="/" />
-              <Link addClasses="dropdown-item" message="Blog" route="/blog" />
+              <RedirectButton addClasses="dropdown-item" message="Home" route="/" />
+              <RedirectButton addClasses="dropdown-item" message="Blog" route="/blog" />
               <div className="dropdown-divider"></div>
-              <Link addClasses="dropdown-item" message="Admin" route="/login" />
+              <RedirectButton addClasses="dropdown-item" message="Admin" route="/login" />
             </div>
           </div>
         </div>  

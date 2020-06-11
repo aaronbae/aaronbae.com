@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../Home/Home';
-import Blog from '../Blog/MainBlogPage';
+import MainBlogPage from '../Blog/MainBlogPage';
 import PostViewer from '../Blog/PostViewer';
 import LogInPage from '../Admin/LogInPage';
 import AdminBlog from '../Admin/AdminBlog';
@@ -19,7 +19,7 @@ class Main extends Component {
           <Header />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/blog" component={Blog} />
+              <Route exact path="/blog" component={MainBlogPage} />
               <Route exact path="/blog/:id" component={PostViewer} />
               <Route exact path="/admin" component={AdminBlog} />
               <Route exact path="/admin" component={AdminBlog} />

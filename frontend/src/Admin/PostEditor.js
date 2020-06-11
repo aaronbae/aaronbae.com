@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { format_date } from '../Common/Utils';
+import { format_date } from '../Utils/HelperFunctions';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -13,10 +13,10 @@ import {
 } from '../Redux/AdminActions'
 
 
-import PublicToggle from '../Blog/PublicToggle';
+import PublicToggle from './PublicToggle';
 import './PostEditor.scss';
 
-class PostViewer extends Component {
+class PostEditor extends Component {
   constructor(props) {
     super(props);
     this.enterEditMode = this.enterEditMode.bind(this);
@@ -172,7 +172,7 @@ class PostViewer extends Component {
   }
 }
 
-PostViewer.propTypes = {
+PostEditor.propTypes = {
   logged_in: PropTypes.bool.isRequired,
   edit_mode: PropTypes.bool.isRequired,
   edit_data: PropTypes.object.isRequired,
@@ -191,4 +191,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(PostViewer);
+export default connect(mapStateToProps)(PostEditor);

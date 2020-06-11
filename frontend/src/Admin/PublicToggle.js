@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { update_edit_changes } from '../Redux/AdminActions'
-import Toggle from '../Common/Toggle';
+import Toggle from '../Utils/Toggle';
 
 
 class PublicToggle extends Component {

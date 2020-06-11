@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { format_date } from '../Common/Utils';
+import { format_date } from '../Utils/HelperFunctions';
 import { withRouter } from 'react-router-dom';
 
 // Redux handlers
@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 import './PostCard.scss';
 
-class Post extends Component {
+class PostCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +39,7 @@ class Post extends Component {
   }
 }
 
-Post.propTypes = {
+PostCard.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   summarized_content: PropTypes.string.isRequired
@@ -55,4 +55,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-export default  withRouter(connect(mapStateToProps)(Post));
+export default  withRouter(connect(mapStateToProps)(PostCard));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { format_date } from '../Common/Utils';
+import { format_date } from '../Utils/HelperFunctions';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -8,7 +8,7 @@ import { fetch_post_by_id } from '../Redux/BlogActions'
 
 import './PostViewer.scss';
 
-class PostEditor extends Component {  
+class PostViewer extends Component {  
   componentDidMount() {
     const { dispatch } = this.props
     let post_id = this.props.match.params["id"]
@@ -66,7 +66,7 @@ class PostEditor extends Component {
   }
 }
 
-PostEditor.propTypes = {
+PostViewer.propTypes = {
   id2index: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
@@ -80,4 +80,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(PostEditor);
+export default connect(mapStateToProps)(PostViewer);

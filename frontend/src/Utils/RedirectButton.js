@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import './Link.scss';
+import './RedirectButton.scss';
 
-class Link extends Component {
+class RedirectButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,4 +28,4 @@ class Link extends Component {
   }
 }
 
-export default withRouter(Link);
+export default withRouter(RedirectButton);

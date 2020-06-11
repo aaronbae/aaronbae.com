@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { format_date } from '../Common/Utils';
+import { format_date } from '../Utils/HelperFunctions';
 import { withRouter } from 'react-router-dom';
 
 // Redux handlers

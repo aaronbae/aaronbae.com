@@ -8,10 +8,10 @@ import {
 } from '../Redux/BlogActions'
 
 // components 
-import Post from './PostCard';
+import PostCard from './PostCard';
 import './MainBlogPage.scss';
 
-class Blog extends Component {
+class MainBlogPage extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -29,14 +29,14 @@ class Blog extends Component {
             </div>
           </div>
           {posts.map((item, index) => 
-            <Post key={index} post_id={item._id} />
+            <PostCard key={index} post_id={item._id} />
           )}
         </div>
       </div>
     );
   }
 }
-Blog.propTypes = {
+MainBlogPage.propTypes = {
   posts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
@@ -47,4 +47,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Blog);
+export default connect(mapStateToProps)(MainBlogPage);

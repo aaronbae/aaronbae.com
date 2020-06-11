@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { check_account } from '../Redux/AdminActions'
 
 // components 
-import './LogIn.scss';
+import './LogInPage.scss';
 
 class LogInPage extends Component {
   constructor(props) {
