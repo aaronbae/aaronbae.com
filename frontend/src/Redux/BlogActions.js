@@ -2,6 +2,7 @@ import { config } from '../Constants'
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 
+// TERMINALS
 function receive_posts(res) {
   var id2index = {}   
   if(!Array.isArray(res)){
@@ -17,6 +18,8 @@ function receive_posts(res) {
     receivedAt: Date.now()
   }
 }
+
+// PROCESSORS
 export function fetch_public_posts() {
   return dispatch => {
     fetch(config.url.POST_URL+"public")

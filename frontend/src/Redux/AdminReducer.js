@@ -38,6 +38,7 @@ function AdminReducer(state = initialState, action) {
     case CHANGE_EDIT_MODE:
       return { ...state, edit_mode: action.edit_mode }
     case UPDATE_EDIT_CHANGES:
+      console.log(new_posts)
       new_posts[state.selected_post].title = action.edit_data.title
       new_posts[state.selected_post].content = action.edit_data.content
       new_posts[state.selected_post].tags = action.edit_data.tags

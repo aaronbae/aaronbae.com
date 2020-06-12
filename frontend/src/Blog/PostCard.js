@@ -19,7 +19,7 @@ class PostCard extends Component {
 
   handlePostClick(e) {
     e.stopPropagation();
-    this.props.history.push("/blog/"+this.state.post_id)
+    this.props.history.push("/blog/"+this.props.post_id)
   }
 
   render() {
