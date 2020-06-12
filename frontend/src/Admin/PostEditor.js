@@ -101,7 +101,7 @@ class PostEditor extends Component {
   render() {
     const { edit_mode, logged_in, selected_post, posts, edit_data } = this.props
     let formatted_date = ""
-    if( selected_post != -1 ) formatted_date = format_date(posts[selected_post].createtime)
+    if( selected_post !== -1 ) formatted_date = format_date(posts[selected_post].createtime)
     return (
       <div className="row post-editor-container">
         {selected_post > -1 &&
@@ -168,7 +168,7 @@ class PostEditor extends Component {
             <div className="row button-row">
               <div>
                 <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
-                <button className={posts[selected_post]['_id']==-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
+                <button className={posts[selected_post]['_id']===-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
                 <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
               </div>
             </div>          

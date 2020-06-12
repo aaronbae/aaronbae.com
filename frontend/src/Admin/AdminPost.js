@@ -20,7 +20,7 @@ class AdminPost extends Component {
 
   handlePostClick(e) {
     e.stopPropagation();
-    const { dispatch, edit_mode, posts, selected_post } = this.props
+    const { dispatch, edit_mode } = this.props
     if(edit_mode){
       // TODO: send a warning
     } else {
@@ -29,7 +29,7 @@ class AdminPost extends Component {
   }
 
   render() {
-    const { title, date, summarized_content, selected_post } = this.props
+    const { title, date, summarized_content } = this.props
     const formatted_date = format_date(date)
     return (
       <div className="row admin-post-container" onClick={this.handlePostClick}>

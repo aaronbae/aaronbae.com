@@ -16,7 +16,7 @@ export function sign_out() {
   }
 }
 function receive_account_results(res) {
-  if(res.status == 400){
+  if(res.status === 400){
     return {
       type: FAILED_ADMIN_PASSWORD,
       receivedAt: Date.now()
@@ -67,7 +67,7 @@ export function viewpost(post_id) {
 // Data Manipulating Actions
 export function save_local_changes(post) {
   var url = config.url.POST_URL + "update/" + post._id.toString()
-  if(post._id == -1){
+  if(post._id === -1){
     url = config.url.POST_URL + "add/" 
     delete post._id
   } 

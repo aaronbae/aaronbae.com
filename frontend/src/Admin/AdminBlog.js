@@ -29,7 +29,7 @@ class AdminBlog extends Component {
 
   handleNewPostButton(e) {
     e.stopPropagation();
-    const { dispatch, posts } = this.props
+    const { dispatch } = this.props
     let new_edit_data = {
       title: "",
       content: "",

@@ -32,7 +32,7 @@ class Header extends Component {
         <div><RedirectButton addClasses="navbrand" message="Aaron Bae" route="/" /></div>
 
         <div className="d-none d-sm-block collapsable">
-          <div className={path=="/"?"tab active":"tab"}>
+          <div className={path==="/"?"tab active":"tab"}>
             <RedirectButton addClasses="navlink" message="Home" route="/" />
           </div>
 
@@ -46,7 +46,7 @@ class Header extends Component {
             }
           </div>
 
-          <div className={path=="/login"?"tab admin-container active":"admin-container"}>
+          <div className={path==="/login"?"tab admin-container active":"admin-container"}>
             {logged_in && 
               <button className="navlink adminButton" onClick={this.handleLogOut}>Sign Out</button>
             }

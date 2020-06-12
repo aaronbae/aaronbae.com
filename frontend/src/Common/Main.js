@@ -7,7 +7,7 @@ import MainBlogPage from '../Blog/MainBlogPage';
 import PostViewer from '../Blog/PostViewer';
 import LogInPage from '../Admin/LogInPage';
 import AdminBlog from '../Admin/AdminBlog';
-import NotReady from '../Warnings/NotReady';
+//import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 import './Main.scss';
 
