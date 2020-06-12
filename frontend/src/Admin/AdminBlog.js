@@ -6,13 +6,14 @@ import { connect } from 'react-redux'
 import { 
   fetch_public_posts,
   fetch_posts, 
+  create_new_post, 
+  update_post
 } from '../Redux/BlogActions'
 
 import { 
   viewpost,
-  create_new_post, 
   change_edit_mode,
-  update_edit_changes
+  change_edit_data
 } from '../Redux/AdminActions'
 
 // components 
@@ -37,7 +38,8 @@ class AdminBlog extends Component {
     }
     dispatch(create_new_post())
     dispatch(viewpost(0))  
-    dispatch(update_edit_changes(new_edit_data))
+    dispatch(update_post(new_edit_data, 0))
+    dispatch(change_edit_data(new_edit_data))
     dispatch(change_edit_mode(true))
   }
 

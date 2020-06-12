@@ -7,9 +7,8 @@ export const FAILED_ADMIN_PASSWORD = "FAILED_ADMIN_PASSWORD";
 export const SUCCEEDED_ADMIN_PASSWORD = "SUCCEEDED_ADMIN_PASSWORD";
 
 // Original Blog Actions
+export const CHANGE_EDIT_DATA = "CHANGE_EDIT_DATA";
 export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
-export const UPDATE_EDIT_CHANGES = "UPDATE_EDIT_CHANGES";
-export const CREATE_NEW_POST = "CREATE_NEW_POST";
 export const VIEWPOST = "VIEW_POST";
 
 // Original Admin Actions
@@ -27,7 +26,6 @@ function receive_account_results(res) {
       receivedAt: Date.now()
     }
   }
-  
   return {
     type: SUCCEEDED_ADMIN_PASSWORD,
     receivedAt: Date.now()
@@ -59,10 +57,9 @@ export function change_edit_mode(boolean_value) {
     edit_mode: boolean_value
   }
 }
-
-export function update_edit_changes(edit_data) {
+export function change_edit_data(edit_data) {
   return {
-    type: UPDATE_EDIT_CHANGES, 
+    type: CHANGE_EDIT_DATA, 
     edit_data: edit_data
   }
 }
@@ -81,13 +78,6 @@ export function save_local_changes(post) {
       },
       body: JSON.stringify(post)
     }).then(res => dispatch(change_edit_mode(false)))
-  }
-}
-
-export function create_new_post() {
-  return {
-    type: CREATE_NEW_POST,
-    date: new Date().toISOString()
   }
 }
 

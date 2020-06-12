@@ -4,12 +4,16 @@ import { format_date } from '../Utils/HelperFunctions';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetch_posts} from '../Redux/BlogActions'
+import { 
+  fetch_posts,
+  update_post
+} from '../Redux/BlogActions'
+
 import {
   change_edit_mode,
-  update_edit_changes,
   save_local_changes,
-  delete_post
+  delete_post,
+  change_edit_data
 } from '../Redux/AdminActions'
 
 
@@ -39,7 +43,8 @@ class PostEditor extends Component {
       public: curr_post.public
     }
     dispatch(change_edit_mode(true))
-    dispatch(update_edit_changes(new_edit_data))
+    dispatch(update_post(new_edit_data, selected_post)) // updates posts
+    dispatch(change_edit_data(new_edit_data)) // update edit_data
   }
 
   update_title(e) {
@@ -47,9 +52,10 @@ class PostEditor extends Component {
     // auto re-size
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
 
-    const { dispatch, edit_data } = this.props
+    const { dispatch, edit_data, selected_post } = this.props
     let new_edit_data = {...edit_data, title: e.target.value}
-    dispatch(update_edit_changes(new_edit_data))
+    dispatch(update_post(new_edit_data, selected_post)) // updates posts
+    dispatch(change_edit_data(new_edit_data)) // update edit_data
   }
 
   update_content(e) {
@@ -57,18 +63,19 @@ class PostEditor extends Component {
     // auto re-size
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
 
-    const { dispatch, edit_data } = this.props
+    const { dispatch, edit_data, selected_post } = this.props
     let new_edit_data = {...edit_data, content: e.target.value}
-    dispatch(update_edit_changes(new_edit_data))
+    dispatch(update_post(new_edit_data, selected_post)) // updates posts
+    dispatch(change_edit_data(new_edit_data)) // update edit_data
   }
 
   update_tags(e) {
     e.stopPropagation();
-    const { dispatch, edit_data } = this.props
+    const { dispatch, edit_data, selected_post } = this.props
     let new_edit_data = {...edit_data, tags: e.target.value.split(',')}
-    dispatch(update_edit_changes(new_edit_data))
+    dispatch(update_post(new_edit_data, selected_post)) // updates posts
+    dispatch(change_edit_data(new_edit_data)) // update edit_data
   }
-
 
   save_changes(e) {
     e.stopPropagation();
@@ -79,7 +86,7 @@ class PostEditor extends Component {
 
   cancel_changes(e) {
     e.stopPropagation();
-    const { dispatch, selected_post, posts  } = this.props
+    const { dispatch  } = this.props
     dispatch(fetch_posts())
     dispatch(change_edit_mode(false))
   }

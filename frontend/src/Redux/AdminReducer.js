@@ -4,8 +4,7 @@ import {
   FAILED_ADMIN_PASSWORD,
   SUCCEEDED_ADMIN_PASSWORD,
   CHANGE_EDIT_MODE,
-  UPDATE_EDIT_CHANGES,
-  CREATE_NEW_POST
+  CHANGE_EDIT_DATA
 } from './AdminActions'
 
 // The initial application state
@@ -19,13 +18,11 @@ let initialState = {
     content: "",
     public: true
   },
-  selected_post: -1,
-  posts: []
+  selected_post: -1
 }
 
 // Takes care of changing the application state
 function AdminReducer(state = initialState, action) {
-  let new_posts = [...state.posts]
   switch (action.type) {
     case VIEWPOST:
       return { ...state, selected_post: action.post_id }
@@ -37,26 +34,8 @@ function AdminReducer(state = initialState, action) {
       return { ...state, failed_attempt: false, logged_in: true }
     case CHANGE_EDIT_MODE:
       return { ...state, edit_mode: action.edit_mode }
-    case UPDATE_EDIT_CHANGES:
-      console.log(new_posts)
-      new_posts[state.selected_post].title = action.edit_data.title
-      new_posts[state.selected_post].content = action.edit_data.content
-      new_posts[state.selected_post].tags = action.edit_data.tags
-      new_posts[state.selected_post].public = action.edit_data.public
-      return { ...state, posts: new_posts, edit_data: action.edit_data }
-    case CREATE_NEW_POST:
-      let new_post = {
-        tags: [],
-        _id: -1,
-        author: 1,
-        title: "",
-        content: "",
-        createtime: action.date,
-        public: true,
-        updatetime: action.date
-      }
-      new_posts.unshift(new_post)
-      return { ...state, posts: new_posts }
+    case CHANGE_EDIT_DATA:
+      return {...state, edit_data: action.edit_data }
     default:
       return state
   }
