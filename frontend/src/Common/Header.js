@@ -37,8 +37,13 @@ class Header extends Component {
           </div>
 
           <div className="tab line"></div>
-          <div className={path=="/blog"?"tab active":"tab"}>
-            <RedirectButton addClasses="navlink" message="Blog" route="/blog" />
+          <div className={path.startsWith("/blog") || path.startsWith("/admin")?"tab active":"tab"}>
+            {logged_in && 
+              <RedirectButton addClasses="navlink" message="Blog" route="/admin" />
+            }
+            {!logged_in &&
+              <RedirectButton addClasses="navlink" message="Blog" route="/blog" />
+            }
           </div>
 
           <div className={path=="/login"?"tab admin-container active":"admin-container"}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -9,7 +10,6 @@ import {
   create_new_post, 
   update_post
 } from '../Redux/BlogActions'
-
 import { 
   viewpost,
   change_edit_mode,
@@ -52,10 +52,18 @@ class AdminBlog extends Component {
     }
   }
 
+  renderRedirect() {
+    const { logged_in } = this.props
+    if(!logged_in) {
+      return <Redirect to="/login" />
+    }
+  }
+
   render() { 
     const { posts, logged_in } = this.props
     return (
       <div className='row all-blog-container'>
+        {this.renderRedirect()}
         <div id="blog-column" className="col-12 col-sm-4 post-column">
           <div className="row center post-column-title">
             <p className="h4">Recent Posts</p>

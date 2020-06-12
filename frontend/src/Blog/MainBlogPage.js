@@ -43,7 +43,8 @@ MainBlogPage.propTypes = {
 
 function mapStateToProps(state) {
   return { 
-    posts: state.BlogReducer.posts 
+    posts: state.BlogReducer.posts,
+    logged_in: state.AdminReducer.logged_in 
   }
 }
 

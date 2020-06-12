@@ -5,6 +5,19 @@ export const CREATE_NEW_POST = "CREATE_NEW_POST";
 export const UPDATE_POST = "UPDATE_POST";
 
 // TERMINALS
+export function create_new_post() {
+  return {
+    type: CREATE_NEW_POST,
+    date: new Date().toISOString()
+  }
+}
+export function update_post(new_post, index) {
+  return {
+    type: UPDATE_POST, 
+    new_post: new_post, 
+    index: index
+  }
+}
 function receive_posts(res) {
   var id2index = {}   
   if(!Array.isArray(res)){
@@ -18,19 +31,6 @@ function receive_posts(res) {
     posts: res,
     id2index: id2index,
     receivedAt: Date.now()
-  }
-}
-export function create_new_post() {
-  return {
-    type: CREATE_NEW_POST,
-    date: new Date().toISOString()
-  }
-}
-export function update_post(new_post, index) {
-  return {
-    type: UPDATE_POST, 
-    new_post: new_post, 
-    index: index
   }
 }
 
