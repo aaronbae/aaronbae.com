@@ -26,41 +26,34 @@ class PostViewer extends Component {
       var thisPost = posts[id2index[post_id]]
     }
     return (
-      <div className="row">
-        <div className="col-2 previous-button-area">
-        </div>
-        <div className="col-8">
-          <div className="row post-viewer-container">
-            {isPostFetched && 
-              <div className="col post-viewer-main-col"> 
-                <div className="row viewer-title-row">
-                  <p className="h3">{thisPost.title}</p>
-                </div>
-                <div className="row viewer-information-row">
-                  <div className="col-5 no-padding">
-                    {format_date(thisPost.createtime)}
-                  </div>
-                  <div className="col-7 no-padding">
-                    <div className="float-right">
-                      <span className="tags-label">Tags : </span>
-                      {thisPost.tags.map((item, index) =>
-                        <span key={index} className={"tag " + item}>
-                          {item + ", "}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="viewer-padding-row row"></div>
-                <div className="row viewer-content-row">
-                  {thisPost.content.split("\n").map((i, key) => {
-                    return <div className="content-paragraph" key={key}>{i}</div>
-                  })}
+      <div className="row post-viewer-container ">
+        {isPostFetched && 
+          <div className="offset-2 col-8 post-viewer-main-col"> 
+            <div className="row viewer-information-row">
+              <div className="col-5 no-padding">
+                {format_date(thisPost.createtime)}
+              </div>
+              <div className="col-7 no-padding">
+                <div className="float-right">
+                  <span className="tags-label">Tags : </span>
+                  {thisPost.tags.map((item, index) =>
+                    <span key={index} className={"tag " + item}>
+                      {item + ", "}
+                    </span>
+                  )}
                 </div>
               </div>
-            }
+            </div>
+            <div className="row viewer-title-row">
+              {thisPost.title}
+            </div>
+            <div className="row viewer-content-row">
+              {thisPost.content.split("\n").map((i, key) => {
+                return <div className="content-paragraph" key={key}>{i}</div>
+              })}
+            </div>
           </div>
-        </div>
+        }
       </div>
     );
   }

@@ -26,12 +26,13 @@ class PostCard extends Component {
     const { title, date, summarized_content } = this.props
     const formatted_date = format_date(date)
     return (
-      <div className="row individual-post-container" onClick={this.handlePostClick}>
-        <div className="individual-post">
-          <div className="offset-1 col-10">
+      <div className="individual-post-container col-6" onClick={this.handlePostClick}>
+        <div className="row individual-post">
+          <div className="col">
             <div className="row date">{formatted_date}</div>
-            <div className="row title"><p className="h5">{title}</p></div>
+            <div className="row title">{title}</div>
             <div className="row">{summarized_content}</div>
+            <div className="row read-more">Read More</div>
           </div>
         </div>
       </div>

@@ -1,0 +1,14 @@
+@import 'design.scss';
+
+// All generic settings
+html, body,
+div, p, ul, ol {
+  margin:  0px;
+  padding: 0px;
+  font-family: $font-stack;
+}
+
+// Commonly used tools
+.bounded, .bounded * {
+  border: solid 1px black;
+}

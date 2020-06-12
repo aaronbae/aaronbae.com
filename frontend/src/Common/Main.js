@@ -9,6 +9,7 @@ import LogInPage from '../Admin/LogInPage';
 import AdminBlog from '../Admin/AdminBlog';
 import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
+import './Main.scss';
 
 class Main extends Component {
   // NOTE THAT path="/api/" is already reserved for backend

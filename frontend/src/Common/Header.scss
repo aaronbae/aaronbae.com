@@ -11,8 +11,8 @@ $separator_color: gray;
 $header_height: 52px;
 $separator_height: 17px;
 $hamburger_dim: 25px; // should reflect true hamburger image dimension
-$admin_button_padding: 5px; // this affects both vertical and horizontal
-$admin_button_width: 74px;
+$admin_button_vertical_padding: 5px; 
+$admin_button_horizontal_padding: 10px;
 
 .header-container  {
   display: flex;
@@ -59,10 +59,9 @@ $admin_button_width: 74px;
     .adminButton {
       border: solid 1px $font_active;
       border-radius: 8px;
-      padding: $admin_button_padding;
-      margin: ($header_height - 2 * $admin_button_padding - 24px - 2px)/2 0px; //fontHeight: 24px, borderHeight: 2px
+      padding: $admin_button_vertical_padding $admin_button_horizontal_padding;
+      margin: ($header_height - 2 * $admin_button_vertical_padding - 24px - 2px)/2 0px; //fontHeight: 24px, borderHeight: 2px
       color: $font_active;
-      width: $admin_button_width;
     }
     button:focus {
       outline: none;

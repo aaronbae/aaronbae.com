@@ -1,23 +1,23 @@
-.individual-post-container {
-    margin: 0px auto;
+$hover-color: #0F1CF0;
 
+.individual-post-container {
+  padding: 15px 0px;
   .individual-post {
-    margin: 0px;
     border-radius: inherit;
-    padding: 20px 0px;
     width: 100%;
     background-color: white;
-    border-top: 1.5px solid lightgray;
-    border-bottom: 1.5px solid lightgray;
-    border-left: 8px solid white;
+    .read-more {
+      color: $hover-color;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .title:hover {
+      color: $hover-color;
+    }
   }
   .individual-post:hover {
-    .title, .date {
-      text-decoration: none;
-    }
     cursor: pointer;
-    border-top: 1.5px solid darkgray;
-    border-bottom: 1.5px solid darkgray;
-    border-left: 8px solid darkgray;
   }
 }

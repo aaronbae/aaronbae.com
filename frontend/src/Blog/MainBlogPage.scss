@@ -3,41 +3,13 @@ $separation-color: lightgray;
 // General Container
 .all-blog-container {
   min-height: 80vh;
-
-  .hidden {
-    display: none;
-  }
-  .center {
-    text-align: center;
-    * {
-      margin: 0px auto;
-    }
-  }
+  color: #36373B;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   // Left (Post Viewing) Panel
-  .new-post-container{
-    border-bottom: 3px solid lightgray;
-    margin-top: 15px;
-    padding-bottom: 5px;
+  .whats-new-container {
     font-weight: bold;
-    line-height: 30px;
-    .new-post-label {
-      float: left;
-    }
-    .new-post-button {
-      float: right;
-      text-align: center;
-      width: 45px;
-      height: 34px;
-      border: 3px solid lightgray;
-      border-radius: 10px;
-    }
-    .new-post-button:focus {
-      outline: 0px;
-    }
-    .new-post-button:hover {
-      border-color: gray;
-      cursor: pointer;
-    }
+    font-size: 30px;
   }
 }

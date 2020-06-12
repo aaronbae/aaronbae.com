@@ -1,4 +1,4 @@
-$font-stack: Roboto, "Helvetica Neue Arial", sans-serif;
+$font-stack: 'Roboto condensed', "Helvetica Neue Arial", Arial, sans-serif;
 
 // Background color scheme
 $primary-color: white;
@@ -11,15 +11,3 @@ $secondary-font-color: white;
 // Secondary panel color scheme
 $tertiary-color: gray;
 $tertiary-font-color: black;
-
-// All generic settings
-html, body,
-div, p, ul, ol {
-  margin:  0px;
-  padding: 0px;
-}
-
-// Commonly used tools
-.bounded, .bounded * {
-  border: solid 1px black;
-}
