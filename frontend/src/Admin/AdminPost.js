@@ -32,7 +32,7 @@ class AdminPost extends Component {
     const { title, date, summarized_content, selected_post } = this.props
     const formatted_date = format_date(date)
     return (
-      <div className="row individual-post-container" onClick={this.handlePostClick}>
+      <div className="row admin-post-container" onClick={this.handlePostClick}>
         <div className="individual-post">
           <div className="offset-1 col-10">
             <div className="row date">{formatted_date}</div>

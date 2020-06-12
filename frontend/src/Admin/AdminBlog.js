@@ -62,7 +62,7 @@ class AdminBlog extends Component {
   render() { 
     const { posts, logged_in } = this.props
     return (
-      <div className='row all-blog-container'>
+      <div className='row admin-blog-container'>
         {this.renderRedirect()}
         <div id="blog-column" className="col-12 col-sm-4 post-column">
           <div className="row center post-column-title">

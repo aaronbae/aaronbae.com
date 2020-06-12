@@ -30,13 +30,13 @@ class PostViewer extends Component {
         <div className="col-2 previous-button-area">
         </div>
         <div className="col-8">
-          <div className="row post-editor-container">
+          <div className="row post-viewer-container">
             {isPostFetched && 
-              <div className="col post-editor-main-col"> 
-                <div className="row title-row">
+              <div className="col post-viewer-main-col"> 
+                <div className="row viewer-title-row">
                   <p className="h3">{thisPost.title}</p>
                 </div>
-                <div className="row information-row">
+                <div className="row viewer-information-row">
                   <div className="col-5 no-padding">
                     {format_date(thisPost.createtime)}
                   </div>
@@ -51,8 +51,8 @@ class PostViewer extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="padding-row row"></div>
-                <div className="row content-row">
+                <div className="viewer-padding-row row"></div>
+                <div className="row viewer-content-row">
                   {thisPost.content.split("\n").map((i, key) => {
                     return <div className="content-paragraph" key={key}>{i}</div>
                   })}

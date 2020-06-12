@@ -12,107 +12,105 @@ $confirm-color-hover: rgb(97, 213, 255);
   background-color: $separation-color;
   .post-editor-main-col {
     margin: 3px 3px;
+    .title-input, .content-input {
+      border: none transparent;
+      outline: none;
+      width: 100%;
+      max-height: 100vh;
+      height: inline;
+    }
+    .title-row {
+      padding: $padding-size $padding-size 0px $padding-size;
+    }
+    .information-row {
+      padding: 0px $padding-size;
+      .no-padding
+      {
+        padding: 0px;
+        margin: 0px;
+      }
+      .edit-button {
+        border-radius: 5px;
+        background-color: white;
+        border: solid 1px gray;
+        padding: 3px 10px;
+      }
+      .edit-button:hover {
+        border: solid 1px black;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .tags-label {
+        padding: 0px;
+      }
+      .tags-input {
+        border: none transparent;
+        border-bottom: solid 1px gray;
+        outline: none;
+      }
+    }
+    .padding-row {
+      height: 30px;
+    }
+    .toggle-row {
+      .no-padding {
+        padding: 0px;
+      }
+      padding: ($padding-size / 4) $padding-size ($padding-size / 2) $padding-size;
+      .toggle-wrapper {
+        padding-left: 5px;
+        display: inline-block;
+        width: 174px;
+      }
+    }
+    .content-row {
+      padding: 15px 30px;
+      margin-top: 3px;
+      .content-input {
+        min-height: 25em;
+      }
+      .content-paragraph {
+        min-height: 1.5em;
+        line-height: 1.5em;
+        width: 100%;
+      }
+    }
+    .button-row {
+      margin-top: 3px;
+      padding: 10px;
+      div {
+        margin: 0px auto;
+        button {
+          padding: 3px 6px;
+          margin: 0px 5px;
+          width: 65px; 
+          border-radius: 5px;
+        }
+        .save-button {
+          color: white;
+          border: solid 1px $confirm-color;
+          background-color: $confirm-color;
+        }
+        .cancel-button, .delete-button {
+          border: solid 1px gray;
+          background-color: white;
+        }
+
+        .save-button:hover {
+          border: solid 1px $confirm-color-hover;
+          background-color: $confirm-color-hover;
+        }
+        .cancel-button:hover {
+          border: solid 1px black;
+        }
+        .delete-button:hover {
+          color: red;
+          border: solid 1px red;
+        }
+      }
+    }
   }
   .post-editor-main-col > div {
     background-color: white;
-  }
-  .title-input, .content-input {
-    border: none transparent;
-    outline: none;
-    width: 100%;
-    max-height: 100vh;
-    height: inline;
-  }
-  .content-input {
-    min-height: 25em;
-  }
-}
-
-.title-row {
-  padding: $padding-size $padding-size 0px $padding-size;
-}
-.information-row {
-  padding: 0px $padding-size;
-  .no-padding
-  {
-    padding: 0px;
-    margin: 0px;
-  }
-  .edit-button {
-    border-radius: 5px;
-    background-color: white;
-    border: solid 1px gray;
-    padding: 3px 10px;
-  }
-  .edit-button:hover {
-    border: solid 1px black;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  .tags-label {
-    padding: 0px;
-  }
-  .tags-input {
-    border: none transparent;
-    border-bottom: solid 1px gray;
-    outline: none;
-  }
-}
-.padding-row {
-  height: 30px;
-}
-.toggle-row {
-  .no-padding {
-    padding: 0px;
-  }
-  padding: ($padding-size / 4) $padding-size ($padding-size / 2) $padding-size;
-  .toggle-wrapper {
-    padding-left: 5px;
-    display: inline-block;
-    width: 174px;
-  }
-}
-
-.content-row {
-  padding: 15px 30px;
-  margin-top: 3px;
-  .content-paragraph {
-    min-height: 1.5em;
-    line-height: 1.5em;
-    width: 100%;
-  }
-}
-.button-row {
-  margin-top: 3px;
-  padding: 10px;
-  div {
-    margin: 0px auto;
-    button {
-      padding: 3px 6px;
-      margin: 0px 5px;
-      width: 65px; 
-      border-radius: 5px;
-    }
-    .save-button {
-      color: white;
-      border: solid 1px $confirm-color;
-      background-color: $confirm-color;
-    }
-    .cancel-button, .delete-button {
-      border: solid 1px gray;
-      background-color: white;
-    }
-
-    .save-button:hover {
-      border: solid 1px $confirm-color-hover;
-      background-color: $confirm-color-hover;
-    }
-    .cancel-button:hover {
-      border: solid 1px black;
-    }
-    .delete-button:hover {
-      color: red;
-      border: solid 1px red;
-    }
   }
 }
