@@ -80,6 +80,8 @@ $admin_button_horizontal_padding: 10px;
       float: right;
       margin-right: $edge_margin;
       .btn {
+        padding: 0px;
+        border: 0px;
         .menu-icon {
           width: $hamburger_dim;
           height: $hamburger_dim;
