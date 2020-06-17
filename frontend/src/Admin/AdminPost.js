@@ -25,6 +25,7 @@ class AdminPost extends Component {
       // TODO: send a warning
     } else {
       dispatch(viewpost(this.state.post_id))  
+      window.scrollTo(0, 0)
     }
   }
 

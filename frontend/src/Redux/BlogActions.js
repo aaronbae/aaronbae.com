@@ -3,6 +3,7 @@ import { config } from '../Constants'
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const CREATE_NEW_POST = "CREATE_NEW_POST";
 export const UPDATE_POST = "UPDATE_POST";
+export const CLEAR_POSTS = "CLEAR_POSTS";
 
 // TERMINALS
 export function create_new_post() {
@@ -16,6 +17,13 @@ export function update_post(new_post, index) {
     type: UPDATE_POST, 
     new_post: new_post, 
     index: index
+  }
+}
+export function clear_posts() {
+  return {
+    type: CLEAR_POSTS,
+    posts: [],
+    id2index: {}
   }
 }
 function receive_posts(res) {

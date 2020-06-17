@@ -1,4 +1,5 @@
 import {
+  CLEAR_POSTS,
   CREATE_NEW_POST,
   UPDATE_POST,
   RECEIVE_POSTS
@@ -14,6 +15,8 @@ let initialState = {
 function BlogReducer(state = initialState, action) {
   var new_posts = [...state.posts]
   switch (action.type) {
+    case CLEAR_POSTS:
+      return { ...state, posts: action.posts, id2index: action.id2index }
     case CREATE_NEW_POST:
       let new_post = {
         tags: [],

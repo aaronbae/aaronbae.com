@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { sign_out } from '../Redux/AdminActions'
+import { clear_posts } from '../Redux/BlogActions'
 
 import RedirectButton from '../Utils/RedirectButton';
 import './Header.scss';
@@ -21,6 +22,7 @@ class Header extends Component {
     // TODO: clear cache
     const { dispatch } = this.props;
     dispatch(sign_out());
+    dispatch(clear_posts());
     this.props.history.push("/login")
   }
 
