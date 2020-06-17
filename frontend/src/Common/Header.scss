@@ -20,82 +20,83 @@ $admin_button_horizontal_padding: 10px;
   z-index: 1;
   background-color: $headercolor;
   box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
-
-  .navbrand {
-    background-color: $headercolor;
-    color: $brandcolor;
-    font-size: 1.3em; // changing this affects padding below
-    padding: (($header_height - 31px)/2) $tab_margin (($header_height - 31px)/2) ($tab_margin + $edge_margin);//fontHeight: 31px
-    display: block;
-  }
-  .navbrand:hover {
-    text-decoration: none;
-  }
-  .collapsable {
-    flex-grow: 1; 
-    .tab {
-      float: left;
-    }
-    .line {
-      margin: ($header_height - $separator_height)/2 0px;
-      height: $separator_height;
-      border-left: solid 1px $separator_color;
-    }
-    .navlink {
+  
+  .header-inner-container {
+    padding: 0px 20px;
+    .navbrand {
       background-color: $headercolor;
-      border: none;
-      color: $font;
-      font-size: 1em; // changing this affects padding below and .adminButton's margin
-      padding: ($header_height - 24px)/2 $tab_margin; //fontHeight: 24px
+      color: $brandcolor;
+      font-size: 1.3em; // changing this affects padding below
+      padding: (($header_height - 31px)/2) $tab_margin (($header_height - 31px)/2) $tab_margin;//fontHeight: 31px
       display: block;
     }
-    .navlink:hover {
-      color: $font_active;
+    .navbrand:hover {
       text-decoration: none;
-      background-color: $link_background_hover_color;
-      color: $brandcolor;
-      cursor: pointer;
     }
-    .adminButton {
-      border: solid 1px $font_active;
-      border-radius: 8px;
-      padding: $admin_button_vertical_padding $admin_button_horizontal_padding;
-      margin: ($header_height - 2 * $admin_button_vertical_padding - 24px - 2px)/2 0px; //fontHeight: 24px, borderHeight: 2px
-      color: $font_active;
-    }
-    button:focus {
-      outline: none;
-    }
-    .active > .navlink{
-      color: $font_active;
-    }
-    .admin-container {
-      margin-right: $edge_margin;
-      float: right;
-    }
-  }
-  .dropdown-container {
-    flex-grow: 1;
-    .dropdown {
-      float: right;
-      margin-right: $edge_margin;
-      .btn {
-        padding: 0px;
-        border: 0px;
-        .menu-icon {
-          width: $hamburger_dim;
-          height: $hamburger_dim;
-          margin: ($header_height/2 - $hamburger_dim/2) 0px;
-          display: block;
-        }
+    .collapsable {
+      flex-grow: 1; 
+      .tab {
+        float: left;
       }
-      .dropdown-menu {
-        text-align: center;
-        .active.dropdown-item { // This selecter doesn't work
-          background-color: red;
-        }
+      .line {
+        margin: ($header_height - $separator_height)/2 0px;
+        height: $separator_height;
+        border-left: solid 1px $separator_color;
       }
+      .navlink {
+        background-color: $headercolor;
+        border: none;
+        color: $font;
+        font-size: 1em; // changing this affects padding below and .adminButton's margin
+        padding: ($header_height - 24px)/2 $tab_margin; //fontHeight: 24px
+        display: block;
+      }
+      .navlink:hover {
+        color: $font_active;
+        text-decoration: none;
+        background-color: $link_background_hover_color;
+        color: $brandcolor;
+        cursor: pointer;
+      }
+      .adminButton {
+        border: solid 1px $font_active;
+        border-radius: 8px;
+        padding: $admin_button_vertical_padding $admin_button_horizontal_padding;
+        margin: ($header_height - 2 * $admin_button_vertical_padding - 24px - 2px)/2 0px; //fontHeight: 24px, borderHeight: 2px
+        color: $font_active;
+      }
+      button:focus {
+        outline: none;
+      }
+      .active > .navlink{
+        color: $font_active;
+      }
+      .admin-container {
+        float: right;
+      }
+    }
+    .dropdown-container {
+      flex-grow: 1;
+      .dropdown {
+        float: right;
+        .btn {
+          padding: 0px;
+          border: 0px;
+          .menu-icon {
+            width: $hamburger_dim;
+            height: $hamburger_dim;
+            margin: ($header_height/2 - $hamburger_dim/2) 0px;
+            display: block;
+          }
+        }
+        .dropdown-menu {
+          text-align: center;
+          .active.dropdown-item { // This selecter doesn't work
+            background-color: red;
+          }
+        }
 
+      }
     }
   }
 }
