@@ -5,8 +5,8 @@ const prod = {
     sslValidate: false,
     dbName: "aaronbaeDB",
     poolSize: 1,
-    reconnectTries: 1,
     useNewUrlParser: true, 
+    useUnifiedTopology: true,
   }
 };
 

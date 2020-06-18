@@ -5,10 +5,15 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB');
 
+// Environment variables
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Configuring different routes
 const defaultRoute = require('./routes/Default.route');
 const postRoute = require('./routes/Post.route');
 const userRoute = require('./routes/User.route');
+const fileRoute = require('./routes/File.route');
 
 // Configuring Mongoose
 mongoose.Promise = global.Promise;
@@ -24,6 +29,7 @@ app.use(cors());
 app.use("/", defaultRoute);
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
+app.use('/files', fileRoute);
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){
