@@ -66,9 +66,11 @@ export function viewpost(post_id) {
 
 // Data Manipulating Actions
 export function save_local_changes(post) {
-  var url = config.url.POST_URL + "update/" + post._id.toString()
+  var url = config.url.POST_URL
+  if(post._id !== -1)
+    url += "update/" + post._id.toString()
   if(post._id === -1){
-    url = config.url.POST_URL + "add/" 
+    url += "add/" 
     delete post._id
   } 
   return dispatch => {
