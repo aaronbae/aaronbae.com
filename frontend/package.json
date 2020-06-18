@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-sdk": "^2.699.0",
     "body-scroll-lock": "^2.7.1",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
