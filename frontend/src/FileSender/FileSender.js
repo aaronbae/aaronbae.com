@@ -22,7 +22,7 @@ class FileSender extends Component {
         method: 'POST',
         body: data
     }).then( function(res){
-        console.log(res.statusText)
+        console.log(res)
     })
   }
 
