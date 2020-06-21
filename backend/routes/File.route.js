@@ -1,6 +1,6 @@
 const express = require('express');
-const app = express();
 const fileRoutes = express.Router();
+var utils = require('../Utils')
 
 // AWS S3 related modules
 const AWS = require('aws-sdk');
@@ -22,10 +22,6 @@ var storage = multer.diskStorage({
   }
 })
 var upload = multer({storage: storage}).single("file")
-
-// Require Business model in our routes module
-let File = require('../models/File');
-const { db } = require('../models/File');
 
 // Uploading files
 fileRoutes.route('/upload').post(function (req, res) {
@@ -56,63 +52,44 @@ fileRoutes.route('/upload').post(function (req, res) {
           return res.status(500).json(s3Err)
         }
         console.log(`File uploaded successfully at ${data.Location}`)
-        
-        // Record to Mongo
-        let file = new File({
-          path: data.Location,
-          type: "image", // TODO: should be dependant on what the file really is
-          createtime: Date.now()
-        });
-        file.save()
-        .then(file => {
-          // delete the temp file
-          fs.unlink(req.file.path, function(err) {
-            if (err) {
-              return res.status(500).send(err)
-            }
-            // SUCCESS
-            return res.status(200).json({'file': 'file added successfully'});
-          })
+  
+        // delete the temp file
+        fs.unlink(req.file.path, function(err) {
+          if (err) {
+            return res.status(500).send(err)
+          }
+          // SUCCESS
+          return res.status(200).json({
+            message: 'file added successfully',
+            url: data.Location
+          });
         })
-        .catch(err => {
-          return res.status(500).send("unable to save to database");
-        });
       });
     })
   })
 });
 
-// Get list of all file images # Just for Admin Purposes #
-fileRoutes.route('/').get(function (req, res) {
-  File.find(function (err, files){
-  if(err){
-    console.log(err);
-  }
-  else {
-    res.json(files);
-  }
-});
-});
 
 // Retrieving images from S3
-fileRoutes.route('/:id').get(function (req, res) {
-  //req.params.id
-  File.find(function (err, files){
-  if(err){
-    console.log(err);
+fileRoutes.route('/:image_name').get(function (req, res) {
+  const params = {
+    Bucket: 'aaronbaebucket',
+    Key: req.params.image_name
   }
-  else {
-    res.json(files);
-  }
-});
-});
+  s3.getObject(params, function(err, data){   
+    if(err){
+      console.log(err);
+      return res.status(500).send(err)
+    }
+    else {
+      console.log(`Success in getching image ${params.Key}`)
+      console.log(data.Body)
+      res.set('Content-Type', 'image/png');
 
-// Defined delete | remove | destroy route
-fileRoutes.route('/delete/:id').get(function (req, res) {
-  File.findByIdAndRemove({_id: req.params.id}, function(err, file){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
+      return res.status(200).send(data.Body)
+    }
+  })
+
 });
 
 module.exports = fileRoutes;
