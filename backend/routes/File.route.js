@@ -43,7 +43,7 @@ fileRoutes.route('/upload').post(function (req, res) {
       const params = {
         Bucket: 'aaronbaebucket',
         Key: req.file.filename,
-        Body: JSON.stringify(data)
+        Body: data
       }
       // Upload to AWS
       s3.upload(params, function(s3Err, data) {
@@ -51,8 +51,7 @@ fileRoutes.route('/upload').post(function (req, res) {
           console.log(s3Err)
           return res.status(500).json(s3Err)
         }
-        console.log(`File uploaded successfully at ${data.Location}`)
-  
+        console.log(`File uploaded successfully at ${data.Location}`)        
         // delete the temp file
         fs.unlink(req.file.path, function(err) {
           if (err) {
@@ -69,7 +68,6 @@ fileRoutes.route('/upload').post(function (req, res) {
   })
 });
 
-
 // Retrieving images from S3
 fileRoutes.route('/:image_name').get(function (req, res) {
   const params = {
@@ -83,9 +81,6 @@ fileRoutes.route('/:image_name').get(function (req, res) {
     }
     else {
       console.log(`Success in getching image ${params.Key}`)
-      console.log(data.Body)
-      res.set('Content-Type', 'image/png');
-
       return res.status(200).send(data.Body)
     }
   })
