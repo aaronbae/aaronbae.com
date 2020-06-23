@@ -7,7 +7,7 @@ import MainBlogPage from '../Blog/MainBlogPage';
 import PostViewer from '../Blog/PostViewer';
 import LogInPage from '../Admin/LogInPage';
 import AdminBlog from '../Admin/AdminBlog';
-import FileSender from '../FileSender/FileSender';
+import Testing from '../Testing/Main';
 //import NotReady from '../Warnings/NotReady';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 import './Main.scss';
@@ -26,7 +26,7 @@ class Main extends Component {
               <Route exact path="/admin" component={AdminBlog} />
               <Route exact path="/admin" component={AdminBlog} />
               <Route exact path="/login" component={LogInPage} />
-              <Route exact path="/filesender" component={FileSender} />
+              <Route exact path="/test" component={Testing} />
               <Route component={NonExistentRoute} />
             </Switch>
           <Footer />
