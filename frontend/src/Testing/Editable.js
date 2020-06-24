@@ -19,14 +19,14 @@ class Editable extends Component {
     event.preventDefault();
     var original = this.state.rows
     var index = this.state.index
-    if (event.key.length == 1) {
+    if (event.key.length === 1) {
       original[index] += event.key
-    } else if(event.key=="Enter"){
+    } else if(event.key==="Enter"){
       original.splice(index+1, 0, "")
       // Shift focus
       index += 1
-    } else if(event.key=="Backspace"){
-      if(original[index] == ""){
+    } else if(event.key==="Backspace"){
+      if(original[index] === ""){
         original.splice(index, 1)
         index -= 1
       } else {

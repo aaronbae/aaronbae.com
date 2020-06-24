@@ -12,8 +12,7 @@ import {
 import {
   change_edit_mode,
   save_local_changes,
-  delete_post,
-  change_edit_data
+  delete_post
 } from '../Redux/AdminActions'
 
 
@@ -34,17 +33,8 @@ class PostEditor extends Component {
 
   enterEditMode(e) {
     e.stopPropagation();
-    const { dispatch, selected_post, posts  } = this.props
-    const curr_post = posts[selected_post]
-    let new_edit_data = {
-      title: curr_post.title,
-      content: curr_post.content,
-      tags: curr_post.tags,
-      public: curr_post.public
-    }
+    const { dispatch } = this.props
     dispatch(change_edit_mode(true))
-    dispatch(update_post(new_edit_data, selected_post)) // updates posts
-    dispatch(change_edit_data(new_edit_data)) // update edit_data
   }
 
   update_title(e) {
@@ -52,10 +42,8 @@ class PostEditor extends Component {
     // auto re-size
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
 
-    const { dispatch, edit_data, selected_post } = this.props
-    let new_edit_data = {...edit_data, title: e.target.value}
-    dispatch(update_post(new_edit_data, selected_post)) // updates posts
-    dispatch(change_edit_data(new_edit_data)) // update edit_data
+    const { dispatch, posts, index } = this.props
+    dispatch(update_post({...posts[index], title: e.target.value}, index)) 
   }
 
   update_content(e) {
@@ -63,25 +51,20 @@ class PostEditor extends Component {
     // auto re-size
     e.target.style.height = e.target.scrollHeight.toString() + "px" 
 
-    const { dispatch, edit_data, selected_post } = this.props
-    let new_edit_data = {...edit_data, content: e.target.value}
-    dispatch(update_post(new_edit_data, selected_post)) // updates posts
-    dispatch(change_edit_data(new_edit_data)) // update edit_data
+    const { dispatch, posts, index } = this.props
+    dispatch(update_post({...posts[index], content: e.target.value}, index)) 
   }
 
   update_tags(e) {
     e.stopPropagation();
-    const { dispatch, edit_data, selected_post } = this.props
-    let new_edit_data = {...edit_data, tags: e.target.value.split(',')}
-    dispatch(update_post(new_edit_data, selected_post)) // updates posts
-    dispatch(change_edit_data(new_edit_data)) // update edit_data
+    const { dispatch, posts, index } = this.props
+    dispatch(update_post({...posts[index], tags: e.target.value.split(',')}, index)) 
   }
 
   save_changes(e) {
     e.stopPropagation();
-    const { dispatch, selected_post, posts  } = this.props
-    var curr_post = posts[selected_post]
-    dispatch(save_local_changes(curr_post))
+    const { dispatch, posts, index  } = this.props
+    dispatch(save_local_changes(posts[index]))
   }
 
   cancel_changes(e) {
@@ -93,21 +76,25 @@ class PostEditor extends Component {
 
   handle_delete_button(e) {
     e.stopPropagation();
-    const { dispatch, selected_post, posts  } = this.props
-    dispatch(delete_post(posts[selected_post]['_id']))
+    const { dispatch, posts, index } = this.props
+    dispatch(delete_post(posts[index]['_id']))
     dispatch(change_edit_mode(false))
   }
   
   render() {
-    const { edit_mode, logged_in, selected_post, posts, edit_data } = this.props
+    const { edit_mode, logged_in, index, posts } = this.props
     let formatted_date = ""
-    if( selected_post !== -1 ) formatted_date = format_date(posts[selected_post].createtime)
+    let post = {}
+    if( index !== -1 ) {
+      formatted_date = format_date(post.createtime)
+      post = posts[index]
+    }
     return (
       <div className="row post-editor-container">
-        {selected_post > -1 &&
+        {index > -1 &&
           <div className={edit_mode ? "col post-editor-main-col hidden" : "col post-editor-main-col"}> 
             <div className="row title-row">
-              <p className="h3">{posts[selected_post].title}</p>
+              <p className="h3">{post.title}</p>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
@@ -116,7 +103,7 @@ class PostEditor extends Component {
               <div className="col-7 no-padding">
                 <div className="float-right">
                   <span className="tags-label">Tags : </span>
-                  {posts[selected_post].tags.map((item, index) =>
+                  {post.tags.map((item, index) =>
                     <span key={index} className={"tag " + item}>
                       {item + ", "}                  
                     </span>
@@ -129,25 +116,25 @@ class PostEditor extends Component {
             </div>
             <div className="padding-row row"></div>
             <div className="row content-row">
-              {posts[selected_post].content.split("\n").map((i, key) => {
+              {post.content.split("\n").map((i, key) => {
                 return <div className="content-paragraph" key={key}>{i}</div>
               })}
             </div>
           </div>
         }
-        {selected_post > -1 && 
+        {index > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <textarea className="title-input h3" value={edit_data.title} onChange={this.update_title} placeholder="Your Title..."/>
+              <textarea className="title-input h3" value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
-                {posts[selected_post].createtime}
+                {post.createtime}
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">
                   <span className="tags-label">Tags : </span>
-                  <input  className="tags-input" type="text" value={edit_data.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>
+                  <input  className="tags-input" type="text" value={post.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>
                 </div>
               </div>
             </div>
@@ -163,12 +150,12 @@ class PostEditor extends Component {
             </div>
             
             <div className="row content-row">
-              <textarea  className="content-input" value={edit_data.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
+              <textarea  className="content-input" value={post.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
             </div> 
             <div className="row button-row">
               <div>
                 <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
-                <button className={posts[selected_post]['_id']===-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
+                <button className={post['_id']===-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
                 <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
               </div>
             </div>          
@@ -182,20 +169,18 @@ class PostEditor extends Component {
 PostEditor.propTypes = {
   logged_in: PropTypes.bool.isRequired,
   edit_mode: PropTypes.bool.isRequired,
-  edit_data: PropTypes.object.isRequired,
-  selected_post: PropTypes.number.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
 }
 
 function mapStateToProps(state) {
-  const { edit_mode, edit_data, selected_post } = state.AdminReducer
+  const { edit_mode, selected_post } = state.AdminReducer
   const { posts } = state.BlogReducer
   return {
     logged_in: state.AdminReducer.logged_in,
     edit_mode: edit_mode,
-    edit_data: edit_data,
-    selected_post: selected_post,
-    posts: posts
+    posts: posts,
+    index: selected_post
   }
 }
 

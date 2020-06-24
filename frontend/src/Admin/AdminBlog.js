@@ -12,8 +12,7 @@ import {
 } from '../Redux/BlogActions'
 import { 
   viewpost,
-  change_edit_mode,
-  change_edit_data
+  change_edit_mode
 } from '../Redux/AdminActions'
 
 // components 
@@ -39,7 +38,6 @@ class AdminBlog extends Component {
     dispatch(create_new_post())
     dispatch(viewpost(0))  
     dispatch(update_post(new_edit_data, 0))
-    dispatch(change_edit_data(new_edit_data))
     dispatch(change_edit_mode(true))
   }
 
@@ -89,6 +87,7 @@ AdminBlog.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return { 
     logged_in: state.AdminReducer.logged_in,
     posts: state.BlogReducer.posts 

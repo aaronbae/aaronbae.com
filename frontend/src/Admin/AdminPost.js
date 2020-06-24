@@ -22,7 +22,7 @@ class AdminPost extends Component {
     e.stopPropagation();
     const { dispatch, edit_mode } = this.props
     if(edit_mode){
-      // TODO: send a warning
+      // TODO: remind user that a post is selected already
     } else {
       dispatch(viewpost(this.state.post_id))  
       window.scrollTo(0, 0)

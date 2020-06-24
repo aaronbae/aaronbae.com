@@ -4,7 +4,6 @@ import { fetch_posts } from './BlogActions'
 export const SIGN_OUT = "SIGN_OUT";
 export const FAILED_ADMIN_PASSWORD = "FAILED_ADMIN_PASSWORD";
 export const SUCCEEDED_ADMIN_PASSWORD = "SUCCEEDED_ADMIN_PASSWORD";
-export const CHANGE_EDIT_DATA = "CHANGE_EDIT_DATA";
 export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
 export const VIEWPOST = "VIEW_POST";
 
@@ -49,12 +48,6 @@ export function change_edit_mode(boolean_value) {
   return {
     type: CHANGE_EDIT_MODE, 
     edit_mode: boolean_value
-  }
-}
-export function change_edit_data(edit_data) {
-  return {
-    type: CHANGE_EDIT_DATA, 
-    edit_data: edit_data
   }
 }
 export function viewpost(post_id) {
