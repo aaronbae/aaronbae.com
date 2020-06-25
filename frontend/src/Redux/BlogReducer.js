@@ -1,8 +1,8 @@
 import {
   CLEAR_POSTS,
-  CREATE_NEW_POST,
   UPDATE_POST,
-  RECEIVE_POSTS
+  RECEIVE_POSTS,
+  ADD_NEW_POST
 } from './BlogActions'
 
 // The initial application state
@@ -17,19 +17,6 @@ function BlogReducer(state = initialState, action) {
   switch (action.type) {
     case CLEAR_POSTS:
       return { ...state, posts: action.posts, id2index: action.id2index }
-    case CREATE_NEW_POST:
-      let new_post = {
-        tags: [],
-        _id: -1,
-        author: 1,
-        title: "",
-        content: "",
-        createtime: action.date,
-        public: true,
-        updatetime: action.date
-      }
-      new_posts.unshift(new_post)
-      return { ...state, posts: new_posts }
     case UPDATE_POST:
       new_posts[action.index].title = action.new_post.title
       new_posts[action.index].content = action.new_post.content
@@ -38,6 +25,9 @@ function BlogReducer(state = initialState, action) {
       return { ...state, posts: new_posts}
     case RECEIVE_POSTS:
       return { ...state, posts: action.posts, id2index: action.id2index }
+    case ADD_NEW_POST:
+      new_posts.unshift(action.new_post)
+      return { ...state, posts: new_posts }
     default:
       return state
   }

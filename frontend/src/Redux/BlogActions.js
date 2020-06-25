@@ -1,15 +1,15 @@
 import { config } from '../Constants'
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const CREATE_NEW_POST = "CREATE_NEW_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const CLEAR_POSTS = "CLEAR_POSTS";
+export const ADD_NEW_POST = "ADD_NEW_POST";
 
 // TERMINALS
-export function create_new_post() {
+export function add_new_post(new_post) {
   return {
-    type: CREATE_NEW_POST,
-    date: new Date().toISOString()
+    type: ADD_NEW_POST,
+    new_post: new_post
   }
 }
 export function update_post(new_post, index) {

@@ -1,5 +1,8 @@
 import { config } from '../Constants'
-import { fetch_posts } from './BlogActions'
+import { 
+  fetch_posts, 
+  add_new_post 
+} from './BlogActions'
 
 export const SIGN_OUT = "SIGN_OUT";
 export const FAILED_ADMIN_PASSWORD = "FAILED_ADMIN_PASSWORD";
@@ -58,14 +61,25 @@ export function viewpost(post_id) {
 }
 
 // Data Manipulating Actions
+export function create_new_post() {
+  return dispatch => {
+    var url = config.url.POST_URL + "add/"
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    }).then(res => res.json())
+    .then(res => {
+      dispatch(add_new_post(res.post))
+      dispatch(viewpost(0))
+      dispatch(change_edit_mode(true))
+    })
+  }
+}
 export function save_local_changes(post) {
-  var url = config.url.POST_URL
-  if(post._id !== -1)
-    url += "update/" + post._id.toString()
-  if(post._id === -1){
-    url += "add/" 
-    delete post._id
-  } 
+  var url = config.url.POST_URL + "update/" + post._id.toString()
   return dispatch => {
     fetch(url, {
       method: 'POST',
