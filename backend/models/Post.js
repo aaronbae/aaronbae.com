@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 // Define collection and schema for Business
 let Post = new Schema({
   title: {
-    type: String
+    type: String,
+    default: ""
   },
   content: {
-    type: String
+    type: String,
+    default: ""
   },
   updatetime: {
     type: Date,
@@ -18,10 +20,12 @@ let Post = new Schema({
     default: Date.now
   },
   tags: {
-    type: Array
+    type: Array,
+    default: []
   },
   public: {
-    type: Boolean
+    type: Boolean,
+    default: false
   }
 },{
     collection: 'posts'
