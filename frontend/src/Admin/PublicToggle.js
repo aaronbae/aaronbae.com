@@ -13,20 +13,21 @@ class PublicToggle extends Component {
 
   update_public(e) {
     e.stopPropagation();
-    const { dispatch, post, index } = this.props
+    const { dispatch, posts, index } = this.props
+    let post = posts[index]
     dispatch(update_post({...post, public: !post.public}, index))
   }
 
   render() {
-    const { post } = this.props
+    const { posts, index } = this.props
     return (
-      <Toggle checked={post.public} width="50px" click_behavior={this.update_public}/>
+      <Toggle checked={posts[index].public} width="50px" click_behavior={this.update_public}/>
     )
   }
 }
 
 PublicToggle.propTypes = {
-  post: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
   index: PropTypes.number.isRequired
 }
 
@@ -34,7 +35,7 @@ function mapStateToProps(state) {
   const { selected_post } = state.AdminReducer
   const { posts } = state.BlogReducer
   return { 
-    post: posts[selected_post],
+    posts: posts,
     index: selected_post
   }
 }

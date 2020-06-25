@@ -6,11 +6,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { 
   fetch_public_posts,
-  fetch_posts, 
-  create_new_post, 
+  fetch_posts,  
   update_post
 } from '../Redux/BlogActions'
 import { 
+  create_new_post,
   viewpost,
   change_edit_mode
 } from '../Redux/AdminActions'
@@ -29,25 +29,12 @@ class AdminBlog extends Component {
   handleNewPostButton(e) {
     e.stopPropagation();
     const { dispatch } = this.props
-    let new_edit_data = {
-      title: "",
-      content: "",
-      tags: [],
-      public: true
-    }
     dispatch(create_new_post())
-    dispatch(viewpost(0))  
-    dispatch(update_post(new_edit_data, 0))
-    dispatch(change_edit_mode(true))
   }
 
   componentDidMount() {
-    const { dispatch, logged_in } = this.props
-    if(logged_in){
-      dispatch(fetch_posts())
-    } else {
-      dispatch(fetch_public_posts())
-    }
+    const { dispatch } = this.props
+    dispatch(fetch_posts())
   }
 
   renderRedirect() {
@@ -87,7 +74,6 @@ AdminBlog.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return { 
     logged_in: state.AdminReducer.logged_in,
     posts: state.BlogReducer.posts 

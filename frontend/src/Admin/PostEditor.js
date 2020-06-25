@@ -86,8 +86,8 @@ class PostEditor extends Component {
     let formatted_date = ""
     let post = {}
     if( index !== -1 ) {
-      formatted_date = format_date(post.createtime)
       post = posts[index]
+      formatted_date = format_date(post.createtime)
     }
     return (
       <div className="row post-editor-container">
