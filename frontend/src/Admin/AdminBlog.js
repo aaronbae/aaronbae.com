@@ -4,16 +4,8 @@ import { Redirect } from 'react-router-dom';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { 
-  fetch_public_posts,
-  fetch_posts,  
-  update_post
-} from '../Redux/BlogActions'
-import { 
-  create_new_post,
-  viewpost,
-  change_edit_mode
-} from '../Redux/AdminActions'
+import { fetch_posts } from '../Redux/BlogActions'
+import { create_new_post } from '../Redux/AdminActions'
 
 // components 
 import AdminPost from './AdminPost';
