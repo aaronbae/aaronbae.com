@@ -18,10 +18,7 @@ function BlogReducer(state = initialState, action) {
     case CLEAR_POSTS:
       return { ...state, posts: action.posts, id2index: action.id2index }
     case UPDATE_POST:
-      new_posts[action.index].title = action.new_post.title
-      new_posts[action.index].content = action.new_post.content
-      new_posts[action.index].tags = action.new_post.tags
-      new_posts[action.index].public = action.new_post.public
+      new_posts[action.index] = action.new_post
       return { ...state, posts: new_posts}
     case RECEIVE_POSTS:
       return { ...state, posts: action.posts, id2index: action.id2index }
