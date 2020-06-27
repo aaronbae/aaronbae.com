@@ -31,11 +31,13 @@ class PostEditor extends Component {
     this.handle_delete_button = this.handle_delete_button.bind(this);
   }
   componentDidUpdate() {
+    // Resize title and content input
     Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
       e.style.height = "0px"
       e.style.height = e.scrollHeight + "px"
     })
   }
+
   enterEditMode(e) {
     e.stopPropagation();
     const { dispatch } = this.props
@@ -51,8 +53,10 @@ class PostEditor extends Component {
   update_content(e) {
     e.stopPropagation();
     const { dispatch, posts, index } = this.props
+  
     var new_content = [...posts[index].content]
     new_content[e.target.getAttribute("index")] = e.target.value
+
     dispatch(update_post({...posts[index], content: new_content}, index)) 
   }
 
@@ -151,7 +155,8 @@ class PostEditor extends Component {
             
             <div className="row content-row">
               {post.content.map((i, key) => {
-                return <textarea key={key} index={key} className="resize-required" value={i} onChange={this.update_content} placeholder={key===0?"What's on your Mind?":""}/>
+                return <textarea key={key} index={key} className="resize-required" value={i} 
+                       onChange={this.update_content} placeholder={key===0?"What's on your Mind?":""}/>
               })}
             </div> 
             <div className="row button-row">
