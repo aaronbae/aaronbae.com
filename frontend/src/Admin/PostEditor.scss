@@ -12,12 +12,12 @@ $confirm-color-hover: rgb(97, 213, 255);
   background-color: $separation-color;
   .post-editor-main-col {
     margin: 3px 3px;
-    .title-input, .content-input {
+    .resize-required {
       border: none transparent;
       outline: none;
       width: 100%;
-      max-height: 100vh;
       height: inline;
+      resize: none;
     }
     .title-row {
       padding: $padding-size $padding-size 0px $padding-size;
@@ -66,9 +66,6 @@ $confirm-color-hover: rgb(97, 213, 255);
     .content-row {
       padding: 15px 30px;
       margin-top: 3px;
-      .content-input {
-        min-height: 25em;
-      }
       .content-paragraph {
         min-height: 1.5em;
         line-height: 1.5em;

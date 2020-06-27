@@ -48,7 +48,7 @@ class PostViewer extends Component {
               {thisPost.title}
             </div>
             <div className="row viewer-content-row">
-              {thisPost.content.split("\n").map((i, key) => {
+              {thisPost.content.map((i, key) => {
                 return <div className="content-paragraph" key={key}>{i}</div>
               })}
             </div>

@@ -100,6 +100,7 @@ export function delete_post(post_id) {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-    .then(res => dispatch(fetch_posts()))
+    .then(() => dispatch(fetch_posts()))
+    .then(() => dispatch(change_edit_mode(false)))
   }
 }

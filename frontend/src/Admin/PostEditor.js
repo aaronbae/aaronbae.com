@@ -30,7 +30,12 @@ class PostEditor extends Component {
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
   }
-
+  componentDidUpdate() {
+    Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
+      e.style.height = "0px"
+      e.style.height = e.scrollHeight + "px"
+    })
+  }
   enterEditMode(e) {
     e.stopPropagation();
     const { dispatch } = this.props
@@ -39,20 +44,16 @@ class PostEditor extends Component {
 
   update_title(e) {
     e.stopPropagation();
-    // auto re-size
-    e.target.style.height = e.target.scrollHeight.toString() + "px" 
-
     const { dispatch, posts, index } = this.props
     dispatch(update_post({...posts[index], title: e.target.value}, index)) 
   }
 
   update_content(e) {
     e.stopPropagation();
-    // auto re-size
-    e.target.style.height = e.target.scrollHeight.toString() + "px" 
-
     const { dispatch, posts, index } = this.props
-    dispatch(update_post({...posts[index], content: e.target.value}, index)) 
+    var new_content = [...posts[index].content]
+    new_content[e.target.getAttribute("index")] = e.target.value
+    dispatch(update_post({...posts[index], content: new_content}, index)) 
   }
 
   update_tags(e) {
@@ -78,7 +79,6 @@ class PostEditor extends Component {
     e.stopPropagation();
     const { dispatch, posts, index } = this.props
     dispatch(delete_post(posts[index]['_id']))
-    dispatch(change_edit_mode(false))
   }
   
   render() {
@@ -116,7 +116,7 @@ class PostEditor extends Component {
             </div>
             <div className="padding-row row"></div>
             <div className="row content-row">
-              {post.content.split("\n").map((i, key) => {
+              {post.content.map((i, key) => {
                 return <div className="content-paragraph" key={key}>{i}</div>
               })}
             </div>
@@ -125,11 +125,11 @@ class PostEditor extends Component {
         {index > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <textarea className="title-input h3" value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
+              <textarea className="resize-required h3" value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
-                {post.createtime}
+                {formatted_date}
               </div>
               <div className="col-7 no-padding">
                 <div className="float-right">
@@ -150,12 +150,14 @@ class PostEditor extends Component {
             </div>
             
             <div className="row content-row">
-              <textarea  className="content-input" value={post.content} onChange={this.update_content} placeholder="What's on your Mind?"/>
+              {post.content.map((i, key) => {
+                return <textarea key={key} index={key} className="resize-required" value={i} onChange={this.update_content} placeholder={key===0?"What's on your Mind?":""}/>
+              })}
             </div> 
             <div className="row button-row">
               <div>
                 <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
-                <button className={post['_id']===-1 ? "delete-button hidden" : "delete-button"} type="button" onClick={this.handle_delete_button}>Delete</button>
+                <button className="delete-button" type="button" onClick={this.handle_delete_button}>Delete</button>
                 <button className="cancel-button" type="button" onClick={this.cancel_changes}>Cancel</button>
               </div>
             </div>          

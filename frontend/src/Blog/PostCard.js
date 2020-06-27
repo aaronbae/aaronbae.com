@@ -52,7 +52,7 @@ function mapStateToProps(state, ownProps) {
   return {
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,
-    summarized_content: this_post.content.substring(0, 100) + "..."
+    summarized_content: this_post.content.join(" ").substring(0, 100) + "..."
   }
 }
 
