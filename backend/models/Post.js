@@ -9,7 +9,7 @@ let Post = new Schema({
   },
   content: {
     type: Array,
-    default: []
+    default: [""]
   },
   updatetime: {
     type: Date,
