@@ -5,10 +5,8 @@ import { format_date } from '../Utils/HelperFunctions';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
-  add_new_paragraph,
   fetch_posts,
-  update_post,
-  remove_paragraph
+  update_post
 } from '../Redux/BlogActions'
 
 import {
@@ -19,6 +17,7 @@ import {
 
 
 import PublicToggle from './PublicToggle';
+import ContentEditor from './ContentEditor';
 import './PostEditor.scss';
 
 class PostEditor extends Component {
@@ -30,41 +29,15 @@ class PostEditor extends Component {
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
-
-    // Content Editor Events
-    this.update_content = this.update_content.bind(this);
-    this.key_down = this.key_down.bind(this);
-    this.handle_focus = this.handle_focus.bind(this);
-
-    this.state = {
-      post_update_focus_paragraph_index: 0,
-      post_update_focus_character_index: 0
-    }
-
   }
-  focus(paragraph, character) {
-    let needs_focus = document.getElementsByClassName("post-editor-paragraph")[paragraph] 
-    character = Math.min(character, needs_focus.innerHTML.length)
-    needs_focus.focus()
-    needs_focus.setSelectionRange(character,character)
-  }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     // Resize title and content input
     Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
       e.style.height = "0px"
       e.style.height = (e.scrollHeight+1) + "px"
     })
-    // re-focus after paragraph creation or deletion
-    if ( this.props.edit_mode && this.props.index !== -1 && prevProps.posts.length > 0) {
-      let post_index = this.props.index
-      let current_paragraph_length = this.props.posts[post_index].content.length
-      let old_paragraph_length = prevProps.posts[post_index].content.length
-      if( current_paragraph_length !== old_paragraph_length){
-        this.focus(this.state.post_update_focus_paragraph_index, this.state.post_update_focus_character_index)
-      }
-    }
+    
   }
-
   enterEditMode(e) {
     e.stopPropagation();
     const { dispatch } = this.props
@@ -76,86 +49,6 @@ class PostEditor extends Component {
     const { dispatch, posts, index } = this.props
     dispatch(update_post({...posts[index], title: e.target.value}, index)) 
   }
-
-  key_down(e) {
-    const { posts, dispatch, index } = this.props
-    let num_paragraphs = parseInt(posts[index].content.length)
-    let paragraph_index = parseInt(e.target.getAttribute("index"))
-    let current_paragraph = e.target.value
-    let cursor_index = parseInt(e.target.selectionStart)
-
-    if(e.key === "Enter"){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      let staying_content = [...posts[index].content]
-      staying_content[paragraph_index] = current_paragraph.substring(0, cursor_index)
-      let created_content = current_paragraph.substring(cursor_index)
-      dispatch(update_post({...posts[index], content: staying_content}, index)) 
-      dispatch(add_new_paragraph(index, paragraph_index, created_content))  
-      this.setState({
-        post_update_focus_paragraph_index: paragraph_index + 1,
-        post_update_focus_character_index: 0
-      })    
-    } 
-    else if(e.key === "Backspace" && cursor_index === 0 && paragraph_index > 0){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      let merged_content = [...posts[index].content]
-      merged_content[paragraph_index - 1] = merged_content[paragraph_index - 1] + current_paragraph
-      dispatch(update_post({...posts[index], content: merged_content}, index)) 
-      dispatch(remove_paragraph(index, paragraph_index)) 
-      this.setState({
-        post_update_focus_paragraph_index: paragraph_index - 1,
-        post_update_focus_character_index: merged_content[paragraph_index - 1].length - current_paragraph.length
-      })    
-    } 
-    else if (e.key === "Delete" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      let merged_content = [...posts[index].content]
-      merged_content[paragraph_index] = current_paragraph + merged_content[paragraph_index + 1] 
-      dispatch(update_post({...posts[index], content: merged_content}, index)) 
-      dispatch(remove_paragraph(index, paragraph_index + 1))
-      this.setState({
-        post_update_focus_paragraph_index: paragraph_index,
-        post_update_focus_character_index: current_paragraph.length
-      })    
-    } 
-    else if (e.key === "ArrowUp" && cursor_index === 0 && paragraph_index > 0){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      this.focus(paragraph_index - 1, cursor_index)
-    } 
-    else if (e.key === "ArrowDown" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      this.focus(paragraph_index + 1, cursor_index)
-    } 
-    else if (e.key === "ArrowLeft" && cursor_index === 0 && paragraph_index > 0){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      this.focus(paragraph_index - 1, Number.MAX_VALUE)
-    } 
-    else if (e.key === "ArrowRight" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
-      e.stopPropagation();
-      e.preventDefault() // this prevents update_content
-      this.focus(paragraph_index + 1, 0)
-    } 
-  }
-  handle_focus(e) {
-    if(e.target.value.length === 0){
-      //console.log("OH YEAH")
-    }
-  }
-
-  update_content(e) {
-    e.stopPropagation();
-    const { dispatch, posts, index } = this.props
-    var new_content = [...posts[index].content]
-    new_content[e.target.getAttribute("index")] = e.target.value
-    dispatch(update_post({...posts[index], content: new_content}, index)) 
-  }
-
   update_tags(e) {
     e.stopPropagation();
     const { dispatch, posts, index } = this.props
@@ -244,16 +137,7 @@ class PostEditor extends Component {
               </div>
             </div>
             
-            <div className="row content-row">
-              {post.content.map((i, key) => {
-                return <textarea key={key} index={key} className="resize-required content-paragraph post-editor-paragraph" value={i} 
-                       onChange={this.update_content} 
-                       onKeyDown={this.key_down}
-                       onFocus={this.handle_focus}
-                       placeholder={key===0?"What's on your Mind?":""}/>
-                
-              })}
-            </div> 
+            <ContentEditor />
             <div className="row button-row">
               <div>
                 <button className="save-button" type="button" onClick={this.save_changes}>Save</button>
