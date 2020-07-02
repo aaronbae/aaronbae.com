@@ -27,20 +27,38 @@ class PostEditor extends Component {
     this.enterEditMode = this.enterEditMode.bind(this);
     this.update_title = this.update_title.bind(this);
     this.update_content = this.update_content.bind(this);
+    this.key_down = this.key_down.bind(this);
     this.update_tags = this.update_tags.bind(this);
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
+    this.state = {
+      post_update_focus_paragraph_index: 0,
+      post_update_focus_character_index: 0
+    }
 
-    this.key_down = this.key_down.bind(this);
   }
-  componentDidUpdate() {
-    console.log()
+  focus(paragraph, character) {
+    let needs_focus = document.getElementsByClassName("post-editor-paragraph")[paragraph] 
+    character = Math.min(character, needs_focus.innerHTML.length)
+    needs_focus.focus()
+    needs_focus.setSelectionRange(character,character)
+  }
+  componentDidUpdate(prevProps) {
     // Resize title and content input
     Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
       e.style.height = "0px"
       e.style.height = (e.scrollHeight+1) + "px"
     })
+    // re-focus after paragraph manipulation
+    if ( this.props.edit_mode && this.props.index !== -1 && prevProps.posts.length > 0) {
+      let post_index = this.props.index
+      let current_paragraph_length = this.props.posts[post_index].content.length
+      let old_paragraph_length = prevProps.posts[post_index].content.length
+      if( current_paragraph_length !== old_paragraph_length){
+        this.focus(this.state.post_update_focus_paragraph_index, this.state.post_update_focus_character_index)
+      }
+    }
   }
 
   enterEditMode(e) {
@@ -69,7 +87,11 @@ class PostEditor extends Component {
       staying_content[paragraph_index] = current_paragraph.substring(0, cursor_index)
       let created_content = current_paragraph.substring(cursor_index)
       dispatch(update_post({...posts[index], content: staying_content}, index)) 
-      dispatch(add_new_paragraph(index, paragraph_index, created_content))      
+      dispatch(add_new_paragraph(index, paragraph_index, created_content))  
+      this.setState({
+        post_update_focus_paragraph_index: paragraph_index + 1,
+        post_update_focus_character_index: 0
+      })    
     } 
     else if(e.key === "Backspace" && cursor_index === 0 && paragraph_index > 0){
       e.stopPropagation();
@@ -77,7 +99,11 @@ class PostEditor extends Component {
       let merged_content = [...posts[index].content]
       merged_content[paragraph_index - 1] = merged_content[paragraph_index - 1] + current_paragraph
       dispatch(update_post({...posts[index], content: merged_content}, index)) 
-      dispatch(remove_paragraph(index, paragraph_index))
+      dispatch(remove_paragraph(index, paragraph_index)) 
+      this.setState({
+        post_update_focus_paragraph_index: paragraph_index - 1,
+        post_update_focus_character_index: merged_content[paragraph_index - 1].length - current_paragraph.length
+      })    
     } 
     else if (e.key === "Delete" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
       e.stopPropagation();
@@ -86,26 +112,30 @@ class PostEditor extends Component {
       merged_content[paragraph_index] = current_paragraph + merged_content[paragraph_index + 1] 
       dispatch(update_post({...posts[index], content: merged_content}, index)) 
       dispatch(remove_paragraph(index, paragraph_index + 1))
+      this.setState({
+        post_update_focus_paragraph_index: paragraph_index,
+        post_update_focus_character_index: current_paragraph.length
+      })    
     } 
     else if (e.key === "ArrowUp" && cursor_index === 0 && paragraph_index > 0){
       e.stopPropagation();
       e.preventDefault() // this prevents update_content
-      console.log(e.key)
+      this.focus(paragraph_index - 1, cursor_index)
     } 
     else if (e.key === "ArrowDown" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
       e.stopPropagation();
       e.preventDefault() // this prevents update_content
-      console.log(e.key)
+      this.focus(paragraph_index + 1, cursor_index)
     } 
     else if (e.key === "ArrowLeft" && cursor_index === 0 && paragraph_index > 0){
       e.stopPropagation();
       e.preventDefault() // this prevents update_content
-      console.log(e.key)
+      this.focus(paragraph_index - 1, Number.MAX_VALUE)
     } 
     else if (e.key === "ArrowRight" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
       e.stopPropagation();
       e.preventDefault() // this prevents update_content
-      console.log(e.key)
+      this.focus(paragraph_index + 1, 0)
     } 
   }
 
@@ -212,7 +242,7 @@ class PostEditor extends Component {
             
             <div className="row content-row">
               {post.content.map((i, key) => {
-                return <textarea key={key} index={key} className="resize-required" value={i} 
+                return <textarea key={key} index={key} className="resize-required post-editor-paragraph" value={i} 
                        onChange={this.update_content} 
                        onKeyDown={this.key_down}
                        placeholder={key===0?"What's on your Mind?":""}/>
