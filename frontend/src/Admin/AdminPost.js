@@ -30,10 +30,10 @@ class AdminPost extends Component {
   }
 
   render() {
-    const { title, date, summarized_content } = this.props
+    const { title, date, summarized_content, public_flag } = this.props
     const formatted_date = format_date(date)
     return (
-      <div className="row admin-post-container" onClick={this.handlePostClick}>
+      <div className={public_flag ? "row admin-post-container public" : "row admin-post-container"} onClick={this.handlePostClick}>
         <div className="individual-post">
           <div className="offset-1 col-10">
             <div className="row date">{formatted_date}</div>
@@ -51,7 +51,8 @@ AdminPost.propTypes = {
   selected_post: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  summarized_content: PropTypes.string.isRequired
+  summarized_content: PropTypes.string.isRequired,
+  public_flag: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
@@ -63,7 +64,8 @@ function mapStateToProps(state, ownProps) {
     selected_post: selected_post,
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,
-    summarized_content: this_post.content.join(" ").substring(0, 100) + "..."
+    summarized_content: this_post.content.join(" ").substring(0, 100) + "...",
+    public_flag: this_post.public
   }
 }
 
