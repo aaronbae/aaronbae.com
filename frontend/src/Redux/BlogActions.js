@@ -4,8 +4,26 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const UPDATE_POST = "UPDATE_POST";
 export const CLEAR_POSTS = "CLEAR_POSTS";
 export const ADD_NEW_POST = "ADD_NEW_POST";
+export const ADD_NEW_PARAGRAPH = "ADD_NEW_PARAGRAPH";
+export const REMOVE_PARAGRAPH = "REMOVE_PARAGRAPH";
+
 
 // TERMINALS
+export function remove_paragraph(post_index, paragraph_index) {
+  return {
+    type: REMOVE_PARAGRAPH,
+    post_index: post_index,
+    paragraph_index: paragraph_index
+  }
+}
+export function add_new_paragraph(post_index, paragraph_index, initial_content) {
+  return {
+    type: ADD_NEW_PARAGRAPH,
+    post_index: post_index,
+    paragraph_index: paragraph_index,
+    initial_content: initial_content
+  }
+}
 export function add_new_post(new_post) {
   return {
     type: ADD_NEW_POST,

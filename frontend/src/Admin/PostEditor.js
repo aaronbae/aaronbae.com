@@ -4,9 +4,11 @@ import { format_date } from '../Utils/HelperFunctions';
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { 
+import {
+  add_new_paragraph,
   fetch_posts,
-  update_post
+  update_post,
+  remove_paragraph
 } from '../Redux/BlogActions'
 
 import {
@@ -29,12 +31,15 @@ class PostEditor extends Component {
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
+
+    this.key_down = this.key_down.bind(this);
   }
   componentDidUpdate() {
+    console.log()
     // Resize title and content input
     Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
       e.style.height = "0px"
-      e.style.height = e.scrollHeight + "px"
+      e.style.height = (e.scrollHeight+1) + "px"
     })
   }
 
@@ -50,13 +55,65 @@ class PostEditor extends Component {
     dispatch(update_post({...posts[index], title: e.target.value}, index)) 
   }
 
+  key_down(e) {
+    const { posts, dispatch, index } = this.props
+    let num_paragraphs = parseInt(posts[index].content.length)
+    let paragraph_index = parseInt(e.target.getAttribute("index"))
+    let current_paragraph = e.target.value
+    let cursor_index = parseInt(e.target.selectionStart)
+
+    if(e.key === "Enter"){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      let staying_content = [...posts[index].content]
+      staying_content[paragraph_index] = current_paragraph.substring(0, cursor_index)
+      let created_content = current_paragraph.substring(cursor_index)
+      dispatch(update_post({...posts[index], content: staying_content}, index)) 
+      dispatch(add_new_paragraph(index, paragraph_index, created_content))      
+    } 
+    else if(e.key === "Backspace" && cursor_index === 0 && paragraph_index > 0){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      let merged_content = [...posts[index].content]
+      merged_content[paragraph_index - 1] = merged_content[paragraph_index - 1] + current_paragraph
+      dispatch(update_post({...posts[index], content: merged_content}, index)) 
+      dispatch(remove_paragraph(index, paragraph_index))
+    } 
+    else if (e.key === "Delete" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      let merged_content = [...posts[index].content]
+      merged_content[paragraph_index] = current_paragraph + merged_content[paragraph_index + 1] 
+      dispatch(update_post({...posts[index], content: merged_content}, index)) 
+      dispatch(remove_paragraph(index, paragraph_index + 1))
+    } 
+    else if (e.key === "ArrowUp" && cursor_index === 0 && paragraph_index > 0){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      console.log(e.key)
+    } 
+    else if (e.key === "ArrowDown" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      console.log(e.key)
+    } 
+    else if (e.key === "ArrowLeft" && cursor_index === 0 && paragraph_index > 0){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      console.log(e.key)
+    } 
+    else if (e.key === "ArrowRight" && cursor_index === current_paragraph.length && paragraph_index < num_paragraphs - 1){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      console.log(e.key)
+    } 
+  }
+
   update_content(e) {
     e.stopPropagation();
     const { dispatch, posts, index } = this.props
-  
     var new_content = [...posts[index].content]
     new_content[e.target.getAttribute("index")] = e.target.value
-
     dispatch(update_post({...posts[index], content: new_content}, index)) 
   }
 
@@ -156,7 +213,10 @@ class PostEditor extends Component {
             <div className="row content-row">
               {post.content.map((i, key) => {
                 return <textarea key={key} index={key} className="resize-required" value={i} 
-                       onChange={this.update_content} placeholder={key===0?"What's on your Mind?":""}/>
+                       onChange={this.update_content} 
+                       onKeyDown={this.key_down}
+                       placeholder={key===0?"What's on your Mind?":""}/>
+                
               })}
             </div> 
             <div className="row button-row">

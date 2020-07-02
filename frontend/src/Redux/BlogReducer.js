@@ -2,7 +2,9 @@ import {
   CLEAR_POSTS,
   UPDATE_POST,
   RECEIVE_POSTS,
-  ADD_NEW_POST
+  ADD_NEW_POST,
+  ADD_NEW_PARAGRAPH,
+  REMOVE_PARAGRAPH
 } from './BlogActions'
 
 // The initial application state
@@ -15,6 +17,12 @@ let initialState = {
 function BlogReducer(state = initialState, action) {
   var new_posts = [...state.posts]
   switch (action.type) {
+    case REMOVE_PARAGRAPH:
+      new_posts[action.post_index].content.splice(action.paragraph_index, 1)
+      return { ...state, posts: new_posts }
+    case ADD_NEW_PARAGRAPH:
+      new_posts[action.post_index].content.splice(parseInt(action.paragraph_index) + 1, 0, action.initial_content)
+      return { ...state, posts: new_posts }
     case CLEAR_POSTS:
       return { ...state, posts: action.posts, id2index: action.id2index }
     case UPDATE_POST:
