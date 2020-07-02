@@ -29,13 +29,16 @@ class PostEditor extends Component {
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
+
+    this.title_input_ref = React.createRef();
   }
   componentDidUpdate() {
-    // Resize title and content input
-    Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
-      e.style.height = "0px"
-      e.style.height = (e.scrollHeight+1) + "px"
-    })
+    // Resize title
+    let dom = this.title_input_ref.current
+    if(dom){
+      dom.style.height = "0px"
+      dom.style.height = (dom.scrollHeight+1) + "px"
+    }
     
   }
   enterEditMode(e) {
@@ -87,7 +90,7 @@ class PostEditor extends Component {
         {index > -1 &&
           <div className={edit_mode ? "col post-editor-main-col hidden" : "col post-editor-main-col"}> 
             <div className="row title-row">
-              <p className="p-title">{post.title}</p>
+              <p className="plain-title">{post.title}</p>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
@@ -117,7 +120,7 @@ class PostEditor extends Component {
         {index > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <textarea className="resize-required" value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
+              <textarea ref={this.title_input_ref} value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
             </div>
             <div className="row information-row">
               <div className="col-sm-12 col-md-5 no-padding">
@@ -125,11 +128,9 @@ class PostEditor extends Component {
               </div>
               <div className="col-sm-12 col-md-7 no-padding">
                 <div className="row">
-                  <div className="offset-md-5 col-sm-6 col-md-4">
+                  <div className="col-sm-12 offset-lg-3 col-lg-9 offset-xl-5 col-xl-7">
                     <span className="tags-label ">Tags : </span>
                     <input  className="tags-input" type="text" value={post.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>                  
-                  </div>
-                  <div  className="col-sm-6 col-md-3">
                     <span className="toggle-label">Public: </span> 
                     <PublicToggle />
                   </div>

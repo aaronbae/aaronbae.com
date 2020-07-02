@@ -17,8 +17,11 @@ class ContentEditor extends Component {
     this.update_content = this.update_content.bind(this);
     this.key_down = this.key_down.bind(this);
     this.handle_focus = this.handle_focus.bind(this);
+    this.handle_blur = this.handle_blur.bind(this);
+    this.handle_add_image_button = this.handle_add_image_button.bind(this);
 
     this.state = {
+      focus_index: -1,
       post_update_focus_paragraph_index: 0,
       post_update_focus_character_index: 0
     }
@@ -34,6 +37,11 @@ class ContentEditor extends Component {
     const { posts, index, edit_mode } = this.props
     let prev_posts = prevProps.posts
 
+    // Resize title and content input
+    Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
+      e.style.height = "0px"
+      e.style.height = (e.scrollHeight+1) + "px"
+    })
     // re-focus after paragraph creation or deletion
     if ( edit_mode && index !== -1 && prev_posts.length > 0 
                   && posts[index].content.length !== prev_posts[index].content.length) {
@@ -106,10 +114,19 @@ class ContentEditor extends Component {
       this.focus(paragraph_index + 1, 0)
     } 
   }
+  handle_blur(e) {
+    this.setState({
+      focus_index: -1
+    })
+  }
   handle_focus(e) {
-    if(e.target.value.length === 0){
-      //console.log("OH YEAH")
-    }
+    this.setState({
+      focus_index: e.target.getAttribute('index')
+    })
+  }
+  handle_add_image_button(e) {
+    console.log("BUTTON")
+    console.log(e.target.getAttribute('index'))
   }
 
   update_content(e) {
@@ -129,17 +146,21 @@ class ContentEditor extends Component {
       post = posts[index]
     }
     return (
-      <div className="row content-editor-container content-row">
+      <div className="row content-editor-container content-row ">
         {post.content.map((i, key) => {
-          // resize-required      : used in PostEditor to fit texteditor to the content
           // post-editor-paragrph : used to manage focusing
           // content-paragraph    : used to match style with paragraphs in PostEditor
-          return <textarea key={key} index={key} className="resize-required content-paragraph post-editor-paragraph" value={i} 
+          return <div key={key} className="content-row-container">
+                  <div className={parseInt(this.state.focus_index) === key && i.length === 0? "add-image-div show": "add-image-div"}>
+                    <img index={key} className="add-image-button" src="assets/icons/plus-sign.png" alt="Add Button" onClick={this.handle_add_image_button} />
+                  </div>
+                  <textarea index={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
                   onChange={this.update_content} 
                   onKeyDown={this.key_down}
                   onFocus={this.handle_focus}
+                  onBlur={this.handle_blur}
                   placeholder={key===0?"What's on your Mind?":""}/>
-          
+                </div>
         })}
       </div> 
     )

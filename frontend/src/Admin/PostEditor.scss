@@ -12,23 +12,21 @@ $confirm-color-hover: rgb(97, 213, 255);
   background-color: $separation-color;
   .post-editor-main-col {
     margin: 3px 3px;
-    .resize-required {
+    textarea {
+      width: 100%;
+      padding: 0px;
       border: none transparent;
       outline: none;
       width: 100%;
-      height: inline;
       resize: none;
     }
     .title-row {
       padding: $padding-size $padding-size 0px $padding-size;
       font-size: 40px;
       line-height: 1.1em;
-      .p-title {
+      .plain-title {
         margin: 0px;
         padding-bottom: 1px;
-      }
-      textarea {
-        padding: 0px;
       }
     }
     .information-row {
@@ -57,7 +55,7 @@ $confirm-color-hover: rgb(97, 213, 255);
         border-bottom: solid 1px gray;
         outline: none;
         line-height: 1em;
-        width: 70%;
+        width: 45%;
       }
       .toggle-label {
         padding-right: 5px;  

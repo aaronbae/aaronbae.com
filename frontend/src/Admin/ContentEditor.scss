@@ -5,5 +5,40 @@
  * 
 */
 .content-editor-container  {
+    .content-row-container {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        .content-editor-text-area {
+            display: flex; // this is for keeping height 
+        }
+        .add-image-div {
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            left: 0px;
 
+            opacity: 0;
+            // TODO: HOW DO YOU HIDE THE BUTTON COMPLETELY?
+            //transform: translate(9999px);
+            -webkit-transition: opacity 0.2s;
+            transition: opacity 0.2s;
+        }
+        .show {
+            transform: translate(0);
+            cursor: pointer;
+            opacity: 1;
+        }
+        .add-image-button {
+            position: relative;
+            border-radius: 30px;
+            top: 1px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            border: solid 1px black;
+            background-color: white;
+
+        }
+    }
 }
