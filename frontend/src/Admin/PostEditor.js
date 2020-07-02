@@ -26,12 +26,16 @@ class PostEditor extends Component {
     super(props);
     this.enterEditMode = this.enterEditMode.bind(this);
     this.update_title = this.update_title.bind(this);
-    this.update_content = this.update_content.bind(this);
-    this.key_down = this.key_down.bind(this);
     this.update_tags = this.update_tags.bind(this);
     this.save_changes = this.save_changes.bind(this);
     this.cancel_changes = this.cancel_changes.bind(this);
     this.handle_delete_button = this.handle_delete_button.bind(this);
+
+    // Content Editor Events
+    this.update_content = this.update_content.bind(this);
+    this.key_down = this.key_down.bind(this);
+    this.handle_focus = this.handle_focus.bind(this);
+
     this.state = {
       post_update_focus_paragraph_index: 0,
       post_update_focus_character_index: 0
@@ -50,7 +54,7 @@ class PostEditor extends Component {
       e.style.height = "0px"
       e.style.height = (e.scrollHeight+1) + "px"
     })
-    // re-focus after paragraph manipulation
+    // re-focus after paragraph creation or deletion
     if ( this.props.edit_mode && this.props.index !== -1 && prevProps.posts.length > 0) {
       let post_index = this.props.index
       let current_paragraph_length = this.props.posts[post_index].content.length
@@ -137,6 +141,11 @@ class PostEditor extends Component {
       e.preventDefault() // this prevents update_content
       this.focus(paragraph_index + 1, 0)
     } 
+  }
+  handle_focus(e) {
+    if(e.target.value.length === 0){
+      //console.log("OH YEAH")
+    }
   }
 
   update_content(e) {
@@ -240,6 +249,7 @@ class PostEditor extends Component {
                 return <textarea key={key} index={key} className="resize-required content-paragraph post-editor-paragraph" value={i} 
                        onChange={this.update_content} 
                        onKeyDown={this.key_down}
+                       onFocus={this.handle_focus}
                        placeholder={key===0?"What's on your Mind?":""}/>
                 
               })}
