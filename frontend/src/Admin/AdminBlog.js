@@ -41,7 +41,7 @@ class AdminBlog extends Component {
     return (
       <div className='row admin-blog-container'>
         {this.renderRedirect()}
-        <div id="blog-column" className="col-12 col-sm-4 post-column">
+        <div id="blog-column" className="col-12 col-sm-3 post-column">
           <div className="row center post-column-title">
             <p className="h4">Recent Posts</p>
             {logged_in &&
@@ -52,7 +52,7 @@ class AdminBlog extends Component {
             <AdminPost key={index} post_id={index} />
           )}
         </div>
-        <div className="col-12 col-sm-8">
+        <div className="col-12 col-sm-9">
           <PostEditor />
         </div>
       </div>
