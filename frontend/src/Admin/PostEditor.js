@@ -185,7 +185,7 @@ class PostEditor extends Component {
         {index > -1 &&
           <div className={edit_mode ? "col post-editor-main-col hidden" : "col post-editor-main-col"}> 
             <div className="row title-row">
-              <p className="h3">{post.title}</p>
+              <p className="p-title">{post.title}</p>
             </div>
             <div className="row information-row">
               <div className="col-5 no-padding">
@@ -205,10 +205,9 @@ class PostEditor extends Component {
                 </div>
               </div>
             </div>
-            <div className="padding-row row"></div>
             <div className="row content-row">
               {post.content.map((i, key) => {
-                return <div className="content-paragraph" key={key}>{i}</div>
+                return <div className="plain-content content-paragraph" key={key}>{i}</div>
               })}
             </div>
           </div>
@@ -216,24 +215,20 @@ class PostEditor extends Component {
         {index > -1 && 
           <div className={edit_mode ? "col post-editor-main-col" : "col post-editor-main-col hidden"}>
             <div className="row title-row">
-              <textarea className="resize-required h3" value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
+              <textarea className="resize-required" value={post.title} onChange={this.update_title} placeholder="Your Title..."/>
             </div>
             <div className="row information-row">
-              <div className="col-5 no-padding">
+              <div className="col-sm-12 col-md-5 no-padding">
                 {formatted_date}
               </div>
-              <div className="col-7 no-padding">
-                <div className="float-right">
-                  <span className="tags-label">Tags : </span>
-                  <input  className="tags-input" type="text" value={post.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>
-                </div>
-              </div>
-            </div>
-            <div className="row toggle-row">
-              <div className="offset-5 col-7 no-padding">
-                <div className="float-right">
-                  <span>Public: </span> 
-                  <div className="toggle-wrapper">
+              <div className="col-sm-12 col-md-7 no-padding">
+                <div className="row">
+                  <div className="offset-md-5 col-sm-6 col-md-4">
+                    <span className="tags-label ">Tags : </span>
+                    <input  className="tags-input" type="text" value={post.tags} onChange={this.update_tags} placeholder="tag, tag, ..."/>                  
+                  </div>
+                  <div  className="col-sm-6 col-md-3">
+                    <span className="toggle-label">Public: </span> 
                     <PublicToggle />
                   </div>
                 </div>
@@ -242,7 +237,7 @@ class PostEditor extends Component {
             
             <div className="row content-row">
               {post.content.map((i, key) => {
-                return <textarea key={key} index={key} className="resize-required post-editor-paragraph" value={i} 
+                return <textarea key={key} index={key} className="resize-required content-paragraph post-editor-paragraph" value={i} 
                        onChange={this.update_content} 
                        onKeyDown={this.key_down}
                        placeholder={key===0?"What's on your Mind?":""}/>

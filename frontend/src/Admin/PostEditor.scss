@@ -21,9 +21,18 @@ $confirm-color-hover: rgb(97, 213, 255);
     }
     .title-row {
       padding: $padding-size $padding-size 0px $padding-size;
+      font-size: 40px;
+      line-height: 1.1em;
+      .p-title {
+        margin: 0px;
+        padding-bottom: 1px;
+      }
+      textarea {
+        padding: 0px;
+      }
     }
     .information-row {
-      padding: 0px $padding-size;
+      padding: 0px $padding-size ($padding-size/2) $padding-size;
       .no-padding
       {
         padding: 0px;
@@ -47,29 +56,24 @@ $confirm-color-hover: rgb(97, 213, 255);
         border: none transparent;
         border-bottom: solid 1px gray;
         outline: none;
+        line-height: 1em;
+        width: 70%;
       }
-    }
-    .padding-row {
-      height: 30px;
-    }
-    .toggle-row {
-      .no-padding {
-        padding: 0px;
-      }
-      padding: ($padding-size / 4) $padding-size ($padding-size / 2) $padding-size;
-      .toggle-wrapper {
-        padding-left: 5px;
-        display: inline-block;
-        width: 174px;
+      .toggle-label {
+        padding-right: 5px;  
       }
     }
     .content-row {
       padding: 15px 30px;
       margin-top: 3px;
+      .plain-content {
+        margin-bottom: 1px;
+      }
       .content-paragraph {
         min-height: 1.5em;
         line-height: 1.5em;
         width: 100%;
+        padding: 0px;
       }
     }
     .button-row {

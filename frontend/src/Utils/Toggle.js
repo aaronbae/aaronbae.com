@@ -28,8 +28,8 @@ class Toggle extends Component {
     return (
       <div className="public-toggle-container">
         <label className="switch" style={this.state.style_object}>
-          <input type="checkbox" checked={this.state.checked} onChange={this.state.click_behavior}/>
-          <span className="slider round"></span>
+        <input type="checkbox" checked={this.state.checked} onChange={this.state.click_behavior}/>
+        <span className="slider round"></span>
         </label>
       </div>
     )
