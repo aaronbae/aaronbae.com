@@ -12,6 +12,7 @@ const prod = {
 
 const dev = {
   DB: 'mongodb://localhost:27017/aaronbaeDB',
-  options: {useNewUrlParser: true}
+  options: {useNewUrlParser: true},
+  useUnifiedTopology: true
 };
 module.exports = process.env.NODE_ENV === "development" ? dev : prod;

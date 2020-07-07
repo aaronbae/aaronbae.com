@@ -1,13 +1,13 @@
+// Environment variables
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB');
-
-// Environment variables
-const dotenv = require('dotenv');
-dotenv.config();
 
 // Configuring different routes
 const defaultRoute = require('./routes/Default.route');
