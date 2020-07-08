@@ -1,5 +1,6 @@
 import { config } from '../Constants'
 import { 
+  update_post,
   fetch_posts, 
   add_new_post 
 } from './BlogActions'
@@ -61,6 +62,23 @@ export function viewpost(post_id) {
 }
 
 // Data Manipulating Actions
+export function upload_image(file, post, index, paragraph_index) {
+  return dispatch => {
+    var url = config.url.FILE_URL + 'upload'
+    const data = new FormData() 
+    data.append('file', file)
+    fetch(url, {
+      method: 'POST',
+      body: data
+    }).then(res => res.json())
+    .then(res => {
+      let new_content = [...post.content]
+      new_content[paragraph_index] = res.url
+      let new_post = {...post, content: [...new_content]}
+      dispatch(update_post(new_post, index))
+    })
+  }
+}
 export function create_new_post() {
   return dispatch => {
     var url = config.url.POST_URL + "add/"
