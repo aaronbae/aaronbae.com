@@ -6,6 +6,9 @@ import {
   update_post,
   remove_paragraph
 } from '../Redux/BlogActions'
+import {
+  upload_image
+} from '../Redux/AdminActions'
 
 import './ContentEditor.scss';
 
@@ -22,6 +25,8 @@ class ContentEditor extends Component {
 
     this.state = {
       focus_index: -1,
+      image_div_show: false,
+      image_div_y: 0,
       post_update_focus_paragraph_index: 0,
       post_update_focus_character_index: 0
     }
@@ -116,17 +121,22 @@ class ContentEditor extends Component {
   }
   handle_blur(e) {
     this.setState({
-      focus_index: -1
+      image_div_show: false,
     })
   }
   handle_focus(e) {
     this.setState({
-      focus_index: e.target.getAttribute('index')
+      focus_index: e.target.getAttribute("index"),
+      image_div_show: e.target.value.length === 0,
+      image_div_y: e.target.getBoundingClientRect().top - 55
     })
   }
   handle_add_image_button(e) {
-    console.log("BUTTON")
-    console.log(e.target.getAttribute('index'))
+    const { posts, index, dispatch } = this.props
+    let f = e.target.files[0]
+    if(f.type.startsWith("image")){
+      dispatch(upload_image(f, posts[index], index, this.state.focus_index))
+    }
   }
 
   update_content(e) {
@@ -137,30 +147,26 @@ class ContentEditor extends Component {
     dispatch(update_post({...posts[index], content: new_content}, index)) 
   }
 
-
-
   render() {
     const { index, posts } = this.props
-    let post = {content: []}
-    if( index !== -1 ) {
-      post = posts[index]
-    }
+    let post = index !== -1? posts[index]: {content: []}
     return (
       <div className="row content-editor-container content-row ">
+        <div className="add-image-div" style={{top: this.state.image_div_y + "px" }}>
+          <input type="file" name="file" className="file-selector" id="file-selector" onChange={this.handle_add_image_button}/>
+          <label htmlFor="file-selector" className={this.state.image_div_show ? "add-file-label show":"add-file-label"}>
+            <img className="add-file-img" src="assets/icons/plus-sign.png" alt="Add Button"/>
+          </label>
+        </div>
         {post.content.map((i, key) => {
           // post-editor-paragrph : used to manage focusing
           // content-paragraph    : used to match style with paragraphs in PostEditor
-          return <div key={key} className="content-row-container">
-                  <div className={parseInt(this.state.focus_index) === key && i.length === 0? "add-image-div show": "add-image-div"}>
-                    <img index={key} className="add-image-button" src="assets/icons/plus-sign.png" alt="Add Button" onClick={this.handle_add_image_button} />
-                  </div>
-                  <textarea index={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
+          return <textarea key={key} index={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
                   onChange={this.update_content} 
                   onKeyDown={this.key_down}
                   onFocus={this.handle_focus}
                   onBlur={this.handle_blur}
                   placeholder={key===0?"What's on your Mind?":""}/>
-                </div>
         })}
       </div> 
     )
