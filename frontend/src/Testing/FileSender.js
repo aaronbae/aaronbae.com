@@ -29,10 +29,11 @@ class FileSender extends Component {
   render() {
     return (
       <div className="row sender-container">
-        <input type="file" name="file" onChange={this.onChangeHandler} style={{
+        <input type="file" id="file" name="file" onChange={this.onChangeHandler} style={{
           border: "solid 1px black",
           width:"100%", 
           marginBottom: "2px"}}/>
+        <label htmlFor="file">SHIT</label>
         <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
       </div>
     );
