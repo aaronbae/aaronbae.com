@@ -11,6 +11,6 @@ export function isMyImageURL(str) {
   return str.startsWith("https://aaronbaebucket.s3") && (str.endsWith("jpg") || str.endsWith("png"))
 }
 export function convertMyImageURL(str) {
-  let re = new RegExp('https:\/\/aaronbaebucket\.s3\..*\/')
+  let re = new RegExp('https://aaronbaebucket.s3..*/')
   return str.replace(re, "https://www.aaronbae.com/api/files/") 
 }
