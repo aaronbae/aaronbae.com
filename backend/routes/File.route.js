@@ -80,7 +80,7 @@ fileRoutes.route('/:image_name').get(function (req, res) {
       return res.status(500).send(err)
     }
     else {
-      console.log(`Success in getching image ${params.Key}`)
+      console.log(`Success in fetching image ${params.Key}`)
       return res.status(200).send(data.Body)
     }
   })
