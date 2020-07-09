@@ -29,7 +29,8 @@ $confirm-color-hover: rgb(97, 213, 255);
       flex-direction: column;
       // This must be the same as the PostEditor
       .aws-image {
-        width: 70%;
+        max-width:100%;
+        height: auto;
         display: block;
         margin-left: auto;
         margin-right: auto;
