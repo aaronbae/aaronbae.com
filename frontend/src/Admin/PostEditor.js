@@ -16,6 +16,11 @@ import {
 } from '../Redux/AdminActions'
 
 
+import { 
+  isMyImageURL,
+  convertMyImageURL
+} from '../Utils/HelperFunctions';
+
 import PublicToggle from './PublicToggle';
 import ContentEditor from './ContentEditor';
 import './PostEditor.scss';
@@ -112,7 +117,11 @@ class PostEditor extends Component {
             </div>
             <div className="row content-row">
               {post.content.map((i, key) => {
-                return <div className="plain-content content-paragraph" key={key}>{i}</div>
+                if(isMyImageURL(i)){
+                  return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+                } else {
+                  return <div className="plain-content content-paragraph" key={key}>{i}</div>
+                }
               })}
             </div>
           </div>

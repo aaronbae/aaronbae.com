@@ -6,6 +6,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetch_post_by_id } from '../Redux/BlogActions'
 
+import { 
+  isMyImageURL,
+  convertMyImageURL
+} from '../Utils/HelperFunctions';
+
 import './PostViewer.scss';
 
 class PostViewer extends Component {  
@@ -49,7 +54,12 @@ class PostViewer extends Component {
             </div>
             <div className="row viewer-content-row">
               {thisPost.content.map((i, key) => {
-                return <div className="content-paragraph" key={key}>{i}</div>
+                if(isMyImageURL(i)){
+                  return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+                }
+                else {
+                  return <div className="content-paragraph" key={key}>{i}</div>
+                }
               })}
             </div>
           </div>

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { 
+  isMyImageURL,
+  convertMyImageURL
+} from '../Utils/HelperFunctions';
 import {
   add_new_paragraph,
   update_post,
@@ -159,14 +163,20 @@ class ContentEditor extends Component {
           </label>
         </div>
         {post.content.map((i, key) => {
-          // post-editor-paragrph : used to manage focusing
-          // content-paragraph    : used to match style with paragraphs in PostEditor
-          return <textarea key={key} index={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
-                  onChange={this.update_content} 
-                  onKeyDown={this.key_down}
-                  onFocus={this.handle_focus}
-                  onBlur={this.handle_blur}
-                  placeholder={key===0?"What's on your Mind?":""}/>
+          if(isMyImageURL(i)){
+            return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+          }
+          else {
+            // post-editor-paragrph : used to manage focusing
+            // content-paragraph    : used to match style with paragraphs in PostEditor
+            return <textarea key={key} index={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
+                    onChange={this.update_content} 
+                    onKeyDown={this.key_down}
+                    onFocus={this.handle_focus}
+                    onBlur={this.handle_blur}
+                    placeholder={key===0?"What's on your Mind?":""}/>
+          }
+          
         })}
       </div> 
     )

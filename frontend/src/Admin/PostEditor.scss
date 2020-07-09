@@ -64,6 +64,13 @@ $confirm-color-hover: rgb(97, 213, 255);
     .content-row {
       padding: 15px 30px;
       margin-top: 3px;
+      // This also affects ContentEditor's Images
+      .aws-image {
+        width: 70%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
       .plain-content {
         margin-bottom: 1px;
       }
