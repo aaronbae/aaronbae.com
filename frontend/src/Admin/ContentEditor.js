@@ -172,11 +172,15 @@ class ContentEditor extends Component {
     })
   }
   handle_focus(e) {
-    this.setState({
-      focus_index: e.target.getAttribute("index"),
-      image_div_show: e.target.value.length === 0,
-      image_div_y: e.target.getBoundingClientRect().top - 55
-    })
+    if(e.target.nodeName==="TEXTAREA"){
+      this.setState({
+        focus_index: e.target.getAttribute("index"),
+        image_div_show: e.target.value.length === 0,
+        image_div_y: e.target.getBoundingClientRect().top - 55
+      })
+    } else {
+      this.setState({ image_div_show: false })
+    }
   }
   handle_add_image_button(e) {
     const { posts, index, dispatch } = this.props
@@ -208,7 +212,9 @@ class ContentEditor extends Component {
         {post.content.map((i, key) => {
           if(isMyImageURL(i)){
             return <div key={key} index={key} tabIndex={key} className="post-editor-paragraph aws-image-wrapper-in-content-editor" 
-                    onKeyDown={this.image_key_down} > 
+                    onKeyDown={this.image_key_down} 
+                    onBlur={this.handle_blur}
+                    onFocus={this.handle_focus}> 
                     <img className="aws-image " src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
                   </div>
           }
