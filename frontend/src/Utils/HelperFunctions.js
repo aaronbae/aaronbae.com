@@ -8,8 +8,9 @@ export function format_date(date_string) {
 }
 export function isMyImageURL(str) {
   str = str.toLowerCase()
-  return str.startsWith("https://aaronbaebucket.s3.amazonaws.com/") && (str.endsWith("jpg") || str.endsWith("png"))
+  return str.startsWith("https://aaronbaebucket.s3") && (str.endsWith("jpg") || str.endsWith("png"))
 }
 export function convertMyImageURL(str) {
-  return str.replace("https://aaronbaebucket.s3.amazonaws.com/", "https://www.aaronbae.com/api/files/") 
+  let re = new RegExp('https:\/\/aaronbaebucket\.s3\..*\/')
+  return str.replace(re, "https://www.aaronbae.com/api/files/") 
 }
