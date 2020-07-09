@@ -27,6 +27,8 @@ class ContentEditor extends Component {
     this.handle_blur = this.handle_blur.bind(this);
     this.handle_add_image_button = this.handle_add_image_button.bind(this);
 
+    this.image_key_down = this.image_key_down.bind(this);
+
     this.state = {
       focus_index: -1,
       image_div_show: false,
@@ -37,9 +39,14 @@ class ContentEditor extends Component {
   }
   focus(paragraph, character) {
     let needs_focus = document.getElementsByClassName("post-editor-paragraph")[paragraph] 
-    character = Math.min(character, needs_focus.innerHTML.length)
+    console.log("FOCUS")
+    let temp = document.getElementsByClassName("post-editor-paragraph")
+    console.log("[ "+ paragraph + " / " +(temp.length.toString())+ " ]")
     needs_focus.focus()
-    needs_focus.setSelectionRange(character,character)
+    if(needs_focus.nodeName==="TEXTAREA"){
+      character = Math.min(character, needs_focus.innerHTML.length)
+      needs_focus.setSelectionRange(character,character)
+    } 
   }
 
   componentDidUpdate(prevProps) {
@@ -51,11 +58,47 @@ class ContentEditor extends Component {
       e.style.height = "0px"
       e.style.height = (e.scrollHeight+1) + "px"
     })
+    console.log("UPDATE")
+    console.log(prev_posts[index].content.length + " > " + posts[index].content.length)
     // re-focus after paragraph creation or deletion
     if ( edit_mode && index !== -1 && prev_posts.length > 0 
                   && posts[index].content.length !== prev_posts[index].content.length) {
       this.focus(this.state.post_update_focus_paragraph_index, this.state.post_update_focus_character_index)
     }
+  }
+  image_key_down(e) {
+    const { posts, dispatch, index } = this.props
+    let num_paragraphs = parseInt(posts[index].content.length)
+    let paragraph_index = parseInt(e.target.getAttribute("index"))
+    
+    if(e.key === "Enter"){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      dispatch(add_new_paragraph(index, paragraph_index, ""))  
+      this.setState({
+        post_update_focus_paragraph_index: paragraph_index + 1,
+        post_update_focus_character_index: 0
+      })    
+    } 
+    else if(e.key === "Backspace" || e.key === "Delete"){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      dispatch(remove_paragraph(index, paragraph_index)) 
+      this.setState({
+        post_update_focus_paragraph_index: paragraph_index < num_paragraphs ? paragraph_index : Math.max(0, paragraph_index - 1),
+        post_update_focus_character_index: 0
+      })    
+    } 
+    else if (e.key === "ArrowUp" && paragraph_index > 0){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      this.focus(paragraph_index - 1, 0)
+    } 
+    else if (e.key === "ArrowDown" && paragraph_index < num_paragraphs - 1){
+      e.stopPropagation();
+      e.preventDefault() // this prevents update_content
+      this.focus(paragraph_index + 1, 0)
+    } 
   }
 
   key_down(e) {
@@ -159,17 +202,20 @@ class ContentEditor extends Component {
         <div className="add-image-div" style={{top: this.state.image_div_y + "px" }}>
           <input type="file" name="file" className="file-selector" id="file-selector" onChange={this.handle_add_image_button}/>
           <label htmlFor="file-selector" className={this.state.image_div_show ? "add-file-label show":"add-file-label"}>
-            <img className="add-file-img" src="assets/icons/plus-sign.png" alt="Add Button"/>
+            <img className="add-file-img" src="assets/icons/plus-sign.png" alt="Add Button" />
           </label>
         </div>
         {post.content.map((i, key) => {
           if(isMyImageURL(i)){
-            return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+            return <div key={key} index={key} tabIndex={key} className="post-editor-paragraph aws-image-wrapper-in-content-editor" 
+                    onKeyDown={this.image_key_down} > 
+                    <img className="aws-image " src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+                  </div>
           }
           else {
             // post-editor-paragrph : used to manage focusing
             // content-paragraph    : used to match style with paragraphs in PostEditor
-            return <textarea key={key} index={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
+            return <textarea key={key} index={key} tabIndex={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
                     onChange={this.update_content} 
                     onKeyDown={this.key_down}
                     onFocus={this.handle_focus}
