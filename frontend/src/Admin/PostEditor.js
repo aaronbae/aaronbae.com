@@ -37,6 +37,9 @@ class PostEditor extends Component {
 
     this.title_input_ref = React.createRef();
   }
+  componentDidMount() {
+    window.scrollTo(0, 0) // Need to scroll to top if coming from /blog
+  }
   componentDidUpdate() {
     // Resize title
     let dom = this.title_input_ref.current
