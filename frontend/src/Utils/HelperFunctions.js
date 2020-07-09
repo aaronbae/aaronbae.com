@@ -6,3 +6,10 @@ export function format_date(date_string) {
   var result = days[corrected_d.getDay()] + ", " + month[corrected_d.getMonth()]+" "+corrected_d.getDate()+", "+corrected_d.getFullYear()
   return result
 }
+export function isMyImageURL(str) {
+  str = str.toLowerCase()
+  return str.startsWith("https://aaronbaebucket.s3.amazonaws.com/") && (str.endsWith("jpg") || str.endsWith("png"))
+}
+export function convertMyImageURL(str) {
+  return str.replace("https://aaronbaebucket.s3.amazonaws.com/", "https://www.aaronbae.com/api/files/") 
+}
