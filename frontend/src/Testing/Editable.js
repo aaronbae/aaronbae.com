@@ -44,6 +44,8 @@ class Editable extends Component {
     return (
       <div className="row">
         <div className="col" id="editable-container">
+          <p className="row " contentEditable={true}></p>
+          <p className="row " contentEditable={true}></p>
           {rows.map((item, index) => 
               <div key={index}
                 tabIndex={index}
