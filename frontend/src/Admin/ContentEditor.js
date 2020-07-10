@@ -39,9 +39,7 @@ class ContentEditor extends Component {
   }
   focus(paragraph, character) {
     let needs_focus = document.getElementsByClassName("post-editor-paragraph")[paragraph] 
-    console.log("FOCUS")
     let temp = document.getElementsByClassName("post-editor-paragraph")
-    console.log("[ "+ paragraph + " / " +(temp.length.toString())+ " ]")
     needs_focus.focus()
     if(needs_focus.nodeName==="TEXTAREA"){
       character = Math.min(character, needs_focus.innerHTML.length)
@@ -58,11 +56,9 @@ class ContentEditor extends Component {
       e.style.height = "0px"
       e.style.height = (e.scrollHeight+1) + "px"
     })
-    console.log("UPDATE")
-    console.log(prev_posts[index].content.length + " > " + posts[index].content.length)
     // re-focus after paragraph creation or deletion
     if ( edit_mode && index !== -1 && prev_posts.length > 0 
-                  && posts[index].content.length !== prev_posts[index].content.length) {
+      && posts[index].content.length !== prev_posts[index].content.length) {
       this.focus(this.state.post_update_focus_paragraph_index, this.state.post_update_focus_character_index)
     }
   }
@@ -172,13 +168,15 @@ class ContentEditor extends Component {
     })
   }
   handle_focus(e) {
+    // check to show image tooltip
     if(e.target.nodeName==="TEXTAREA"){
       this.setState({
         focus_index: e.target.getAttribute("index"),
         image_div_show: e.target.value.length === 0,
-        image_div_y: e.target.getBoundingClientRect().top - 55
+        image_div_y: e.target.offsetTop
       })
     } else {
+      // Don't show when focus is set on image
       this.setState({ image_div_show: false })
     }
   }
@@ -202,7 +200,7 @@ class ContentEditor extends Component {
     const { index, posts } = this.props
     let post = index !== -1? posts[index]: {content: []}
     return (
-      <div className="row content-editor-container content-row ">
+      <div className="row content-editor-container content-row">
         <div className="add-image-div" style={{top: this.state.image_div_y + "px" }}>
           <input type="file" name="file" className="file-selector" id="file-selector" onChange={this.handle_add_image_button}/>
           <label htmlFor="file-selector" className={this.state.image_div_show ? "add-file-label show":"add-file-label"}>
