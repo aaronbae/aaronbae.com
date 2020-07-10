@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { format_date } from '../Utils/HelperFunctions';
 import { withRouter } from 'react-router-dom';
 
+import { 
+  isMyImageURL
+} from '../Utils/HelperFunctions';
+
 // Redux handlers
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -59,12 +63,13 @@ function mapStateToProps(state, ownProps) {
   const { edit_mode, selected_post } = state.AdminReducer
   const { posts } = state.BlogReducer
   let this_post = posts[ownProps.post_id]
+  let summary = this_post.content.filter(x => !isMyImageURL(x)).join(" ").substring(0, 100) + "..."
   return {
     edit_mode: edit_mode,
     selected_post: selected_post,
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,
-    summarized_content: this_post.content.join(" ").substring(0, 100) + "...",
+    summarized_content: summary,
     public_flag: this_post.public
   }
 }
