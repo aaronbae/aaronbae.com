@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB');
+const Sentry = require('@sentry/node');
 
 // Configuring different routes
 const defaultRoute = require('./routes/Default.route');
@@ -24,13 +25,23 @@ mongoose.connect(config.DB, config.options).then(
 
 // Configuring the backend app
 const app = express();
+Sentry.init({ dsn: 'https://c7f35c6182a34d129374dc31f77ae3b5@o418535.ingest.sentry.io/5322885' });
+app.use(Sentry.Handlers.requestHandler()); // The request handler must be the first middleware on the app
 app.use(bodyParser.json());
 app.use(cors());
+
+// Routes
 app.use("/", defaultRoute);
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
 app.use('/files', fileRoute);
+app.use(Sentry.Handlers.errorHandler());
 const port = process.env.PORT || 4000;
+
+// Sentry-testing
+app.get('/debug-sentry', function mainHandler(req, res) {
+    throw new Error('My first Sentry error!');
+  });
 
 const server = app.listen(port, function(){
     console.log('Listening on port ' + port);
