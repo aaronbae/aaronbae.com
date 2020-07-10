@@ -39,7 +39,6 @@ class ContentEditor extends Component {
   }
   focus(paragraph, character) {
     let needs_focus = document.getElementsByClassName("post-editor-paragraph")[paragraph] 
-    let temp = document.getElementsByClassName("post-editor-paragraph")
     needs_focus.focus()
     if(needs_focus.nodeName==="TEXTAREA"){
       character = Math.min(character, needs_focus.innerHTML.length)
