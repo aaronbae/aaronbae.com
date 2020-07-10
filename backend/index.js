@@ -38,11 +38,6 @@ app.use('/files', fileRoute);
 app.use(Sentry.Handlers.errorHandler());
 const port = process.env.PORT || 4000;
 
-// Sentry-testing
-app.get('/debug-sentry', function mainHandler(req, res) {
-    throw new Error('My first Sentry error!');
-  });
-
 const server = app.listen(port, function(){
     console.log('Listening on port ' + port);
 });
