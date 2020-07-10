@@ -7,6 +7,7 @@ export function format_date(date_string) {
   return result
 }
 export function isMyImageURL(str) {
+  if(!str) return false
   str = str.toLowerCase()
   return str.startsWith("https://aaronbaebucket.s3") && (str.endsWith("jpg") || str.endsWith("png"))
 }
