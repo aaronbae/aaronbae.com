@@ -218,7 +218,8 @@ class ContentEditor extends Component {
           else {
             // post-editor-paragrph : used to manage focusing
             // content-paragraph    : used to match style with paragraphs in PostEditor
-            return <textarea key={key} index={key} tabIndex={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" value={i} 
+            return <textarea key={key} index={key} tabIndex={key} className="content-editor-text-area resize-required post-editor-paragraph content-paragraph" 
+                    value={i} 
                     onChange={this.update_content} 
                     onKeyDown={this.key_down}
                     onFocus={this.handle_focus}
