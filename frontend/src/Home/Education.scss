@@ -1,11 +1,13 @@
 
-// Main Panel
 .total-section {
   .content-section {
-    // Education
-    .education-img {
-      max-width: 150px; 
-      width: 100%;
+    .education-img-wrapper {
+        margin-top: 10px;
+        margin-bottom: 20px;
+      .education-img {
+        max-width: 150px; 
+        width: 100%;
+      }
     }
     .education-bullets {
       margin-left: 16px;

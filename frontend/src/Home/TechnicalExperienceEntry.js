@@ -16,24 +16,20 @@ class TechnicalExperienceEntry extends Component {
   render() {
     return (
       <div className="row individual-experience">
-        <div className="col logo-col no-padding center">
-          <div className="logo-wrapper">
-            <img src={this.state.logo} alt={this.state.logo_alt} className="company-logo" />
-          </div>
-        </div>
-        <div className="col experience-col">
+        <div className="col">
           <div className="row experience-title">
-            <div><span className="h5">{this.state.position}</span></div>
-            <div className="support-info ml-auto">
-              <span>- {this.state.company}</span>
-              <span className="float-right">{this.state.date_formatted}</span>
+            <img className="company-logo" src={this.state.logo} alt={this.state.logo_alt} />
+            <div className="company-info-wrapper">
+              <span className="h5 position-title-span">{this.state.position}</span>
+              <span className="time-worked-span">{this.state.date_formatted}</span>
+              <span className="company-name-span">{this.state.company}</span>
             </div>
           </div>
-          <div className="row">
+          <div className="row experience-description">
             {this.state.roles.map((item, index)=> {
               return (
                 <div key={index}>
-                  <p className="h6">{item.title}:</p>
+                  <p className="role-title">{item.title}:</p>
                   <p>{item.description}</p>
                 </div>
               )

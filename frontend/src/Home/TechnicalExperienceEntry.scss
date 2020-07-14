@@ -1,38 +1,60 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
 .individual-experience {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
-  .no-padding {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .logo-col {
-    -ms-flex: 0 0 50px;
-    flex: 0 0 50px;
-    .logo-wrapper {
-      height: 50px;
-      justify-content: center;
-      display: flex;
-    }
+  margin-bottom: 20px;
+
+  .experience-title {
     .company-logo {
-      width: 50px;
-      margin: auto;
-      padding-right: 5px;
+      position: absolute;
+      width: 55px;
+      left: 7px;
+      padding-top: 5px;
     }
-  }
-  .experience-col {
-    padding-left: 30px;
-    .experience-title {
-      padding-top: 15px;
-      padding-bottom: 10px;
-      span {   
-        white-space: nowrap;
+    .company-info-wrapper {
+      padding: 10px 0px;
+      width: 100%;
+      margin-left: 80px;
+      span {
+        float: left;
+        line-height: 15px;
+        margin: 5px 0px;
       }
-      .support-info {
-        flex-grow: 1;
+      .time-worked-span {
+        float: right;
         color: gray;
       }
+      .company-name-span {
+        clear: left;
+      }
+      @include media-breakpoint-down(xs) {
+        .company-logo {
+          padding-top: 8px;
+        }
+        span {        
+          margin: 1px 0px;
+        }
+        .time-worked-span {
+          float: left;
+          clear: left;
+        }
+        .position-title-span {
+          font-size: 18px;
+          line-height: 20px;
+        }
+        .company-name-span, .time-worked-span {
+          font-size: 15px;
+        }
+      }
+
+    }
+  }
+  .experience-description {
+    .role-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 1px;
     }
   }
 }

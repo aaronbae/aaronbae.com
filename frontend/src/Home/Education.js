@@ -12,7 +12,7 @@ class Intro extends Component {
           <div className="row">
             <div className="col">
               <div className="row content-section">
-                <div className="col-md-12 col-lg-3 center">
+                <div className="col-md-12 col-lg-3 center education-img-wrapper">
                   <img className="education-img" src="assets/uci_seal_500.png" alt="University of California Irvine" />
                 </div>
                 <div className="col-md-12 col-lg-9">
@@ -26,7 +26,7 @@ class Intro extends Component {
                 </div>
               </div>
               <div className="row content-section">
-                <div className="col-md-12 col-lg-3 center">
+                <div className="col-md-12 col-lg-3 center education-img-wrapper">
                   <img className="education-img" src="assets/uw_seal_500.jpg" alt="University of Washington" />
                 </div>
                 <div className="col-md-12 col-lg-9">

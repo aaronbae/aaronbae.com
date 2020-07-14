@@ -1,62 +1,63 @@
-
 @import '~bootstrap/scss/_functions';
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 
-.side-panel {
-  .row-spacer {
-    height: 10px;
-  }
-  .profile-img {
-    max-width: 200px;
-    max-height: 300px;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin: 0px auto;
-    padding-right: 10px;
-  }
-
-  @include media-breakpoint-up(xs) {
-    .my-name {
-      font-size: 15pt;
+#introduction-container {
+  .introduction-content-row {
+    padding-top: 10px;
+    .profile-img {
+      max-width: 200px;
+      max-height: 300px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      margin: 0px auto;
+    }
+    #bio-info {
+      @include media-breakpoint-up(xs) {
+        .my-name {
+          font-size: 15pt;
+        }
+      }
+      @include media-breakpoint-up(md) {
+        .my-name {
+          font-size: 25pt;
+        }
+        .bio-one-liner {
+          font-size: 12pt;
+        }
+      }
+      @include media-breakpoint-up(lg) {
+        .my-name {
+          font-size: 15pt;
+        }
+        .bio-one-liner {
+          font-size: 10pt;
+        }
+      }
+      .bio-one-liner {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+    }
+    #link-info {
+      @include media-breakpoint-up(lg) {
+        a > .external-link-icon {
+          margin: 0px 10px 0px 10px;
+        }
+      }
+      .external-link-icon {
+        width: 40px;
+        height: 40px;
+        margin: 0px 20px 0px 20px;
+      }
     }
   }
-  @include media-breakpoint-up(md) {
-    .my-name {
-      font-size: 25pt;
-    }
-    .bio-one-liner {
-      font-size: 12pt;
-    }
-  }
-  @include media-breakpoint-up(lg) {
-    .my-name {
-      font-size: 15pt;
-    }
-    .bio-one-liner {
-      font-size: 10pt;
-    }
-    a > .external-link-icon {
-      margin: 0px 10px 0px 10px;
-    }
-  }
-  .bio-one-liner {
-    margin-top: 2px;
-    margin-bottom: 2px;
-  }
-
-  .external-link-icon {
-    width: 40px;
-    height: 40px;
-    margin: 0px 20px 0px 20px;
-  }
-
 }
 
 // Side Panel
 @include media-breakpoint-up(lg) {
-  .side-panel {
+  #introduction-container {
     border-right: solid black 1px;
   }
 }
