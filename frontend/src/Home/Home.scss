@@ -1,46 +1,22 @@
 @import '../Common/design.scss';
-@import '~bootstrap/scss/_functions';
-@import '~bootstrap/scss/_variables';
-@import '~bootstrap/scss/mixins/_breakpoints';
-
 
 // All Panels
-.all-home-container {
-
+.home-container {
   max-width: 1500px;
   margin-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 20px;
-
-  // Main
-
-  body {
-    color: $primary-color;
-    font-size: 1em;
-  }
-
-  ul {
-    width: 100%;
-  }
-
-  .round {
-    border-radius: 40px;
-  }
-
-  .roundEasy {
-    border-radius: 20px;
-  }
-
-  .picture-shadow {
-    box-shadow: 5px 5px 5px grey;
-  }
-
-  .center {
-    text-align: center;
-    * {
-      margin: 0px auto;
-    }
-  }
 }
 
+// Main Panel
+.total-section {
+  padding-left: 15px;
+  .title-section {
+    border-bottom: solid black 1px;
+  }
+  .content-section {
+    padding-top: 10px;   
+    padding-bottom: 10px; 
+  }
+}

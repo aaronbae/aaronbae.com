@@ -58,10 +58,6 @@ class Header extends Component {
                   <RedirectButton addClasses="navlink adminButton" message="Admin" route="/login" />
                 }
               </div>
-              <div className="tab line"></div>
-              <div className={path==="/about"?"tab active":"tab"}>
-                <RedirectButton addClasses="navlink" message="About" route="/about" />
-              </div>
             </div>
             <div className="d-block d-sm-none dropdown-container">
               <div className="dropdown">
@@ -71,7 +67,6 @@ class Header extends Component {
                 <div className="dropdown-menu dropdown-menu-right" >
                   <RedirectButton addClasses="dropdown-item" message="Home" route="/" />
                   <RedirectButton addClasses="dropdown-item" message="Blog" route="/blog" />
-                  <RedirectButton addClasses="dropdown-item" message="About" route="/about" />
                   <div className="dropdown-divider"></div>
                   <RedirectButton addClasses="dropdown-item" message="Admin" route="/login" />
                 </div>

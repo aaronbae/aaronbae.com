@@ -12,3 +12,14 @@ div, p, ul, ol {
 .bounded, .bounded * {
   border: solid 1px black;
 }
+
+
+.round {
+  border-radius: 40px;
+}
+.center {
+  text-align: center;
+  * {
+    margin: 0px auto;
+  }
+}
