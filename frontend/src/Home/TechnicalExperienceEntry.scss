@@ -3,8 +3,7 @@
 @import '~bootstrap/scss/mixins/_breakpoints';
 
 .individual-experience {
-  margin-bottom: 20px;
-
+  margin: 0px 10px 20px 10px;
   .experience-title {
     .company-logo {
       position: absolute;
@@ -29,9 +28,6 @@
         clear: left;
       }
       @include media-breakpoint-down(xs) {
-        .company-logo {
-          padding-top: 8px;
-        }
         span {        
           margin: 1px 0px;
         }

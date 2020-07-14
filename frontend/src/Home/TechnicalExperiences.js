@@ -20,12 +20,12 @@ class TechnicalExperiences extends Component {
                 date_formatted="March 2020 - Present"
                 roles={[
                   {title: "Professor Padhraic Smyth Research Team",
-                  description: "As a graduate researcher for Professor Padhraic Smyth, I am working "
-                  +"on ways to analyze dialogue dataset. Datasets like Switchboard Corpus and ICSI "
-                  +"Meeting Recording Corpus contains a turn-by-turn grouped utterances along with "
-                  +"semantic annotations. The goal of the project is to analyze this conversational"
-                  +"dataset to identify questions in any group conversations and possibly classify"
-                  +"person-to-person dynamics like leadership qualities."}]}
+                  description: "As a graduate researcher for Professor Padhraic Smyth, I am working \
+                  on ways to analyze dialogue dataset. Datasets like Switchboard Corpus and ICSI \
+                  Meeting Recording Corpus contains a turn-by-turn grouped utterances along with \
+                  semantic annotations. The goal of the project is to analyze this conversational\
+                  dataset to identify questions in any group conversations and possibly classify\
+                  person-to-person dynamics like leadership qualities."}]}
               /> 
               <TechnicalExperienceEntry 
                 logo="assets/icons/uw_logo.png"
@@ -36,20 +36,20 @@ class TechnicalExperiences extends Component {
                 roles={[
                   {
                     title: "Washington Experimental Mathematics Lab",
-                    description: "I was invited to work with Professor Christopher Hoffman to "
-                    +"participate on his Mathematics in Gerrymandering Project. He works to analyze "
-                    +"search the state space for the ways to draw out the districts. We used C++ and "
-                    +"Python as the engine of the project, and built NodeJS servers to distribute, "
-                    +"visualize, and explain the political data we mined."
+                    description: "I was invited to work with Professor Christopher Hoffman to \
+                    participate on his Mathematics in Gerrymandering Project. He works to analyze \
+                    search the state space for the ways to draw out the districts. We used C++ and \
+                    Python as the engine of the project, and built NodeJS servers to distribute, \
+                    visualize, and explain the political data we mined."
                   },
                   {
                     title: "Assitantship to Emisa Nateigh, Ph.D",
-                    description: "As a lab assistant to Emisa Nateigh, a Ph.D student at the "
-                    +"University of Washington Foster School of business, I helped to create a "
-                    +"machine learning system to perform Multi-Tasking Gaussian Process learning "
-                    +"algorithm on the collected medical data. Mainly, used Python and NumPy to "
-                    +"carry out the statistical process. Used MatplotLib and D3.js to visualize the"
-                    +"information."
+                    description: "As a lab assistant to Emisa Nateigh, a Ph.D student at the \
+                    University of Washington Foster School of business, I helped to create a \
+                    machine learning system to perform Multi-Tasking Gaussian Process learning \
+                    algorithm on the collected medical data. Mainly, used Python and NumPy to \
+                    carry out the statistical process. Used MatplotLib and D3.js to visualize the\
+                    information."
                   }
                 ]}
               /> 
@@ -62,10 +62,10 @@ class TechnicalExperiences extends Component {
                 roles={[
                   {
                     title: "Backend Server Development Team",
-                    description: "Continuing my intersets in backend web development, I worked with a" 
-                    +"University of Washington alumn who was starting a company called Dapper. The "
-                    +"company needed a basic web based platform to launch their project, and I helped"
-                    +"them by creating an AWS server to handle their client traffic."
+                    description: "Continuing my intersets in backend web development, I worked with a \
+                    University of Washington alumn who was starting a company called Dapper. The \
+                    company needed a basic web based platform to launch their project, and I helped\
+                    them by creating an AWS server to handle their client traffic."
                   }
                 ]}
               /> 
@@ -78,16 +78,16 @@ class TechnicalExperiences extends Component {
                 roles={[
                   {
                     title: "Frontend Developer",
-                    description: "As a frontend developer, I worked on improving CrowdCow's private"
-                      +" e-commerce platform by changing the client purchase UI pipeline. Also, "
-                      +"worked on various features like in-house data visualization dashboard that "
-                      +"displays company statistics."
+                    description: "As a frontend developer, I worked on improving CrowdCow's private\
+                       e-commerce platform by changing the client purchase UI pipeline. Also, \
+                      worked on various features like in-house data visualization dashboard that \
+                      displays company statistics."
                   },
                   {
                     title: "Backend Developer",
-                    description: "As a backend developer, I worked on middlman the information "
-                      +"between the database and the client servers. Main technologies that I used "
-                      +"were MySQL, Ruby on Rails, Git, Budler, RuboCop, Stripe, and Puma."
+                    description: "As a backend developer, I worked on middlman the information \
+                      between the database and the client servers. Main technologies that I used \
+                      were MySQL, Ruby on Rails, Git, Budler, RuboCop, Stripe, and Puma."
                   }
                 ]}
               /> 
