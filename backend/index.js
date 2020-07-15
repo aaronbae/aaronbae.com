@@ -19,7 +19,10 @@ const fileRoute = require('./routes/File.route');
 // Configuring Mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, config.options).then(
-    () => {console.log('Database is connected') },
+    () => {
+      console.log(config.DB)
+      console.log('Database is connected') 
+    },
     err => { console.log('Cannot connect to the database\n'+ err)}
 );
 
