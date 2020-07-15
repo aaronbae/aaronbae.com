@@ -12,11 +12,13 @@
     "node-sass": "^4.14.1",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
+    "react-document-meta": "^3.0.0-beta.2",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-redux": "^4.0.8",
     "react-scripts": "^3.4.1",
+    "react-share": "^4.2.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
