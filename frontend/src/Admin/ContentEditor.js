@@ -65,7 +65,6 @@ class ContentEditor extends Component {
     const { posts, dispatch, index } = this.props
     let num_paragraphs = parseInt(posts[index].content.length)
     let paragraph_index = parseInt(e.target.getAttribute("index"))
-    
     if(e.key === "Enter"){
       e.stopPropagation();
       e.preventDefault() // this prevents update_content
@@ -192,6 +191,9 @@ class ContentEditor extends Component {
     const { dispatch, posts, index } = this.props
     var new_content = [...posts[index].content]
     new_content[e.target.getAttribute("index")] = e.target.value
+    this.setState({
+      image_div_show: e.target.value.length === 0
+    })
     dispatch(update_post({...posts[index], content: new_content}, index)) 
   }
 
