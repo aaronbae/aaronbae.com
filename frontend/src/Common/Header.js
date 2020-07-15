@@ -66,9 +66,20 @@ class Header extends Component {
                 </button>
                 <div className="dropdown-menu dropdown-menu-right" >
                   <RedirectButton addClasses="dropdown-item" message="Home" route="/" />
-                  <RedirectButton addClasses="dropdown-item" message="Blog" route="/blog" />
+                  {logged_in && 
+                    <RedirectButton addClasses="dropdown-item" message="Blog" route="/admin" />
+                  }
+                  {!logged_in &&
+                    <RedirectButton addClasses="dropdown-item" message="Blog" route="/blog" />
+                  }
+                
                   <div className="dropdown-divider"></div>
-                  <RedirectButton addClasses="dropdown-item" message="Admin" route="/login" />
+                  {logged_in && 
+                    <button className="dropdown-item" onClick={this.handleLogOut}>Sign Out</button>
+                  }
+                  {!logged_in &&
+                    <RedirectButton addClasses="dropdown-item" message="Admin" route="/login" />
+                  }
                 </div>
               </div>
             </div>  
