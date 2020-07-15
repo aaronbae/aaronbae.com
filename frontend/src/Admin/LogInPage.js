@@ -33,8 +33,8 @@ class LogInPage extends Component {
     const { failed_attempt } = this.props;
     return (
       <div className='row all-signin-container'>
-        <div className="main-column col-10 col-sm-5 col-md-4">
-          <div className="form-unit">
+        <div className="main-column col-10 col-sm-5 col-md-4 ">
+          <div className="form-unit card-wrapper">
             <div className="row admin-title-row">
               <h3>Admin Access</h3>
             </div>
