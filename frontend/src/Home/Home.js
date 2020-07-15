@@ -11,7 +11,7 @@ class Home extends Component {
         <div id="introduction-container" className="center col-md-12 col-lg-3">
           <Intro />
         </div>
-        <div className="col-md-12 col-lg-9">
+        <div className="col-md 12 col-lg-8">
           <Education />
           <TechnicalExperiences />
         </div>

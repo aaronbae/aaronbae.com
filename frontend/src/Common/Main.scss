@@ -9,6 +9,7 @@ div, p, ul, ol {
 }
 .main-container {
   background-color: $main-background-color;
+  min-width: 320px;
 }
 
 // Commonly used tools
