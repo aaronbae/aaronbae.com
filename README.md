@@ -4,18 +4,23 @@
 </p>
 
 This is the source code to my personal website. Here are some basic features that I have implemented:
-1. Static Front page
-2. Ability to create and edit posts in the Blog
-3. HTTPS security 
-4. Admin login feature
+1. Home page with information about my Education and Experiences
+2. Blog post viewer
+3. Blog post editor
+4. Admin Feature (login and signout)
+5. Custom text editing component
+6. Social media share buttons
+7. Redux store to manage data
+8. HTTPS security 
 
 Here are the services that are being used to host this website:
 1. AWS EC2
 2. AWS Route53
 3. AWS IAM
-4. MongoDB
-5. Google Domains
-6. NameCheap for the SSL Certificate
+4. AWS S3
+5. MongoDB
+6. Google Domains
+7. NameCheap for the SSL Certificate
 
 Here is the Tech Stack specifics:
 1. NodeJS
