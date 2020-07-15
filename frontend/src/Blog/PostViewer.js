@@ -52,6 +52,9 @@ class PostViewer extends Component {
             <div className="row viewer-title-row">
               {thisPost.title}
             </div>
+            <div className="row viewer-media-row">
+              HOLY SHIT
+            </div>
             <div className="row viewer-content-row">
               {thisPost.content.map((i, key) => {
                 if(isMyImageURL(i)){

@@ -205,7 +205,7 @@ class ContentEditor extends Component {
         <div className="add-image-div" style={{top: this.state.image_div_y + "px" }}>
           <input type="file" name="file" className="file-selector" id="file-selector" onChange={this.handle_add_image_button}/>
           <label htmlFor="file-selector" className={this.state.image_div_show ? "add-file-label show":"add-file-label"}>
-            <img className="add-file-img" src="assets/icons/plus-sign.png" alt="Add Button" />
+            <img className="add-file-img" src="/assets/icons/plus-sign.png" alt="Add Button" />
           </label>
         </div>
         {post.content.map((i, key) => {

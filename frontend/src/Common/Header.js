@@ -62,7 +62,7 @@ class Header extends Component {
             <div className="d-block d-sm-none dropdown-container">
               <div className="dropdown">
                 <button className="btn" type="button" data-toggle="dropdown">
-                  <img className='menu-icon' src="assets/icons/hamburger_icon.png" alt="menu" />
+                  <img className='menu-icon' src="/assets/icons/hamburger_icon.png" alt="menu" />
                 </button>
                 <div className="dropdown-menu dropdown-menu-right" >
                   <RedirectButton addClasses="dropdown-item" message="Home" route="/" />

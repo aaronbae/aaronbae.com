@@ -9,13 +9,13 @@ class Footer extends Component {
           <div className='row'>
             <div className="col-12">
               <a href="https://github.com/aaronbae" title="GitHub">
-                <img src="assets/icons/github.png" alt="GitHub" className='footer-link-icon' />
+                <img src="/assets/icons/github.png" alt="GitHub" className='footer-link-icon' />
               </a>
               <a href="https://www.linkedin.com/in/aaron-bae/" title="LinkedIn">
-                <img src="assets/icons/linkedin.png" alt="LinkedIn" className='footer-link-icon' />
+                <img src="/assets/icons/linkedin.png" alt="LinkedIn" className='footer-link-icon' />
               </a>
               <a href="mailto:aaronbae@uw.edu" title="email">
-                <img src="assets/icons/gmail.png" alt="Email" className='footer-link-icon' />
+                <img src="/assets/icons/gmail.png" alt="Email" className='footer-link-icon' />
               </a>
             </div>
           </div>

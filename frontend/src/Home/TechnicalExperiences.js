@@ -14,7 +14,7 @@ class TechnicalExperiences extends Component {
           <div className="row content-section">
             <div className="col">
               <TechnicalExperienceEntry 
-                logo="assets/icons/uci.png"
+                logo="/assets/icons/uci.png"
                 logo_alt="university of california, irvine logo"
                 position="Graduate Student Researcher"
                 company="University of California, Irvine"
@@ -30,7 +30,7 @@ class TechnicalExperiences extends Component {
               /> 
               <div className="row card-section-break" />
               <TechnicalExperienceEntry 
-                logo="assets/icons/uw_logo.png"
+                logo="/assets/icons/uw_logo.png"
                 logo_alt="university of washington logo"
                 position="Undergraduate Researcher"
                 company="University of Washington"
@@ -57,7 +57,7 @@ class TechnicalExperiences extends Component {
               /> 
               <div className="row card-section-break" />
               <TechnicalExperienceEntry 
-                logo="assets/icons/dapper.jpg"
+                logo="/assets/icons/dapper.jpg"
                 logo_alt="dapper company logo"
                 position="Backend Software Engineer"
                 company="Dapper Grooming"
@@ -74,7 +74,7 @@ class TechnicalExperiences extends Component {
               /> 
               <div className="row card-section-break" />
               <TechnicalExperienceEntry 
-                logo="assets/icons/crowdcow.jpg"
+                logo="/assets/icons/crowdcow.jpg"
                 logo_alt="crowd cow company logo"
                 position="Software Engineering Intern"
                 company="Crowd Cow"
