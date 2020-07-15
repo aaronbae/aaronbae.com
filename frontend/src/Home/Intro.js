@@ -4,7 +4,7 @@ import './Intro.scss';
 class Intro extends Component {
   render() {
     return (
-      <div id="introduction-container" className="center col-md-12 col-lg-3">
+      <div className="card-wrapper">
         <div className="row introduction-content-row">
           <img className='round profile-img' src="assets/profile2.jpg" alt="profile" />
         </div>
@@ -21,6 +21,7 @@ class Intro extends Component {
             </li>
           </ul>
         </div>
+        <div className="card-section-break" />
         <div className='row introduction-content-row'>
           <div id="link-info" className="col-12">
             <a href="https://github.com/aaronbae" title="GitHub">

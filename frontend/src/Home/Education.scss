@@ -1,16 +1,19 @@
 
 .total-section {
-  .content-section {
-    .education-img-wrapper {
-        margin-top: 10px;
-        margin-bottom: 20px;
-      .education-img {
-        max-width: 150px; 
-        width: 100%;
+  #education-total-content-section {
+    padding-top: 20px;
+    .content-section {
+      .education-img-wrapper {
+          margin-top: 10px;
+          margin-bottom: 20px;
+        .education-img {
+          max-width: 150px; 
+          width: 100%;
+        }
       }
+      .education-bullets {
+        margin-left: 16px;
+      } 
     }
-    .education-bullets {
-      margin-left: 16px;
-    } 
   }
 }

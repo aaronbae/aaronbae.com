@@ -1,12 +1,14 @@
+@import 'design.scss';
+
 $edge_margin: 50px;
 $tab_margin: 20px;
 
-$brandcolor: rgb(25, 25, 25);
-$font: gray;
-$font_active: black;
-$headercolor: white;
-$link_background_hover_color: rgb(240, 240, 240);
-$separator_color: gray;
+$brandcolor: $header-font-active-color;
+$font: $header-font-inactive-color;
+$font_active: $header-font-active-color;
+$headercolor: $header-color;
+$link_background_hover_color: $header-tab-hover-color;
+$separator_color: $header-font-inactive-color;
 
 $header_height: 52px;
 $separator_height: 17px;

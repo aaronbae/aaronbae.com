@@ -17,18 +17,18 @@ class Main extends Component {
   render() {
     return (
       <Router>
-        <div className='container-fluid base_container'>
+        <div className='container-fluid base_container main-container'>
           <Header />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/blog" component={MainBlogPage} />
-              <Route exact path="/blog/:id" component={PostViewer} />
-              <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/login" component={LogInPage} />
-              <Route exact path="/test" component={Testing} />
-              <Route component={NonExistentRoute} />
-            </Switch>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/blog" component={MainBlogPage} />
+            <Route exact path="/blog/:id" component={PostViewer} />
+            <Route exact path="/admin" component={AdminBlog} />
+            <Route exact path="/admin" component={AdminBlog} />
+            <Route exact path="/login" component={LogInPage} />
+            <Route exact path="/test" component={Testing} />
+            <Route component={NonExistentRoute} />
+          </Switch>
           <Footer />
         </div>
       </Router>

@@ -6,10 +6,11 @@ class TechnicalExperiences extends Component {
   render() {
     return (
       <div className="row total-section">
-        <div className="col">
+        <div className="card-wrapper">
           <div className="row title-section">
             <p className="col h3">Technical Experiences</p>
           </div>
+          <div className="row card-title-break" />
           <div className="row content-section">
             <div className="col">
               <TechnicalExperienceEntry 
@@ -27,6 +28,7 @@ class TechnicalExperiences extends Component {
                   +"dataset to identify questions in any group conversations and possibly classify"
                   +"person-to-person dynamics like leadership qualities."}]}
               /> 
+              <div className="row card-section-break" />
               <TechnicalExperienceEntry 
                 logo="assets/icons/uw_logo.png"
                 logo_alt="university of washington logo"
@@ -53,6 +55,7 @@ class TechnicalExperiences extends Component {
                   }
                 ]}
               /> 
+              <div className="row card-section-break" />
               <TechnicalExperienceEntry 
                 logo="assets/icons/dapper.jpg"
                 logo_alt="dapper company logo"
@@ -69,6 +72,7 @@ class TechnicalExperiences extends Component {
                   }
                 ]}
               /> 
+              <div className="row card-section-break" />
               <TechnicalExperienceEntry 
                 logo="assets/icons/crowdcow.jpg"
                 logo_alt="crowd cow company logo"

@@ -5,11 +5,12 @@ class Intro extends Component {
   render() {
     return (
       <div className="row total-section">
-        <div className="col">
+        <div className="card-wrapper">
           <div className="row title-section">
             <p className="col h3">Education</p>
           </div>
-          <div className="row">
+          <div className="row card-title-break" />
+          <div id="education-total-content-section" className="row" >
             <div className="col">
               <div className="row content-section">
                 <div className="col-md-12 col-lg-3 center education-img-wrapper">

@@ -7,6 +7,9 @@ div, p, ul, ol {
   padding: 0px;
   font-family: $font-stack;
 }
+.main-container {
+  background-color: $main-background-color;
+}
 
 // Commonly used tools
 .bounded, .bounded * {
