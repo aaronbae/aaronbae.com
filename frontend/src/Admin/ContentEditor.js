@@ -208,7 +208,7 @@ class ContentEditor extends Component {
         </div>
         {post.content.map((i, key) => {
           if(isMyImageURL(i)){
-            return <div key={key} index={key} tabIndex={key} className="post-editor-paragraph aws-image-wrapper-in-content-editor" 
+            return <div key={key} index={key} tabIndex={key} className="post-editor-paragraph" 
                     onKeyDown={this.image_key_down} 
                     onBlur={this.handle_blur}
                     onFocus={this.handle_focus}> 
