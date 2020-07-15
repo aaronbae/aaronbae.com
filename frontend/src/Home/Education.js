@@ -14,7 +14,7 @@ class Intro extends Component {
             <div className="col">
               <div className="row content-section">
                 <div className="col-md-12 col-lg-3 center education-img-wrapper">
-                  <img className="education-img" src="assets/uci_seal_500.png" alt="University of California Irvine" />
+                  <img className="education-img" src="assets/uci_seal_200.png" alt="University of California Irvine" />
                 </div>
                 <div className="col-md-12 col-lg-9">
                   <span><span  className="h6">Masters in Computer Science</span>, <i>University of California - Irvine</i></span>
@@ -28,7 +28,7 @@ class Intro extends Component {
               </div>
               <div className="row content-section">
                 <div className="col-md-12 col-lg-3 center education-img-wrapper">
-                  <img className="education-img" src="assets/uw_seal_500.jpg" alt="University of Washington" />
+                  <img className="education-img" src="assets/uw_seal_200.jpg" alt="University of Washington" />
                 </div>
                 <div className="col-md-12 col-lg-9">
                   <span><span  className="h6">Bachelor of Science in Mathematics</span>, <i>University of Washington</i></span>
