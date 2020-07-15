@@ -12,26 +12,39 @@ import Testing from '../Testing/Main';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 import './Main.scss';
 
+
+import DocumentMeta from 'react-document-meta';
+
 class Main extends Component {
   // NOTE THAT path="/api/" is already reserved for backend
   render() {
+    let meta = {
+      title: "Aaron Bae | The Software Engineer",
+      description: 'A Website Built by Aaron',
+      canonical: "https://www.aaronbae.com/",
+      meta: {
+        charsset: 'utf-8'
+      }
+    }
     return (
-      <Router>
-        <div className='container-fluid base_container main-container'>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/blog" component={MainBlogPage} />
-            <Route exact path="/blog/:id" component={PostViewer} />
-            <Route exact path="/admin" component={AdminBlog} />
-            <Route exact path="/admin" component={AdminBlog} />
-            <Route exact path="/login" component={LogInPage} />
-            <Route exact path="/test" component={Testing} />
-            <Route component={NonExistentRoute} />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+      <DocumentMeta {...meta}>
+        <Router>
+          <div className='container-fluid base_container main-container'>
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/blog" component={MainBlogPage} />
+              <Route exact path="/blog/:id" component={PostViewer} />
+              <Route exact path="/admin" component={AdminBlog} />
+              <Route exact path="/admin" component={AdminBlog} />
+              <Route exact path="/login" component={LogInPage} />
+              <Route exact path="/test" component={Testing} />
+              <Route component={NonExistentRoute} />
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </DocumentMeta>
     );
   }
 }
