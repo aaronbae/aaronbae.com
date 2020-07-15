@@ -1,4 +1,4 @@
 mongo aaronbaeDB --eval "db.dropDatabase()"
-mongodump --uri="mongodb+srv://aaronbae:kingoftheworld123@cluster0-ecnt3.mongodb.net/aaronbaeDB"
+mongodump --uri=%MONGO_DUMP_URL%
 mongorestore dump/
 rd /s /q dump
