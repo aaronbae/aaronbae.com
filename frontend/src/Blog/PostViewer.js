@@ -11,6 +11,16 @@ import {
   convertMyImageURL
 } from '../Utils/HelperFunctions';
 
+import DocumentMeta from 'react-document-meta';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon,
+} from "react-share";
+
 import './PostViewer.scss';
 
 class PostViewer extends Component {  
@@ -25,47 +35,89 @@ class PostViewer extends Component {
     const { posts } = this.props
     let post_id = this.props.match.params["id"]
     let isPostFetched = posts.length > 0
+    let meta = {}
     // TOOD: Remember that we don't have spinner div developed yet
     if( isPostFetched ) {
       var id2index = this.props.id2index
       var thisPost = posts[id2index[post_id]]
+      meta = {
+        title: thisPost.title,
+        description: 'A Post Written by Aaron',
+        canonical: "https://www.aaronbae.com" + this.props.location.pathname,
+        meta: {
+          name: {
+            keywords: thisPost.tags.join(",")
+          },
+          property: {
+            "og:url": "https://www.aaronbae.com" + this.props.location.pathname,
+            "og:type": "article",
+            "og:title": thisPost.title,
+            "og:description": thisPost.content.join(" ").substring(0, 100) + "...",
+            "og:image": "https://www.aaronbae.com/api/files/aaronbae.com.screencapture.PNG"
+          }
+        }
+      }
     }
     return (
       <div className="row post-viewer-container ">
         {isPostFetched && 
-          <div className="col-11 offset-md-2 col-md-8 offset-xl-3 col-xl-6 post-viewer-main-col card-wrapper"> 
-            <div className="row viewer-information-row">
-              <div className="col-5 no-padding">
-                {format_date(thisPost.createtime)}
-              </div>
-              <div className="col-7 no-padding">
-                <div className="float-right">
-                  <span className="tags-label">Tags : </span>
-                  {thisPost.tags.map((item, index) =>
-                    <span key={index} className={"tag " + item}>
-                      {item + ", "}
-                    </span>
-                  )}
+          <DocumentMeta {...meta}>
+            <div className="col-11 offset-md-2 col-md-8 offset-xl-3 col-xl-6 post-viewer-main-col card-wrapper"> 
+              <div className="row viewer-information-row">
+                <div className="col-5 no-padding">
+                  {format_date(thisPost.createtime)}
+                </div>
+                <div className="col-7 no-padding">
+                  <div className="float-right">
+                    <span className="tags-label">Tags : </span>
+                    {thisPost.tags.map((item, index) =>
+                      <span key={index} className={"tag " + item}>
+                        {item + ", "}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
+              <div className="row viewer-title-row">
+                {thisPost.title}
+              </div>
+              <div className="row viewer-media-row">
+                <FacebookShareButton
+                url={"https://www.aaronbae.com" + this.props.location.pathname}
+                quote={thisPost.title + " from aaronbae.com"}
+                className="media-button"
+                >
+                  <FacebookIcon size={20} round={true} bgStyle={{fill: "#696867"}}/>
+                </FacebookShareButton>
+                <LinkedinShareButton 
+                  url={"https://www.aaronbae.com" + this.props.location.pathname}
+                  title={thisPost.title + " from aaronbae.com"} 
+                  summary={thisPost.content.join(" ").substring(0, 100)}
+                  source="aaronbae.com"
+                  className="media-button"
+                  >
+                  <LinkedinIcon size={20} round={true} bgStyle={{fill: "#696867"}}/>
+                </LinkedinShareButton>
+                <TwitterShareButton 
+                  url={"https://www.aaronbae.com" + this.props.location.pathname}
+                  title={thisPost.title + " from aaronbae.com"}
+                  className="media-button"
+                  >
+                  <TwitterIcon size={20} round={true} bgStyle={{fill: "#696867"}}/>
+                </TwitterShareButton>
+              </div>
+              <div className="row viewer-content-row">
+                {thisPost.content.map((i, key) => {
+                  if(isMyImageURL(i)){
+                    return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+                  }
+                  else {
+                    return <div className="content-paragraph" key={key}>{i}</div>
+                  }
+                })}
+              </div>
             </div>
-            <div className="row viewer-title-row">
-              {thisPost.title}
-            </div>
-            <div className="row viewer-media-row">
-              HOLY SHIT
-            </div>
-            <div className="row viewer-content-row">
-              {thisPost.content.map((i, key) => {
-                if(isMyImageURL(i)){
-                  return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
-                }
-                else {
-                  return <div className="content-paragraph" key={key}>{i}</div>
-                }
-              })}
-            </div>
-          </div>
+          </DocumentMeta>
         }
       </div>
     );

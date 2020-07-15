@@ -46,6 +46,11 @@ $confirm-color-hover: rgb(97, 213, 255);
         display: table;
       }
     }
+    .viewer-media-row {
+      .media-button {
+        margin: 0px 3px;
+      }
+    }
   }
   
   @include media-breakpoint-down(sm) {
