@@ -33,7 +33,7 @@ class PostViewer extends Component {
     return (
       <div className="row post-viewer-container ">
         {isPostFetched && 
-          <div className="offset-2 col-8 post-viewer-main-col"> 
+          <div className="offset-2 col-8 post-viewer-main-col card-wrapper"> 
             <div className="row viewer-information-row">
               <div className="col-5 no-padding">
                 {format_date(thisPost.createtime)}

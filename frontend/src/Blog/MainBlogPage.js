@@ -22,8 +22,9 @@ class MainBlogPage extends Component {
     const { posts } = this.props
     return (
       <div className='row all-blog-container'>
-        <div className="offset-sm-0 col-sm-12 offset-md-2 col-md-8">
+        <div className="offset-1 col-10 offset-md-2 col-md-8 offset-lg-3 col-lg-6 card-wrapper">
           <div className="row whats-new-container">What's New?</div>
+          <div className="card-title-break"></div>
           <div className="row post-container">
             {posts.map((item, index) => 
               <PostCard key={index} post_id={item._id} />

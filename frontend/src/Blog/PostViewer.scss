@@ -4,10 +4,12 @@ $confirm-color: rgb(3, 186, 252);
 $confirm-color-hover: rgb(97, 213, 255);
 
 .post-viewer-container {
-  padding-top: 40px;
+  padding-top: 10px;
   padding-bottom: 40px;
   
   .post-viewer-main-col {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
     .viewer-information-row {
       .no-padding
       {

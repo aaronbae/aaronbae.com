@@ -26,7 +26,7 @@ class PostCard extends Component {
     const { title, date, summarized_content } = this.props
     const formatted_date = format_date(date)
     return (
-      <div className="individual-post-container col-12 col-sm-6" onClick={this.handlePostClick}>
+      <div className="individual-post-container col-12" onClick={this.handlePostClick}>
         <div className="row individual-post">
           <div className="col">
             <div className="row date">{formatted_date}</div>
@@ -52,7 +52,7 @@ function mapStateToProps(state, ownProps) {
   return {
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,
-    summarized_content: this_post.content.join(" ").substring(0, 100) + "..."
+    summarized_content: this_post.content.join(" ").substring(0, 200) + "..."
   }
 }
 
