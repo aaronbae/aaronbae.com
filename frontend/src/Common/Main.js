@@ -1,3 +1,9 @@
+// Bootstrap imports
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
+// React component imports
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './Header';
@@ -12,8 +18,27 @@ import Testing from '../Testing/Main';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 import './Main.scss';
 
+// Redux 
+import { Provider } from 'react-redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import BlogReducer from '../Redux/BlogReducer';
+import AdminReducer from '../Redux/AdminReducer';
 
+// Dynamic Meta tag manager
 import DocumentMeta from 'react-document-meta';
+
+// Sentry
+import * as Sentry from '@sentry/react';
+Sentry.init({dsn: "https://eafc03ce34b94dd98b03f1fc08903681@o418535.ingest.sentry.io/5321569"});
+
+// Prepare reducers
+const rootReducer = combineReducers({
+  BlogReducer,
+  AdminReducer
+});
+const rootStore = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
 
 class Main extends Component {
   // NOTE THAT path="/api/" is already reserved for backend
@@ -27,24 +52,26 @@ class Main extends Component {
       }
     }
     return (
-      <DocumentMeta {...meta}>
-        <Router>
-          <div className='container-fluid base_container main-container'>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/blog" component={MainBlogPage} />
-              <Route exact path="/blog/:id" component={PostViewer} />
-              <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/login" component={LogInPage} />
-              <Route exact path="/test" component={Testing} />
-              <Route component={NonExistentRoute} />
-            </Switch>
-            <Footer />
-          </div>
-        </Router>
-      </DocumentMeta>
+      <Provider store={rootStore}>
+        <DocumentMeta {...meta}>
+          <Router>
+            <div className='container-fluid base_container main-container'>
+              <Header />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/blog" component={MainBlogPage} />
+                <Route exact path="/blog/:id" component={PostViewer} />
+                <Route exact path="/admin" component={AdminBlog} />
+                <Route exact path="/admin" component={AdminBlog} />
+                <Route exact path="/login" component={LogInPage} />
+                <Route exact path="/test" component={Testing} />
+                <Route component={NonExistentRoute} />
+              </Switch>
+              <Footer />
+            </div>
+          </Router>
+        </DocumentMeta>
+      </Provider>
     );
   }
 }
