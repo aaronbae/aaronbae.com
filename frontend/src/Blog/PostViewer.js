@@ -44,18 +44,6 @@ class PostViewer extends Component {
         title: thisPost.title,
         description: 'A Post Written by Aaron',
         canonical: "https://www.aaronbae.com" + this.props.location.pathname,
-        meta: {
-          name: {
-            keywords: thisPost.tags.join(",")
-          },
-          property: {
-            "og:url": "https://www.aaronbae.com" + this.props.location.pathname,
-            "og:type": "article",
-            "og:title": thisPost.title,
-            "og:description": thisPost.content.join(" ").substring(0, 100) + "...",
-            "og:image": "https://www.aaronbae.com/api/files/aaronbae.com.screencapture.PNG"
-          }
-        }
       }
     }
     return (
@@ -100,7 +88,7 @@ class PostViewer extends Component {
                 </LinkedinShareButton>
                 <TwitterShareButton 
                   url={"https://www.aaronbae.com" + this.props.location.pathname}
-                  title={thisPost.title + " from aaronbae.com"}
+                  title={thisPost.title}
                   className="media-button"
                   >
                   <TwitterIcon size={20} round={true} bgStyle={{fill: "#696867"}}/>
