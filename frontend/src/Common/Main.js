@@ -29,6 +29,9 @@ import AdminReducer from '../Redux/AdminReducer';
 // Dynamic Meta tag manager
 import DocumentMeta from 'react-document-meta';
 
+import {createMemoryHistory} from 'history';
+
+
 // Sentry
 import * as Sentry from '@sentry/react';
 Sentry.init({dsn: "https://eafc03ce34b94dd98b03f1fc08903681@o418535.ingest.sentry.io/5321569"});
@@ -52,10 +55,11 @@ class Main extends Component {
         charsset: 'utf-8'
       }
     }
+    let history = createMemoryHistory();
     return (
       <Provider store={rootStore}>
         <DocumentMeta {...meta}>
-          <Router>
+          <Router history={history}>
             <div className='container-fluid base_container main-container'>
               <Header />
               <Switch>
