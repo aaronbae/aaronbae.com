@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // HTTP requests
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   const app = ReactDOMServer.renderToString(<Main />);
 
   const indexFile = path.resolve('./build/index.html');

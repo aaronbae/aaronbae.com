@@ -1,11 +1,12 @@
 // Bootstrap imports
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/js/bootstrap.min.js';
 
-// React component imports
+// React Engine Imports
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+// Components
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../Home/Home';

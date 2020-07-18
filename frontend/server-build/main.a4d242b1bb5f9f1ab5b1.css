@@ -392,7 +392,6 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
     transition: .4s; }
   .public-toggle-container .slider:before {
     position: absolute;
@@ -402,15 +401,12 @@
     left: 10%;
     bottom: 12%;
     background-color: white;
-    -webkit-transition: .4s;
     transition: .4s; }
   .public-toggle-container input:checked + .slider {
     background-color: #2196F3; }
   .public-toggle-container input:focus + .slider {
     box-shadow: 0 0 1px #2196F3; }
   .public-toggle-container input:checked + .slider:before {
-    -webkit-transform: translateX(90%);
-    -ms-transform: translateX(90%);
     transform: translateX(90%); }
   .public-toggle-container .slider.round {
     border-radius: 60% / 100%; }
