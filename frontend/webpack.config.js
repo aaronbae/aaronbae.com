@@ -1,16 +1,12 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const isDevelopment = process.env.NODE_ENV === 'development'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-console.log("Development "+ isDevelopment.toString())
 
 module.exports = {
   entry: './server/index.js',
-
   target: 'node',
-
   externals: [nodeExternals()],
-
+  stats: "errors-only",
   output: {
     path: path.resolve('server-build'),
     filename: 'index.js'
