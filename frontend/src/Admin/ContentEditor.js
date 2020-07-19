@@ -52,9 +52,14 @@ class ContentEditor extends Component {
 
     // Resize title and content input
     Array.from(document.getElementsByClassName("resize-required")).forEach((e)=>{
+      let x = window.scrollX;
+      let y = window.scrollY;
       e.style.height = "0px"
       e.style.height = (e.scrollHeight+1) + "px"
+      window.scrollTo(x,y);
+
     })
+    
     // re-focus after paragraph creation or deletion
     if ( edit_mode && index !== -1 && prev_posts.length > 0 
       && posts[index].content.length !== prev_posts[index].content.length) {
@@ -198,6 +203,7 @@ class ContentEditor extends Component {
   }
 
   render() {
+    console.log("1WHY ", window.scrollX," ", window.scrollY)
     const { index, posts } = this.props
     let post = index !== -1? posts[index]: {content: []}
     return (
