@@ -5,7 +5,8 @@ import { isMyImageURL, convertMyImageURL } from "./HelperFunctions";
 export function metaFromPost(thisPost) {
   let description = thisPost.content.join(" ").substring(0, 200) + "...";
   let img = ""
-  for( let c in thisPost.content) {
+  for( let i in thisPost.content) {
+    let c = thisPost.content[i]
     if(isMyImageURL(c)){
       img = convertMyImageURL(c);
       break;
