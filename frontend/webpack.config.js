@@ -43,16 +43,13 @@ module.exports = {
             }
           },
           {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
+            loader: 'sass-loader'
           }
         ]
       },
       {
         test: /\.css$/,
-        use: 'css-loader'
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
