@@ -8,7 +8,6 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux';
 import store from '../src/Redux/Store';
 import Main from '../src/Common/Main';
-import DocumentMeta  from 'react-document-meta';
 import Helmet from 'react-helmet';
 
 const PORT = process.env.PORT || 3000;
