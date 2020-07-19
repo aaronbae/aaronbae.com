@@ -1,19 +1,33 @@
 import path from 'path';
 import fs from 'fs';
 
-import React from 'react';
 import express from 'express';
-import ReactDOMServer from 'react-dom/server';
+
+import React from 'react';
+import { StaticRouter } from 'react-router-dom';
+import { renderToString } from 'react-dom/server'
+
+import { Provider } from 'react-redux';
+import store from '../src/Redux/Store';
 
 import Main from '../src/Common/Main';
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+// All other asset requests
+app.use(express.static('./build'));
+
 // HTTP requests
 app.get('*', (req, res) => {
-  const main = ReactDOMServer.renderToString(<Main />);
-  console.log("NEVER")
+  const main = renderToString(
+    <StaticRouter location={req.url}>
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    </StaticRouter>
+  );
+  console.log(req.url)
   const indexFile = path.resolve('./build/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
@@ -24,10 +38,9 @@ app.get('*', (req, res) => {
       data.replace('<div id="root"></div>', `<div id="root">${main}</div>`)
     );
   });
+  
 });
 
-// All other asset requests
-app.use(express.static('./build'));
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
