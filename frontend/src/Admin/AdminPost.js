@@ -29,7 +29,9 @@ class AdminPost extends Component {
       // TODO: remind user that a post is selected already
     } else {
       dispatch(viewpost(this.state.post_id))  
-      window.scrollTo(0, 0)
+      if(window.scrollY > window.innerHeight / 4){
+        window.scrollTo(0, 0)
+      }
     }
   }
 

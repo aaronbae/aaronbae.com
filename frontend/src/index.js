@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Main from './Common/Main';
 import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.hydrate( 
+ReactDOM.render( 
   <BrowserRouter>
     <Main />
   </BrowserRouter>,
