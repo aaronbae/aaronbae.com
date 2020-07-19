@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
       </Provider>
     </StaticRouter>
   );
-  console.log(req.url)
+  console.log("Serving out " + req.url)
   const indexFile = path.resolve('./build/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
