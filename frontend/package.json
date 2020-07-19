@@ -36,7 +36,8 @@
     "start": "nodemon ./server-build/index.js",
     "build": "react-scripts build",
     "pack": "set NODE_ENV=development&& webpack -w --mode='development'",
-    "dev": "npm-run-all --parallel build pack start",
+    "clean": "del /F/Q/S build server-build",
+    "all": "npm-run-all --parallel build pack start",
     "real": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
