@@ -12,7 +12,7 @@ import store from '../src/Redux/Store';
 
 import Main from '../src/Common/Main';
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // All other asset requests
