@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
-import DocumentMeta from 'react-document-meta';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -18,38 +17,30 @@ import './Main.scss';
 // Other 
 import store from "../Redux/Store";
 import * as Sentry from '@sentry/react';
+import { metaDefault } from "../Utils/MetaHelpers";
 
 Sentry.init({dsn: "https://eafc03ce34b94dd98b03f1fc08903681@o418535.ingest.sentry.io/5321569"});
 
 class Main extends Component {
   // NOTE THAT path="/api/" is already reserved for backend
   render() {
-    let meta = {
-      title: "Aaron Bae | The Software Engineer",
-      description: 'A Website Built by Aaron',
-      canonical: "https://www.aaronbae.com/",
-      meta: {
-        charsset: 'utf-8'
-      }
-    }
     return (
       <Provider store={store}>
-        <DocumentMeta {...meta}>
-          <div className='container-fluid base_container main-container'>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/blog" component={MainBlogPage} />
-              <Route exact path="/blog/:id" component={PostViewer} />
-              <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/admin" component={AdminBlog} />
-              <Route exact path="/login" component={LogInPage} />
-              <Route exact path="/test" component={Testing} />
-              <Route component={NonExistentRoute} />
-            </Switch>
-            <Footer />
-          </div>
-        </DocumentMeta>
+        {metaDefault()}
+        <div className='container-fluid base_container main-container'>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/blog" component={MainBlogPage} />
+            <Route exact path="/blog/:id" component={PostViewer} />
+            <Route exact path="/admin" component={AdminBlog} />
+            <Route exact path="/admin" component={AdminBlog} />
+            <Route exact path="/login" component={LogInPage} />
+            <Route exact path="/test" component={Testing} />
+            <Route component={NonExistentRoute} />
+          </Switch>
+          <Footer />
+        </div>
       </Provider>
     );
   }

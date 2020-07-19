@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { format_date } from '../Utils/HelperFunctions';
+import { metaFromPost } from "../Utils/MetaHelpers";
 
 // Redux handlers
 import PropTypes from 'prop-types'
@@ -11,7 +12,7 @@ import {
   convertMyImageURL
 } from '../Utils/HelperFunctions';
 
-import DocumentMeta from 'react-document-meta';
+
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -35,22 +36,16 @@ class PostViewer extends Component {
     const { posts } = this.props
     let post_id = this.props.match.params["id"]
     let isPostFetched = posts.length > 0
-    let meta = {}
     // TOOD: Remember that we don't have spinner div developed yet
     if( isPostFetched ) {
       var id2index = this.props.id2index
       var thisPost = posts[id2index[post_id]]
-      meta = {
-        title: thisPost.title,
-        description: 'A Post Written by Aaron',
-        canonical: "https://www.aaronbae.com" + this.props.location.pathname,
-      }
     }
     return (
       <div className="row post-viewer-container ">
         {isPostFetched && 
-          <DocumentMeta {...meta}>
             <div className="col-11 offset-md-2 col-md-8 offset-xl-3 col-xl-6 post-viewer-main-col card-wrapper"> 
+              {metaFromPost(thisPost)}
               <div className="row viewer-information-row">
                 <div className="col-5 no-padding">
                   {format_date(thisPost.createtime)}
@@ -105,7 +100,6 @@ class PostViewer extends Component {
                 })}
               </div>
             </div>
-          </DocumentMeta>
         }
       </div>
     );
