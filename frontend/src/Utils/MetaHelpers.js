@@ -34,6 +34,7 @@ export function metaDefault() {
     <Helmet>
       <meta charset="utf-8" />
       <title>AaronBae | Software Engineer</title>
+      <meta name="og:site_name" content="AaronBae.com" />
       <meta name="title" content="AaronBae | Software Engineer" />
       <meta name="description" content={description} />
       <meta property="og:url" content={"https://www.aaronbae.com/"} />
