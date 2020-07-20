@@ -37,6 +37,8 @@ app.get('*', (req, res) => {
     }
     data = data.replace('<div id="root"></div>', `<div id="root">${main}</div>`)
     data = data.replace('<meta react-meta-document>', `${meta}`)
+    console.log("HELLO======================")
+    console.log(data)
     return res.send(data);
   });
   
