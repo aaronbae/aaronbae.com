@@ -18,6 +18,9 @@ app.use(express.static('./build'));
 
 // HTTP requests
 app.get('*', (req, res) => {
+  if (RegExp("^\/blog\/[0-9a-zA-Z\-\_]+").test(req.url)) {
+    console.log("blog entry view detected")
+  }
   const main = renderToString(
     <StaticRouter location={req.url}>
       <Provider store={store}>
@@ -37,11 +40,9 @@ app.get('*', (req, res) => {
     }
     data = data.replace('<div id="root"></div>', `<div id="root">${main}</div>`)
     data = data.replace('<meta react-meta-document>', `${meta}`)
-    console.log("HELLO======================")
-    console.log(data)
     return res.send(data);
   });
-  
+
 });
 
 
