@@ -8,26 +8,15 @@ import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux';
 import store from '../../src/Redux/Store';
-import { storeWithInitial } from '../../src/Redux/Store';
 import Main from '../../src/Common/Main';
 import Helmet from 'react-helmet';
 import Post from '../models/Post';
-import { Console } from 'console';
 
 
 const express = require('express');
 const defaultRoutes = express.Router();
 
-function serveFrontend(req, res, post) {
-  if ("title" in post && "content" in post && "_id" in post) {
-    const initialState = {
-      "BlogReducer": {
-        posts: [post]
-      }
-    }
-    // TODO: THIS FUNCTION 'STOREWITHINITIAL' IS NOT WORKING
-    //store = storeWithInitial(initialState)
-  }
+function serveFrontend(req, res) {
   const main = renderToString(
     <StaticRouter location={req.url}>
       <Provider store={store}>
@@ -62,13 +51,13 @@ defaultRoutes.route("/blog/[a-zA-Z0-9]+").get(function (req, res) {
       console.log(err);
     }
     else {
-      serveFrontend(req, res, post);
+      serveFrontend(req, res);
     }
   });
 });
 
 defaultRoutes.route("/*").get(function (req, res) {
-  serveFrontend(req, res, {});
+  serveFrontend(req, res);
 });
 
 export default defaultRoutes;
