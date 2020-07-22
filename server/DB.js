@@ -15,6 +15,5 @@ const dev = {
   options: { useNewUrlParser: true },
   useUnifiedTopology: true
 };
-console.log("DB")
-console.log(process.env.NODE_ENV)
+
 module.exports = process.env.NODE_ENV === "development" ? dev : prod;
