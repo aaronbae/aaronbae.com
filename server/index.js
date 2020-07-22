@@ -1,9 +1,6 @@
 // Environment settings
 import { } from 'dotenv/config'
 
-import path from 'path';
-import fs from 'fs';
-
 // Backend 
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -16,16 +13,6 @@ import defaultRoute from './routes/Default.route';
 import postRoute from './routes/Post.route';
 import userRoute from './routes/User.route';
 import fileRoute from './routes/File.route';
-
-// Frontend Processors
-import React from 'react';
-import { StaticRouter } from 'react-router-dom';
-import { renderToString } from 'react-dom/server'
-import { Provider } from 'react-redux';
-import store from '../src/Redux/Store';
-import Main from '../src/Common/Main';
-import Helmet from 'react-helmet';
-import Post from './models/Post';
 
 // Configure Mongoose
 mongoose.Promise = global.Promise;
@@ -43,53 +30,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Back End Routes
-app.use("/api", defaultRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
 
-app.use(express.static('./build'));
-
 // Front End Serving
-app.get('*', (req, res) => {
-  var context = {}
-  if (RegExp("^\/blog\/[0-9a-zA-Z]+").test(req.url)) {
-    let post_id = req.url.split("/")[2]
-    Post.findById(post_id, function (err, post) {
-      if (err) {
-        console.log(`Front End : Could not fetch post ${post_id}!`)
-        console.log(err);
-      }
-      else {
-        context = post
-      }
-    });
-  }
-  console.log("context: " + JSON.stringify(context));
-  const main = renderToString(
-    <StaticRouter location={req.url}>
-      <Provider store={store}>
-        <Main />
-      </Provider>
-    </StaticRouter>
-  );
-  console.log("Serving out " + req.url)
-  let helmet = Helmet.renderStatic();
-  let meta = `${helmet.title.toString()}${helmet.meta.toString()}${helmet.link.toString()}`
-
-  const indexFile = path.resolve('./build/index.html');
-  fs.readFile(indexFile, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Something went wrong:', err);
-      return res.status(500).send('Oops, better luck next time!');
-    }
-    data = data.replace('<div id="root"></div>', `<div id="root">${main}</div>`)
-    data = data.replace('<meta react-meta-document>', `${meta}`)
-    return res.send(data);
-  });
-
-});
-
+app.use(express.static('./build'));
+app.use("/", defaultRoute);
 
 const PORT = process.env.NODE_ENV === "production" ? 3000 : 4000;
 app.listen(PORT, () => {

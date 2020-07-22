@@ -17,9 +17,13 @@ import './Main.scss';
 // Other 
 import store from "../Redux/Store";
 import * as Sentry from '@sentry/react';
-import { metaDefault } from "../Utils/MetaHelpers";
+import {
+  metaDefault,
+  metaFromPost
+} from "../Utils/MetaHelpers";
 
-Sentry.init({dsn: "https://eafc03ce34b94dd98b03f1fc08903681@o418535.ingest.sentry.io/5321569"});
+Sentry.init({ dsn: "https://eafc03ce34b94dd98b03f1fc08903681@o418535.ingest.sentry.io/5321569" });
+
 
 class Main extends Component {
   // NOTE THAT path="/api/" is already reserved for backend

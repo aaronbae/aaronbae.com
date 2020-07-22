@@ -8,5 +8,10 @@ const rootReducer = combineReducers({
   BlogReducer,
   AdminReducer
 });
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const store = storeWithInitial({})
+//TODO: WHY IS THIS NOT WORKING?
+export function storeWithInitial(initialState) {
+  return createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware))
+}
+
 export default store
