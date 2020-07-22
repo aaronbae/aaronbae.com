@@ -9,13 +9,14 @@ postRoutes.route('/add/').post(function (req, res) {
   let post = new Post(req.body);
   post.save()
     .then(post => {
-      console.log(post)
+      console.log(`/post/add : Successfully added the post!`)
       res.status(200).json({
         message: 'post in added successfully',
         post: post
       });
     })
     .catch(err => {
+      console.log(`/post/add : Failed!`)
       console.log(err)
       res.status(400).send("unable to save to database");
     });
@@ -23,19 +24,20 @@ postRoutes.route('/add/').post(function (req, res) {
 
 // Defined get data(index or listing) route
 postRoutes.route('/public').get(function (req, res) {
-  var query = Post.find({}, null, 
+  var query = Post.find({}, null,
     {
       sort: { createtime: 'desc' },
       limit: 20
     }).where({ public: true });
-  query.exec( 
-    function(err, posts){
-      if(err){
+  query.exec(
+    function (err, posts) {
+      if (err) {
+        console.log(`/post/public : Failed!`)
         console.log(err);
         res.status(400).send("unable to find posts")
       }
       else {
-        console.log(posts);
+        console.log(`/post/public : Successfully fetched ${posts.length} posts!`);
         res.json(posts);
       }
     }
@@ -44,31 +46,32 @@ postRoutes.route('/public').get(function (req, res) {
 
 // Defined get data(index or listing) route
 postRoutes.route('/').get(function (req, res) {
-  Post.find({}, null, 
+  Post.find({}, null,
     {
       sort: { createtime: 'desc' },
       limit: 20
-    }, 
-    function(err, posts){
-    if(err){
-      console.log(err);
-    }
-    else {
-      console.log(posts);
-      res.json(posts);
-    }
-  });
+    },
+    function (err, posts) {
+      if (err) {
+        console.log(`/post/ : Failed!`)
+        console.log(err);
+      }
+      else {
+        console.log(`/post/ : Successfully fetched ${posts.length} posts!`)
+        res.json(posts);
+      }
+    });
 });
 
 // Defined get data with specific id route
 postRoutes.route('/:id').get(function (req, res) {
-  Post.findById(req.params.id.toString(), function (err, post){
-    if(err){
+  Post.findById(req.params.id.toString(), function (err, post) {
+    if (err) {
+      console.log(`/post/${post._id} : Failed!`)
       console.log(err);
     }
     else {
-      console.log("HERE IT IS");
-      console.log(post);
+      console.log(`/post/${post._id} : Successfully fetched the post!`)
       res.json(post);
     }
   });
@@ -76,34 +79,42 @@ postRoutes.route('/:id').get(function (req, res) {
 
 //  Defined update route
 postRoutes.route('/update/:id').post(function (req, res, next) {
-    console.log("REQUEST RECEIVED FOR ID: "+req.params.id.toString())
-    Post.findById(req.params.id, function(err, post) {
+  Post.findById(req.params.id, function (err, post) {
     if (!post)
       return next(new Error('Could not load Document'));
     else {
-        console.log(req.body)
-        post.title = req.body.title;
-        post.content = req.body.content;
-        post.tags = req.body.tags.map(Function.prototype.call, String.prototype.trim);
-        post.public = req.body.public;
-        post.updatetime = Date.now();
+      post.title = req.body.title;
+      post.content = req.body.content;
+      post.tags = req.body.tags.map(Function.prototype.call, String.prototype.trim);
+      post.public = req.body.public;
+      post.updatetime = Date.now();
 
-        post.save().then(post => {
-          res.json('Update complete');
+      post.save().then(post => {
+        console.log(`/post/update/${post._id} : Successfully updated the post!`)
+        res.json('Update complete');
       })
-      .catch(err => {
-            res.status(400).send("unable to update the database");
-      });
+        .catch(err => {
+          console.log(`/post/update/${post._id} : Failed!`)
+          console.log(err);
+          res.status(400).send("unable to update the database");
+        });
     }
   });
 });
 
 // Defined delete | remove | destroy route
 postRoutes.route('/delete/:id').get(function (req, res) {
-    Post.findByIdAndRemove({_id: req.params.id}, function(err, post){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
+  Post.findByIdAndRemove({ _id: req.params.id }, function (err, post) {
+    if (err) {
+      console.log(`/post/delete/${post._id} : Failed!`)
+      console.log(err)
+      res.json(err);
+    }
+    else {
+      console.log(`/post/delete/${post._id} : Successfully removed the post!`)
+      res.json('Successfully removed');
+    }
+  });
 });
 
 module.exports = postRoutes;

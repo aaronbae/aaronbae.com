@@ -51,13 +51,14 @@ fileRoutes.route('/upload').post(function (req, res) {
           console.log(s3Err)
           return res.status(500).json(s3Err)
         }
-        console.log(`File uploaded successfully at ${data.Location}`)
         // delete the temp file
         fs.unlink(req.file.path, function (err) {
           if (err) {
+            console.log(err);
             return res.status(500).send(err)
           }
           // SUCCESS
+          console.log(`/file/upload : Successfully uploaded the image to ${data.Location}`)
           return res.status(200).json({
             message: 'file added successfully',
             url: data.Location
@@ -74,16 +75,13 @@ fileRoutes.route('/:image_name').get(function (req, res) {
     Bucket: 'aaronbaebucket',
     Key: req.params.image_name
   }
-  console.log("image fetch api")
-  console.log(req.url)
-  console.log(params)
   s3.getObject(params, function (err, data) {
     if (err) {
       console.log(err);
       return res.status(500).send(err)
     }
     else {
-      console.log(`Success in fetching image ${params.Key}`)
+      console.log(`/file/${params.Key} : Successfully fetched the image!`)
       return res.status(200).send(data.Body)
     }
   })
