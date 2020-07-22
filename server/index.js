@@ -1,3 +1,7 @@
+// Environment settings
+import { } from 'dotenv/config'
+
+
 import path from 'path';
 import fs from 'fs';
 
@@ -23,9 +27,6 @@ import store from '../src/Redux/Store';
 import Main from '../src/Common/Main';
 import Helmet from 'react-helmet';
 
-import dotenv from 'dotenv';
-dotenv.config();
-
 // Configure Mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, config.options).then(
@@ -36,10 +37,8 @@ mongoose.connect(config.DB, config.options).then(
   err => { console.log('Cannot connect to the database\n' + err) }
 );
 
+// Boiler Plate
 const app = express();
-
-// All other asset requests
-app.use(express.static('./build'));
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -48,6 +47,8 @@ app.use("/api", defaultRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
+
+app.use(express.static('./build'));
 
 // Front End Serving
 app.get('*', (req, res) => {
