@@ -1,7 +1,6 @@
 // Environment settings
 import { } from 'dotenv/config'
 
-
 import path from 'path';
 import fs from 'fs';
 
@@ -26,6 +25,7 @@ import { Provider } from 'react-redux';
 import store from '../src/Redux/Store';
 import Main from '../src/Common/Main';
 import Helmet from 'react-helmet';
+import Post from './models/Post';
 
 // Configure Mongoose
 mongoose.Promise = global.Promise;
@@ -52,9 +52,20 @@ app.use(express.static('./build'));
 
 // Front End Serving
 app.get('*', (req, res) => {
-  if (RegExp("^\/blog\/[0-9a-zA-Z\-\_]+").test(req.url)) {
-    console.log("blog entry view detected")
+  var context = {}
+  if (RegExp("^\/blog\/[0-9a-zA-Z]+").test(req.url)) {
+    let post_id = req.url.split("/")[2]
+    Post.findById(post_id, function (err, post) {
+      if (err) {
+        console.log(`Front End : Could not fetch post ${post_id}!`)
+        console.log(err);
+      }
+      else {
+        context = post
+      }
+    });
   }
+  console.log("context: " + JSON.stringify(context));
   const main = renderToString(
     <StaticRouter location={req.url}>
       <Provider store={store}>

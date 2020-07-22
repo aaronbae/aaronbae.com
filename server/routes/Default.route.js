@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const defaultRoutes = express.Router();
 
 defaultRoutes.route('/').get(function (req, res) {

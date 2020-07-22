@@ -1,6 +1,5 @@
 const express = require('express');
 const fileRoutes = express.Router();
-var utils = require('../Utils')
 
 // AWS S3 related modules
 const AWS = require('aws-sdk');
