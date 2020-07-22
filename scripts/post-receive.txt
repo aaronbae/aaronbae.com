@@ -1,9 +1,18 @@
 #!/bin/sh
-GIT_WORK_TREE=/home/ubuntu/aaronbae.com/ git checkout -f
-cd /home/ubuntu/aaronbae.com/frontend
+echo "[post-receive] : Post-receive hook initiated"
+cd /home/ubuntu/aaronbae.com/
+echo "[post-receive] : Changed directory to /home/ubuntu/aaronbae.com/"
+git --git-dir=/home/ubuntu/aaronbae.com.git --work-tree=/home/ubuntu/aaronbae.com checkout master -f
+echo "[post-receive] : Installing node packages through npm"
 npm install -s
-cd /home/ubuntu/aaronbae.com/backend
-npm install -s
-sudo pm2 restart frontend
-sudo pm2 restart backend
+echo "[post-receive] : Stopping Main"
+sudo pm2 stop main
+echo "[post-receive] : Deleting Main"
+sudo pm2 delete main
+echo "[post-receive] : Starting the 'npm run start' command"
+sudo pm2 start "npm run start" --name main
+echo "[post-receive] : Restarting Apache2"
 sudo service apache2 restart
+echo "[post-receive] : Apache2 server status"
+sudo systemctl status apache2
+echo "[post-receive] : Post-receive hook process finished."
