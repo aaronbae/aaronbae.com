@@ -21,13 +21,13 @@ var storage = multer.diskStorage({
     next(null, Date.now() + "-" + file.originalname)
   }
 })
-var upload = multer({storage: storage}).single("file")
+var upload = multer({ storage: storage }).single("file")
 
 // Uploading files
 fileRoutes.route('/upload').post(function (req, res) {
   // temporarily save the file to local
-  upload(req, res, function(err){
-    if(err instanceof multer.MulterError) {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
       console.log(err)
       return res.status(500).json(err)
     } else if (err) {
@@ -46,14 +46,14 @@ fileRoutes.route('/upload').post(function (req, res) {
         Body: data
       }
       // Upload to AWS
-      s3.upload(params, function(s3Err, data) {
+      s3.upload(params, function (s3Err, data) {
         if (s3Err) {
           console.log(s3Err)
           return res.status(500).json(s3Err)
         }
-        console.log(`File uploaded successfully at ${data.Location}`)        
+        console.log(`File uploaded successfully at ${data.Location}`)
         // delete the temp file
-        fs.unlink(req.file.path, function(err) {
+        fs.unlink(req.file.path, function (err) {
           if (err) {
             return res.status(500).send(err)
           }
@@ -74,8 +74,11 @@ fileRoutes.route('/:image_name').get(function (req, res) {
     Bucket: 'aaronbaebucket',
     Key: req.params.image_name
   }
-  s3.getObject(params, function(err, data){   
-    if(err){
+  console.log("image fetch api")
+  console.log(req.url)
+  console.log(params)
+  s3.getObject(params, function (err, data) {
+    if (err) {
       console.log(err);
       return res.status(500).send(err)
     }
