@@ -7,8 +7,7 @@ class NotReady extends Component {
       <div className="row all-notready-container">
         <div class="jumbotron">
           <h1 class="display-4">Still In Development...</h1>
-          <p class="lead">Sorry, I am still working on this page. Just ironing out some small bugs. Meanwhile, click on the surprise link below!</p>
-          <a class="btn btn-primary btn-lg" href="https://www.youtube.com/watch?v=DNWWi8RYzhM" role="button">Surprise Link</a>
+          <p class="lead">Sorry, I am still working on this page. Just ironing out some small bugs.</p>
         </div>
       </div>
     );
