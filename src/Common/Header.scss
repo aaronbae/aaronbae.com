@@ -24,7 +24,7 @@ $admin_button_horizontal_padding: 10px;
   box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
   
   .header-inner-container {
-    padding: 0px 20px;
+    padding: 0px  $edge_margin;
     .navbrand {
       background-color: $headercolor;
       color: $brandcolor;

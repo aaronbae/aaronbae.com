@@ -31,18 +31,18 @@ class Header extends Component {
     const path = this.props.history.location.pathname;
     return (
       <div className="header-container d-flex row">
-        <div className="offset-md-2 col-12 col-md-8 header-inner-container">
+        <div className="col-12 offset-md-1 col-md-10 offset-lg-1 col-lg-9 header-inner-container">
           <div className="row">
             <div><RedirectButton addClasses="navbrand" message="Aaron Bae" route="/" /></div>
 
             <div className="d-none d-sm-block collapsable">
-              <div className={path==="/"?"tab active":"tab"}>
+              <div className={path === "/" ? "tab active" : "tab"}>
                 <RedirectButton addClasses="navlink" message="Home" route="/" />
               </div>
 
               <div className="tab line"></div>
-              <div className={path.startsWith("/blog") || path.startsWith("/admin")?"tab active":"tab"}>
-                {logged_in && 
+              <div className={path.startsWith("/blog") || path.startsWith("/admin") ? "tab active" : "tab"}>
+                {logged_in &&
                   <RedirectButton addClasses="navlink" message="Blog" route="/admin" />
                 }
                 {!logged_in &&
@@ -50,8 +50,8 @@ class Header extends Component {
                 }
               </div>
 
-              <div className={path==="/login"?"tab admin-container active":"admin-container"}>
-                {logged_in && 
+              <div className={path === "/login" ? "tab admin-container active" : "admin-container"}>
+                {logged_in &&
                   <button className="navlink adminButton" onClick={this.handleLogOut}>Sign Out</button>
                 }
                 {!logged_in &&
@@ -66,15 +66,15 @@ class Header extends Component {
                 </button>
                 <div className="dropdown-menu dropdown-menu-right" >
                   <RedirectButton addClasses="dropdown-item" message="Home" route="/" />
-                  {logged_in && 
+                  {logged_in &&
                     <RedirectButton addClasses="dropdown-item" message="Blog" route="/admin" />
                   }
                   {!logged_in &&
                     <RedirectButton addClasses="dropdown-item" message="Blog" route="/blog" />
                   }
-                
+
                   <div className="dropdown-divider"></div>
-                  {logged_in && 
+                  {logged_in &&
                     <button className="dropdown-item" onClick={this.handleLogOut}>Sign Out</button>
                   }
                   {!logged_in &&
@@ -82,7 +82,7 @@ class Header extends Component {
                   }
                 </div>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
       </div>
