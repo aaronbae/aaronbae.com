@@ -8,5 +8,6 @@ const rootReducer = combineReducers({
   BlogReducer,
   AdminReducer
 });
+
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 export default store
