@@ -82,7 +82,10 @@ $admin_button_horizontal_padding: 10px;
       margin-right: 10px;
       .dropdown {
         float: right;
-        .btn {
+        .hamburger_btn:focus {
+          box-shadow: none;
+        }
+        .hamburger_btn {
           padding: 0px;
           border: 0px;
           .menu-icon {
