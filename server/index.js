@@ -14,6 +14,12 @@ import postRoute from './routes/Post.route';
 import userRoute from './routes/User.route';
 import fileRoute from './routes/File.route';
 
+// Sentry
+import * as Sentry from '@sentry/node'; 
+Sentry.init({ 
+  dsn: 'https://c7f35c6182a34d129374dc31f77ae3b5@o418535.ingest.sentry.io/5322885', 
+});
+    
 // Configure Mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, config.options).then(
@@ -26,6 +32,7 @@ mongoose.connect(config.DB, config.options).then(
 
 // Boiler Plate
 const app = express();
+app.use(Sentry.Handlers.requestHandler());
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -37,6 +44,7 @@ app.use('/api/files', fileRoute);
 // Front End Serving
 app.use(express.static('./build'));
 app.use("/", defaultRoute);
+app.use(Sentry.Handlers.errorHandler());
 
 const PORT = process.env.NODE_ENV === "production" ? 3000 : 4000;
 app.listen(PORT, () => {
