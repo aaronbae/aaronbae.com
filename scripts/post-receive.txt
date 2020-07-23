@@ -2,9 +2,9 @@
 echo "[post-receive] : Post-receive hook initiated"
 cd /home/ubuntu/aaronbae.com/
 echo "[post-receive] : Changed directory to /home/ubuntu/aaronbae.com/"
-git --git-dir=/home/ubuntu/aaronbae.com.git --work-tree=/home/ubuntu/aaronbae.com checkout master -f
+sudo git --git-dir=/home/ubuntu/aaronbae.com.git --work-tree=/home/ubuntu/aaronbae.com checkout master -f
 echo "[post-receive] : Installing node packages through npm"
-npm install -s
+sudo npm install -s
 echo "[post-receive] : Stopping Main"
 sudo pm2 stop main
 echo "[post-receive] : Deleting Main"
