@@ -37,7 +37,7 @@ function serveFrontend(req, res) {
     }
     data = data.replace('<div id="root"></div>', `<div id="root">${main}</div>`)
     data = data.replace('<meta react-meta-document>', `${meta}`)
-    data = data.replace('__REDUX_PRELOAD__', `${finalState}`)
+    data = data.replace('__REDUX_PRELOAD__', `${JSON.stringify(finalState)}`)
     console.log(`${req.url} : Successfully served the page!`)
     return res.send(data);
   });
