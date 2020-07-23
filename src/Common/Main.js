@@ -14,22 +14,30 @@ import Testing from '../Testing/Main';
 import NonExistentRoute from '../Warnings/NonExistentRoute';
 import './Main.scss';
 
-// Other 
+// Others
 import store from "../Redux/Store";
 import * as Sentry from '@sentry/react';
-import {
-  metaDefault
-} from "../Utils/MetaHelpers";
+import { metaDefault } from "../Utils/MetaHelpers";
 
 Sentry.init({ dsn: "https://eafc03ce34b94dd98b03f1fc08903681@o418535.ingest.sentry.io/5321569" });
 
 
 class Main extends Component {
   // NOTE THAT path="/api/" is already reserved for backend
+  constructor(props) {
+    super(props);
+    this.state = {
+      fullyloaded: false
+    }
+  }
+  componentDidMount() {
+    this.setState({ fullyloaded: true })
+  }
+
   render() {
     return (
       <Provider store={store}>
-        {metaDefault()}
+        {this.state.fullyloaded && metaDefault()}
         <div className='container-fluid base_container main-container'>
           <Header />
           <Switch>
