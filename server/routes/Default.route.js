@@ -35,13 +35,13 @@ function serveFrontend(req, res, post) {
   const indexFile = path.resolve('./build/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
-      console.log(`${req.url} : Failed to serve the page!`)
+      console.log(`${req.url} : Failed`)
       console.error(err);
       return res.status(500).send('Oops, better luck next time!');
     }
     data = data.replace('<div id="root"></div>', `<div id="root">${main}</div>`)
     data = data.replace('<meta react-meta-document>', `${meta}`)
-    console.log(`${req.url} : Successfully served the page!`)
+    console.log(`${req.url} : Success`)
     return res.send(data);
   });
 }

@@ -5,6 +5,7 @@ import { } from 'dotenv/config'
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import compression from 'compression';
 import mongoose from 'mongoose';
 import config from './DB';
 
@@ -14,7 +15,7 @@ import postRoute from './routes/Post.route';
 import userRoute from './routes/User.route';
 import fileRoute from './routes/File.route';
 
-// Sentry
+// Supporting
 import * as Sentry from '@sentry/node'; 
 Sentry.init({ 
   dsn: 'https://c7f35c6182a34d129374dc31f77ae3b5@o418535.ingest.sentry.io/5322885', 
@@ -24,8 +25,7 @@ Sentry.init({
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, config.options).then(
   () => {
-    console.log(config.DB)
-    console.log('Database is connected')
+    console.log(`DB connected to ${config.DB}`)
   },
   err => { console.log('Cannot connect to the database\n' + err) }
 );
@@ -33,6 +33,7 @@ mongoose.connect(config.DB, config.options).then(
 // Boiler Plate
 const app = express();
 app.use(Sentry.Handlers.requestHandler());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -42,7 +43,7 @@ app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
 
 // Front End Serving
-app.use(express.static('./build'));
+app.use(express.static('./build', { index: false }));
 app.use("/", defaultRoute);
 app.use(Sentry.Handlers.errorHandler());
 
