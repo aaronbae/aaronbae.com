@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { fetch_post_by_id } from '../Redux/BlogActions'
 
 import { 
+  url_to_post_id,
   isMyImageURL,
   convertMyImageURL
 } from '../Utils/HelperFunctions';
@@ -24,22 +25,26 @@ import {
 
 import './PostViewer.scss';
 
-class PostViewer extends Component {  
+class PostViewer extends Component { 
+  constructor(props) {
+    super(props);
+    this.state ={
+      requested_post_id: url_to_post_id(props.match.params["id"])
+    }
+  }
   componentDidMount() {
     const { dispatch } = this.props
-    let post_id = this.props.match.params["id"]
-    dispatch(fetch_post_by_id(post_id))
+    dispatch(fetch_post_by_id(this.state.requested_post_id))
     window.scrollTo(0, 0) // Need to scroll to top if coming from /blog
   }
 
   render() {
     const { posts } = this.props
-    let post_id = this.props.match.params["id"]
     let isPostFetched = posts.length > 0
     // TOOD: Remember that we don't have spinner div developed yet
     if( isPostFetched ) {
       var id2index = this.props.id2index
-      var thisPost = posts[id2index[post_id]]
+      var thisPost = posts[id2index[this.state.requested_post_id]]  
     }
     return (
       <div className="row post-viewer-container ">

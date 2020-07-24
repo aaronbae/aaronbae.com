@@ -11,6 +11,7 @@ import store from '../../src/Redux/Store';
 import Main from '../../src/Common/Main';
 import Helmet from 'react-helmet';
 import Post from '../models/Post';
+import { url_to_post_id } from "../../src/Utils/HelperFunctions";
 import { metaFromPost } from "../../src/Utils/MetaHelpers";
 
 const express = require('express');
@@ -46,8 +47,8 @@ function serveFrontend(req, res, post) {
   });
 }
 
-defaultRoutes.route("/blog/[a-zA-Z0-9]+").get(function (req, res) {
-  let post_id = req.url.split("/")[2]
+defaultRoutes.route("/blog/([a-z]+-)+[a-zA-Z0-9]{24}").get(function (req, res) {
+  let post_id = url_to_post_id(req.url)
   Post.findById(post_id, function (err, post) {
     if (err) {
       console.log(`Front End : Could not fetch post ${post_id}!`)

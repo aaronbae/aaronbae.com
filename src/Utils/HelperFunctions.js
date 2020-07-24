@@ -1,5 +1,15 @@
 import { config } from '../Constants'
 
+export function post_to_url(post) {
+  let modified_title = post.title.replace(/[^A-Za-z0-9\s]/g,"").toLowerCase()
+  modified_title = modified_title.split(" ").join("-")
+  return `/blog/${modified_title}-${post._id}`
+}
+export function url_to_post_id(url) {
+  let splitted = url.split("-");
+  return splitted[splitted.length - 1]
+}
+
 export function format_date(date_string) {
   var given_date = new Date(date_string)
   var corrected_d = new Date(given_date.getTime() - new Date().getTimezoneOffset() * 60000)

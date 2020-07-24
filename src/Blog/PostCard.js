@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 // Redux handlers
 import PropTypes from 'prop-types'
+import { post_to_url } from '../Utils/HelperFunctions';
 import { connect } from 'react-redux'
 
 import './PostCard.scss';
@@ -19,7 +20,7 @@ class PostCard extends Component {
 
   handlePostClick(e) {
     e.stopPropagation();
-    this.props.history.push("/blog/"+this.props.post_id)
+    this.props.history.push(this.props.url)
   }
 
   render() {
@@ -41,6 +42,7 @@ class PostCard extends Component {
 }
 
 PostCard.propTypes = {
+  url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   summarized_content: PropTypes.string.isRequired
@@ -50,6 +52,7 @@ function mapStateToProps(state, ownProps) {
   const { posts, id2index } = state.BlogReducer
   let this_post = posts[id2index[ownProps.post_id]]
   return {
+    url: post_to_url(this_post),
     title: this_post.title.substring(0,61) + (this_post.title.length > 61 ? "..." : "" ),
     date: this_post.createtime,
     summarized_content: this_post.content.join(" ").substring(0, 200) + "..."
