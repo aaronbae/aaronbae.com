@@ -7,6 +7,8 @@ import {
   fetch_public_posts
 } from '../Redux/BlogActions'
 
+import { query_param_string_to_objects } from "../Utils/HelperFunctions"
+
 // components 
 import PostCard from './PostCard';
 import './MainBlogPage.scss';
@@ -15,7 +17,12 @@ class MainBlogPage extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetch_public_posts())
+    let query = query_param_string_to_objects(this.props.location.search)
+    let skip = 0
+    if("skip" in query){
+      skip = query.skip
+    }
+    dispatch(fetch_public_posts(skip))
   }
 
   render() { 
@@ -29,6 +36,9 @@ class MainBlogPage extends Component {
             {posts.map((item, index) => 
               <PostCard key={index} post_id={item._id} />
             )}
+          </div>
+          <div className="row page-selector">
+            Page Selector Here
           </div>
         </div>
       </div>

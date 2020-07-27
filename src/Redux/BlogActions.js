@@ -46,6 +46,7 @@ export function clear_posts() {
 }
 function receive_posts(res) {
   var id2index = {}   
+  // if only one post return
   if(!Array.isArray(res)){
     res = [res]
   }
@@ -61,11 +62,18 @@ function receive_posts(res) {
 }
 
 // PROCESSORS
-export function fetch_public_posts() {
+export function fetch_public_posts(skip = 0) {
   return dispatch => {
-    fetch(config.url.POST_URL+"public")
+    let url = config.url.POST_URL+"public"
+    if(skip > 0){
+      url += "?skip="+skip.toString()
+    } 
+    fetch(url)
       .then(res => res.json())
-      .then(res => dispatch(receive_posts(res)))
+      .then(res => {
+        
+        dispatch(receive_posts(res.posts))
+      })
   }
 }
 

@@ -1,6 +1,8 @@
 const express = require('express');
 const postRoutes = express.Router();
 let Post = require('../models/Post');
+var async = require("async")
+let POSTS_PER_PAGE = 10;
 
 // Defined store route
 postRoutes.route('/add/').post(function (req, res) {
@@ -22,24 +24,50 @@ postRoutes.route('/add/').post(function (req, res) {
 
 // Defined get data(index or listing) route
 postRoutes.route('/public').get(function (req, res) {
-  var query = Post.find({}, null,
-    {
-      sort: { createtime: 'desc' },
-      limit: 20
-    }).where({ public: true });
-  query.exec(
-    function (err, posts) {
-      if (err) {
-        console.log(`/post/public : Failed!`)
-        console.log(err);
-        res.status(400).send("unable to find posts")
+  let skip = 0
+  if("skip" in req.query && Number.isInteger(parseInt(req.query.skip))){
+    skip = Math.round(parseInt(req.query.skip)/POSTS_PER_PAGE)*POSTS_PER_PAGE
+  }
+    
+  var fetch_query = function(callback) {
+    Post.find({public: true})
+      .sort({createtime: 'desc'})
+      .skip(skip)
+      .limit(POSTS_PER_PAGE)
+      .exec(function(err, posts){
+        if(err){ 
+          callback(err, null) 
+        } else {
+          callback(null, posts)
+        }
+      });
+  }
+  var count_query = function(callback) {
+    Post.count({public: true}, function(err, posts){
+      if(err){
+        callback(err, null)
+      } else {
+        callback(null, posts)
       }
-      else {
-        console.log(`/post/public : Successfully fetched ${posts.length} posts!`);
-        res.json(posts);
-      }
+    })
+  }
+  async.parallel([fetch_query, count_query], function(err, results){
+    if (err) {
+      console.log(`/post/public : Failed!`)
+      console.log(err);
+      res.status(400).send("unable to find posts")
     }
-  );
+    console.log(`/post/public : Successfully fetched ${results[0].length} posts!`);
+    res.json(
+      {
+        posts: results[0], 
+        total_count: results[1],
+        page: Math.trunc(skip/POSTS_PER_PAGE) + 1,
+        total_pages: Math.ceil(results[1] / POSTS_PER_PAGE),
+        skip: skip
+      }
+    );
+  })  
 });
 
 // Defined get data(index or listing) route
@@ -47,7 +75,7 @@ postRoutes.route('/').get(function (req, res) {
   Post.find({}, null,
     {
       sort: { createtime: 'desc' },
-      limit: 20
+      limit: 10
     },
     function (err, posts) {
       if (err) {

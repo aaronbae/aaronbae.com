@@ -29,7 +29,6 @@ class Main extends Component {
   componentDidMount() {
     this.setState({ fullyloaded: true })
   }
-
   render() {
     return (
       <Provider store={store}>
