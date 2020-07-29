@@ -41,27 +41,27 @@ export function clear_posts() {
   return {
     type: CLEAR_POSTS,
     posts: [],
-    id2index: {}
+    id2index: {},
+    current_page: 1,
+    total_pages: 1
   }
 }
 function receive_posts(res) {
   var id2index = {}   
-  // if only one post return
-  if(!Array.isArray(res)){
-    res = [res]
-  }
-  for( var index in res ) {
-    id2index[res[index]._id] = index
+  for( var index in res.posts ) {
+    id2index[res.posts[index]._id] = index
   }
   return {
     type: RECEIVE_POSTS,
-    posts: res,
+    posts: res.posts,
     id2index: id2index,
+    current_page: res.current_page,
+    total_pages: res.total_pages,
     receivedAt: Date.now()
   }
 }
 
-// PROCESSORS
+// FETCHERS
 export function fetch_public_posts(skip = 0) {
   return dispatch => {
     let url = config.url.POST_URL+"public"
@@ -72,14 +72,18 @@ export function fetch_public_posts(skip = 0) {
       .then(res => res.json())
       .then(res => {
         
-        dispatch(receive_posts(res.posts))
+        dispatch(receive_posts(res))
       })
   }
 }
 
-export function fetch_posts() {
+export function fetch_posts(skip = 0) {
   return dispatch => {
-    fetch(config.url.POST_URL)
+    let url = config.url.POST_URL
+    if(skip > 0){
+      url += "?skip="+skip.toString()
+    } 
+    fetch(url)
       .then(res => res.json())
       .then(res => dispatch(receive_posts(res)))
   }
