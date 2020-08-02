@@ -1,35 +1,30 @@
-# aaronbae.com
-<p align="center">
-  <img src="https://github.com/aaronbae/aaronbae.com/blob/master/aaronbae.com.screencapture.PNG" width="700" title="Screen shot of the website">
-</p>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This is the source code to my personal website. Here are some basic features that I have implemented:
-1. Home page with information about my Education and Experiences
-2. Blog post viewer
-3. Blog post editor
-4. Admin Feature (login and signout)
-5. Custom text editing component
-6. Social media share buttons
-7. Redux store to manage data
-8. HTTPS security 
+## Getting Started
 
-Here are the services that are being used to host this website:
-1. AWS EC2
-2. AWS Route53
-3. AWS IAM
-4. AWS S3
-5. MongoDB
-6. Google Domains
-7. NameCheap for the SSL Certificate
+First, run the development server:
 
-Here is the Tech Stack specifics:
-1. NodeJS
-2. React and Redux
-3. HTML, JavaScript, and SCSS
-4. Express for backend
-5. MongoDB for data hosting
-6. Apache web hosting
-7. Git Deployment
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-# Citation
-This is an original work that I take full credit for, from scratch. I hope to release more features that can showcase my engineering skills on this website.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
