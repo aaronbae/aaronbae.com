@@ -1,17 +1,15 @@
-import Head from 'next/head'
-import styles from './index.module.css'
+import Layout from "../components/Layout"
+import Introduction from '../components/Home/Introduction'
+import Education from '../components/Home/Education'
+import TechnicalExperiences from '../components/Home/TechnicalExperiences'
 
-export default function Home() {
+function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        Index.js
-      </main>
-    </div>
+    <Layout>
+      <Introduction />
+      <Education />
+      <TechnicalExperiences />
+    </Layout>
   )
 }
+export default Home
