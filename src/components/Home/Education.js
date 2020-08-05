@@ -1,7 +1,9 @@
+import '../../styles/Home/education.css'
+
 export default function Education() {
   return (
     <div>
-      <div className="row title-section">
+      <div className="card-wrapper title-section">
         <p>Education</p>
         <div className="education-img-wrapper">
           <img className="education-img" src="/uci_seal_200.png" alt="University of California Irvine" />
