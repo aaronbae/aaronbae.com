@@ -1,0 +1,32 @@
+@media (min-width: 1024px){
+  #blog-container {
+    grid-template-columns: 3fr 6fr 3fr;
+  }
+  #blog-container > .card-wrapper {
+    grid-column: 2 / 3;
+  }
+}
+@media (min-width: 481px) and (max-width: 1023px){
+  #blog-container {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+  #blog-container > .card-wrapper {
+    grid-column: 2 / 3;
+  }
+}
+@media (max-width: 480px){
+  #blog-container {
+    grid-template-columns: 1fr;
+  }
+  #blog-container > .card-wrapper {
+    grid-column: 1 / 2;
+  }
+}
+#blog-container {
+  display: grid;
+  padding: 10px;
+  color: #36373B;
+}
+#blog-container > .card-wrapper {
+  font-weight: bold;
+}
