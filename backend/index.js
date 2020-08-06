@@ -45,7 +45,6 @@ app.use('/api/files', fileRoute);
 
 app.use(Sentry.Handlers.errorHandler());
 
-const PORT = process.env.NODE_ENV === "production" ? 3000 : 4000;
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.listen(4000, () => {
+  console.log("Server is listening on port 4000");
 });
