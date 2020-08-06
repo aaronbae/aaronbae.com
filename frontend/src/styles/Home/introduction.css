@@ -27,6 +27,7 @@
 }
 #profile-img {
   border-radius: 40px;
+  max-height: 300px; 
 }
 #bio-info {
   padding: 20px 0px;
