@@ -1,1 +1,43 @@
-
+@media only screen and (min-width:769px){   
+  .education-section {
+    flex-direction: row;
+  }
+  .education-img {
+    margin: 0px;
+  }
+}
+@media only screen and (max-width:768px){   
+  .education-section {
+    flex-direction: column;
+  }
+  .education-img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.title-section {
+  display: flex;
+  flex-direction: column;
+}
+.education-section {
+  display: flex;
+  padding: 10px;
+}
+.education-section span, .education-section i {
+  white-space: nowrap; /* prevents break up of the words*/
+}
+.education-img {
+  padding: 0px 25px 10px 5px;
+  max-width: 150px;
+  max-height: 150px;
+}
+.education-bullets {
+  list-style-type: disc;
+  line-height: 1.4rem;
+}
+.education-bullets li {
+  margin-left: 20px;
+}
+.italicized {
+  font-style: italic;
+}
