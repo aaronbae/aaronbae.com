@@ -1,8 +1,22 @@
+@media (min-width: 770px){
+  .post-id {
+    grid-template-columns: 2fr 8fr 2fr;
+  }
+  .post-id > div {
+    grid-column: 2/3;
+    margin: 10px 0px 100px 0px;
+  }
+}
+@media (max-width: 769px){
+  .post-id {
+    grid-template-columns: 1fr;
+  }
+  .post-id > div {
+    grid-column: 1/2;
+    margin: 10px 20px 100px 20px;
+    
+  }
+}
 .post-id {
   display: grid;
-  grid-template-columns: 1fr 10fr 1fr;
-}
-.post-id > div {
-  margin: 10px 0px 100px 0px;
-  grid-column: 2/3;
 }
