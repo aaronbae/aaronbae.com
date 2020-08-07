@@ -1,0 +1,11 @@
+.post-header {
+  display: flex;
+  flex-direction: row;
+}
+.post-tags {
+  margin-left: auto;
+}
+.post-title {
+  font-size: 2.8rem;
+  line-height: 3.5rem;
+}

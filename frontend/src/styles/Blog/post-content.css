@@ -1,0 +1,10 @@
+.aws-image {
+  max-width:100%;
+  height: auto;
+  margin: 30px auto;
+}
+.content-paragraph {
+  min-height: 1.5rem;
+  line-height: 1.5rem;
+  width: 100%;
+}

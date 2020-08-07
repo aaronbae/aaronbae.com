@@ -1,0 +1,14 @@
+.post-preview {
+  margin: 10px 10px 20px 10px;
+  cursor: pointer;
+}
+.preview-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.preview-title:hover {
+  color: blue;
+}
+.read-more {
+  color: blue;
+}

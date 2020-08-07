@@ -45,7 +45,16 @@ export function clear_posts() {
   }
 }
 function receive_posts(res) {
-  var id2index = {}   
+  var id2index = {}  
+  // Temporary to cope with outdated remote express server
+  if(!res.hasOwnProperty('posts')) {
+    res = {
+      posts: res,
+      current_page: 1,
+      total_pages: 1
+    }
+
+  } 
   for( var index in res.posts ) {
     id2index[res.posts[index]._id] = index
   }
@@ -69,7 +78,6 @@ export function fetch_public_posts(skip = 0) {
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        
         dispatch(receive_posts(res))
       })
   }

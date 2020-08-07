@@ -36,5 +36,5 @@ export function isMyImageURL(str) {
 }
 export function convertMyImageURL(str) {
   let re = new RegExp('https://aaronbaebucket.s3..*/')
-  return str.replace(re, config.url.FILE_URL)
+  return str.replace(re, process.env.NEXT_PUBLIC_FILE_URL)
 }

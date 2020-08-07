@@ -1,0 +1,8 @@
+.post-id {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+}
+.post-id > div {
+  margin: 10px 0px 100px 0px;
+  grid-column: 2/3;
+}
