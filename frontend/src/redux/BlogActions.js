@@ -46,7 +46,7 @@ export function clear_posts() {
 }
 function receive_posts(res) {
   var id2index = {}  
-  // Temporary to cope with outdated remote express server
+  // TEMPORARY
   if(!res.hasOwnProperty('posts')) {
     res = {
       posts: res,

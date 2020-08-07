@@ -3,7 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 import '../styles/layout.css'
 
-function Layout({children, title}){
+function Layout({children}){
   const default_title = process.env.NEXT_PUBLIC_TITLE
   const default_site_name = process.env.NEXT_PUBLIC_SITE_NAME
   const default_url = process.env.NEXT_PUBLIC_URL
@@ -11,12 +11,12 @@ function Layout({children, title}){
   return (
     <div id="root">
       <Head>
-        <title>{title || `${default_title}`}</title>
+        <title>{default_title}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
-        <meta name="og:site_name" content={default_site_name} />
         <meta name="title" content={default_title} />
         <meta name="description" content={description} />
+        <meta name="og:site_name" content={default_site_name} />
         <meta property="og:url" content={default_url} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={default_title} />

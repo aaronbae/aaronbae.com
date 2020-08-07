@@ -1,3 +1,14 @@
+export function find_image_from_post(post){
+  let img = ""
+  for( let i in post.content) {
+    let c = post.content[i]
+    if(isMyImageURL(c)){
+      img = convertMyImageURL(c);
+      break;
+    }
+  }
+  return img
+}
 
 export function query_param_string_to_objects(query_string){
   let result = {}
