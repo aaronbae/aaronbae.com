@@ -1,11 +1,11 @@
 import { format_date } from '../../library/format'
-// TODO
-//import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import '../../styles/Blog/post-information.css'
 
-export default function PostInformation({post}) {
+export default function PostInformation({post_id}) {
   // TODO
-  //const edit_mode = useSelector(store => store.BlogReducer.edit_mode)
+  const post = useSelector(store => store.BlogReducer.posts[post_id])
+  const edit_mode = useSelector(store => store.BlogReducer.edit_mode)
 
   // ERROR FROM LINE 22 WHEN EDITABLE ENABLED
   // FIX THIS BY USING useSelector FUNCTION AND MAKING IT LISTEN TO THE CHANGED REDUX STATE

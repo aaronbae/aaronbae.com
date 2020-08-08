@@ -1,4 +1,5 @@
 import { post_to_url, summarize_content } from '../../library/format'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { change_edit_mode, update_post } from '../../redux/BlogActions'
 import Toggle from '../Utility/Toggle'
@@ -13,11 +14,12 @@ import {
   TwitterIcon,
 } from "react-share";
 
-export default function PostControls({post}) {
-  const url = `${process.env.NEXT_PUBLIC_URL}${post_to_url(post)}` 
-  const summary = summarize_content(post.content)
+export default function PostControls({post_id}) {
   const dispatch = useDispatch()
   const edit_mode = useSelector(store => store.BlogReducer.edit_mode)
+  const post = useSelector(store => store.BlogReducer.posts[post_id])
+  const url = `${process.env.NEXT_PUBLIC_URL}${post_to_url(post)}`
+  const summary = summarize_content(post.content)
 
   // Temporary
   const logged_in = true

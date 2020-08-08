@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import PostInformation from '../../components/Blog/PostInformation'
 import PostControls from '../../components/Blog/PostControls'
 import PostContent from '../../components/Blog/PostContent'
+import PostEditControls from '../../components/Blog/PostEditControls'
 import { 
   url_to_post_id, 
   summarize_content,
@@ -11,14 +12,13 @@ import {
 } from '../../library/format'
 import '../../styles/Blog/id.css'
 
-function PostViewer() {
-  const post = useSelector(store=> {
-    const posts = store.BlogReducer.posts
-    return posts[Object.keys(posts)[0]]
-  })
+function PostViewer({post_id}) {
+  const post = useSelector(store => store.BlogReducer.posts[post_id])
+  const edit_mode = useSelector(store => store.BlogReducer.edit_mode)
   const description = summarize_content(post.content)
   const url = process.env.NEXT_PUBLIC_URL + post_to_url(post)
   const img = find_image_from_post(post)
+
   return (
     <div className="post-id">
       <Head>
@@ -33,9 +33,12 @@ function PostViewer() {
       </Head>
       {post && 
         <div className="card-wrapper"> 
-          <PostInformation post={post}/>
-          <PostControls post={post}/>
-          <PostContent post={post}/>
+          <PostInformation post_id={post._id}/>
+          <PostControls post_id={post._id}/>
+          <PostContent post_id={post._id}/>
+          {edit_mode && 
+            <PostEditControls post_id={post._id} />
+          }
         </div>
       }
   </div>
@@ -44,10 +47,12 @@ function PostViewer() {
 export async function getServerSideProps(context) {
   const raw = await fetch(process.env.NEXT_PUBLIC_POST_URL+url_to_post_id(context.query.id))
   const res = await raw.json()
+  const post = res.posts[0]
   const posts = {}
-  posts[res.posts[0]._id] = res.posts[0]
+  posts[post._id] = post
   return {
     props: {
+      post_id: post._id,
       initialReduxState: {
         BlogReducer: {
           posts: posts
