@@ -13,18 +13,18 @@ function Layout({children}){
       <Head>
         <title>{default_title}</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta charSet="utf-8" />
-        <meta name="title" content={default_title} />
-        <meta name="description" content={description} />
-        <meta name="og:site_name" content={default_site_name} />
-        <meta property="og:url" content={default_url} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={default_title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content="https://github.com/aaronbae/aaronbae.com/blob/master/aaronbae.com.screencapture.PNG" />
-        <meta name="robots" content="index, follow" />
-        <meta name="referrer" content="origin" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta key="charSet" charSet="utf-8" />
+        <meta key="title" name="title" content={default_title} />
+        <meta key="description" name="description" content={description} />
+        <meta key="og:site_name" name="og:site_name" content={default_site_name} />
+        <meta key="og:url" property="og:url" content={default_url} />
+        <meta key="og:type" property="og:type" content="website" />
+        <meta key="og:title" property="og:title" content={default_title} />
+        <meta key="og:description" property="og:description" content={description} />
+        <meta key="og:image" property="og:image" content="https://github.com/aaronbae/aaronbae.com/blob/master/aaronbae.com.screencapture.PNG" />
+        <meta key="robots" name="robots" content="index, follow" />
+        <meta key="referrer" name="referrer" content="origin" />
+        <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header />
       <main id="main">

@@ -27,14 +27,13 @@ function PostViewer(data) {
     <div className="post-id">
       <Head>
         <title>{post.title}</title>
-        <meta name="title" content={post.title} />
-        <meta name="description" content={description} />
-        <meta property="og:url" content={url} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={description} />
-        {img !== "" && <meta property="og:image" content={img} />}
-        <meta property="og:image" content="https://github.com/aaronbae/aaronbae.com/blob/master/aaronbae.com.screencapture.PNG" />
+        <meta key="title" name="title" content={post.title} />
+        <meta key="description" name="description" content={description} />
+        <meta key="og:url" property="og:url" content={url} />
+        <meta key="og:type" property="og:type" content="article" />
+        <meta key="og:title" property="og:title" content={post.title} />
+        <meta key="og:description" property="og:description" content={description} />
+        {img !== "" && <meta key="og:image" property="og:image" content={img} />}
       </Head>
       {post && 
         <div className="card-wrapper"> 
