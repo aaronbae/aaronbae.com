@@ -13,17 +13,17 @@ export function change_edit_mode(boolean_value) {
     edit_mode: boolean_value
   }
 }
-export function remove_paragraph(post_index, paragraph_index) {
+export function remove_paragraph(post_id, paragraph_index) {
   return {
     type: REMOVE_PARAGRAPH,
-    post_index: post_index,
+    post_id: post_id,
     paragraph_index: paragraph_index
   }
 }
-export function add_new_paragraph(post_index, paragraph_index, initial_content) {
+export function add_new_paragraph(post_id, paragraph_index, initial_content) {
   return {
     type: ADD_NEW_PARAGRAPH,
-    post_index: post_index,
+    post_id: post_id,
     paragraph_index: paragraph_index,
     initial_content: initial_content
   }
@@ -43,14 +43,12 @@ export function update_post(new_post) {
 export function clear_posts() {
   return {
     type: CLEAR_POSTS,
-    posts: [],
-    id2index: {},
+    posts: {},
     current_page: 1,
     total_pages: 1
   }
 }
 function receive_posts(res) {
-  var id2index = {}  
   // TEMPORARY
   if(!res.hasOwnProperty('posts')) {
     res = {
@@ -58,15 +56,15 @@ function receive_posts(res) {
       current_page: 1,
       total_pages: 1
     }
-
   } 
+  const posts = {}
   for( var index in res.posts ) {
-    id2index[res.posts[index]._id] = index
+    let p = res.posts[index]
+    posts[p._id] = p
   }
   return {
     type: RECEIVE_POSTS,
-    posts: res.posts,
-    id2index: id2index,
+    posts: posts,
     current_page: res.current_page,
     total_pages: res.total_pages,
     receivedAt: Date.now()

@@ -1,3 +1,9 @@
+export function posts_to_array(posts) {
+  return Object.values(posts).sort(function(a,b) {
+    return a.createtime >= b.createtime
+  })
+}
+
 export function find_image_from_post(post){
   let img = ""
   for( let i in post.content) {

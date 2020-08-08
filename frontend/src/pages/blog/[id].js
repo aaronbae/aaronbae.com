@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useSelector } from 'react-redux'
 import PostInformation from '../../components/Blog/PostInformation'
 import PostControls from '../../components/Blog/PostControls'
 import PostContent from '../../components/Blog/PostContent'
@@ -10,16 +11,11 @@ import {
 } from '../../library/format'
 import '../../styles/Blog/id.css'
 
-function PostViewer(data) {
-  // TEMPORARY
-  if(!data.hasOwnProperty('posts')) {
-    data = {
-      posts: [data],
-      current_page: 1,
-      total_pages: 1
-    }
-  } 
-  const post = data.posts[0]
+function PostViewer() {
+  const post = useSelector(store=> {
+    const posts = store.BlogReducer.posts
+    return posts[Object.keys(posts)[0]]
+  })
   const description = summarize_content(post.content)
   const url = process.env.NEXT_PUBLIC_URL + post_to_url(post)
   const img = find_image_from_post(post)
@@ -47,9 +43,17 @@ function PostViewer(data) {
 }
 export async function getServerSideProps(context) {
   const raw = await fetch(process.env.NEXT_PUBLIC_POST_URL+url_to_post_id(context.query.id))
-  const data = await raw.json()
+  const res = await raw.json()
+  const posts = {}
+  posts[res.posts[0]._id] = res.posts[0]
   return {
-    props: data
+    props: {
+      initialReduxState: {
+        BlogReducer: {
+          posts: posts
+        }
+      }
+    }
   }  
 }
 export default PostViewer;

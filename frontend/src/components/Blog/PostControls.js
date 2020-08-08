@@ -1,9 +1,7 @@
 import { post_to_url, summarize_content } from '../../library/format'
-import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { change_edit_mode } from '../../redux/BlogActions'
-import Toggle from '../Utility/Toggle';
-import { update_post } from '../../redux/BlogActions'
+import { change_edit_mode, update_post } from '../../redux/BlogActions'
+import Toggle from '../Utility/Toggle'
 import '../../styles/Blog/post-controls.css'
 
 import {
