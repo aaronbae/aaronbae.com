@@ -1,22 +1,29 @@
-@media (min-width: 770px){
+/* same as Blog/index.css */
+@media (min-width: 1024px){
   .post-id {
-    grid-template-columns: 2fr 8fr 2fr;
+    grid-template-columns: 3fr 6fr 3fr;
   }
   .post-id > div {
     grid-column: 2/3;
-    margin: 10px 0px 100px 0px;
   }
 }
-@media (max-width: 769px){
+@media (min-width: 481px) and (max-width: 1023px){
+  .post-id {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+  .post-id > div {
+    grid-column: 2/3;
+  }
+}
+@media (max-width: 480px){
   .post-id {
     grid-template-columns: 1fr;
   }
   .post-id > div {
     grid-column: 1/2;
-    margin: 10px 20px 100px 20px;
-    
   }
 }
 .post-id {
+  padding: 10px;
   display: grid;
 }

@@ -12,15 +12,17 @@
 .logo {
   font-size: 1.4rem;
 }
-.tab-group {
+.tab-group {  
   padding: 0px 30px;
   display: inline-block;
 }
 .tab {
   color: gray;
-  display:  inline-block;
   padding: 5px 10px;
 }
 .tab:hover {
   color: black;
+}
+.admin-tab {
+  margin-left: auto;
 }

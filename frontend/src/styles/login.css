@@ -53,6 +53,7 @@
 }
 .sign-in-button:hover {
   background: lightgray;
+  cursor: pointer;
 }
 .incorrect {
   box-shadow: 0 0 5px red;

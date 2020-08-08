@@ -10,6 +10,7 @@ export default function Blog() {
   const skip = 0 // for now
 
   useEffect(() => {
+    console.log("FETCHING")
     dispatch(fetch_public_posts(skip))
   }, [])
   
