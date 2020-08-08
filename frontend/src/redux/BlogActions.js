@@ -4,9 +4,15 @@ export const CLEAR_POSTS = "CLEAR_POSTS";
 export const ADD_NEW_POST = "ADD_NEW_POST";
 export const ADD_NEW_PARAGRAPH = "ADD_NEW_PARAGRAPH";
 export const REMOVE_PARAGRAPH = "REMOVE_PARAGRAPH";
-
+export const CHANGE_EDIT_MODE = "CHANGE_EDIT_MODE";
 
 // TERMINALS
+export function change_edit_mode(boolean_value) {
+  return {
+    type: CHANGE_EDIT_MODE, 
+    edit_mode: boolean_value
+  }
+}
 export function remove_paragraph(post_index, paragraph_index) {
   return {
     type: REMOVE_PARAGRAPH,
@@ -28,11 +34,10 @@ export function add_new_post(new_post) {
     new_post: new_post
   }
 }
-export function update_post(new_post, index) {
+export function update_post(new_post) {
   return {
     type: UPDATE_POST, 
-    new_post: new_post, 
-    index: index
+    new_post: new_post
   }
 }
 export function clear_posts() {
@@ -100,5 +105,65 @@ export function fetch_post_by_id(post_id) {
     fetch(process.env.NEXT_PUBLIC_POST_URL+post_id)
       .then(res => res.json())
       .then(res => dispatch(receive_posts(res)))
+  }
+}
+
+// MANIPULATORS
+export function upload_image(file, post, index, paragraph_index) {
+  return dispatch => {
+    var url = process.env.NEXT_PUBLIC_FILE_URL + 'upload'
+    const data = new FormData() 
+    data.append('file', file)
+    fetch(url, {
+      method: 'POST',
+      body: data
+    }).then(res => res.json())
+    .then(res => {
+      let new_content = [...post.content]
+      new_content[paragraph_index] = res.url
+      let new_post = {...post, content: [...new_content]}
+      dispatch(update_post(new_post, index))
+    })
+  }
+}
+export function create_new_post() {
+  return dispatch => {
+    var url = process.env.NEXT_PUBLIC_POST_URL + "add/"
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    }).then(res => res.json())
+    .then(res => {
+      dispatch(add_new_post(res.post))
+      dispatch(change_edit_mode(true))
+    })
+  }
+}
+export function save_local_changes(post) {
+  var url = process.env.NEXT_PUBLIC_POST_URL + "update/" + post._id.toString()
+  return dispatch => {
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    }).then(res => dispatch(change_edit_mode(false)))
+  }
+}
+
+export function delete_post(post_id) {
+  var url = process.env.NEXT_PUBLIC_POST_URL + "delete/" +post_id.toString()
+  return dispatch => {
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(() => dispatch(change_edit_mode(false)))
   }
 }

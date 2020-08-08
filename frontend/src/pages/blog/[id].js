@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import PostInformation from '../../components/Blog/PostInformation'
-import PostShare from '../../components/Blog/PostShare'
+import PostControls from '../../components/Blog/PostControls'
 import PostContent from '../../components/Blog/PostContent'
 import { 
   url_to_post_id, 
@@ -38,7 +38,7 @@ function PostViewer(data) {
       {post && 
         <div className="card-wrapper"> 
           <PostInformation post={post}/>
-          <PostShare post={post}/>
+          <PostControls post={post}/>
           <PostContent post={post}/>
         </div>
       }
