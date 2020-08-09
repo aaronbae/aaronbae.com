@@ -8,6 +8,9 @@
 .post-control-right {
   margin-left: auto;
 }
+.post-control-right > span {
+  margin-left: 5px;
+}
 .edit-button {
   outline:none;
   border: 1px solid black;;

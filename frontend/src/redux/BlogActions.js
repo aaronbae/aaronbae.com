@@ -53,6 +53,13 @@ export function update_tags(new_post, tags) {
     new_post: new_post
   }
 }
+export function update_public(new_post, public_boolean) {
+  new_post.public = public_boolean
+  return {
+    type: UPDATE_POST,
+    new_post: new_post
+  }
+}
 function receive_posts(res) {
   // TEMPORARY
   if(!res.hasOwnProperty('posts')) {

@@ -1,7 +1,7 @@
 import { post_to_url, summarize_content } from '../../library/format'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { change_edit_mode, update_post } from '../../redux/BlogActions'
+import { change_edit_mode, update_public } from '../../redux/BlogActions'
 import Toggle from '../Utility/Toggle'
 import '../../styles/Blog/post-controls.css'
 
@@ -27,8 +27,8 @@ export default function PostControls({post_id}) {
   const edit_post_click = (e) => {
     dispatch(change_edit_mode(true))
   }
-  const update_public = (e) => {
-    dispatch(update_post({...post, public: !post.public}))
+  const handle_switch = (e) => {
+    dispatch(update_public(post, !post.public))
   }
   return (
     <div className="post-controls">
@@ -59,7 +59,12 @@ export default function PostControls({post_id}) {
         <button className="edit-button post-control-right" onClick={edit_post_click}>Edit Post</button>
       }
       {edit_mode && logged_in &&
-        <Toggle checked={post.public} className="post-control-right" width="50px" click_behavior={update_public}/>
+        <span className="post-control-right">
+          <span>Public :</span>
+          <span>
+            <Toggle checked={post.public} width="50px" click_behavior={handle_switch}/>
+          </span>
+        </span>
       }
   </div>
   )
