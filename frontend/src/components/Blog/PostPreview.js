@@ -11,7 +11,7 @@ export default function PostPreview({post}) {
     <Link href="/blog/[id]" as={url}>
       <div className="post-preview" >
         <div className="preview-date">{formatted_date}</div>
-        <div className="preview-title">{post.title}</div>
+        <div className="preview-title">{post.title!==""?post.title:"(No Title)"}</div>
         <div>{summarized_content}</div>
         <div className="read-more">Read More</div>
       </div>
