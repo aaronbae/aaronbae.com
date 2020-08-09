@@ -15,6 +15,7 @@
   width: 65px; 
   border-radius: 5px;
   cursor: pointer;
+  outline:none;
 }
 .post-edit-save {
   color: white;

@@ -1,5 +1,4 @@
 import {
-  CLEAR_POSTS,
   UPDATE_POST,
   RECEIVE_POSTS,
   ADD_NEW_POST,
@@ -34,12 +33,6 @@ function BlogReducer(state = initialState, action) {
     case UPDATE_POST:
       new_posts[action.new_post._id] = action.new_post
       return { ...state, posts: new_posts}
-    case CLEAR_POSTS:
-      return { ...state, 
-        posts: action.posts, 
-        current_page: action.current_page, 
-        total_pages: action.total_pages 
-      }
     case RECEIVE_POSTS:
       return { ...state, 
         posts: action.posts, 

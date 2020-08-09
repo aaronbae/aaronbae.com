@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import { change_edit_mode, fetch_post_by_id } from '../../redux/BlogActions'
+import { change_edit_mode, fetch_post_by_id, save_local_changes } from '../../redux/BlogActions'
 import '../../styles/Blog/post-edit-controls.css'
 
 export default function PostEditControls({post_id}) {
@@ -13,8 +13,8 @@ export default function PostEditControls({post_id}) {
   }
 
   const cancel_changes = (e) => {
-    dispatch(fetch_post_by_id(post_id))
     dispatch(change_edit_mode(false))
+    dispatch(fetch_post_by_id(post_id))
   }
 
   const delete_post = (e) => {

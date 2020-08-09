@@ -1,6 +1,5 @@
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const UPDATE_POST = "UPDATE_POST";
-export const CLEAR_POSTS = "CLEAR_POSTS";
 export const ADD_NEW_POST = "ADD_NEW_POST";
 export const ADD_NEW_PARAGRAPH = "ADD_NEW_PARAGRAPH";
 export const REMOVE_PARAGRAPH = "REMOVE_PARAGRAPH";
@@ -40,12 +39,18 @@ export function update_post(new_post) {
     new_post: new_post
   }
 }
-export function clear_posts() {
+export function update_title(new_post, title) {
+  new_post.title = title
   return {
-    type: CLEAR_POSTS,
-    posts: {},
-    current_page: 1,
-    total_pages: 1
+    type: UPDATE_POST,
+    new_post: new_post
+  }
+}
+export function update_tags(new_post, tags) {
+  new_post.tags = tags
+  return {
+    type: UPDATE_POST,
+    new_post: new_post
   }
 }
 function receive_posts(res) {

@@ -17,3 +17,10 @@
 .post-tags {
   margin-left: auto;
 }
+.post-tag-editor {
+  padding: 0px 5px;
+  display: inline-block;
+}
+.post-title {
+  overflow-wrap: anywhere;
+}
