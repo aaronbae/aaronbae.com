@@ -7,7 +7,7 @@ import {
 // The initial application state
 let initialState = {
   failed_attempt: false,
-  logged_in: false
+  logged_in: true // TEMPORARY LOGIN
 }
 
 // Takes care of changing the application state

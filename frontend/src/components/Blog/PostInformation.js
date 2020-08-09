@@ -25,6 +25,7 @@ export default function PostInformation({post_id}) {
           <span>Tags : </span>
           <div className="post-tag-editor"
             contentEditable={edit_mode} 
+            data-placeholder={"example-tag"}
             suppressContentEditableWarning={true}
             onKeyUp={change_tags}
           > 
@@ -35,6 +36,7 @@ export default function PostInformation({post_id}) {
       <div className="post-title" 
         contentEditable={edit_mode} 
         suppressContentEditableWarning={true}
+        data-placeholder={"hello"}
         onKeyUp={change_title} 
         >
         {post.title}

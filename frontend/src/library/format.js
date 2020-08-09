@@ -3,9 +3,13 @@ export function raw_tags_to_array(raw_tags_input) {
   return raw_tags_input.split(",").map(s => s.trim().replace(punctuation, ''))
 }
 export function posts_to_array(posts) {
-  return Object.values(posts).sort(function(a,b) {
-    return a.createtime >= b.createtime
+  const sorted_array = Object.values(posts).sort(function(a,b) {
+    if(a.createtime >= b.createtime){
+      return -1
+    }
+    return 1
   })
+  return sorted_array
 }
 
 export function find_image_from_post(post){

@@ -21,9 +21,7 @@ export default function PostControls({post_id}) {
   const url = `${process.env.NEXT_PUBLIC_URL}${post_to_url(post)}`
   const summary = summarize_content(post.content)
 
-  // Temporary
-  const logged_in = true
-  //const logged_in = useSelector(store => store.AdminReducer.logged_in)
+  const logged_in = useSelector(store => store.AdminReducer.logged_in)
   const edit_post_click = (e) => {
     dispatch(change_edit_mode(true))
   }

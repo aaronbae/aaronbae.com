@@ -19,6 +19,7 @@
 .tab {
   color: gray;
   padding: 5px 10px;
+  cursor: pointer;
 }
 .tab:hover {
   color: black;

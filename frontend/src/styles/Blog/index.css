@@ -30,3 +30,21 @@
 #blog-container .card-title {
   font-weight: bold;
 }
+.blog-whats-new {
+  display: flex;
+  flex-direction: row;
+}
+.blog-compose {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-left: auto;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 10px 5px;
+  font-weight: normal;
+  cursor: pointer;
+  color: black;
+}
+.blog-compose:hover {
+  background-color: rgb(240, 240, 240);
+}

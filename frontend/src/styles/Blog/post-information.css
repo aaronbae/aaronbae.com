@@ -18,9 +18,16 @@
   margin-left: auto;
 }
 .post-tag-editor {
+  min-width: 88px;
   padding: 0px 5px;
   display: inline-block;
 }
 .post-title {
   overflow-wrap: anywhere;
+}
+.post-title:empty:before, .post-tag-editor:empty:before {
+  color: gray;
+  cursor: text;
+  content: attr(data-placeholder);
+  display: block; /* For Firefox */
 }
