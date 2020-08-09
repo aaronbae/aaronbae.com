@@ -9,7 +9,10 @@ export default function PostContent({post_id}) {
     <div className="post-content">
       {post.content.map((i, key) => {
         if(isMyImageURL(i)){
-          return <img key={key} className="aws-image" src={convertMyImageURL(i)} alt="Loaded from AWS" /> 
+          return <img key={key} 
+            className="aws-image" 
+            src={convertMyImageURL(i)} 
+            alt="Loaded from AWS" /> 
         }
         else {
           return <div className="content-paragraph" key={key}>{i}</div>
