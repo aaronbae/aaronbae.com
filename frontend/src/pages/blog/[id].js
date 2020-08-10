@@ -48,14 +48,14 @@ export async function getServerSideProps(context) {
   const raw = await fetch(process.env.NEXT_PUBLIC_POST_URL+url_to_post_id(context.query.id))
   const res = await raw.json()
   const post = res.posts[0]
-  const posts = {}
-  posts[post._id] = post
   return {
     props: {
       post_id: post._id,
       initialReduxState: {
         BlogReducer: {
-          posts: posts
+          posts: {
+            [post._id] : post
+          }
         }
       }
     }

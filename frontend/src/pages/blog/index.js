@@ -15,7 +15,8 @@ export default function Blog() {
   const router = useRouter()
   const [new_post_redirect, setRedirect] = useState(false)
   const posts = useSelector(state => state.BlogReducer.posts)
-
+  const edit_mode = useSelector(store => store.BlogReducer.edit_mode)
+  
   useEffect(()=>{
     if(new_post_redirect){
       setRedirect(false)

@@ -5,7 +5,7 @@ import {
 } from './AdminActions'
 
 // The initial application state
-let initialState = {
+export let initialState = {
   failed_attempt: false,
   logged_in: true // TEMPORARY LOGIN
 }

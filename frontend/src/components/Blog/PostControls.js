@@ -1,5 +1,4 @@
 import { post_to_url, summarize_content } from '../../library/format'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { change_edit_mode, update_public } from '../../redux/BlogActions'
 import Toggle from '../Utility/Toggle'

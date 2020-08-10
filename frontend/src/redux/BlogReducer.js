@@ -8,7 +8,7 @@ import {
 } from './BlogActions'
 
 // The initial application state
-let initialState = {
+export let initialState = {
   posts: {},
   current_page: 1,
   total_pages: 1,

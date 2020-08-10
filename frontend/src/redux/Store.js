@@ -1,17 +1,29 @@
 import { useMemo } from 'react'
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import BlogReducer from './BlogReducer';
-import AdminReducer from './AdminReducer';
+import BlogReducer, { initialState as BlogInit} from './BlogReducer';
+import AdminReducer, { initialState as AdminInit} from './AdminReducer';
 
 let store
 
-function initStore(initialState) {  
+function initStore(initialState) {
+  const providedAdmin = initialState ? initialState.AdminReducer : {}
+  const providedBlog = initialState ? initialState.BlogReducer : {}
+  const new_initial_state = {
+    AdminReducer: {
+      ...AdminInit,
+      ...providedAdmin
+    },
+    BlogReducer: {
+      ...BlogInit,
+      ...providedBlog
+    }
+  }  
   const rootReducer = combineReducers({
     BlogReducer,
     AdminReducer
   });
-  return createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware))
+  return createStore(rootReducer, new_initial_state, applyMiddleware(thunkMiddleware))
 }
 
 export const initializeStore = (preloadedState) => {
