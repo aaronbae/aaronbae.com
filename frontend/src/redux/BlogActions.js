@@ -60,6 +60,13 @@ export function update_public(new_post, public_boolean) {
     new_post: new_post
   }
 }
+export function update_content(new_post, content) {
+  new_post.content = content
+  return {
+    type: UPDATE_POST, 
+    new_post: new_post
+  }
+}
 function receive_posts(res) {
   // TEMPORARY
   if(!res.hasOwnProperty('posts')) {

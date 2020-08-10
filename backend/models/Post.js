@@ -8,8 +8,8 @@ let Post = new Schema({
     default: ""
   },
   content: {
-    type: Array,
-    default: [""]
+    type: String,
+    default: ""
   },
   updatetime: {
     type: Date,

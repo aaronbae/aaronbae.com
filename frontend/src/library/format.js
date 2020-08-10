@@ -12,17 +12,6 @@ export function posts_to_array(posts) {
   return sorted_array
 }
 
-export function find_image_from_post(post){
-  let img = ""
-  for( let i in post.content) {
-    let c = post.content[i]
-    if(isMyImageURL(c)){
-      img = convertMyImageURL(c);
-      break;
-    }
-  }
-  return img
-}
 
 export function query_param_string_to_objects(query_string){
   let result = {}
@@ -43,9 +32,6 @@ export function url_to_post_id(url) {
   return splitted[splitted.length - 1]
 }
 
-export function summarize_content(content) {
-  return content.join(" ").substring(0, 200) + "..."
-}
 export function format_date(date_string) {
   var given_date = new Date(date_string)
   var corrected_d = new Date(given_date.getTime() - new Date().getTimezoneOffset() * 60000)
@@ -54,12 +40,21 @@ export function format_date(date_string) {
   var result = days[corrected_d.getDay()] + ", " + month[corrected_d.getMonth()] + " " + corrected_d.getDate() + ", " + corrected_d.getFullYear()
   return result
 }
-export function isMyImageURL(str) {
-  if (!str) return false
-  str = str.toLowerCase()
-  return str.startsWith("https://aaronbaebucket.s3") && (str.endsWith("jpg") || str.endsWith("png"))
+
+
+export function summarize_content(content) {
+  return content.replace(/<div>|<\/div>|<br>|<img\s+.*\/>/gi, "").substring(0, 200) + "..."
 }
-export function convertMyImageURL(str) {
-  let re = new RegExp('https://aaronbaebucket.s3..*/')
-  return str.replace(re, process.env.NEXT_PUBLIC_FILE_URL)
+// NEEDS TO BE CHANGED
+export function find_image_from_post(post){
+  let img = ""
+  
+  for( let i in post.content) {
+    let c = post.content[i]
+    if(isMyImageURL(c)){
+      img = convertMyImageURL(c);
+      break;
+    }
+  }
+  return img
 }

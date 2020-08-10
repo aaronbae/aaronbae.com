@@ -3,8 +3,13 @@
   height: auto;
   margin: 30px auto;
 }
-.content-paragraph {
-  min-height: 1.5rem;
-  line-height: 1.5rem;
-  width: 100%;
+.post-content-editor {
+  margin-top: 20px;
+  outline: none;
+}
+.post-content-editor:empty:before {
+  color: gray;
+  cursor: text;
+  content: attr(data-placeholder);
+  display: block; /* For Firefox */
 }

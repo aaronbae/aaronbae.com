@@ -18,12 +18,15 @@
   margin-left: auto;
 }
 .post-tag-editor {
+  outline: none;
   min-width: 88px;
   padding: 0px 5px;
   display: inline-block;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 .post-title {
   overflow-wrap: anywhere;
+  outline: none;
 }
 .post-title:empty:before, .post-tag-editor:empty:before {
   color: gray;
