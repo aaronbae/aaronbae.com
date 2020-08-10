@@ -16,9 +16,8 @@ export function page_to_skip(page, total_pages) {
   return 5 * (Math.min(total_pages, Math.max(1, page)) - 1)
 }
 export function pagination_array(current_page, total_pages) {
-  const start = Math.max(1, current_page - 2)
-  const how_many = Math.min(5, total_pages)
-  return [...Array(how_many).keys()].map(x => x+start)
+  const start = Math.max(1, Math.min(current_page - 2, total_pages-4))
+  return [...Array(5).keys()].map(x => x+start)
 }
 
 
