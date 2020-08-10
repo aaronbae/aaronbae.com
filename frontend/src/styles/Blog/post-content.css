@@ -1,3 +1,26 @@
+.tooltip-wrapper {
+  position: relative;
+  width: 0px;
+  height: 0px;
+  left: 150px;
+}
+#post-image-input {
+  display: none;
+}
+.post-tooltip {
+  display: inline;
+  visibility: hidden;
+  margin: 0px;
+  background-color: white;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 15px -3px gray;
+}
+.show {
+  cursor: pointer;
+  visibility: visible;
+}
 .aws-image {
   max-width:100%;
   height: auto;
