@@ -17,10 +17,10 @@ export default function Introduction() {
       </ul>
       <div className="card-section-break" />
       <div className="intro-link-wrapper">
-        <a href="https://github.com/aaronbae" title="GitHub">
+        <a href="https://github.com/aaronbae" target="_blank" title="GitHub">
           <img src="/icons/github.png" alt="GitHub" className='intro-icon' />
         </a>
-        <a href="https://www.linkedin.com/in/aaron-bae/" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/aaron-bae/" target="_blank" title="LinkedIn">
           <img src="/icons/linkedin.png" alt="LinkedIn" className='intro-icon' />
         </a>
         <a href="mailto:aaronbae@uw.edu" title="email">
