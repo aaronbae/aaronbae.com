@@ -109,7 +109,7 @@ export function fetch_posts(skip = 0) {
   return dispatch => {
     let url = process.env.NEXT_PUBLIC_POST_URL
     if(skip > 0){
-      url += "?skip="+skip.toString()
+      url = url.slice(0, -1) + "?skip="+skip.toString()
     } 
     fetch(url)
       .then(res => res.json())

@@ -7,6 +7,7 @@ import {
   create_new_post 
 } from '../../redux/BlogActions'
 import PostPreview from '../../components/Blog/PostPreview'
+import Pagination from '../../components/Blog/Pagination'
 import { posts_to_array } from '../../library/format'
 import '../../styles/Blog/index.css'
 
@@ -15,8 +16,9 @@ export default function Blog() {
   const router = useRouter()
   const [new_post_redirect, setRedirect] = useState(false)
   const posts = useSelector(state => state.BlogReducer.posts)
-  const edit_mode = useSelector(store => store.BlogReducer.edit_mode)
-  
+  const logged_in = useSelector(store => store.AdminReducer.logged_in)
+  const skip = router.query.skip
+
   useEffect(()=>{
     if(new_post_redirect){
       setRedirect(false)
@@ -25,16 +27,13 @@ export default function Blog() {
     }
   }, [posts])
   
-  const logged_in = useSelector(store => store.AdminReducer.logged_in)
-  const skip = 0 // for now
-
   useEffect(() => {
     if(logged_in) {
       dispatch(fetch_posts(skip))
     } else {
       dispatch(fetch_public_posts(skip))
     }
-  }, [])
+  }, [skip])
 
   const compose_new = (e) => {
     setRedirect(true)
@@ -53,6 +52,9 @@ export default function Blog() {
         {posts && posts_to_array(posts).map((item, index) => 
           <PostPreview key={index} post={item} />
         )}
+        {posts &&
+          <Pagination />
+        }
       </div>
     </div>
   )

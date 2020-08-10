@@ -12,6 +12,15 @@ export function posts_to_array(posts) {
   return sorted_array
 }
 
+export function page_to_skip(page, total_pages) {
+  return 5 * (Math.min(total_pages, Math.max(1, page)) - 1)
+}
+export function pagination_array(current_page, total_pages) {
+  const start = Math.max(1, current_page - 2)
+  const how_many = Math.min(5, total_pages)
+  return [...Array(how_many).keys()].map(x => x+start)
+}
+
 
 export function query_param_string_to_objects(query_string){
   let result = {}
@@ -43,18 +52,14 @@ export function format_date(date_string) {
 
 
 export function summarize_content(content) {
-  return content.replace(/<div>|<\/div>|<br>|<img\s+.*\/>/gi, "").substring(0, 200) + "..."
+  return content.replace(/<div>|<\/div>|<br>|<img\s+.*\/>/gi, " ").substring(0, 200) + "..."
 }
-// NEEDS TO BE CHANGED
+
 export function find_image_from_post(post){
   let img = ""
-  
-  for( let i in post.content) {
-    let c = post.content[i]
-    if(isMyImageURL(c)){
-      img = convertMyImageURL(c);
-      break;
-    }
+  const shit = post.content.match(/<img\s.*alt="Loaded from AWS">/gi)
+  if(shit){
+    return shit[0].match(/https.*.(png|jpg|jpeg)/gi)[0]
   }
   return img
 }

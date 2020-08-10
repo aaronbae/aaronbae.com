@@ -41,6 +41,7 @@ table {
 /* Global Styles */
 html, body {
   font-family: sans-serif;
+  min-width: 370px;
 }
 a {
   color: inherit;
