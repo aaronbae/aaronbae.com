@@ -1,8 +1,7 @@
 .tooltip-wrapper {
-  position: relative;
+  position: absolute;
   width: 0px;
   height: 0px;
-  left: 150px;
 }
 #post-image-input {
   display: none;
@@ -30,9 +29,12 @@
   margin-top: 20px;
   outline: none;
 }
-.post-content-editor:empty:before {
+.post-content-editor > div {
+  min-height: 1rem;
+}
+.post-content-editor > div:only-child:empty:before {
   color: gray;
   cursor: text;
-  content: attr(data-placeholder);
+  content: "What's on your mind?";
   display: block; /* For Firefox */
 }

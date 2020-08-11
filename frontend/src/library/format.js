@@ -1,3 +1,9 @@
+export function format_post_content(post) {
+  if(post.content === "<br>" || post.content===""){
+    return "<div></div>"
+  }
+  return post.content
+}
 export function raw_tags_to_array(raw_tags_input) {
   const punctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g
   return raw_tags_input.split(",").map(s => s.trim().replace(punctuation, ''))
