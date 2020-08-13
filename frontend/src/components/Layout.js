@@ -21,7 +21,7 @@ function Layout({children}){
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:title" property="og:title" content={default_title} />
         <meta key="og:description" property="og:description" content={description} />
-        <meta key="og:image" property="og:image" content="https://github.com/aaronbae/aaronbae.com/blob/master/aaronbae.com.screencapture.PNG" />
+        <meta key="og:image" property="og:image" content="https://raw.githubusercontent.com/aaronbae/aaronbae.com/master/aaronbae.com.screencapture.png" />
         <meta key="robots" name="robots" content="index, follow" />
         <meta key="referrer" name="referrer" content="origin" />
         <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />
