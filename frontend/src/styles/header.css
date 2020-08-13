@@ -1,0 +1,29 @@
+.header {
+  padding: 0px 10vw;
+  height: 8vh;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 1; /* Box-Shadow disappears without this */
+  position: relative; /* Box-Shadow disappears without this */
+}
+.logo {
+  font-size: 1.4rem;
+}
+.tab-group {  
+  padding: 0px 30px;
+  display: inline-block;
+}
+.tab {
+  color: gray;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.tab:hover {
+  color: black;
+}
+.admin-tab {
+  margin-left: auto;
+}

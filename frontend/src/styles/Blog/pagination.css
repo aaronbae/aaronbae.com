@@ -1,0 +1,45 @@
+/* same as Blog/index.css */
+@media (min-width: 768px){
+  .anchor-wrapper {
+    margin: 0px 8px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px){
+  .anchor-wrapper {
+    margin: 0px 3px;
+  }
+}
+@media (max-width: 480px){
+  .anchor-wrapper {
+    margin: 0px 0px;
+  }
+}
+.pagination {
+  padding-top: 20px;
+  text-align: center;
+}
+.anchor-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px 2px 0px 2px;
+  cursor: pointer;
+}
+.anchor-wrapper:after {
+  transition: all ease-in-out .1s;
+  position: relative;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, .7);
+  width: 0px;
+  height: 2px;
+  content: "";
+  display: inline-block;
+  margin: auto;
+}
+.anchor-wrapper:hover:after, .anchor-wrapper.current:after {
+  width: 100%;
+}
+.page {
+  color: rgba(0, 0, 0, .7);
+  font-weight: bold;
+  padding: 0px 8px 0px 8px;
+}

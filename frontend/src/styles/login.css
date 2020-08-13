@@ -1,0 +1,60 @@
+@media (min-width: 1025px) {
+  .login-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-container {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .login-container {
+    grid-template-columns: 10px auto 10px;
+  }
+}
+.login-container {
+  min-height: 75vh;
+  padding: 10px;
+  display: grid;
+  align-items: center;
+}
+.login-box {
+  grid-column: 2/3;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.login-box > * {
+  max-width: 300px;
+  width: 70%;
+  margin: auto;
+  box-sizing: border-box;
+}
+.login-header {
+  font-size: 1.7rem;
+}
+.text-input, .sign-in-button{
+  padding: 5px 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  line-height: 1.7rem;
+  border-radius: 10px;
+  border: solid 1px gray;
+  outline: none;
+}
+.sign-in-button {
+  background-color: white;
+  font-size: 1.05rem;
+}
+.text-input:hover, .sign-in-button:hover {
+  border: solid 1px black;
+}
+.sign-in-button:hover {
+  background: lightgray;
+  cursor: pointer;
+}
+.incorrect {
+  box-shadow: 0 0 5px red;
+}

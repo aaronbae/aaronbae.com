@@ -1,0 +1,40 @@
+#post-tooltip-wrapper {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+#post-image-input {
+  display: none;
+}
+.post-tooltip {
+  display: inline;
+  visibility: hidden;
+  margin: 0px;
+  background-color: white;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 15px -3px gray;
+}
+.show {
+  cursor: pointer;
+  visibility: visible;
+}
+.aws-image {
+  max-width:100%;
+  height: auto;
+  margin: 30px auto;
+}
+#post-content-editor {
+  margin-top: 20px;
+  outline: none;
+}
+#post-content-editor > div {
+  min-height: 1rem;
+}
+#post-content-editor > div:only-child:empty:before {
+  color: gray;
+  cursor: text;
+  content: "What's on your mind?";
+  display: block; /* For Firefox */
+}

@@ -1,0 +1,40 @@
+.post-edit-controls {
+  margin-top: 20px;
+  --confirm-color: rgb(3, 186, 252);
+  --confirm-color-hover: rgb(97, 213, 255);
+  text-align: center;
+}
+.post-edit-controls > div:nth-child(1) {
+  margin-bottom: 10px;
+}
+
+.post-edit-controls > button {
+  font-size: 1.0rem;
+  padding: 3px 6px;
+  margin: 0px 5px;
+  width: 65px; 
+  border-radius: 5px;
+  cursor: pointer;
+  outline:none;
+}
+.post-edit-save {
+  color: white;
+  border: solid 1px var(--confirm-color);
+  background-color: var(--confirm-color);
+}
+.post-edit-cancel, .post-edit-delete {
+  border: solid 1px gray;
+  background-color: white;
+}
+
+.post-edit-save:hover {
+  border: solid 1px var(--confirm-color-hover);
+  background-color: var(--confirm-color-hover);
+}
+.post-edit-cancel:hover {
+  border: solid 1px black;
+}
+.post-edit-delete:hover {
+  color: red;
+  border: solid 1px red;
+}

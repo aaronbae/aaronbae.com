@@ -1,0 +1,32 @@
+/* same as Blog/index.css */
+@media (min-width: 1024px){
+  .post-id {
+    grid-template-columns: 3fr 6fr 3fr;
+  }
+  .post-id > div {
+    grid-column: 2/3;
+  }
+}
+@media (min-width: 481px) and (max-width: 1023px){
+  .post-id {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+  .post-id > div {
+    grid-column: 2/3;
+  }
+}
+@media (max-width: 480px){
+  .post-id {
+    grid-template-columns: 1fr;
+  }
+  .post-id > div {
+    grid-column: 1/2;
+  }
+}
+.post-id {
+  padding: 10px 10px 100px 10px;
+  display: grid;
+}
+.post-id > div {
+  margin-bottom: 50px;
+}
