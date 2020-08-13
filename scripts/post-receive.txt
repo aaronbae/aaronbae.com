@@ -1,25 +1,24 @@
 #!/bin/sh
-echo "[post-receive] : Post-receive hook initiated"
+echo "[post-receive] : Post-receive hook initiated"i
 cd /home/ubuntu/aaronbae.com/
 echo "[post-receive] : Changed directory to /home/ubuntu/aaronbae.com/"
 sudo git --git-dir=/home/ubuntu/aaronbae.com.git --work-tree=/home/ubuntu/aaronbae.com checkout master -f
-echo "[post-receive] : Starting Backend"
+echo "[post-receive] : Installing Backend packages"
 cd backend
 sudo npm install -s
-#sudo pm2 stop backend
-#sudo pm2 delete backend
-sudo pm2 start "npm run start" --name backend
+echo "[post-receive] : Restarting Backend"
+sudo pm2 restart backend
 echo "[post-receive] : Installing Frontend packages"
 cd ../frontend
 sudo npm install -s
 echo "[post-receive] : Building Frontend"
 sudo npm run build
 echo "[post-receive] : Strating Frontend"
-#sudo pm2 stop frontend
-#sudo pm2 delete frontend
-sudo pm2 start "npm run start" --name frontend
+sudo pm2 restart frontend
 echo "[post-receive] : Restarting Apache2"
 sudo service apache2 restart
 echo "[post-receive] : Apache2 server status"
 sudo systemctl status apache2
 echo "[post-receive] : Post-receive hook process finished."
+# Below script is just for future references
+#sudo pm2 start "npm run start" --name frontend
