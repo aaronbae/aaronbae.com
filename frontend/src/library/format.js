@@ -1,3 +1,7 @@
+export function create_img_element(url) {
+  url = url.replace(/https:\/\/aaronbaebucket.s3.([^/]+)\//gi, "https://aaronbae.com/api/files/")
+  return `<img src='${url}' class='aws-image' alt='Loaded from AWS'>`
+}
 export function format_post_content(post) {
   if(post.content === "<br>" || post.content===""){
     return "<div></div>"
@@ -55,9 +59,8 @@ export function format_date(date_string) {
   return result
 }
 
-
 export function summarize_content(content) {
-  return content.replace(/<div>|<\/div>|<br>|<img\s+.*\/>/gi, " ").substring(0, 200) + "..."
+  return content.replace(/<div>|<\/div>|<br>|<img\s+.*>/gi, " ").substring(0, 200) + "..."
 }
 
 export function find_image_from_post(post){

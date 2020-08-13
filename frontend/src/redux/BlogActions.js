@@ -104,24 +104,6 @@ export function fetch_post_by_id(post_id) {
   }
 }
 
-// MANIPULATORS
-export function upload_image(file, post) {
-  return dispatch => {
-    var url = process.env.NEXT_PUBLIC_FILE_URL + 'upload'
-    const data = new FormData() 
-    data.append('file', file)
-    fetch(url, {
-      method: 'POST',
-      body: data
-    }).then(res => res.json())
-    .then(res => {
-      let new_content = [...post.content]
-      new_content[paragraph_index] = res.url
-      let new_post = {...post, content: [...new_content]}
-      dispatch(update_content(new_post))
-    })
-  }
-}
 export function create_new_post() {
   return dispatch => {
     var url = process.env.NEXT_PUBLIC_POST_URL + "add/"

@@ -1,4 +1,4 @@
-.tooltip-wrapper {
+#post-tooltip-wrapper {
   position: absolute;
   width: 0px;
   height: 0px;
@@ -25,14 +25,14 @@
   height: auto;
   margin: 30px auto;
 }
-.post-content-editor {
+#post-content-editor {
   margin-top: 20px;
   outline: none;
 }
-.post-content-editor > div {
+#post-content-editor > div {
   min-height: 1rem;
 }
-.post-content-editor > div:only-child:empty:before {
+#post-content-editor > div:only-child:empty:before {
   color: gray;
   cursor: text;
   content: "What's on your mind?";
