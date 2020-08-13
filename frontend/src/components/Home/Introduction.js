@@ -23,7 +23,7 @@ export default function Introduction() {
         <a href="https://www.linkedin.com/in/aaron-bae/" target="_blank" title="LinkedIn">
           <img src="/icons/linkedin.png" alt="LinkedIn" className='intro-icon' />
         </a>
-        <a href="mailto:aaronbae@uw.edu" title="email">
+        <a href="mailto:aaron@aaronbae.com" title="email" target="popup" >
           <img src="/icons/gmail.png" alt="Email" className='intro-icon' />
         </a>
       </div>
