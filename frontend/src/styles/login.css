@@ -32,8 +32,15 @@
   margin: auto;
   box-sizing: border-box;
 }
-.login-header {
-  font-size: 1.7rem;
+@media (min-width: 481px) {
+  .login-header {
+    font-size: 1.7rem;
+  }
+}
+@media (max-width: 480px) {
+  .login-header {
+    font-size: 1.5rem;
+  }
 }
 .text-input, .sign-in-button{
   padding: 5px 10px;

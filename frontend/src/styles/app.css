@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1.5;
+
 }
 ol, ul {
 	list-style: none;
@@ -53,15 +54,15 @@ a {
 /* Card */ 
 .card-wrapper {
   background-color: white;
-  padding: 30px !important;
+  padding: 30px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
-.card-wrapper .card-title {
+.card-title {
   font-size: 1.6rem;
   padding: 0px 10px 10px 10px;
   border-bottom: 1px solid gray;
-
 }
+
 .card-section-break {
   padding: 0px;
   height: 1px;

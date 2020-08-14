@@ -1,12 +1,12 @@
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   .post-title {
     font-size: 2.8rem;
     line-height: 3.5rem;
   }
 }
-@media (max-width: 481px){
+@media (max-width: 480px){
   .post-title {
-    font-size: 2.0rem;
+    font-size: 1.5rem;
     line-height: 2.5rem;
   }
 }

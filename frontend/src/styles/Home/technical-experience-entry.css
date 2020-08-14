@@ -1,19 +1,45 @@
+/* small */
+@media (max-width: 480px) {
+  .company-logo {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .company-info-wrapper {
+    margin-top: 15px;
+  }
+  .position-title-span {
+    line-height: 25px;
+  }
+
+}
+/* big */
+@media (min-width: 481px) {
+  .company-logo {
+    position: absolute;
+    padding-left: 7px;
+  }
+  .company-info-wrapper {
+    padding-left: 80px;
+    margin-top: 5px;
+  }
+  .position-title-span {
+    line-height: 15px;
+  }
+
+}
 .individual-experience {
   padding: 20px 10px;
 }
 .company-logo {
-  position: absolute;
-  padding-left: 7px;
   width: 55px;
   height: 55px;
+  display: block;
 }
 .company-info-wrapper {
-  margin-top: 5px;
-  padding-left: 80px;
   min-height: 55px;
   overflow: auto;
 }
-.position-title-span, .time-worked-span, .company-name-span {
+.time-worked-span, .company-name-span {
   line-height: 15px;
   margin: 5px 0px;
 }

@@ -4,7 +4,7 @@ import TechnicalExperienceEntry from './TechnicalExperienceEntry';
 export default function TechincalExperiences() {
   return (
     <div className="card-wrapper">
-      <p className="card-title">Technical Experiences</p>
+      <p className="card-title techincal-experience-title">Technical Experiences</p>
       <div className="tech-experience-entry-container">
         <TechnicalExperienceEntry 
           logo="/icons/uci.png"
