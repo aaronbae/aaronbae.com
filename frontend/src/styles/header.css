@@ -1,29 +1,102 @@
+/* Big */
+@media (min-width: 768px) {
+  .header {
+    grid-template-columns: 106px 1fr;
+  }
+  .hamburger {
+    display: none;
+  }
+  .logo {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .navigation {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: row;
+  }
+  .tab-group {  
+    display: flex;
+    flex-direction: row;
+    padding: 0px 30px;
+  }
+  .tab {
+    padding: 0px 10px;
+  }
+  .admin-tab {
+    margin-left: auto;
+  }
+}
+/* Small */
+@media (max-width: 767px) {
+  .header {
+    grid-template-columns: 50px 1fr 50px;
+  }
+  .hamburger {
+    grid-column: 3/4;
+    grid-row: 1/2;
+    display: inline;
+  }
+  .logo {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+  .navigation {
+    grid-column: 1/4;
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+  }
+  .hide {
+    display: none;
+  }
+  .tab-group {  
+    display: flex;
+    flex-direction: column;
+  }
+  .tab {
+    border-top: 1px solid gray;
+    padding: 6px 10px;
+  }
+  .admin-tab {
+    margin-bottom: 5px;
+  }
+}
 .header {
   padding: 0px 10vw;
-  height: 8vh;
   font-size: 1.1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
+  align-items: center;
   z-index: 1; /* Box-Shadow disappears without this */
   position: relative; /* Box-Shadow disappears without this */
+  display: grid;
+  grid-template-rows: 60px auto;
+}
+.hamburger {
+  background-color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.hamburger > img {
+  width: 30px;
 }
 .logo {
+  text-align: center;
   font-size: 1.4rem;
 }
-.tab-group {  
-  padding: 0px 30px;
-  display: inline-block;
+.navigation, .tab-group, .tab,.hamburger {
+  height: 100%;
 }
 .tab {
   color: gray;
-  padding: 5px 10px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
-.tab:hover {
+.tab:hover, .hamburger:hover {
   color: black;
-}
-.admin-tab {
-  margin-left: auto;
+  background-color: rgba(0, 0, 0, 0.05);
 }
