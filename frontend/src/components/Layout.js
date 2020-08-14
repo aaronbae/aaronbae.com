@@ -4,8 +4,6 @@ import Footer from './Footer'
 import '../styles/layout.css'
 
 function Layout({children}){
-  // Meaningless change
-  // Another Meaningless change
   const default_title = process.env.NEXT_PUBLIC_TITLE
   const default_site_name = process.env.NEXT_PUBLIC_SITE_NAME
   const default_url = process.env.NEXT_PUBLIC_URL
@@ -18,7 +16,7 @@ function Layout({children}){
         <meta key="charSet" charSet="utf-8" />
         <meta key="title" name="title" content={default_title} />
         <meta key="description" name="description" content={description} />
-        <meta key="og:site_name" name="og:site_name" content={default_site_name} />
+        <meta key="og:site_name" property="og:site_name" content={default_site_name} />
         <meta key="og:url" property="og:url" content={default_url} />
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:title" property="og:title" content={default_title} />
