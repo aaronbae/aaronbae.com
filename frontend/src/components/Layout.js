@@ -5,6 +5,7 @@ import '../styles/layout.css'
 
 function Layout({children}){
   // Meaningless change
+  // Another Meaningless change
   const default_title = process.env.NEXT_PUBLIC_TITLE
   const default_site_name = process.env.NEXT_PUBLIC_SITE_NAME
   const default_url = process.env.NEXT_PUBLIC_URL
