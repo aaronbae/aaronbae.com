@@ -24,7 +24,7 @@
   .tab {
     padding: 0px 10px;
   }
-  .admin-tab {
+  .admin-group {
     margin-left: auto;
   }
 }
@@ -59,7 +59,7 @@
     border-top: 1px solid gray;
     padding: 6px 10px;
   }
-  .admin-tab {
+  .admin-group {
     margin-bottom: 5px;
   }
 }
@@ -91,6 +91,7 @@
   height: 100%;
 }
 .tab {
+  box-sizing: border-box;
   color: gray;
   display: flex;
   align-items: center;

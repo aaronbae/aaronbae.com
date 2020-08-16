@@ -42,12 +42,14 @@ export default function Header() {
           <Link href="/"><a className="tab" onClick={hide}>Home</a></Link>
           <Link href="/blog"><a className="tab" onClick={hide}>Blog</a></Link>
         </div>
-        {logged_in &&
-          <a className="tab admin-tab" onClick={handle_sign_out}>Sign Out</a>
-        }
-        {!logged_in && 
-          <Link href="/login"><a className="tab admin-tab" onClick={hide}>Admin</a></Link>
-        }
+        <div className="admin-group">
+          {logged_in &&
+            <a className="tab admin-tab" onClick={handle_sign_out}>Sign Out</a>
+          }
+          {!logged_in && 
+            <Link href="/login"><a className="tab admin-tab" onClick={hide}>Admin</a></Link>
+          }
+        </div>
       </nav>
     </header>
   )
