@@ -91,6 +91,7 @@
   height: 100%;
 }
 .tab {
+  box-sizing: border-box;
   color: gray;
   display: flex;
   align-items: center;

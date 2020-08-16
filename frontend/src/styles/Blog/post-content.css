@@ -21,7 +21,7 @@
   visibility: visible;
 }
 .aws-image {
-  text-align: center;
+  display: block;
   max-width:100%;
   height: auto;
   margin: 30px auto;
@@ -38,4 +38,7 @@
   cursor: text;
   content: "What's on your mind?";
   display: block; /* For Firefox */
+}
+#post-content-editor > div:has( img) {
+  background-color: blue;
 }

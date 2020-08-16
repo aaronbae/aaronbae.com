@@ -47,7 +47,7 @@ export default function Header() {
             <a className="tab admin-tab" onClick={handle_sign_out}>Sign Out</a>
           }
           {!logged_in && 
-            <Link href="/login"><a className="tab admin-tab" onClick={hide}>Admin</a></Link>
+            <Link href="/login"><a className="tab" onClick={hide}>Admin</a></Link>
           }
         </div>
       </nav>
