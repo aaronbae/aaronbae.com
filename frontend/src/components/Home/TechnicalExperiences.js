@@ -9,7 +9,7 @@ export default function TechincalExperiences() {
         <TechnicalExperienceEntry 
           logo="/icons/uci.png"
           logo_alt="university of california, irvine logo"
-          position="Graduate Student Researcher"
+          position="Computer Science Researcher"
           company="University of California, Irvine"
           date_formatted="March 2020 - Present"
           roles={[
@@ -25,7 +25,7 @@ export default function TechincalExperiences() {
         <TechnicalExperienceEntry 
           logo="/icons/uw_logo.png"
           logo_alt="university of washington logo"
-          position="Undergraduate Researcher"
+          position="Computer Science Researcher"
           company="University of Washington"
           date_formatted="Jun 2018 - Jun 2019"
           roles={[
