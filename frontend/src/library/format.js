@@ -64,10 +64,6 @@ export function summarize_content(content) {
 }
 
 export function find_image_from_post(post){
-  let img = ""
-  const shit = post.content.match(/<img\s.*alt="Loaded from AWS">/gi)
-  if(shit){
-    return shit[0].match(/https.*.(png|jpg|jpeg)/gi)[0]
-  }
-  return img
+  const matches = post.content.match(/https\:\/\/aaronbae.com([-a-zA-Z0-9()@:%_\+.~#?&//=]*).(png|jpg|jpeg)/gi)
+  return matches ? matches[0] : ""
 }
