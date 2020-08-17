@@ -9,14 +9,14 @@ export function sign_out() {
   }
 }
 function receive_account_results(res) {
-  if(res.status === 400){
+  if(res.status === 200){
     return {
-      type: FAILED_ADMIN_PASSWORD,
+      type: SUCCEEDED_ADMIN_PASSWORD,
       receivedAt: Date.now()
     }
   }
   return {
-    type: SUCCEEDED_ADMIN_PASSWORD,
+    type: FAILED_ADMIN_PASSWORD,
     receivedAt: Date.now()
   }
 }
