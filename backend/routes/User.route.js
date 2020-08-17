@@ -82,7 +82,7 @@ userRoutes.route('/delete/:id').get(function (req, res) {
 
 // Login
 userRoutes.route('/login').post(function (req, res) {
-  console.log("Checking /login for { id: " + req.body.login_id + " , password: " + req.body.login_password)
+  console.log("Checking /login for { id: " + req.body.login_id + " , password: " + req.body.login_password + " }")
   User.find({
     login_id: req.body.login_id,
     login_password: req.body.login_password
@@ -92,7 +92,7 @@ userRoutes.route('/login').post(function (req, res) {
       res.status(400).json({ "status": 400 })
     } else {
       console.log(`/user/login : Successfully logged in for user ${req.body.login_id}!`)
-      res.status(200).json({ "status": 201 })
+      res.status(200).json({ "status": 200 })
     }
   });
 })
