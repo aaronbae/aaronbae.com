@@ -48,3 +48,7 @@
 .blog-compose:hover {
   background-color: rgb(240, 240, 240);
 }
+.preview-wrapper {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

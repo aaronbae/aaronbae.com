@@ -49,12 +49,14 @@ export default function Blog() {
             <span className="blog-compose" onClick={compose_new}>Compose</span>
           }
         </div>
-        {posts && posts_to_array(posts).map((item, index) => 
-          <PostPreview key={index} post={item} />
-        )}
-        {posts &&
-          <Pagination />
-        }
+        <div className="preview-wrapper">
+          {posts && posts_to_array(posts).map((item, index) => 
+            <PostPreview key={index} post={item} />
+          )}
+          {posts &&
+            <Pagination />
+          }
+        </div>
       </div>
     </div>
   )
