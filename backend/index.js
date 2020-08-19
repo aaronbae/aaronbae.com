@@ -14,6 +14,7 @@ const defaultRoute = require('./routes/Default.route');
 const postRoute = require('./routes/Post.route');
 const userRoute = require('./routes/User.route');
 const fileRoute = require('./routes/File.route');
+const stockRoute = require('./routes/Stock.route');
 
 // Supporting
 const Sentry = require('@sentry/node'); 
@@ -42,6 +43,7 @@ app.use("/", defaultRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
+app.use('/api/stocks', stockRoute);
 
 app.use(Sentry.Handlers.errorHandler());
 
