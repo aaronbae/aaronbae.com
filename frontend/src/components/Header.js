@@ -41,7 +41,7 @@ export default function Header() {
         <div className="tab-group">
           <Link href="/"><a className="tab" onClick={hide}>Home</a></Link>
           <Link href="/blog"><a className="tab" onClick={hide}>Blog</a></Link>
-          <Link href="/projects"><a className="tab" onClick={hide}>Projects</a></Link>
+          {/*<Link href="/projects"><a className="tab" onClick={hide}>Projects</a></Link>*/}
         </div>
         <div className="admin-group">
           {logged_in &&
