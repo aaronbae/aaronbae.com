@@ -15,8 +15,6 @@
   .aaronbae-bottom {
     grid-template-rows: 1fr 2fr; 
   }
-}
-@media (min-width: 481px) {
   .bottom-description {
     grid-column: 1/2;
   }
@@ -24,7 +22,7 @@
     grid-column: 2/3;
   }
 }
-@media (max-width: 480px){
+@media (max-width: 767px){
   .bottom-description {
     grid-column: 1/3;
     grid-row: 1/2;
