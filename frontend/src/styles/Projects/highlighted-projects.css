@@ -6,6 +6,14 @@
   .aaronbae-bottom {
     grid-template-rows: auto; 
   }
+  .bottom-description {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .bottom-carousel {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
 }
 @media (max-width: 768px) {
   .aaronbae-top {
@@ -15,14 +23,6 @@
   .aaronbae-bottom {
     grid-template-rows: 1fr 2fr; 
   }
-  .bottom-description {
-    grid-column: 1/2;
-  }
-  .bottom-carousel {
-    grid-column: 2/3;
-  }
-}
-@media (max-width: 767px){
   .bottom-description {
     grid-column: 1/3;
     grid-row: 1/2;
