@@ -12,16 +12,21 @@ export default function TechincalExperiences() {
           position="Computer Science Researcher"
           company="University of California, Irvine"
           date_formatted="March 2020 - Present"
+          url="https://uci.edu/"
         >
           <div>
-            <p className="role-title">Professor Padhraic Smyth Research Team:</p>
+            <p className="role-title">
+              <a href="https://www.ics.uci.edu/~smyth/" className="experience-external-links" target="_blank" title="More About Professor Smyth">
+                Professor Padhraic Smyth Research:
+              </a>
+            </p>
             <p>
               As a graduate researcher for Professor Padhraic Smyth, I am working 
               on ways to analyze dialogue dataset. Datasets like Switchboard Corpus and ICSI 
-              Meeting Recording Corpus contains a turn-by-turn grouped utterances along with 
-              semantic annotations. The goal of the project is to analyze this conversational
-              dataset to identify questions in any group conversations and possibly classify
-              person-to-person dynamics like leadership qualities.
+              Meeting Recording Corpus contains turn-by-turn transcripts from a conversation 
+              along with a few semantic annotations. The goal of the project is to analyze this
+              conversational dataset to develop a method to quantify the quality of information 
+              exchange.
             </p>
           </div>
         </TechnicalExperienceEntry>
@@ -32,9 +37,16 @@ export default function TechincalExperiences() {
           position="Computer Science Researcher"
           company="University of Washington"
           date_formatted="Jun 2018 - Jun 2019"
+          url="https://www.washington.edu/"
         >
           <div>
-            <p className="role-title">Washington Experimental Mathematics Lab:</p>
+            <p className="role-title">
+              <a href="https://math.washington.edu/events/series/washington-experimental-mathematics-lab" 
+                className="experience-external-links" target="_blank" 
+                title="More About Washington Experimental Mathematics Lab">
+                Washington Experimental Mathematics Lab:
+              </a>
+            </p>
             <p>
               I was invited to work with Professor Christopher Hoffman to 
               participate on his Mathematics in Gerrymandering Project. He works to analyze 
@@ -62,9 +74,16 @@ export default function TechincalExperiences() {
           position="Backend Software Engineer"
           company="Dapper Grooming"
           date_formatted="Jun 2018 - August 2019"
+          url="https://dappergrooming.co/"
         >
           <div>
-            <p className="role-title">Backend Server Development Team:</p>
+            <p className="role-title">
+              <a href="https://dappergrooming.co/" 
+                className="experience-external-links" target="_blank" 
+                title="More About Dapper Grooming - Seattle">
+                Backend Development Team:
+              </a>
+            </p>
             <p>
               Continuing my intersets in backend web development, I worked with a 
               University of Washington alumn who was starting a company called Dapper. The 
@@ -80,9 +99,16 @@ export default function TechincalExperiences() {
           position="Software Engineering Intern"
           company="Crowd Cow"
           date_formatted="Jun 2017 - August 2017"
+          url="https://www.crowdcow.com/"
         >
           <div>
-            <p className="role-title">Frontend Developer:</p>
+            <p className="role-title">
+              <a href="https://www.crowdcow.com/" 
+                className="experience-external-links" target="_blank" 
+                title="More About Crowd Cow">
+                Frontend Developer:
+              </a>
+            </p>
             <p>
               As a frontend developer, I worked on improving CrowdCow's private
               e-commerce platform by changing the client purchase UI pipeline. Also, 
@@ -91,7 +117,13 @@ export default function TechincalExperiences() {
             </p>
           </div>
           <div>
-            <p className="role-title">Backend Developer:</p>
+            <p className="role-title">
+              <a href="https://www.crowdcow.com/" 
+                className="experience-external-links" target="_blank" 
+                title="More About Crowd Cow">
+                Backend Developer:
+              </a>
+            </p>
             <p>
               As a backend developer, I worked on middlman the information 
               between the database and the client servers. Main technologies that I used 

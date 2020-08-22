@@ -6,6 +6,9 @@
 .tech-experience-entry-container {
   padding: 10px;
 }
+.experience-external-links:hover {
+  color: blue;
+}
 .role-title {
   padding-top: 10px;
   padding-bottom: 5px;

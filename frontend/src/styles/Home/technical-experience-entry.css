@@ -10,7 +10,12 @@
   .position-title-span {
     line-height: 25px;
   }
-
+}
+/* small */
+@media (max-width: 768px){
+  .time-worked-span {
+    float: left;
+  }
 }
 /* big */
 @media (min-width: 481px) {
@@ -55,9 +60,6 @@
   float: right;
   color: gray;
 }
-/* small */
-@media (max-width: 768px){
-  .time-worked-span {
-    float: left;
-  }
+.te-company-link:hover {
+  color: blue;
 }

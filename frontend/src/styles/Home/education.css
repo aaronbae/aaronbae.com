@@ -2,7 +2,7 @@
   .education-section {
     flex-direction: row;
   }
-  .education-img {
+  .education-img-wrapper {
     margin: 0px;
   }
 }
@@ -10,12 +10,12 @@
   .education-section {
     flex-direction: column;
   }
-  .education-img {
+  .education-img-wrapper {
     margin-left: auto;
     margin-right: auto;
   }
 }
-.education {
+.education-container {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -24,21 +24,32 @@
   display: flex;
   padding: 10px;
 }
-.education-section span, .education-section i {
-  white-space: nowrap; /* prevents break up of the words*/
-}
+
 .education-img {
   padding: 0px 25px 10px 5px;
   max-width: 150px;
   max-height: 150px;
 }
+.degree, .university-link {
+  white-space: nowrap;
+  display: inline-block;
+}
+.degree {
+  font-weight: bold;
+  white-space: normal;
+}
+.university-link {
+  margin-left: 5px;
+  font-style: italic;
+}
+.university-link:hover {
+  color: blue;
+}
+
 .education-bullets {
   list-style-type: disc;
   line-height: 1.4rem;
 }
 .education-bullets li {
   margin-left: 20px;
-}
-.italicized {
-  font-style: italic;
 }

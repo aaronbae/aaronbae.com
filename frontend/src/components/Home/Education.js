@@ -2,12 +2,19 @@ import '../../styles/Home/education.css'
 
 export default function Education() {
   return (
-    <div className="card-wrapper education">
+    <div className="card-wrapper education-container">
       <p className="card-title">Education</p> 
       <div className="education-section">
-        <img className="education-img" src="/uci_seal_200.png" alt="University of California Irvine" />
+        <a href="https://uci.edu/about/index.php" className="education-img-wrapper" 
+          title="More about University of California, Irvine" target="_blank">
+          <img className="education-img" src="/uci_seal_200.png" alt="University of California Irvine" />
+        </a>
         <div>
-          <span>Masters in Computer Science</span>, <i className="italicized">University of California - Irvine</i>
+          <span className="degree">Masters in Computer Science</span>, 
+          <a href="https://uci.edu/about/index.php"  className="university-link" 
+            title="More about University of California, Irvine" target="_blank">
+            University of California - Irvine
+          </a>
           <ul className="education-bullets">
             <li>Started attending since September 2019.</li>
             <li>Focus in natural language processing using transformer based models.</li>
@@ -17,9 +24,16 @@ export default function Education() {
         </div>
       </div>
       <div className="education-section">
-        <img className="education-img" src="/uw_seal_200.jpg" alt="University of Washington" />
+        <a href="https://www.washington.edu/about/" className="education-img-wrapper" 
+          title="More about University of Washington" target="_blank">
+          <img className="education-img" src="/uw_seal_200.jpg" alt="University of Washington" />
+        </a>
         <div>
-          <span>Bachelor of Science in Mathematics</span>, <i className="italicized">University of Washington</i>
+          <span className="degree">Bachelor of Science in Mathematics</span>
+          <a href="https://www.washington.edu/about/" className="university-link" 
+            title="More about University of Washington" target="_blank">
+            University of Washington
+          </a>
           <ul className="education-bullets">
             <li>Attended from September 2015 until June 2019</li>
             <li>Applicable Mathematics classes such as Matrix Algebra, Differential Equations, and Mathematical Reasoning </li>
