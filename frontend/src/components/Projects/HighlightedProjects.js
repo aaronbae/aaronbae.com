@@ -29,7 +29,13 @@ export default function HighlightedProjects(props) {
           <div className="bottom-description">
             Built with Responsive Concepts in Mind
           </div>
-          <Carousel className="bottom-carousel" img_folder="/projects/aaronbae/" count={5} img_height="318px" img_width="200px"/>
+          <Carousel className="bottom-carousel">
+            {[...Array(5)].map((_, index) => 
+              <img key={index} src={`/projects/aaronbae/${index}.jpg`} 
+                className="carousel-img" alt="Crousel Image" 
+                style={{height: "318px", width: "200px" }} />
+            )}
+          </Carousel>
         </div>
       </Project>
     </div>
