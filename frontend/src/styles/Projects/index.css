@@ -1,0 +1,70 @@
+@media (min-width: 769px){
+  #projects-container {
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  #projects-container > div {
+    grid-column: 2 / 3;
+  }
+  .non-highlighted-projects {
+    grid-template-columns: 1fr 1fr 1fr;
+    
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  #projects-container {
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  #projects-container > div {
+    grid-column: 2 / 3;
+  }
+  .non-highlighted-projects {
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+@media (max-width: 480px){
+  #projects-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  #projects-container > div {
+    grid-column: 1 / 2;
+  }
+  .non-highlighted-projects {
+    grid-template-rows: auto;
+    
+  }
+}
+#projects-container {
+  display: grid;
+  padding: 10px 10px 100px 10px;
+  color: #36373B;
+  grid-gap: 10px;
+}
+.project-section-header {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.highlighted-projects {
+  grid-row: 1/2;
+}
+.non-highlighted-projects {
+  grid-row: 2/3;
+  display: grid;
+  grid-gap: 10px;
+}
+.aaronbae-project-list {
+  padding: 5px 20px;
+}
+.aaronbae-project-list > li {
+  list-style-position: inside;
+  list-style-type: disc;
+}
+.project-img {
+  width: 100%;
+}
+.aaronbae-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}

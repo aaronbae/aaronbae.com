@@ -1,0 +1,45 @@
+.project-container {
+  display: flex;
+  flex-direction: column;
+}
+.project-header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  line-height: 1.1rem;
+}
+.project-title {
+  display: inline-block;
+}
+.icon-wrapper {
+  margin-left: auto;
+  white-space: nowrap;
+}
+.lock-icon {
+  display: inline-block;
+  height: 20px;
+  margin-left: 2px;
+}
+.github-icon {
+  display: inline-block;
+}
+.github-icon > img {
+  width: 20px;
+  height: 20px;
+}
+.project-content {
+  font-size: 0.8rem;
+}
+.tech-tags {
+  font-size: 0.8rem;
+  color: gray;
+  margin-top: auto;
+  padding-top: 20px;
+}
+.tech-tags > a {
+  margin-right: 5px;
+}
+.tech-tags > a:hover {
+  color: black;
+}

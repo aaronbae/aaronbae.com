@@ -65,7 +65,7 @@
 }
 .header {
   padding: 0px 10vw;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
   align-items: center;
   z-index: 1; /* Box-Shadow disappears without this */
