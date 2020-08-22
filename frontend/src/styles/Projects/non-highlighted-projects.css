@@ -1,0 +1,19 @@
+@media (min-width: 769px){
+  .non-highlighted-projects {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .non-highlighted-projects {
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+@media (max-width: 480px){
+  .non-highlighted-projects {
+    grid-template-rows: auto;
+  }
+}
+.non-highlighted-projects {
+  display: grid;
+  grid-gap: 10px;
+}

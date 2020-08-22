@@ -1,0 +1,38 @@
+.carousel {
+  padding: 10px;
+  overflow: hidden;
+}
+.carousel-slider {
+  box-sizing: content-box;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-bottom: 3px;
+}
+.carousel-img {
+  margin-right: 10px;
+}
+
+/* width */
+.carousel-slider::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.carousel-slider::-webkit-scrollbar-track {
+  background: rgb(255,255,255,0.4); 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.carousel-slider::-webkit-scrollbar-thumb {
+  background: lightgray; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.carousel-slider::-webkit-scrollbar-thumb:hover {
+  background: white; 
+}

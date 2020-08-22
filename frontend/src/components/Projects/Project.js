@@ -5,11 +5,15 @@ export default function Project(props) {
   return (
     <div className="project-container card-wrapper">
       {props.section_title && 
-        <p className="card-title project-section-header">{props.section_title}</p> 
+        <p className="card-title project-section-header">
+          {props.section_title}
+        </p> 
       }
       <div className="project-header">
         <div className="project-title">
-          {props.title}
+          <a href={props.title_url} target="_blank" title={props.section_title}>
+            {props.title}
+          </a>
         </div>
         <div className="icon-wrapper">  
           <a href={props.github_url} target="_blank" className="github-icon" title="Visit GitHub Repo for this Project">
