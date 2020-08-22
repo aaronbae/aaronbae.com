@@ -8,6 +8,9 @@
   flex-wrap: nowrap;
   padding: 0px 10px 3px 10px;
 }
+.carousel-slider > * {
+  align-items: flex-start;
+}
 
 /* width */
 .carousel-slider::-webkit-scrollbar {
