@@ -6,3 +6,8 @@
 .tech-experience-entry-container {
   padding: 10px;
 }
+.role-title {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
