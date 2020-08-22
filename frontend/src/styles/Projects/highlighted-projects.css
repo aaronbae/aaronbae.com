@@ -65,4 +65,5 @@
   margin-left: 10px;
   height: 318px; 
   width: 200px;
+  flex-shrink: 0;
 }
