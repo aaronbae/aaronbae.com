@@ -32,8 +32,7 @@ export default function HighlightedProjects(props) {
           <Carousel className="bottom-carousel">
             {[...Array(5)].map((_, index) => 
               <img key={index} src={`/projects/aaronbae/${index}.jpg`} 
-                className="carousel-img" alt="Crousel Image" 
-                style={{height: "318px", width: "200px" }} />
+                className="aarombae-mobile-img" alt="AaronBae Project Mobile Screenshots" />
             )}
           </Carousel>
         </div>

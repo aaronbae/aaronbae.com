@@ -61,9 +61,8 @@
 .aaronbae-img {
   width: 100%;
 }
-.carousel-img {
+.aarombae-mobile-img {
   margin-left: 10px;
-}
-.carousel-img:last-child {
-  margin-right: 10px;
+  height: 318px; 
+  width: 200px;
 }
