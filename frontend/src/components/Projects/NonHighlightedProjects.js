@@ -6,7 +6,7 @@ export default function HighlightedProjects(props) {
     <div className={`non-highlighted-projects ${props.className}`}>
       <Project 
         title="HighCurve"  
-        title_url="https://github.com/aaronbae/HighCurve"
+        title_url="https://highcurve.herokuapp.com/"
         github_url="https://github.com/aaronbae/HighCurve"
         tech_tags="MongoDB, YahooAPI" 
       >
