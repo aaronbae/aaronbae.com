@@ -1,0 +1,25 @@
+sudo apt update
+sudo apt-get upgrade
+sudo apt install apache2
+# aaronbae.key === aaronbae.pem
+# set ssl keys
+sudo a2enmod ssl
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo systemctl apache2 start
+
+# insert my github keys into '.ssh/authorized_keys' file
+# copy over 'shit.sh' and post-receive
+
+chmod u+x shit.sh
+chmod u+x post-receive
+./shit.sh
+
+sudo apt install nodejs
+sudo apt install npm
+sudo npm install pm2 -g
+
+# should be ready to deploy
+
+# create temp for backend
+# create .env for backend
