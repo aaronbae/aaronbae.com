@@ -11,7 +11,7 @@ let Stock = require('../models/Stock');
  * - get_query
  * - get_yahoo_url
  * - dangerously_fetch_yahoo
- * - safely_fetch_yahoo
+ * - guarantee_fresh_yahoo
  * 
  *********************************************************/
 function round_date(milliseconds) {
@@ -43,60 +43,65 @@ function get_yahoo_url(ticker, start, end) {
   const formatted_end = Math.trunc(end.getTime() / 1000);
   return `https://query1.finance.yahoo.com/v7/finance/download/${ticker}?period1=${formatted_start}&period2=${formatted_end}&interval=1d&events=history`
 }
-function dangerously_fetch_yahoo(ticker, start, end, failure_cb, success_cb) {
-  fetch(get_yahoo_url(ticker, start, end)).then(function(response){
-    response.text().then(function(text) {
+function dangerously_fetch_yahoo(ticker, start, end) {
+  return new Promise((resolve, reject) =>{
+    fetch(get_yahoo_url(ticker, start, end))
+    .then(response=>response.text())
+    .then( text => {
+      if(text.includes("404 Not Found") || text.includes("422 Unprocessable Entity")) {
+        throw new Error("Invalid ticker symbol!")
+      } 
       const new_history = []
       const splitted_text = text.split("\n")
       for(let i = 1; i < splitted_text.length; i++) {
-        const new_row = {}
-        const splitted_row = splitted_text[i].split(",")
-        new_row.date = new Date(splitted_row[0])
-        new_row.open = splitted_row[1]
-        new_row.high = splitted_row[2]
-        new_row.low = splitted_row[3]
-        new_row.close = splitted_row[4]
-        new_row.adj_close = splitted_row[5]
-        new_row.volume = splitted_row[6]
-        new_history.push(new_row)
-      }
-      Stock.updateOne(
+        const splitted_row = splitted_text[i].split(",")    
+        if(!splitted_row.includes("null")){
+          const new_row = {}
+          new_row.date = new Date(splitted_row[0])
+          new_row.open = splitted_row[1]
+          new_row.high = splitted_row[2]
+          new_row.low = splitted_row[3]
+          new_row.close = splitted_row[4]
+          new_row.adj_close = splitted_row[5]
+          new_row.volume = splitted_row[6]
+          new_history.push(new_row)
+        }
+      }   
+      if(new_history.length === 0){
+        throw new Error("No New History!")
+      } 
+      console.log(`/stocks/${ticker} : Added ${new_history.length} new records!`)
+      return Stock.updateOne(
         { ticker: ticker },
         { $push: { history: new_history },
           $set: { updated: end}
         },
-        { upsert: true },
-        function(update_error, result) {
-          if(update_error) {
-            failure_cb(update_error)
-          } else {
-            console.log(`/stocks/${ticker} : Added ${new_history.length} new records!`)
-            success_cb()
-          }
-        }
-      )
+        { upsert: true }
+      ).then(() => resolve("Yahoo Info Fetched"))
     })
-  })
-  .catch(yahoo_error => {
-    failure_cb(yahoo_error)
+    .catch(error => reject(error))
   })
 }
-function safely_fetch_yahoo(ticker, failure_cb, success_cb) {
-  const today = round_date(Date.now())
-  const query = Stock.find({ticker: ticker}).select("-history")
-  query.exec(function(finder_error, stocks) {
-    if( finder_error ){
-      failure_cb(finder_error)
-    } 
-    else if(stocks.length == 0 || stocks[0].updated < today){
-      // if no company found or infor outdated
-      const last_updated = stocks.length==0? new Date('1900'): stocks[0].updated
-      dangerously_fetch_yahoo(ticker, last_updated, today, failure_cb, success_cb)  
-    } 
-    else {
-      success_cb()
+function guarantee_fresh_yahoo(ticker) {
+  return new Promise((resolve, reject) => {
+    if(!ticker.match(/^[A-Z]+$/)) {
+     throw new Error("Invalid ticker symbol!") 
     }
-  })  
+    const today = round_date(Date.now())
+    const query = Stock.find({ticker: ticker}).select("-history")
+    query.exec().then( stocks => {
+      if(stocks.length == 0 || stocks[0].updated < today){
+        // if no company found or info outdated
+        const last_updated = stocks.length==0? new Date('1900'): stocks[0].updated
+        return dangerously_fetch_yahoo(ticker, last_updated, today)  
+      }
+    })
+    .then(()=> {
+      resolve("Data is Fresh!")
+    })
+    .catch((error)=> reject(error))
+  })
+  
 }
 
 /*********************************************************
@@ -120,22 +125,19 @@ userRoutes.route('/:id').get(function (req, res) {
     start = round_date(min(req.query.start, start.getTime()))
   }
 
-  const failure_callback = function(current_error) {
-    console.log(`/stocks/${ticker} : Failed!`)
-    console.log(current_error)
-    res.json(current_error);
-  }
-  const final_callback = function(final_error, stocks) {
-    if (final_error) {
-      failure_callback(final_error)
-    } else  {
-      console.log(`/stocks/${ticker} : Successfully returned!`)
-      res.json({stocks: stocks[0]})
-    }
-  }
   const final_query = get_query(ticker, start, end)
-  safely_fetch_yahoo(ticker, failure_callback, ()=>{
-    final_query.exec(final_callback)
+  guarantee_fresh_yahoo(ticker).then(()=>{
+    return final_query.exec()
+  })
+  .then(stocks => {
+    console.log(`/stocks/${ticker} : Successfully returned!`)
+    res.json({stocks: stocks[0]})
+  })
+  .catch(error => {
+    console.log(`/stocks/${ticker} : Failed!`)
+    console.log(error)
+    res.status(500)
+    res.send({error: error.message})
   })
 });
 
@@ -146,22 +148,19 @@ userRoutes.route('/:id/:days').get(function (req, res) {
   let end = round_date(Date.now())
   let start = days_ago(end, days)
 
-  const failure_callback = function(current_error) {
-    console.log(`/stocks/${ticker}/${days} : Failed!`)
-    console.log(current_error)
-    res.json(current_error);
-  }
-  const final_callback = function(final_error, stocks) {
-    if (final_error) {
-      failure_callback(final_error)
-    } else  {
-      console.log(`/stocks/${ticker}/${days} : Successfully returned!`)
-      res.json({stocks: stocks[0]})
-    }
-  }
   const final_query = get_query(ticker, start, end)
-  safely_fetch_yahoo(ticker, failure_callback, ()=>{
-    final_query.exec(final_callback)
+  guarantee_fresh_yahoo(ticker).then(()=>{
+    return final_query.exec()
+  })
+  .then(stocks => {
+    console.log(`/stocks/${ticker}/${days} : Successfully returned!`)
+    res.json({stocks: stocks[0]})
+  })
+  .catch(error => {
+    console.log(`/stocks/${ticker}/${days} : Failed!`)
+    console.log(error)
+    res.status(500)
+    res.send({error: error.message})
   })
 });
 
