@@ -9,7 +9,6 @@ const remote_mongo = {
     useUnifiedTopology: true,
   }
 };
-
 const aws_mongo = {
   DB: process.env.MONGO_EC2_URL,
   options: {
