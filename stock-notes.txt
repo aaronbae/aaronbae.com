@@ -21,6 +21,20 @@ https://query1.finance.yahoo.com/v7/finance/spark?symbols=BMO.TO&range=1d&interv
 using finn hub i can get websocket information as well
 
 
+Types of Securities:
+1. '': 
+2. UNT: 
+3. WAR:
+4. DR: derivatives
+5. PRF:
+6. STP:
+7. TRT:
+8. PFS:
+9. EQS: equities
+10. SP:
+11. BND: Bond
+
+
 times are get time divided by a thousand
 
 
