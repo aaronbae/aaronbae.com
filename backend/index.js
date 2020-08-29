@@ -17,11 +17,12 @@ const postRoute = require('./routes/Post.route');
 const userRoute = require('./routes/User.route');
 const fileRoute = require('./routes/File.route');
 const stockRoute = require('./routes/Stock.route');
+const mongoRoute = require('./routes/Mongo.route');
 
 // Supporting
 const Sentry = require('@sentry/node'); 
 Sentry.init({ 
-  dsn: 'https://c7f35c6182a34d129374dc31f77ae3b5@o418535.ingest.sentry.io/5322885', 
+  dsn: process.env.SENTRY_DSN, 
 });
     
 // Configure Mongoose
@@ -46,6 +47,7 @@ app.use('/api/posts', postRoute);
 app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
 app.use('/api/stocks', stockRoute);
+app.use('/api/db', mongoRoute);
 
 // Cron Jobs
 cron.schedule('0 0 0 * * *', () => {
