@@ -8,6 +8,8 @@ const cors = require('cors');
 const compression = require('compression')
 const mongoose = require('mongoose');
 const config = require('./DB')
+const cron = require("node-cron");
+const cron_utils = require("./utils/Cron");
 
 // Routes
 const defaultRoute = require('./routes/Default.route');
@@ -44,6 +46,14 @@ app.use('/api/posts', postRoute);
 app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
 app.use('/api/stocks', stockRoute);
+
+// Cron Jobs
+cron.schedule('0 0 0 * * *', () => {
+  cron_utils.reload_stocks()
+});
+cron.schedule('*/5 * * * * *', () => {
+  cron_utils.resolve_stock()
+})
 
 app.use(Sentry.Handlers.errorHandler());
 
