@@ -51,9 +51,11 @@ app.use('/api/db', mongoRoute);
 
 // Cron Jobs
 cron.schedule('0 0 0 * * *', () => {
+  // At Midnight
   cron_utils.reload_stocks()
 });
 cron.schedule('*/5 * * * * *', () => {
+  // Every 5 seconds
   cron_utils.resolve_stock()
 })
 
