@@ -51,7 +51,9 @@ function resolve_stock() {
   if(STOCKS_JOB_STATUS.n > 0){
     const ticker = STOCKS_JOB_STATUS.queue.shift()
     STOCKS_JOB_STATUS.n -= 1
-    Stocks.guarantee_fresh_yahoo(ticker).then(()=>{
+    Stocks.guarantee_fresh_yahoo(ticker).then(async () =>{
+      // TODO
+      //const stats = await mongoose.connection.db.stats()
       STOCKS_JOB_STATUS.last_updated = `${Dates.current()}`
       STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(STOCKS_JOB_STATUS.n * 5000 + Date.now())) 
       console.log(`[${Dates.current()}] CRON : Resolved ${ticker}`)

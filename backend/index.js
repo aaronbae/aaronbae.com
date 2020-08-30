@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const config = require('./DB')
 const cron = require("node-cron");
 const cron_utils = require("./utils/Cron");
+const mail = require("./utils/Mail")
 
 // Routes
 const defaultRoute = require('./routes/Default.route');
@@ -50,6 +51,8 @@ app.use('/api/stocks', stockRoute);
 app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
+// TODO: Get rid of this line after testing
+mail.warn_cron_status({}, "hello")
 cron.schedule('0 0 0 * * *', () => {
   // At Midnight
   cron_utils.reload_stocks()
