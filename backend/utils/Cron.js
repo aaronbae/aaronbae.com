@@ -21,11 +21,13 @@ let STOCKS_JOB_STATUS = {
   batch_started: null,
   last_updated: null,
   estimated_finish_time: null,
+  current_time: new Date(),
   queue: [],
 }
 
 // Functions
 function get_stocks_status() {
+  STOCKS_JOB_STATUS.current_time = new Date()
   return STOCKS_JOB_STATUS
 }
 function reload_stocks() {
