@@ -1,3 +1,20 @@
+export function round(value, float_digits) {
+  const rounder = Math.pow(10, float_digits)
+  return Math.round(value*rounder) / rounder
+
+}
+
+export function format_to_gb(integer_value, floating_points) {
+  return round(integer_value/1073741824, floating_points)
+}
+
+export function snake_case_to_normal(string) {
+  function upper_case(shit) {
+    return shit.charAt(0).toUpperCase() + shit.slice(1)
+  }
+  return string.split("_").map(x=>upper_case(x)).join(" ")
+}
+
 export function create_img_element(url) {
   url = url.replace(/https:\/\/aaronbaebucket.s3.([^/]+)\//gi, "https://aaronbae.com/api/files/")
   return `<img src='${url}' class='aws-image' alt='Loaded from AWS'>`

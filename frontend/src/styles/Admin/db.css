@@ -1,0 +1,23 @@
+.db-container .card-section-break{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.memory-used-label {
+  text-align: center;
+}
+.db-table {
+  width: 100%;
+}
+.db-table thead tr {
+  border-bottom: 1px solid black;
+}
+.db-table tbody .db-table-values {
+  text-align: right;
+}
+.history-count {
+  display: flex;
+  flex-direction: row;
+}
+.history-count > span:last-child {
+  margin-left: auto;
+}

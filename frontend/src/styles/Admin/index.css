@@ -1,0 +1,52 @@
+/* same as Blog/index.css */
+@media (min-width: 1024px){
+  #admin-index {
+    grid-template-rows: auto;
+    grid-template-columns: 2fr 4fr 4fr 2fr;
+  }
+  .db-info {
+    grid-column: 2/3;
+  }
+  .cron-info {
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
+}
+@media (min-width: 769px) and (max-width: 1023px){
+  #admin-index {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 6fr 6fr 1fr;
+  }
+  .db-info {
+    grid-column: 2/3;
+  }
+  .cron-info {
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
+}
+@media (max-width: 768px){
+  #admin-index {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+  }
+  .db-info {
+    grid-column: 1/2;
+  }
+  .cron-info {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+}
+#admin-index {
+  column-gap: 10px;
+  padding: 10px 10px 100px 10px;
+  display: grid;
+}
+.db-info {
+  grid-row: 1/2;
+}
+.cron-info, .db-info {
+  margin-bottom: 10px;
+  max-width: 100%;
+}

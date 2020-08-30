@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import DB from '../../components/Admin/DB'
 import CRON from '../../components/Admin/CRON'
+import '../../styles/Admin/index.css'
 
 export default function Admin() {
   const router = useRouter()
@@ -15,9 +16,9 @@ export default function Admin() {
 
   if(logged_in){
     return (
-      <div className="admin-index">
-        <DB />
-        <CRON />
+      <div id="admin-index">
+        <DB className="db-info"/>
+        <CRON className="cron-info" />
       </div>
     )
   } else {

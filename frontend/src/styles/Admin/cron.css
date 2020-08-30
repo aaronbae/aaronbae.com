@@ -1,0 +1,11 @@
+.cron-table {
+  font-size: 0.9rem;
+  width: 87%;
+  margin: 10px;
+}
+.cron-table tr:not(:first-child) {
+  border-top: 1px solid black;
+}
+.cron-table tbody .cron-table-values {
+  text-align: right;
+}

@@ -52,7 +52,7 @@ app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
 // TODO: Get rid of this line after testing
-mail.warn_cron_status({}, "hello")
+//mail.warn_cron_status({}, "hello")
 cron.schedule('0 0 0 * * *', () => {
   // At Midnight
   cron_utils.reload_stocks()
