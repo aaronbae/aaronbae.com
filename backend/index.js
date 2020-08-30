@@ -17,7 +17,7 @@ const postRoute = require('./routes/Post.route');
 const userRoute = require('./routes/User.route');
 const fileRoute = require('./routes/File.route');
 const stockRoute = require('./routes/Stock.route');
-const mongoRoute = require('./routes/Mongo.route');
+const monitorRoute = require('./routes/Monitor.route');
 
 // Supporting
 const Sentry = require('@sentry/node'); 
@@ -47,9 +47,10 @@ app.use('/api/posts', postRoute);
 app.use('/api/users', userRoute);
 app.use('/api/files', fileRoute);
 app.use('/api/stocks', stockRoute);
-app.use('/api/db', mongoRoute);
+app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
+cron_utils.reload_stocks()
 cron.schedule('0 0 0 * * *', () => {
   // At Midnight
   cron_utils.reload_stocks()
