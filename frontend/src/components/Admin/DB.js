@@ -7,7 +7,7 @@ export default function DB(props) {
   const [dbState, setDBState] = useState({});
 
   useEffect(()=>{
-    fetch("http://localhost:4000/api/monitor/db").then(res => res.json())
+    fetch(process.env.NEXT_PUBLIC_MONITOR_DB).then(res => res.json())
     .then(db => {
       setDBState(db)
     })

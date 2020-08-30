@@ -6,7 +6,7 @@ export default function CRON(props) {
   const [cronState, setCronState] = useState({});
 
   useEffect(()=>{
-    fetch("http://localhost:4000/api/monitor/cron").then(res => res.json())
+    fetch(process.env.NEXT_PUBLIC_MONITOR_CRON).then(res => res.json())
     .then(cron => {
       cron.queue = cron.queue[0]
       setCronState(cron)
