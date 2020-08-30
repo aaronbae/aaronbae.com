@@ -53,12 +53,13 @@ app.use('/api/monitor', monitorRoute);
 // Cron Jobs
 // TODO: Get rid of this line after testing
 //mail.warn_cron_status({}, "hello")
-cron.schedule('15 0 * * *', () => {
+cron.schedule('0 0 0 * * *', () => {
   // At Midnight
   cron_utils.reload_stocks()
 });
 cron.schedule('*/5 * * * * *', () => {
   // Every 5 seconds
+  console.log(new Date())
   cron_utils.resolve_stock()
 })
 
