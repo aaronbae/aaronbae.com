@@ -11,10 +11,6 @@ export default function Header() {
   const router = useRouter()
   const dropdown = useRef(null)
   const logged_in = useSelector((state) => state.AdminReducer.logged_in)
-  const hide_n_stop = (e)=> {
-    //hide()
-    console.log(document.activeElement.tagName)
-  }
   const hide = () => {
     dropdown.current.classList.add("hide")
   }
@@ -42,6 +38,7 @@ export default function Header() {
           <Link href="/"><a className="tab" onClick={hide}>Home</a></Link>
           <Link href="/blog"><a className="tab" onClick={hide}>Blog</a></Link>
           <Link href="/projects"><a className="tab" onClick={hide}>Projects</a></Link>
+          {logged_in && <Link href="/admin"><a className="tab" onClick={hide}>Admin</a></Link>}
         </div>
         <div className="admin-group">
           {logged_in &&

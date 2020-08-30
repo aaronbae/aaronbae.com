@@ -11,7 +11,7 @@ export default function Login() {
   const dispatch = useDispatch()
   useEffect(() => {
     if(logged_in){
-      router.push("/blog")
+      router.push("/admin")
     }
   }, [logged_in])
 
