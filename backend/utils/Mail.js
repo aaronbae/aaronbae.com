@@ -5,7 +5,8 @@ const cron_utils = require("./Cron");
 module.exports = {
   warn_cron_status: warn_cron_status,
   new_cron_batch_notification: new_cron_batch_notification,
-  send_email: send_email
+  send_email: send_email,
+  heartbeat: heartbeat
 }
 
 var transporter = Mailer.createTransport({

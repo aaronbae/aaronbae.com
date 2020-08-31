@@ -11,6 +11,7 @@ const config = require('./DB')
 const cron = require("node-cron");
 const cron_utils = require("./utils/Cron");
 const dates = require("./utils/Dates");
+const mail = require("./utils/Mail");
 
 // Routes
 const defaultRoute = require('./routes/Default.route');
@@ -51,7 +52,7 @@ app.use('/api/stocks', stockRoute);
 app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
-cron.schedule('0 40 8 * * *', () => {
+cron.schedule('0 55 18 * * *', () => {
   // At Midnight
   cron_utils.reload_stocks()
 });
@@ -60,7 +61,8 @@ cron.schedule('*/5 * * * * *', () => {
   cron_utils.resolve_stock()
 })
 cron.schedule('0 0 * * * *', () => {
-  cron_utils.heartbeat()
+  // every hour
+  mail.heartbeat()
 })
 
 app.use(Sentry.Handlers.errorHandler());
