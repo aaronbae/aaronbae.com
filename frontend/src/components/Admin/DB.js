@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ResponsiveContainer, PieChart, Tooltip, Pie } from 'recharts';
-import { format_to_gb, round } from '../../library/format'
+import { format_to_gb } from '../../library/format'
 import '../../styles/Admin/db.css'
 
 export default function DB(props) {
@@ -50,13 +50,6 @@ export default function DB(props) {
               )}
             </tbody>
           </table>
-          <div className="card-section-break" />
-          {dbState.collections && 
-            <p className="history-count">
-              <span>Average History Count:</span> 
-              <span>{round(dbState.collections.filter(item=>"stocks"===Object.values(item)[0]).map(item=> item.keys)[0][1].average_count, 2)}</span>
-            </p>
-          }
         </div>
       }
     </div>
