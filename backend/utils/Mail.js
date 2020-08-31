@@ -19,6 +19,16 @@ var transporter = Mailer.createTransport({
       privateKey: process.env.ADMIN_PRIVATE_KEY
   }
 })
+function heartbeat() {
+  if(mongoose.connection.readyState != 1){
+    console.log(`Mail : db not ready!`)
+  } else {
+    const to_email = process.env.ADMIN_EMAIL
+    const title = "Heartbeat from AWS EC2"
+    const text = `Heart beat at ${new Date()}\nCurrent cron status:\n${JSON.stringify(cron_status, null, 2)}`
+    send_email(to_email, title, text) 
+  }
+}
 function closeTo(val, goal) {
   return Math.abs(val-goal) < 0.001
 }
