@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 const Stocks = require('./Stocks')
 const Dates = require('./Dates')
+const mail = require("./Mail")
 
 module.exports = {
   reload_stocks: reload_stocks,
@@ -54,8 +55,7 @@ function resolve_stock() {
     const ticker = STOCKS_JOB_STATUS.queue.shift()
     STOCKS_JOB_STATUS.n -= 1
     Stocks.guarantee_fresh_yahoo(ticker).then(async () =>{
-      // TODO
-      //const stats = await mongoose.connection.db.stats()
+      mail.warn_cron_status()
       STOCKS_JOB_STATUS.last_updated = `${Dates.current()}`
       STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(STOCKS_JOB_STATUS.n * 5000 + Date.now())) 
       console.log(`[${Dates.current()}] CRON : Resolved ${ticker}`)
