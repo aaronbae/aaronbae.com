@@ -26,7 +26,7 @@ function warn_cron_status() {
   if(mongoose.connection.readyState != 1){
     console.log(`Mail : db not ready!`)
   } else {
-    mongoose.connection.db.stats().then(res=>res.json()).then(db_status=>{
+    mongoose.connection.db.stats().then(db_status=>{
       const mem_used = db_status.fsUsedSize/ db_status.fsTotalSize
       if(closeTo(mem_used, 0.75) || closeTo(mem_used, 0.80) || closeTo(mem_used, 0.85) || closeTo(mem_used, 0.90)){
         const cron_status = cron_utils.get_stocks_status()
