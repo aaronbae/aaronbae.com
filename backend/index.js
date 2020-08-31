@@ -33,7 +33,7 @@ mongoose.connect(config.DB, config.options).then(
   () => {
     console.log(`[${dates.current()}] DB connected to ${config.DB}`)
   },
-  err => { console.log('[${dates.current()}] Cannot connect to the database\n' + err) }
+  err => { console.log(`[${dates.current()}] Cannot connect to the database\n` + err) }
 );
 
 // Boiler Plate
