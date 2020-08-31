@@ -38,7 +38,7 @@ function warn_cron_status() {
     })
   }
 }
-function new_cron_batch_notification(cron_stats){
+function new_cron_batch_notification(cron_status){
   if(mongoose.connection.readyState != 1){
     console.log(`Mail : db not ready!`)
   } else {
