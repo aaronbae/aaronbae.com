@@ -82,7 +82,6 @@ userRoutes.route('/delete/:id').get(function (req, res) {
 
 // Login
 userRoutes.route('/login').post(function (req, res) {
-  console.log("Checking /login for { id: " + req.body.login_id + " , password: " + req.body.login_password + " }")
   User.find({
     login_id: req.body.login_id,
     login_password: req.body.login_password
