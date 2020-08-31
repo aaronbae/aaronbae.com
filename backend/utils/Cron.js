@@ -42,7 +42,8 @@ function reload_stocks() {
     STOCKS_JOB_STATUS.batch_total = stocks.length
     STOCKS_JOB_STATUS.n = stocks.length
     STOCKS_JOB_STATUS.batch_started = `${Dates.current()}`
-    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(stocks.length * 5000 + Date.now())) 
+    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(stocks.length * 5000 + Date.now()))
+    mail.new_cron_batch_notification(STOCKS_JOB_STATUS) 
     console.log(`[${Dates.current()}] CRON : reloaded ${stocks.length} stocks!` )
   })
   .catch(error => {

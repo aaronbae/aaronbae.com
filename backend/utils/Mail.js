@@ -4,6 +4,7 @@ const cron_utils = require("./Cron");
 
 module.exports = {
   warn_cron_status: warn_cron_status,
+  new_cron_batch_notification: new_cron_batch_notification,
   send_email: send_email
 }
 
@@ -35,6 +36,17 @@ function warn_cron_status() {
         send_email(to_email, title, text) 
       }
     })
+  }
+}
+function new_cron_batch_notification(cron_stats){
+  if(mongoose.connection.readyState != 1){
+    console.log(`Mail : db not ready!`)
+  } else {
+    const to_email = process.env.ADMIN_EMAIL
+    const title = "Started a new CRON Batch for Stocks"
+    const text = `New batch for Stocks initiated:\n${JSON.stringify(cron_status, null, 2)}`
+    send_email(to_email, title, text) 
+  
   }
 }
 function send_email(to_email, subject, text) {
