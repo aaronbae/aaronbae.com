@@ -48,7 +48,7 @@ function fetch_fresh_data() {
     stocks.forEach(entry => {
       if(valid_symbol(entry)){
         // Temporary
-        if(entry.symbol > "IRM"){
+        if(entry.symbol > "KNG"){
           STOCKS_JOB_STATUS.queue.push(entry.symbol)
         }
       }
