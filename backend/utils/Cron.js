@@ -15,7 +15,7 @@ module.exports = {
  * 
  ********************************************/
 // Status Variables
-const STOCKS_JOB_INTERVAL = 1;// seconds
+const STOCKS_JOB_ESTIMATED_INTERVAL = 7;// seconds
 let STOCKS_JOB_STATUS = {
   n: 0,
   batch_total: 0,
@@ -53,7 +53,7 @@ function fetch_fresh_data() {
     STOCKS_JOB_STATUS.batch_total = stocks.length
     STOCKS_JOB_STATUS.n = stocks.length
     STOCKS_JOB_STATUS.batch_started = `${Dates.current()}`
-    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(stocks.length * STOCKS_JOB_INTERVAL * 1000 + Date.now()))
+    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(stocks.length * STOCKS_JOB_ESTIMATED_INTERVAL * 1000 + Date.now()))
     mail.new_cron_batch_notification(STOCKS_JOB_STATUS) 
     console.log(`[${Dates.current()}] CRON : reloaded ${stocks.length} stocks!` )
   })
@@ -69,9 +69,9 @@ function fetch_fresh_data() {
       .then(async ()=>{
         mail.warn_cron_status()
         STOCKS_JOB_STATUS.last_updated = `${Dates.current()}`
-        STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(STOCKS_JOB_STATUS.n * STOCKS_JOB_INTERVAL * 1000 + Date.now())) 
+        STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000 + Date.now())) 
         console.log(`[${Dates.current()}] CRON : Resolved ${ticker}`)
-        await sleep(STOCKS_JOB_INTERVAL * 1000);
+        //await sleep(STOCKS_JOB_ESTIMATED_INTERVAL * 1000);
       })
       .catch(error => {
         console.log(`[${Dates.current()}] CRON : Failed to resolve ${ticker}`)
