@@ -37,7 +37,7 @@ function valid_symbol(ticker_entry) {
   return true
 }
 function get_stocks_status() {
-  STOCKS_JOB_STATUS.current_time = new Date()
+  STOCKS_JOB_STATUS.current_time = Dates.current()
   return STOCKS_JOB_STATUS
 }
 function fetch_fresh_data() {
@@ -48,13 +48,13 @@ function fetch_fresh_data() {
     stocks.forEach(entry => {
       if(valid_symbol(entry)){
         // Temporary
-        if(entry.symbol > "INMB"){
+        if(entry.symbol > "IRM"){
           STOCKS_JOB_STATUS.queue.push(entry.symbol)
         }
       }
     })
-    STOCKS_JOB_STATUS.batch_total = stocks.length
-    STOCKS_JOB_STATUS.n = stocks.length
+    STOCKS_JOB_STATUS.batch_total = STOCKS_JOB_STATUS.queue.length
+    STOCKS_JOB_STATUS.n = STOCKS_JOB_STATUS.queue.length
     STOCKS_JOB_STATUS.batch_started = `${Dates.current()}`
     STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(stocks.length * STOCKS_JOB_ESTIMATED_INTERVAL * 1000 + Date.now()))
     mail.new_cron_batch_notification(STOCKS_JOB_STATUS) 
