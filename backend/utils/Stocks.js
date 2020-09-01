@@ -76,7 +76,7 @@ function dangerously_fetch_yahoo(ticker, start, end) {
       return Stock.updateOne(
         { ticker: ticker },
         { $push: { history: new_history },
-          $set: { updated: end}
+          $set: { updated: end }
         },
         { upsert: true }
       ).then(() => resolve("Yahoo Info Fetched"))
