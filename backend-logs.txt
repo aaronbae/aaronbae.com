@@ -4,7 +4,7 @@
 [nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node index.js`
 [2020-07-31 19:11:11] Server is listening on port 4000
-[2020-07-31 19:11:11] DB connected to mongodb://aaronbae:kingoftheworld123@ec2-34-214-224-91.us-west-2.compute.amazonaws.com/aaronbaeDB
+[2020-07-31 19:11:11] DB connected to mongodb://*:*@ec2-34-214-224-91.us-west-2.compute.amazonaws.com/aaronbaeDB
 /user/login : Successfully logged in for user aaronbae!
 /monitor/db/ : successfully fetched db information!
 [2020-07-31 19:25:01] CRON : reloaded 9007 stocks!
