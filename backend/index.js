@@ -52,18 +52,18 @@ app.use('/api/stocks', stockRoute);
 app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
-cron.schedule('0 25 19 * * *', () => {
-  // At Midnight
-  cron_utils.reload_stocks()
-});
-cron.schedule('*/5 * * * * *', () => {
-  // Every 5 seconds
-  cron_utils.resolve_stock()
-})
-cron.schedule('0 0/15 * * * *', () => {
-  // every hour
-  mail.heartbeat()
-})
+//cron.schedule('0 25 19 * * *', () => {
+//  // At Midnight
+//  cron_utils.reload_stocks()
+//});
+//cron.schedule('*/5 * * * * *', () => {
+//  // Every 5 seconds
+//  cron_utils.resolve_stock()
+//})
+//cron.schedule('0 */15 * * * *', () => {
+//  // every hour
+//  mail.heartbeat()
+//})
 
 app.use(Sentry.Handlers.errorHandler());
 
