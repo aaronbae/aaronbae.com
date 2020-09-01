@@ -22,7 +22,7 @@ monitorRoute.route('/db').get(async function (req, res) {
     
     const collection_info = await Promise.all(collections.map(async collection=>{
       const current_collection = db.collection(collection.name)
-      const n = await current_collection.countDocuments()
+      const n = await current_collection.estimatedDocumentCount()
       const collection_stats = await current_collection.stats()      
       return {
         name: collection.name,
