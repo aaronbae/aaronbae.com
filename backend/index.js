@@ -52,9 +52,8 @@ app.use('/api/stocks', stockRoute);
 app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
-cron.schedule('0 44 6 * * *', () => {
+cron.schedule('0 52 22 * * *', () => {
   // At Midnight
-  //cron_utils.reload_stocks()
   cron_utils.fetch_fresh_data()
 });
 

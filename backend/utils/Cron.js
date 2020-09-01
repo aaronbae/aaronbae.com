@@ -47,7 +47,10 @@ function fetch_fresh_data() {
   .then(stocks => {
     stocks.forEach(entry => {
       if(valid_symbol(entry)){
-        STOCKS_JOB_STATUS.queue.push(entry.symbol)
+        // Temporary
+        if(entry.symbol > "INMB"){
+          STOCKS_JOB_STATUS.queue.push(entry.symbol)
+        }
       }
     })
     STOCKS_JOB_STATUS.batch_total = stocks.length

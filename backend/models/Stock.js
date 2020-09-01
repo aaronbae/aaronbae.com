@@ -35,7 +35,8 @@ let History = new Schema({
 let Stock = new Schema({
   ticker: {
     type: String,
-    default: "_NOT_GIVEN"
+    required: true,
+    unique: true
   },
   updated: {
     type: Date,
