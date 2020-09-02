@@ -52,10 +52,7 @@ function fetch_fresh_data() {
   .then(stocks => {
     stocks.forEach(entry => {
       if(valid_symbol(entry)){
-        // Temporary
-        if(entry.symbol > "KNG"){
-          STOCKS_JOB_STATUS.queue.push(entry.symbol)
-        }
+        STOCKS_JOB_STATUS.queue.push(entry.symbol)
       }
     })
     const current = new Date()
@@ -68,7 +65,6 @@ function fetch_fresh_data() {
   })
   .catch(error => { 
     Dates.error(error, "CRON", `failed to reload stocks!`)
-    console.log()
   })
   .then(async ()=> {
     while(STOCKS_JOB_STATUS.n > 0){
