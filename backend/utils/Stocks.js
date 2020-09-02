@@ -24,7 +24,6 @@ module.exports = {
   query_stocks: query_stocks,
   guarantee_fresh_yahoo: guarantee_fresh_yahoo
 }
-
 function query_stocks(ticker, start_date, end_date) {
   return Stock.aggregate([
     { $match: { ticker: ticker }},
@@ -43,6 +42,7 @@ function query_stocks(ticker, start_date, end_date) {
 function get_yahoo_url(ticker, start, end) {
   const formatted_start = Math.trunc(start.getTime() / 1000);
   const formatted_end = Math.trunc(end.getTime() / 1000);
+  ticker = ticker.replace(/\./g, "-")
   return `https://query1.finance.yahoo.com/v7/finance/download/${ticker}?period1=${formatted_start}&period2=${formatted_end}&interval=1d&events=history`
 }
 function dangerously_fetch_yahoo(ticker, start, end) {
@@ -51,7 +51,7 @@ function dangerously_fetch_yahoo(ticker, start, end) {
     .then(response=>response.text())
     .then( text => {
       if(text.includes("404 Not Found") || text.includes("422 Unprocessable Entity")) {
-        throw new Error("Invalid ticker symbol!")
+        throw new Error("Yahoo returned empty!")
       } 
       const new_history = []
       const splitted_text = text.split("\n")
@@ -72,7 +72,7 @@ function dangerously_fetch_yahoo(ticker, start, end) {
       if(new_history.length === 0){
         throw new Error("No New History!")
       } 
-      Dates.log("UTILS/STOCKS", `Added ${new_history.length} new records!`)
+      Dates.log("UTILS/STOCKS", `Added ${new_history.length} new records for ${ticker}!`)
       return Stock.updateOne(
         { ticker: ticker },
         { $push: { history: new_history },
@@ -85,9 +85,10 @@ function dangerously_fetch_yahoo(ticker, start, end) {
   })
 }
 function guarantee_fresh_yahoo(ticker) {
+  ticker = ticker.toUpperCase()
   return new Promise((resolve, reject) => {
-    if(!ticker.match(/^[A-Z]+$/)) {
-    throw new Error("Invalid ticker symbol!") 
+    if(!ticker.match(/^[.A-Z]+$/)) {
+      throw new Error("Invalid ticker symbol!") 
     }
     const today = Dates.round_date(Date.now())
     const query = Stock.find({ticker: ticker}).select("-history")
