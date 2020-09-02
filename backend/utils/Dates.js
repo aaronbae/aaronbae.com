@@ -48,10 +48,8 @@ function error(error, url, message="Failed!") {
   error = error ? `\n${error.toString()}` : ""
   console.log(`[${format_24(new Date())}] ${url.padEnd(MAX_URL_NAME_LENGTH, ' ')} : ${message}${error}`)
 }
-function pad(number, size) {
-  return number.toString().padStart(size, "0")
-}
 function format_24(date) {
+  console.log(date.getTimezoneOffset())
   return date.toLocaleString('en-US', {hour12: false}).replace(",", "")
 }
 function format(date) {
