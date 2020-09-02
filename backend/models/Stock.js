@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 let History = new Schema({
   date: {
     type: Date,
-    default: new Date('1900'),
-    unique: true
+    default: new Date('1900')
   },
   open: {
     type: Number,

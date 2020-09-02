@@ -17,8 +17,7 @@ let Post = new Schema({
   },
   createtime: {
     type: Date,
-    default: Date.now,
-    index: true
+    default: Date.now
   },
   tags: {
     type: Array,
