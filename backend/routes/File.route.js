@@ -74,11 +74,11 @@ fileRoutes.route('/:image_name').get(function (req, res) {
   }
   s3.getObject(params, function (err, data) {
     if (err) {
-      console.log(err);
+      Dates.error(err, req.baseUrl + req.path)
       return res.status(500).send(err)
     }
     else {
-      console.log(`/file/${params.Key} : Successfully fetched the image!`)
+      Dates.log(req.baseUrl + req.path, `Successfully fetched the image!`)
       return res.status(200).send(data.Body)
     }
   })
