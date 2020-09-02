@@ -39,11 +39,17 @@ function get_stocks_status() {
   const current = new Date()
   STOCKS_JOB_STATUS.current_time = Dates.format(current)
   if(STOCKS_JOB_STATUS.n > 0){
-    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(current.getTime() + STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000))
+    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(
+      new Date(current.getTime() + STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000)
+    )
   } else {
     STOCKS_JOB_STATUS.estimated_finish_time = null
   }
-  return STOCKS_JOB_STATUS
+  return {
+    ...STOCKS_JOB_STATUS,
+    batch_started: Dates.format(STOCKS_JOB_STATUS.batch_started),
+    last_updated: Dates.format(STOCKS_JOB_STATUS.last_updated)
+  }
 }
 function fetch_fresh_data() {
   STOCKS_JOB_STATUS.queue = []

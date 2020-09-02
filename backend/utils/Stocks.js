@@ -72,7 +72,7 @@ function dangerously_fetch_yahoo(ticker, start, end) {
       if(new_history.length === 0){
         throw new Error("No New History!")
       } 
-      Dates.log(req.baseUrl+req.path, `Added ${new_history.length} new records!`)
+      Dates.log("UTILS/STOCKS", `Added ${new_history.length} new records!`)
       return Stock.updateOne(
         { ticker: ticker },
         { $push: { history: new_history },
