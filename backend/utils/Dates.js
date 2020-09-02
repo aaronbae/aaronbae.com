@@ -64,6 +64,9 @@ function neutralize_possible_incorrect_machine_timezone(date) {
   return new Date(date.getTime()-(420-date.getTimezoneOffset())*60*1000)
 }
 function format_24(date) {
+  if(!date){
+    return null
+  }
   date = neutralize_possible_incorrect_machine_timezone(date)
   return date.toLocaleString('en-US', {hour12: false}).replace(/,/g, "")
 }
