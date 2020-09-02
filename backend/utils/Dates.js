@@ -41,6 +41,12 @@ function days_ago(reference_date, num_days) {
   new_date.setDate(new_date.getDate() - num_days)
   return new_date
 }
+
+/****************************************
+ * 
+ * Logging Functions
+ * 
+ ****************************************/
 function log(url, message="Successful!"){
   console.log(`[${format_24(new Date())}] ${url.padEnd(MAX_URL_NAME_LENGTH, ' ')} : ${message}`)
 }
@@ -48,14 +54,22 @@ function error(error, url, message="Failed!") {
   error = error ? `\n${error.toString()}` : ""
   console.log(`[${format_24(new Date())}] ${url.padEnd(MAX_URL_NAME_LENGTH, ' ')} : ${message}${error}`)
 }
+
+/****************************************
+ * 
+ * Date formatting functions
+ * 
+ ****************************************/
+function neutralize_possible_incorrect_machine_timezone(date) {
+  return new Date(date.getTime()-(420-date.getTimezoneOffset())*60*1000)
+}
 function format_24(date) {
-  const shit = new Date(date.getTime()-(420-date.getTimezoneOffset())*60*1000)
-  // Temporary
-  console.log(shit.toLocaleString('en-US',{hour12: false}))
+  date = neutralize_possible_incorrect_machine_timezone(date)
   return date.toLocaleString('en-US', {hour12: false}).replace(/,/g, "")
 }
 function format(date) {
   //return `${date.getFullYear()}-${pad(date.getMonth()+1, 2)}-${pad(date.getDate(), 2)} ${pad(date.getHours(), 2)}:${pad(date.getMinutes(), 2)}:${pad(date.getSeconds(), 2)}`
+  date = neutralize_possible_incorrect_machine_timezone(date)
   return date.toLocaleString('en-US').replace(/,/g, "")
 }
 function current() {
