@@ -68,6 +68,9 @@ function format_24(date) {
   return date.toLocaleString('en-US', {hour12: false}).replace(/,/g, "")
 }
 function format(date) {
+  if(!date){
+    return null
+  }
   //return `${date.getFullYear()}-${pad(date.getMonth()+1, 2)}-${pad(date.getDate(), 2)} ${pad(date.getHours(), 2)}:${pad(date.getMinutes(), 2)}:${pad(date.getSeconds(), 2)}`
   date = neutralize_possible_incorrect_machine_timezone(date)
   return date.toLocaleString('en-US').replace(/,/g, "")
