@@ -50,12 +50,13 @@ function error(error, url, message="Failed!") {
 }
 function format_24(date) {
   const shit = new Date(date.getTime()-(420-date.getTimezoneOffset())*60*1000)
+  // Temporary
   console.log(shit.toLocaleString('en-US',{hour12: false}))
-  return date.toLocaleString('en-US', {hour12: false}).replace(",", "")
+  return date.toLocaleString('en-US', {hour12: false}).replaceAll(",", "")
 }
 function format(date) {
   //return `${date.getFullYear()}-${pad(date.getMonth()+1, 2)}-${pad(date.getDate(), 2)} ${pad(date.getHours(), 2)}:${pad(date.getMinutes(), 2)}:${pad(date.getSeconds(), 2)}`
-  return date.toLocaleString('en-US').replace(",", "")
+  return date.toLocaleString('en-US').replaceAll(",", "")
 }
 function current() {
   return format(new Date())
