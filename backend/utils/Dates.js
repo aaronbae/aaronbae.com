@@ -49,7 +49,8 @@ function error(error, url, message="Failed!") {
   console.log(`[${format_24(new Date())}] ${url.padEnd(MAX_URL_NAME_LENGTH, ' ')} : ${message}${error}`)
 }
 function format_24(date) {
-  console.log(date.getTimezoneOffset())
+  const shit = new Date(date.getTime()-(420-date.getTimezoneOffset())*60*1000)
+  console.log(shit.toLocaleString('en-US',{hour12: false}))
   return date.toLocaleString('en-US', {hour12: false}).replace(",", "")
 }
 function format(date) {
