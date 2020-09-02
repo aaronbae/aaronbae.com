@@ -13,6 +13,7 @@ const remote_mongo = {
 const aws_mongo = {
   DB: process.env.MONGO_EC2_URL,
   options: {
+    useFindAndModify: false,
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -22,6 +23,7 @@ const aws_mongo = {
 const local_mongo = {
   DB: 'mongodb://localhost:27017/aaronbaeDB',
   options: {
+    useFindAndModify: false,
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -1,5 +1,6 @@
 const express = require('express');
 const fileRoutes = express.Router();
+const Dates = require('../utils/Dates')
 
 // AWS S3 related modules
 const AWS = require('aws-sdk');
@@ -26,17 +27,14 @@ var upload = multer({ storage: storage }).single("file")
 fileRoutes.route('/upload').post(function (req, res) {
   // temporarily save the file to local
   upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-      console.log(err)
-      return res.status(500).json(err)
-    } else if (err) {
-      console.log(err)
+    if (err) {
+      Dates.error(err, req.baseUrl + req.path)
       return res.status(500).json(err)
     }
     // Read in the Temp File
     fs.readFile(req.file.path, (err, data) => {
       if (err) {
-        console.log(err)
+        Dates.error(err, req.baseUrl + req.path)
         return res.status(500).json(err)
       }
       const params = {
@@ -47,17 +45,17 @@ fileRoutes.route('/upload').post(function (req, res) {
       // Upload to AWS
       s3.upload(params, function (s3Err, data) {
         if (s3Err) {
-          console.log(s3Err)
+          Dates.error(s3Err, req.baseUrl + req.path)
           return res.status(500).json(s3Err)
         }
         // delete the temp file
         fs.unlink(req.file.path, function (err) {
           if (err) {
-            console.log(err);
+            Dates.error(err, req.baseUrl + req.path)
             return res.status(500).send(err)
           }
           // SUCCESS
-          console.log(`/file/upload : Successfully uploaded the image to ${data.Location}`)
+          Dates.log(req.baseUrl + req.path, `Successfully uploaded the image to ${data.Location}`)
           return res.status(200).json({
             message: 'file added successfully',
             url: data.Location

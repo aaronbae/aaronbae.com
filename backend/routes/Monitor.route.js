@@ -1,17 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const monitorRoute = express.Router();
-const cron = require('../utils/Cron')
+const cron = require('../utils/Cron');
+const Dates = require('../utils/Dates');
 
 monitorRoute.route('/cron').get(function(req, res) {
+  Dates.log(req.baseUrl + req.path)
   res.status(200)
   res.json(cron.get_stocks_status())
 })
 
 monitorRoute.route('/db').get(async function (req, res) {  
   if(mongoose.connection.readyState != 1){
-    console.log(`/monitor/db/ : Failed to fetch db information!`)
-    console.log(error)
+    Dates.error(null, req.baseUrl + req.path, "Failed to fetch db information!")
     res.status(500)
     res.json({message: "Failed to fetch db information!"})
   } else {
@@ -40,7 +41,7 @@ monitorRoute.route('/db').get(async function (req, res) {
     result.machine_memory_used = stats.fsUsedSize
     result.machine_memory_total = stats.fsTotalSize
 
-    console.log("/monitor/db/ : successfully fetched db information!")
+    Dates.log(req.baseUrl + req.path, "Successfully fetched db information!")
     res.status(200);
     res.json(result)
   }

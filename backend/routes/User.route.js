@@ -1,17 +1,18 @@
 const express = require('express');
 const userRoutes = express.Router();
 let User = require('../models/User');
+const Dates = require('../utils/Dates');
 
 // Defined store route
 userRoutes.route('/add').post(function (req, res) {
   let user = new User(req.body);
   user.save()
     .then(user => {
-      console.log(`/user/add/ : Successfully added the user ${user.login_id}!`)
+      Dates.log(req.baseUrl+req.path, `Successfully added the user ${user.login_id}!`)
       res.status(200).json({ 'user': 'user in added successfully' });
     })
     .catch(err => {
-      console.log(`/user/add/ : Failed!`)
+      Dates.error(err, req.baseUrl+req.path)
       res.status(400).send("unable to save to database");
     });
 });
@@ -20,11 +21,10 @@ userRoutes.route('/add').post(function (req, res) {
 userRoutes.route('/').get(function (req, res) {
   User.find(function (err, users) {
     if (err) {
-      console.log(`/user/ : Failed!`)
-      console.log(err);
+      Dates.error(err, req.baseUrl+req.path)
     }
     else {
-      console.log(`/user/ : Successfully found the user ${users[0].login_id}!`)
+      Dates.log(req.baseUrl+req.path, `Successfully found the user ${users[0].login_id}!`)
       res.json(users);
     }
   });
@@ -35,11 +35,11 @@ userRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   User.findById(id, function (err, user) {
     if (err) {
-      console.log(`/user/edit/${id} : Failed!`)
-      console.log(err);
+      Dates.error(err, req.baseUrl+req.path)
+    } else {
+      Dates.log(req.baseUrl+req.path, `Successfully found the user!`)
+      res.json(user);
     }
-    console.log(`/user/edit/${id} : Successfully found the user!`)
-    res.json(user);
   });
 });
 
@@ -54,13 +54,13 @@ userRoutes.route('/update/:id').post(function (req, res) {
       user.login_password = req.body.login_password;
 
       user.save().then(user => {
-        console.log(`/user/update/${user.id} : Successfully updated the user!`)
+        Dates.log(req.baseUrl+req.path, `Successfully updated the user!`)
         res.json('Update complete');
       })
-        .catch(err => {
-          console.log(`/user/update/${user.id} : Failed!`)
-          res.status(400).send("unable to update the database");
-        });
+      .catch(err => {
+        Dates.error(err, req.baseUrl+req.path)
+        res.status(400).send("unable to update the database");
+      });
     }
   });
 });
@@ -69,12 +69,11 @@ userRoutes.route('/update/:id').post(function (req, res) {
 userRoutes.route('/delete/:id').get(function (req, res) {
   User.findByIdAndRemove({ _id: req.params.id }, function (err, user) {
     if (err) {
-      console.log(`/user/delete/${user.id} : Failed!`)
-      console.log(err)
+      Dates.error(err, req.baseUrl+req.path)
       res.json(err);
     }
     else {
-      console.log(`/user/delte/${user.id} : Successfully deleted the user!`)
+      Dates.log(req.baseUrl+req.path, `Successfully deleted the user!`)
       res.json('Successfully removed');
     }
   });
@@ -87,10 +86,10 @@ userRoutes.route('/login').post(function (req, res) {
     login_password: req.body.login_password
   }, function (err, user) {
     if (user.length == 0) {
-      console.log(`/user/login : Failed login for user ${req.body.login_id}!`)
+      Dates.error(err, req.baseUrl+req.path, `Failed login for user ${req.body.login_id}!`)
       res.status(400).json({ "status": 400 })
     } else {
-      console.log(`/user/login : Successfully logged in for user ${req.body.login_id}!`)
+      Dates.log(req.baseUrl+req.path, `Successfully logged in for user ${req.body.login_id}`)
       res.status(200).json({ "status": 200 })
     }
   });

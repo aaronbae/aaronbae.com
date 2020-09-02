@@ -22,12 +22,11 @@ userRoutes.route('/:id').get(function (req, res) {
     return final_query.exec()
   })
   .then(stocks => {
-    console.log(`/stocks/${ticker} : Successfully returned!`)
+    Dates.log(req.baseUrl+req.path)
     res.json({stocks: stocks[0]})
   })
   .catch(error => {
-    console.log(`/stocks/${ticker} : Failed!`)
-    console.log(error)
+    Dates.error(error, req.baseUrl+req.path)
     res.status(500)
     res.send({error: error.message})
   })
@@ -45,12 +44,11 @@ userRoutes.route('/:id/:days').get(function (req, res) {
     return final_query.exec()
   })
   .then(stocks => {
-    console.log(`/stocks/${ticker}/${days} : Successfully returned!`)
+    Dates.log(req.baseUrl+req.path)
     res.json({stocks: stocks[0]})
   })
   .catch(error => {
-    console.log(`/stocks/${ticker}/${days} : Failed!`)
-    console.log(error)
+    Dates.error(error, req.baseUrl+req.path)
     res.status(500)
     res.send({error: error.message})
   })

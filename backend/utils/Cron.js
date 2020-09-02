@@ -2,7 +2,6 @@ const fetch = require('node-fetch')
 const Stocks = require('./Stocks')
 const Dates = require('./Dates')
 const mail = require("./Mail")
-const { validate } = require('node-cron')
 
 module.exports = {
   get_stocks_status: get_stocks_status,
@@ -22,7 +21,7 @@ let STOCKS_JOB_STATUS = {
   batch_started: null,
   last_updated: null,
   estimated_finish_time: null,
-  current_time: new Date(),
+  current_time: null,
   queue: [],
 }
 
@@ -37,7 +36,13 @@ function valid_symbol(ticker_entry) {
   return true
 }
 function get_stocks_status() {
-  STOCKS_JOB_STATUS.current_time = Dates.current()
+  const current = new Date()
+  STOCKS_JOB_STATUS.current_time = Dates.format(current)
+  if(STOCKS_JOB_STATUS.n > 0){
+    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(current.getTime() + STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000))
+  } else {
+    STOCKS_JOB_STATUS.estimated_finish_time = null
+  }
   return STOCKS_JOB_STATUS
 }
 function fetch_fresh_data() {
@@ -53,16 +58,17 @@ function fetch_fresh_data() {
         }
       }
     })
+    const current = new Date()
     STOCKS_JOB_STATUS.batch_total = STOCKS_JOB_STATUS.queue.length
     STOCKS_JOB_STATUS.n = STOCKS_JOB_STATUS.queue.length
-    STOCKS_JOB_STATUS.batch_started = `${Dates.current()}`
-    STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(stocks.length * STOCKS_JOB_ESTIMATED_INTERVAL * 1000 + Date.now()))
+    STOCKS_JOB_STATUS.batch_started = current
+    STOCKS_JOB_STATUS.last_updated = current
     mail.new_cron_batch_notification(STOCKS_JOB_STATUS) 
-    console.log(`[${Dates.current()}] CRON : reloaded ${stocks.length} stocks!` )
+    Dates.log("CRON", `reloaded ${stocks.length} stocks!`)
   })
-  .catch(error => {
-    console.log(`[${Dates.current()}] CRON : failed to reload stocks!`)
-    console.log(error)
+  .catch(error => { 
+    Dates.error(error, "CRON", `failed to reload stocks!`)
+    console.log()
   })
   .then(async ()=> {
     while(STOCKS_JOB_STATUS.n > 0){
@@ -71,18 +77,14 @@ function fetch_fresh_data() {
       await Stocks.guarantee_fresh_yahoo(ticker)
       .then(async ()=>{
         mail.warn_cron_status()
-        STOCKS_JOB_STATUS.last_updated = `${Dates.current()}`
-        STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(new Date(STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000 + Date.now())) 
-        console.log(`[${Dates.current()}] CRON : Resolved ${ticker}`)
+        const current = new Date()
+        STOCKS_JOB_STATUS.last_updated = current
+        Dates.log("CRON", `Resolved ${ticker}!`)
         //await sleep(STOCKS_JOB_ESTIMATED_INTERVAL * 1000);
       })
       .catch(error => {
-        console.log(`[${Dates.current()}] CRON : Failed to resolve ${ticker}`)
-        if(error.message!=="Invalid ticker symbol!"){
-          console.log(error)
-        }
+        Dates.error(error, "CRON", `Failed to resolve ${ticker}!`)
       })
-      
     }
   })
 }

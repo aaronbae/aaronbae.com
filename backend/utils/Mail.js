@@ -1,6 +1,8 @@
 const Mailer =  require("nodemailer")
 const mongoose = require('mongoose')
 const cron_utils = require("./Cron");
+const Dates = require('./Dates')
+
 
 module.exports = {
   warn_cron_status: warn_cron_status,
@@ -22,7 +24,7 @@ var transporter = Mailer.createTransport({
 })
 function heartbeat() {
   if(mongoose.connection.readyState != 1){
-    console.log(`Mail : db not ready!`)
+    Dates.log("MAIL", "DB not ready!")
   } else {
     const to_email = process.env.ADMIN_EMAIL
     const title = "Heartbeat from AWS EC2"
@@ -35,7 +37,7 @@ function closeTo(val, goal) {
 }
 function warn_cron_status() {  
   if(mongoose.connection.readyState != 1){
-    console.log(`Mail : db not ready!`)
+    Dates.log("MAIL", "DB not ready!")
   } else {
     mongoose.connection.db.stats().then(db_status=>{
       const mem_used = db_status.fsUsedSize/ db_status.fsTotalSize
@@ -51,7 +53,7 @@ function warn_cron_status() {
 }
 function new_cron_batch_notification(cron_status){
   if(mongoose.connection.readyState != 1){
-    console.log(`Mail : db not ready!`)
+    Dates.log("MAIL", "DB not ready!")
   } else {
     const to_email = process.env.ADMIN_EMAIL
     const title = "Started a new CRON Batch for Stocks"
@@ -70,14 +72,12 @@ function send_email(to_email, subject, text) {
   transporter.verify().then(()=>{
     transporter.sendMail(options, function(err, data){
       if(err){
-        console.log("MAIL : Email failed to send!")
-        console.log(err)
+        Dates.error(err, "MAIL", "Email failed to send!")
       } else {
-        console.log("MAIL : Email Sent!")
+        Dates.log("MAIL", "Email sent!")
       }
     });
   }).catch(error=> {
-    console.log("MAIL : Email failed to verify!")
-    console.log(error)
+    Dates.error(error, "MAIL", "Email failed to verify!")
   })
 }

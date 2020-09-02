@@ -11,7 +11,6 @@ const config = require('./DB')
 const cron = require("node-cron");
 const cron_utils = require("./utils/Cron");
 const dates = require("./utils/Dates");
-const mail = require("./utils/Mail");
 
 // Routes
 const defaultRoute = require('./routes/Default.route');
@@ -31,9 +30,9 @@ Sentry.init({
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, config.options).then(
   () => {
-    console.log(`[${dates.current()}] DB connected to ${config.DB}`)
+    dates.log("MongoDB", `DB connected to ${config.DB}`)
   },
-  err => { console.log(`[${dates.current()}] Cannot connect to the database\n` + err) }
+  err => { dates.error(err, "MongoDB", `Cannot connect to the database`) }
 );
 
 // Boiler Plate
@@ -60,5 +59,5 @@ cron.schedule('0 50 23 * * *', () => {
 app.use(Sentry.Handlers.errorHandler());
 
 app.listen(4000, () => {
-  console.log(`[${dates.current()}] Server is listening on port 4000`);
+  dates.log("ExpressJS", "Server is listening on port 4000")
 });
