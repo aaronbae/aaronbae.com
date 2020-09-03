@@ -53,6 +53,7 @@ userRoutes.route("/topmovers/:date/:count").get(function(req, res){
   } else {
     date = Dates.round_date(date)
     Stocks.query_topmover(date, count).exec().then((stocks)=>{
+      Dates.log(req.baseUrl+req.path)
       res.status(200)
       res.send({message: "Success", stocks: stocks})
     })
