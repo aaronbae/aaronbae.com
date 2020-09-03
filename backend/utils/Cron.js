@@ -36,7 +36,7 @@ function valid_symbol(ticker_entry) {
   return true
 }
 function get_stocks_status() {
-  const current = new Date()
+  const current = Dates.current()
   STOCKS_JOB_STATUS.current_time = Dates.format(current)
   if(STOCKS_JOB_STATUS.n > 0){
     STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(
@@ -61,7 +61,7 @@ function fetch_fresh_data() {
         STOCKS_JOB_STATUS.queue.push(entry.symbol)
       }
     })
-    const current = new Date()
+    const current = Dates.current()
     STOCKS_JOB_STATUS.batch_total = STOCKS_JOB_STATUS.queue.length
     STOCKS_JOB_STATUS.n = STOCKS_JOB_STATUS.queue.length
     STOCKS_JOB_STATUS.batch_started = current
@@ -79,7 +79,7 @@ function fetch_fresh_data() {
       await Stocks.guarantee_fresh_yahoo(ticker)
       .then(async ()=>{
         mail.warn_cron_status()
-        const current = new Date()
+        const current = Dates.current()
         STOCKS_JOB_STATUS.last_updated = current
         Dates.log("CRON", `Resolved ${ticker}!`)
         //await sleep(STOCKS_JOB_ESTIMATED_INTERVAL * 1000);

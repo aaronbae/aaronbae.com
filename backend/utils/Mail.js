@@ -28,7 +28,7 @@ function heartbeat() {
   } else {
     const to_email = process.env.ADMIN_EMAIL
     const title = "Heartbeat from AWS EC2"
-    const text = `Heart beat at ${new Date()}\nCurrent cron status:\n${JSON.stringify(cron_status, null, 2)}`
+    const text = `Heart beat at ${Dates.current_formatted()}\nCurrent cron status:\n${JSON.stringify(cron_status, null, 2)}`
     send_email(to_email, title, text) 
   }
 }

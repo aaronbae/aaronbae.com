@@ -1,4 +1,5 @@
 const Stock = require('../models/Stock');
+const History = require('../models/History');
 const Dates = require('./Dates')
 const fetch = require('node-fetch')
 
@@ -21,23 +22,19 @@ const fetch = require('node-fetch')
  * 
  *********************************************************/
 module.exports = {
-  query_stocks: query_stocks,
+  query_limited:query_limited,
+  query_all: query_all,
+  query_topmover: query_topmover,
   guarantee_fresh_yahoo: guarantee_fresh_yahoo
 }
-function query_stocks(ticker, start_date, end_date) {
-  return Stock.aggregate([
-    { $match: { ticker: ticker }},
-    { $unwind: '$history' },
-    { $match: { 'history.date': {$gte: start_date, $lte: end_date} } },
-    { $unset: "history._id" }, 
-    { $group: { 
-      _id: "$_id",
-      history: {
-        $push: "$history"
-      },
-      updated: { $first: "$updated" }
-    }}
-  ])
+function query_topmover(date, count) {
+  return History.find({date: date}).sort({change: -1}).limit(count)
+}
+function query_limited(ticker, count) {
+  return History.find({ticker: ticker}).sort({date: -1}).limit(count)
+}
+function query_all(ticker) {
+  return History.find({ticker: ticker}).sort({date: -1})
 }
 function get_yahoo_url(ticker, start, end) {
   const formatted_start = Math.trunc(start.getTime() / 1000);
@@ -45,41 +42,41 @@ function get_yahoo_url(ticker, start, end) {
   ticker = ticker.replace(/\./g, "-")
   return `https://query1.finance.yahoo.com/v7/finance/download/${ticker}?period1=${formatted_start}&period2=${formatted_end}&interval=1d&events=history`
 }
-function dangerously_fetch_yahoo(ticker, start, end) {
+function dangerously_fetch_yahoo(ticker, previous, today) {
   return new Promise((resolve, reject) =>{
-    fetch(get_yahoo_url(ticker, start, end))
+    fetch(get_yahoo_url(ticker, previous, today))
     .then(response=>response.text())
-    .then( text => {
+    .then(async(text) => {
       if(text.includes("404 Not Found") || text.includes("422 Unprocessable Entity")) {
         throw new Error("Yahoo returned empty!")
       } 
-      const new_history = []
       const splitted_text = text.split("\n")
+      let new_history = []
       for(let i = 1; i < splitted_text.length; i++) {
         const splitted_row = splitted_text[i].split(",")    
         if(!splitted_row.includes("null")){
-          const new_row = {}
-          new_row.date = new Date(splitted_row[0])
+          let new_row = new History()
+          new_row.ticker = ticker
+          new_row.date = Dates.to_pst(new Date(splitted_row[0]))
           new_row.open = splitted_row[1]
           new_row.high = splitted_row[2]
           new_row.low = splitted_row[3]
           new_row.close = splitted_row[4]
           new_row.adj_close = splitted_row[5]
           new_row.volume = splitted_row[6]
+          new_row.change = (new_row.close - new_row.open)/ new_row.open
           new_history.push(new_row)
         }
-      }   
+      }
       if(new_history.length === 0){
         throw new Error("No New History!")
       } 
+      await History.insertMany(new_history, {ordered: false}).catch(error=>{
+        Dates.log(error, "UTILS/STOCKS")
+      })
+      await Stock.updateOne({ticker: ticker},{updated: today}, {upsert: true})
       Dates.log("UTILS/STOCKS", `Added ${new_history.length} new records for ${ticker}!`)
-      return Stock.updateOne(
-        { ticker: ticker },
-        { $push: { history: new_history },
-          $set: { updated: end }
-        },
-        { upsert: true }
-      ).then(() => resolve("Yahoo Info Fetched"))
+      resolve(new_history.length)
     })
     .catch(error => reject(error))
   })
@@ -91,16 +88,16 @@ function guarantee_fresh_yahoo(ticker) {
       throw new Error("Invalid ticker symbol!") 
     }
     const today = Dates.round_date(Date.now())
-    const query = Stock.find({ticker: ticker}).select("-history")
+    const query = Stock.find({ticker: ticker})
     query.exec().then( stocks => {
       if(stocks.length == 0 || stocks[0].updated < today){
         // if no company found or info outdated
-        const last_updated = stocks.length==0? new Date('1900'): stocks[0].updated
+        const last_updated = stocks.length==0? Dates.to_pst(new Date('1900')): stocks[0].updated
         return dangerously_fetch_yahoo(ticker, last_updated, today)  
       }
     })
-    .then(()=> {
-      resolve("Data is Fresh!")
+    .then((count)=> {
+      resolve(count)
     })
     .catch((error)=> reject(error))
   })

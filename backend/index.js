@@ -51,7 +51,7 @@ app.use('/api/stocks', stockRoute);
 app.use('/api/monitor', monitorRoute);
 
 // Cron Jobs
-cron.schedule('0 40 8 * * *', () => {
+cron.schedule('0 0 7 * * *', () => {
   // At Midnight PST
   cron_utils.fetch_fresh_data()
 });
