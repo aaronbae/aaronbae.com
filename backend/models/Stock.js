@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 let Stock = new Schema({
   ticker: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   updated: {
     type: Date,
