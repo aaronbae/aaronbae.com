@@ -6,6 +6,7 @@ db.stocks.updateMany({},{$unset:{history:1, "__v":1}})
 db.history.remove({date: {$gte: new Date(2020, 7, 30)}}, false)
 db.stocks.updateMany({}, {$set:{updated: new Date(2020, 7,29, 0, 0, 0)}})
 
+// Checking Reverted data
 db.history.find({ticker: "A", date: {$gte:new Date(2020, 7, 0)}})
 db.stocks.find({ticker: "A"})
 
