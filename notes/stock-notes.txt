@@ -1,5 +1,4 @@
-db.stocks.aggregate([{$unwind:"$history"},{$unset: "_id"},{$project: {ticker: "$ticker", open: "$history.open", high:"$history.high", low: "$history.low", close: "$history.close", change: {$} , date: "$history.date"}}, {$out: "history"}])
-db.stocks.updateMany({},{$unset:{history:1, "__v":1}})
+
 
 https://query1.finance.yahoo.com/v7/finance/download/IBM?period1=-252374400&period2=1597622400&interval=1d&events=history
 https://query1.finance.yahoo.com/v7/finance/download/TSLA?period1=-252374400&period2=1597622400&interval=1d&events=history

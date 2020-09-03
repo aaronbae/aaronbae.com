@@ -57,7 +57,7 @@ function dangerously_fetch_yahoo(ticker, previous, today) {
         if(!splitted_row.includes("null")){
           let new_row = new History()
           new_row.ticker = ticker
-          new_row.date = Dates.to_pst(new Date(splitted_row[0]))
+          new_row.date = new Date(splitted_row[0])
           new_row.open = splitted_row[1]
           new_row.high = splitted_row[2]
           new_row.low = splitted_row[3]
