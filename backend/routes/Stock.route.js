@@ -44,7 +44,7 @@ userRoutes.route('/:id/:days').get(function (req, res) {
 userRoutes.route("/topmovers/:date/:count").get(function(req, res){
   let date = parseInt(req.params.date)
   const count = parseInt(req.params.count)
-  if(!date || date < Dates.oldest_date() || date > Date.now()) {
+  if(!date) {
     res.status(500)
     res.send({error: "Invalid parameter date!"})
   } else if(!count){
