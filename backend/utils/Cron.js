@@ -40,7 +40,7 @@ function get_stocks_status() {
   STOCKS_JOB_STATUS.current_time = Dates.format(current)
   if(STOCKS_JOB_STATUS.n > 0){
     STOCKS_JOB_STATUS.estimated_finish_time = Dates.format(
-      new Date(current.getTime() + STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000)
+      Dates.to_pst(new Date(current.getTime() + STOCKS_JOB_STATUS.n * STOCKS_JOB_ESTIMATED_INTERVAL * 1000))
     )
   } else {
     STOCKS_JOB_STATUS.estimated_finish_time = null
@@ -79,8 +79,7 @@ function fetch_fresh_data() {
       await Stocks.guarantee_fresh_yahoo(ticker)
       .then(async ()=>{
         mail.warn_cron_status()
-        const current = Dates.current()
-        STOCKS_JOB_STATUS.last_updated = current
+        STOCKS_JOB_STATUS.last_updated = Dates.current()
         Dates.log("CRON", `Resolved ${ticker}!`)
         //await sleep(STOCKS_JOB_ESTIMATED_INTERVAL * 1000);
       })

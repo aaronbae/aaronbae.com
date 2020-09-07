@@ -13,3 +13,9 @@ db.stocks.find({ticker: "A"})
 // Compacting after data deletion
 db.runCommand({compact: "stocks"})
 db.runCommand({compact: "history"})
+
+// Mongo free Monitoring
+db.enableFreeMonitoring()
+
+// Create Partial Index
+db.history.createIndex({ticker: 1, date: -1},{partialFilterExpression: {date: {$gt: new Date(2020, 0, 1)}}})

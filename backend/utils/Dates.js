@@ -63,14 +63,12 @@ function format_24(date) {
   if(!date){
     return null
   }
-  date = to_pst(date)
   return date.toLocaleString('en-US', {hour12: false}).replace(/,/g, "")
 }
 function format(date) {
   if(!date){
     return null
   }
-  date = to_pst(date)
   return date.toLocaleString('en-US').replace(/,/g, "")
 }
 function current() {

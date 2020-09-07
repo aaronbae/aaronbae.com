@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression')
 const mongoose = require('mongoose');
-const config = require('./DB')
+const config = require('./DB');
 const cron = require("node-cron");
 const cron_utils = require("./utils/Cron");
 const dates = require("./utils/Dates");
@@ -57,6 +57,7 @@ cron.schedule('0 0 7 * * *', () => {
 });
 
 app.use(Sentry.Handlers.errorHandler());
+
 
 app.listen(4000, () => {
   dates.log("ExpressJS", "Server is listening on port 4000")
