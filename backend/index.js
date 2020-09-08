@@ -3,6 +3,9 @@ require('dotenv').config()
 
 // Backend
 const express = require('express');
+const http = require('http');
+const io = require('socket.io');
+const ws_config = require("./WS");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression')
@@ -35,8 +38,13 @@ mongoose.connect(config.DB, config.options).then(
   err => { dates.error(err, "MongoDB", `Cannot connect to the database`) }
 );
 
-// Boiler Plate
+// Websocket
 const app = express();
+const server = http.createServer(app);
+const socket = io(server);
+socket.on('connection', ws_config)
+
+// Boiler Plate
 app.use(Sentry.Handlers.requestHandler());
 app.use(compression());
 app.use(bodyParser.json());
@@ -58,7 +66,6 @@ cron.schedule('0 0 7 * * *', () => {
 
 app.use(Sentry.Handlers.errorHandler());
 
-
-app.listen(4000, () => {
+server.listen(4000, ()=>{
   dates.log("ExpressJS", "Server is listening on port 4000")
-});
+})
