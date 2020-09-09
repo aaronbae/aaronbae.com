@@ -1,3 +1,5 @@
+import Router from "next/router";
+import withGA from "next-ga";
 import { Provider } from 'react-redux'
 import { useStore } from '../redux/Store'
 import Layout from "../components/Layout"
@@ -14,4 +16,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default withGA("UA-172945895-1", Router)(MyApp);
