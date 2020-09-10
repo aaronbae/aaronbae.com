@@ -41,7 +41,7 @@ userRoutes.route('/:id/:days').get(function (req, res) {
   })
 });
 
-userRoutes.route("/topmovers/:date/:count").get(function(req, res){
+userRoutes.route("/topgainers/:date/:count").get(function(req, res){
   let date = parseInt(req.params.date)
   const count = parseInt(req.params.count)
   if(!date) {
@@ -52,7 +52,28 @@ userRoutes.route("/topmovers/:date/:count").get(function(req, res){
     res.send({error: "Invalid parameter count!"})
   } else {
     date = Dates.round_date(date)
-    Stocks.query_topmover(date, count).exec().then((stocks)=>{
+    Stocks.query_topgainers(date, count).exec().then((stocks)=>{
+      Dates.log(req.baseUrl+req.path)
+      res.status(200)
+      res.send({message: "Success", stocks: stocks})
+    })
+    .catch(error=>{
+      Dates.error(error, req.baseURL+req.path)
+    })
+  }
+})
+userRoutes.route("/toplosers/:date/:count").get(function(req, res){
+  let date = parseInt(req.params.date)
+  const count = parseInt(req.params.count)
+  if(!date) {
+    res.status(500)
+    res.send({error: "Invalid parameter date!"})
+  } else if(!count){
+    res.status(500)
+    res.send({error: "Invalid parameter count!"})
+  } else {
+    date = Dates.round_date(date)
+    Stocks.query_toplosers(date, count).exec().then((stocks)=>{
       Dates.log(req.baseUrl+req.path)
       res.status(200)
       res.send({message: "Success", stocks: stocks})

@@ -25,13 +25,17 @@ module.exports = {
   query_ticker_partial:query_ticker_partial,
   query_limited:query_limited,
   query_all: query_all,
-  query_topmover: query_topmover,
+  query_topgainers: query_topgainers,
+  query_toplosers: query_toplosers,
   guarantee_fresh_yahoo: guarantee_fresh_yahoo
 }
 function query_ticker_partial(word_piece) {
   return Stock.find({ticker: {$regex: `^${word_piece}.*$`}}, "ticker -_id").limit(5)
 }
-function query_topmover(date, count) {
+function query_toplosers(date, count) {
+  return History.find({date: date}).sort({change: 1}).limit(count)
+}
+function query_topgainers(date, count) {
   return History.find({date: date}).sort({change: -1}).limit(count)
 }
 function query_limited(ticker, count) {
