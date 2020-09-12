@@ -17,5 +17,9 @@ frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
 
+# scripts
+scripts/intialize-server.sh
+scripts/post-receive.txt
+
 # vercel
 frontend/.vercel
