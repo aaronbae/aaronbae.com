@@ -23,6 +23,8 @@ export function format_post_content(post) {
   if(post.content === "<br>" || post.content===""){
     return "<div></div>"
   }
+  // Temporary stop gap
+  post.content = post.content.replace(/https:\/\/aaronbae.com\/api\/files\//gi, `${process.env.NEXT_PUBLIC_FILE_URL}`)
   return post.content
 }
 export function raw_tags_to_array(raw_tags_input) {
