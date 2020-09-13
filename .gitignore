@@ -2,9 +2,6 @@
 backend/node_modules
 frontend/node_modules
 
-# next.js
-frontend/.next/
-
 # debug
 frontend/npm-debug.log*
 frontend/yarn-debug.log*

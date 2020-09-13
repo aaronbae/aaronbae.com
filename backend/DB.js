@@ -33,4 +33,4 @@ const local_mongo = {
 };
 
 
-module.exports = process.env.NODE_ENV === "development" ? local_mongo : aws_mongo;
+module.exports = process.env.NODE_ENV === "development" ? local_mongo : remote_mongo;
