@@ -2,7 +2,7 @@
 node_modules
 
 # build folder
-.next
+#.next
 
 # debug
 npm-debug.log*
@@ -16,7 +16,7 @@ yarn-error.log*
 .env.production.local
 
 # scripts
-scripts/initialize-server.sh
+scripts/init_ubuntu.sh
 scripts/post-receive.txt
 
 # vercel
