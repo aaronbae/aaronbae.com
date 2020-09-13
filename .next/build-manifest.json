@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/7sYG68-vbIA0FrKmNfw1x/_buildManifest.js",
-    "static/7sYG68-vbIA0FrKmNfw1x/_ssgManifest.js"
+    "static/rPPYFbu7X3NGu4WMyX43I/_buildManifest.js",
+    "static/rPPYFbu7X3NGu4WMyX43I/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -25,7 +25,7 @@
       "static/chunks/4b117e79ff4458029849c28aa356b8fd03e7c08d.4f32d38d5521552d9e1d.js",
       "static/css/styles.8ccccc47.chunk.css",
       "static/chunks/styles.28e27967da4ff107e4eb.js",
-      "static/chunks/pages/_app-56c28960b6aa3399b1d8.js"
+      "static/chunks/pages/_app-c175779223cafcfbe012.js"
     ],
     "/_error": [
       "static/chunks/main-6b89065aed76efe363fd.js",
@@ -41,7 +41,7 @@
       "static/chunks/4b117e79ff4458029849c28aa356b8fd03e7c08d.4f32d38d5521552d9e1d.js",
       "static/css/styles.8ccccc47.chunk.css",
       "static/chunks/styles.28e27967da4ff107e4eb.js",
-      "static/chunks/pages/admin-61e53bec33609e75c455.js"
+      "static/chunks/pages/admin-850f8eaadc617b9f1594.js"
     ],
     "/blog": [
       "static/chunks/main-6b89065aed76efe363fd.js",
@@ -51,7 +51,7 @@
       "static/chunks/4b117e79ff4458029849c28aa356b8fd03e7c08d.4f32d38d5521552d9e1d.js",
       "static/css/styles.8ccccc47.chunk.css",
       "static/chunks/styles.28e27967da4ff107e4eb.js",
-      "static/chunks/pages/blog-d1b1e5f317632e9b92e3.js"
+      "static/chunks/pages/blog-6b4294d8f202a997b96a.js"
     ],
     "/blog/[id]": [
       "static/chunks/main-6b89065aed76efe363fd.js",
@@ -61,7 +61,7 @@
       "static/chunks/4b117e79ff4458029849c28aa356b8fd03e7c08d.4f32d38d5521552d9e1d.js",
       "static/css/styles.8ccccc47.chunk.css",
       "static/chunks/styles.28e27967da4ff107e4eb.js",
-      "static/chunks/pages/blog/[id]-3b4f2c446eb61a6f565f.js"
+      "static/chunks/pages/blog/[id]-490c98f249245299b27f.js"
     ],
     "/login": [
       "static/chunks/main-6b89065aed76efe363fd.js",
@@ -71,7 +71,7 @@
       "static/chunks/4b117e79ff4458029849c28aa356b8fd03e7c08d.4f32d38d5521552d9e1d.js",
       "static/css/styles.8ccccc47.chunk.css",
       "static/chunks/styles.28e27967da4ff107e4eb.js",
-      "static/chunks/pages/login-9017881a96fd094b2fac.js"
+      "static/chunks/pages/login-9219f632ac608d491351.js"
     ],
     "/projects": [
       "static/chunks/main-6b89065aed76efe363fd.js",
