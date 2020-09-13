@@ -221,7 +221,7 @@ function receive_posts(res) {
 
 function fetch_public_posts(skip = 0) {
   return dispatch => {
-    let url = "https://aaronbae.com/api/posts/" + "public";
+    let url = "http://52.12.89.206/api/posts/" + "public";
 
     if (skip > 0) {
       url += "?skip=" + skip.toString();
@@ -234,7 +234,7 @@ function fetch_public_posts(skip = 0) {
 }
 function fetch_posts(skip = 0) {
   return dispatch => {
-    let url = "https://aaronbae.com/api/posts/";
+    let url = "http://52.12.89.206/api/posts/";
 
     if (skip > 0) {
       url = url.slice(0, -1) + "?skip=" + skip.toString();
@@ -245,12 +245,12 @@ function fetch_posts(skip = 0) {
 }
 function fetch_post_by_id(post_id) {
   return dispatch => {
-    fetch("https://aaronbae.com/api/posts/" + post_id).then(res => res.json()).then(res => dispatch(receive_posts(res)));
+    fetch("http://52.12.89.206/api/posts/" + post_id).then(res => res.json()).then(res => dispatch(receive_posts(res)));
   };
 }
 function create_new_post() {
   return dispatch => {
-    var url = "https://aaronbae.com/api/posts/" + "add/";
+    var url = "http://52.12.89.206/api/posts/" + "add/";
     fetch(url, {
       method: 'POST',
       headers: {
@@ -264,7 +264,7 @@ function create_new_post() {
   };
 }
 function save_local_changes(post) {
-  var url = "https://aaronbae.com/api/posts/" + "update/" + post._id.toString();
+  var url = "http://52.12.89.206/api/posts/" + "update/" + post._id.toString();
 
   return dispatch => {
     fetch(url, {
@@ -277,7 +277,7 @@ function save_local_changes(post) {
   };
 }
 function delete_post(post_id) {
-  var url = "https://aaronbae.com/api/posts/" + "delete/" + post_id.toString();
+  var url = "http://52.12.89.206/api/posts/" + "delete/" + post_id.toString();
   return dispatch => {
     fetch(url, {
       method: 'GET',
@@ -680,7 +680,7 @@ function PostContent({
     if (element && f && /^.*(png|jpg|jpeg)$/i.test(f.type)) {
       const data = new FormData();
       data.append('file', f);
-      fetch("https://aaronbae.com/api/files/" + 'upload', {
+      fetch("http://52.12.89.206/api/files/" + 'upload', {
         method: 'POST',
         body: data
       }).then(res => res.json()).then(res => {
@@ -851,7 +851,7 @@ function PostViewer({
 }
 
 async function getServerSideProps(context) {
-  const raw = await fetch("https://aaronbae.com/api/posts/" + Object(format["m" /* url_to_post_id */])(context.query.id));
+  const raw = await fetch("http://52.12.89.206/api/posts/" + Object(format["m" /* url_to_post_id */])(context.query.id));
   const res = await raw.json();
   const post = res.posts[0];
   return {
