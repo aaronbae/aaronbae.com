@@ -17,19 +17,21 @@ export default function DB(props) {
       <p className="card-title">aaronbaeDB</p>
       {dbState && 
         <div>
-          <ResponsiveContainer width="100%" height={150}>
-            <PieChart>
-              <Tooltip />
-              <Pie 
-                data={[
-                  {name: "used", memory: format_to_gb(dbState.machine_memory_used, 2)}, 
-                  {name: "free", memory: format_to_gb(dbState.machine_memory_total - dbState.machine_memory_used, 2)}]} 
-                dataKey="memory" nameKey="name" 
-                cx="50%" cy="50%" 
-                outerRadius={60} fill="#ffa600" label>
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
+          {dbState.collections && 
+            <ResponsiveContainer width="100%" height={150}>
+              <PieChart>
+                <Tooltip />
+                <Pie 
+                  data={dbState.collections.map(item=>{
+                    return {name: item.name, memory: format_to_gb(item.reserved, 4)}
+                  })} 
+                  dataKey="memory" nameKey="name" 
+                  cx="50%" cy="50%" 
+                  outerRadius={60} fill="#ffa600" label>
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+          }
           <p className="memory-used-label">Machine Memory Used (GB)</p>
           <div className="card-section-break" />
           <table className="db-table">
