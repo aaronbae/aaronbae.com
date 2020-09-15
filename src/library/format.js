@@ -16,7 +16,7 @@ export function snake_case_to_normal(string) {
 }
 
 export function create_img_element(url) {
-  url = url.replace(/https:\/\/aaronbaebucket.s3.([^/]+)\//gi, "https://aaronbae.com/api/files/")
+  url = url.replace(/https:\/\/aaronbaebucket.s3.([^/]+)\//gi, `${process.env.NEXT_PUBLIC_FILE_URL}`)
   return `<img src='${url}' class='aws-image' alt='Loaded from AWS'>`
 }
 export function format_post_content(post) {

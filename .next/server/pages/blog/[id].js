@@ -331,7 +331,7 @@ function snake_case_to_normal(string) {
   return string.split("_").map(x => upper_case(x)).join(" ");
 }
 function create_img_element(url) {
-  url = url.replace(/https:\/\/aaronbaebucket.s3.([^/]+)\//gi, "https://aaronbae.com/api/files/");
+  url = url.replace(/https:\/\/aaronbaebucket.s3.([^/]+)\//gi, `${"https://52.12.89.206/api/files/"}`);
   return `<img src='${url}' class='aws-image' alt='Loaded from AWS'>`;
 }
 function format_post_content(post) {
