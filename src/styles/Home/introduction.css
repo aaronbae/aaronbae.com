@@ -37,6 +37,13 @@
 #bio-info > li {
   text-align: center;
 }
+.resume-link {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.resume-link:hover {
+  color: blue;
+}
 .intro-link-wrapper {
   padding-top: 20px;
 }

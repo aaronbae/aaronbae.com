@@ -13,8 +13,9 @@ export default function Introduction() {
         <li >Focus on Natural Language Processing</li>
         <li >Bachelor of Science in Mathematics</li>
         <li >University of Washington Class of 2019</li>
-        <li><a href="downloadables/resume.pdf" download>Download a copy of my resume</a></li>
       </ul>
+      <div className="card-section-break" />
+      <div className="resume-link"><a href="downloadables/resume.pdf" download>Download a copy of my resume</a></div>
       <div className="card-section-break" />
       <div className="intro-link-wrapper">
         <a href="https://github.com/aaronbae" target="_blank" title="GitHub">
