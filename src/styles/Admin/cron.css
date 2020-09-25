@@ -1,3 +1,22 @@
+.cron-title {
+  display: flex;
+  flex-direction: row;
+}
+.cron-refresh {
+  margin-left: auto;
+  margin-right: 5px;
+}
+.cron-title-button{
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: flex-end;
+  border-radius: 10px;
+  padding: 2px 5px;
+  border: 1px solid black;
+}
+.cron-title-button:hover {
+  background-color: rgba(0,0,0,0.1);
+}
 .cron-table {
   font-size: 0.9rem;
   width: 87%;
@@ -9,3 +28,4 @@
 .cron-table tbody .cron-table-values {
   text-align: right;
 }
+
