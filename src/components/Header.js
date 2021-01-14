@@ -36,7 +36,11 @@ export default function Header() {
       <nav className="navigation hide" ref={dropdown}>
         <div className="tab-group">
           <Link href="/"><a className="tab" onClick={hide}>Home</a></Link>
+          {/*
           <Link href="/blog"><a className="tab" onClick={hide}>Blog</a></Link>
+          */
+          }
+          
           <Link href="/projects"><a className="tab" onClick={hide}>Projects</a></Link>
           {logged_in && <Link href="/admin"><a className="tab" onClick={hide}>Admin</a></Link>}
         </div>

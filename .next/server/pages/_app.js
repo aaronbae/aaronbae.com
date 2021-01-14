@@ -752,11 +752,6 @@ function Header() {
     className: "tab",
     onClick: hide
   }, "Home")), __jsx(link_default.a, {
-    href: "/blog"
-  }, __jsx("a", {
-    className: "tab",
-    onClick: hide
-  }, "Blog")), __jsx(link_default.a, {
     href: "/projects"
   }, __jsx("a", {
     className: "tab",
